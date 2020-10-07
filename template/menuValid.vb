@@ -419,4 +419,10 @@ Public Class menuValid
             xx.ShowDialog(Me)
         End Using
     End Sub
+
+    Private Sub ATKToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ATKToolStripMenuItem.Click
+        Using xx As New frmMstATK
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
 End Class

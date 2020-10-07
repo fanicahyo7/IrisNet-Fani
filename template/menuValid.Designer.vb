@@ -57,6 +57,7 @@ Partial Class menuValid
         Me.VoucherToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VoucherBuatEventToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BlokirNomorNotaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BukuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TransaksiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PembelianToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MutasiToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -76,7 +77,7 @@ Partial Class menuValid
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
-        Me.BukuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ATKToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -182,7 +183,7 @@ Partial Class menuValid
         '
         'MasterToolStripMenuItem
         '
-        Me.MasterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TeamOrderToolStripMenuItem, Me.SettingBukuToolStripMenuItem, Me.SettingATKToolStripMenuItem, Me.GudangToolStripMenuItem, Me.WilayahToolStripMenuItem, Me.RakToolStripMenuItem, Me.TypeCustomerSupplierToolStripMenuItem, Me.GolonganToolStripMenuItem, Me.CardToolStripMenuItem, Me.DaftarNomorNotaToolStripMenuItem, Me.EkspedisiToolStripMenuItem, Me.StockNonProfitToolStripMenuItem, Me.SalesmanToolStripMenuItem, Me.OutletToolStripMenuItem, Me.PenerbitToolStripMenuItem, Me.MarginToolStripMenuItem, Me.BankToolStripMenuItem, Me.VoucherToolStripMenuItem, Me.VoucherBuatEventToolStripMenuItem, Me.BlokirNomorNotaToolStripMenuItem, Me.BukuToolStripMenuItem})
+        Me.MasterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TeamOrderToolStripMenuItem, Me.SettingBukuToolStripMenuItem, Me.SettingATKToolStripMenuItem, Me.GudangToolStripMenuItem, Me.WilayahToolStripMenuItem, Me.RakToolStripMenuItem, Me.TypeCustomerSupplierToolStripMenuItem, Me.GolonganToolStripMenuItem, Me.CardToolStripMenuItem, Me.DaftarNomorNotaToolStripMenuItem, Me.EkspedisiToolStripMenuItem, Me.StockNonProfitToolStripMenuItem, Me.SalesmanToolStripMenuItem, Me.OutletToolStripMenuItem, Me.PenerbitToolStripMenuItem, Me.MarginToolStripMenuItem, Me.BankToolStripMenuItem, Me.VoucherToolStripMenuItem, Me.VoucherBuatEventToolStripMenuItem, Me.BlokirNomorNotaToolStripMenuItem, Me.BukuToolStripMenuItem, Me.ATKToolStripMenuItem})
         Me.MasterToolStripMenuItem.Name = "MasterToolStripMenuItem"
         Me.MasterToolStripMenuItem.Size = New System.Drawing.Size(55, 20)
         Me.MasterToolStripMenuItem.Text = "Master"
@@ -307,6 +308,12 @@ Partial Class menuValid
         Me.BlokirNomorNotaToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
         Me.BlokirNomorNotaToolStripMenuItem.Text = "Blokir Nomor Nota"
         '
+        'BukuToolStripMenuItem
+        '
+        Me.BukuToolStripMenuItem.Name = "BukuToolStripMenuItem"
+        Me.BukuToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
+        Me.BukuToolStripMenuItem.Text = "Buku"
+        '
         'TransaksiToolStripMenuItem
         '
         Me.TransaksiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PembelianToolStripMenuItem2, Me.MutasiToolStripMenuItem1, Me.KirimEkspedisiToolStripMenuItem1, Me.PengunjungToolStripMenuItem, Me.TerimaEkspedisiToolStripMenuItem})
@@ -427,11 +434,11 @@ Partial Class menuValid
         Me.ImageList1.ImageSize = New System.Drawing.Size(16, 16)
         Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
         '
-        'BukuToolStripMenuItem
+        'ATKToolStripMenuItem
         '
-        Me.BukuToolStripMenuItem.Name = "BukuToolStripMenuItem"
-        Me.BukuToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
-        Me.BukuToolStripMenuItem.Text = "Buku"
+        Me.ATKToolStripMenuItem.Name = "ATKToolStripMenuItem"
+        Me.ATKToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
+        Me.ATKToolStripMenuItem.Text = "ATK"
         '
         'menuValid
         '
@@ -505,4 +512,5 @@ Partial Class menuValid
     Friend WithEvents PiutangCustomerToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents KirimEkspedisiPBYToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents BukuToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ATKToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
