@@ -1,0 +1,974 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8C025E48-C565-44CF-AED1-F33B020A452B}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>template.My.MyApplication</StartupObject>
+    <RootNamespace>template</RootNamespace>
+    <AssemblyName>template</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>template.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>template.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionExplicit>On</OptionExplicit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionCompare>Binary</OptionCompare>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionStrict>Off</OptionStrict>
+  </PropertyGroup>
+  <PropertyGroup>
+    <OptionInfer>On</OptionInfer>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ClosedXML, Version=0.69.1.0, Culture=neutral, PublicKeyToken=fd1eb21b62ae805b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.BonusSkins.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.BonusSkins.v16.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.Charts.v16.2.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.CodeParser.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.CodeParser.v16.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Data.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.Data.v16.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.DataAccess.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Office.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.Office.v16.2.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Pdf.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.Pdf.v16.2.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.PivotGrid.v16.2.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.Printing.v16.2.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.RichEdit.v16.2.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Sparkline.v16.2.Core, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.Sparkline.v16.2.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.Utils.v16.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v16.2.UI, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.Utils.v16.2.UI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.XtraBars.v16.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.XtraCharts.v16.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v16.2.UI, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v16.2.Wizard, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.XtraCharts.v16.2.Wizard.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.XtraEditors.v16.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.XtraGrid.v16.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.XtraLayout.v16.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.XtraNavBar.v16.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.XtraPivotGrid.v16.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.XtraPrinting.v16.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.XtraReports.v16.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v16.2.Extensions, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.XtraReports.v16.2.Extensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.XtraRichEdit.v16.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraTreeList.v16.2, Version=16.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DevExpress.XtraTreeList.v16.2.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.0.5022.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.6.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.5.0.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="LumenWorks.Framework.IO, Version=3.8.0.0, Culture=neutral, PublicKeyToken=5ad3ea2f85776344, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\LumenWorks.Framework.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="meCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\meCore.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI, Version=2.1.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.1.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.1.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.1.3.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Deployment">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+    <Import Include="System.Threading.Tasks" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ctrlFilterStock.designer.vb">
+      <DependentUpon>ctrlFilterStock.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ctrlFilterStock.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Form1.designer.vb">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.vb">
+      <DependentUpon>Form2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form3.Designer.vb">
+      <DependentUpon>Form3.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form3.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAmbilFaktur.designer.vb">
+      <DependentUpon>frmAmbilFaktur.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmAmbilFaktur.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBlokirNomorNota.Designer.vb">
+      <DependentUpon>frmBlokirNomorNota.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmBlokirNomorNota.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDetailBarang.Designer.vb">
+      <DependentUpon>frmDetailBarang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDetailBarang.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDetailCard.Designer.vb">
+      <DependentUpon>frmDetailCard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDetailCard.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDetailStockNonProfit.Designer.vb">
+      <DependentUpon>frmDetailStockNonProfit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDetailStockNonProfit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDetailNoNota.Designer.vb">
+      <DependentUpon>frmDetailNoNota.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDetailNoNota.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDetailGudang.Designer.vb">
+      <DependentUpon>frmDetailGudang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDetailGudang.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGrafikBig.designer.vb">
+      <DependentUpon>frmGrafikBig.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmGrafikBig.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLapKartuPiutangCustomer.Designer.vb">
+      <DependentUpon>frmLapKartuPiutangCustomer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLapKartuPiutangCustomer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLaporanNotaManual.Designer.vb">
+      <DependentUpon>frmLaporanNotaManual.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLaporanNotaManual.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstBank.Designer.vb">
+      <DependentUpon>frmMstBank.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstBank.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmmstBankAdd.Designer.vb">
+      <DependentUpon>frmmstBankAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmmstBankAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstATK.Designer.vb">
+      <DependentUpon>frmMstATK.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstATK.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstBuku.Designer.vb">
+      <DependentUpon>frmMstBuku.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstBuku.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstMargin.Designer.vb">
+      <DependentUpon>frmMstMargin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstMargin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstMarginList.Designer.vb">
+      <DependentUpon>frmMstMarginList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstMarginList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstOutlet.Designer.vb">
+      <DependentUpon>frmMstOutlet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstOutlet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstVoucherBuatEvent.Designer.vb">
+      <DependentUpon>frmMstVoucherBuatEvent.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstVoucherBuatEvent.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstVoucherBuatEventAdd.Designer.vb">
+      <DependentUpon>frmMstVoucherBuatEventAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstVoucherBuatEventAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstVoucherList.Designer.vb">
+      <DependentUpon>frmMstVoucherList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstVoucherList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstPenerbitList.Designer.vb">
+      <DependentUpon>frmMstPenerbitList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstPenerbitList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstOutletList.Designer.vb">
+      <DependentUpon>frmMstOutletList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstOutletList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstSalesmanList.Designer.vb">
+      <DependentUpon>frmMstSalesmanList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstSalesmanList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstSalesman.Designer.vb">
+      <DependentUpon>frmMstSalesman.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstSalesman.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstEkspedisi.Designer.vb">
+      <DependentUpon>frmMstEkspedisi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstEkspedisi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstEkspedisiList.Designer.vb">
+      <DependentUpon>frmMstEkspedisiList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstEkspedisiList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstGudang.Designer.vb">
+      <DependentUpon>frmMstGudang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstGudang.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstTeamOrder.Designer.vb">
+      <DependentUpon>frmMstTeamOrder.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstTeamOrder.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstVoucher.Designer.vb">
+      <DependentUpon>frmMstVoucher.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstVoucher.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMutasi.Designer.vb">
+      <DependentUpon>frmMutasi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMutasi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPenerbit.Designer.vb">
+      <DependentUpon>frmPenerbit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPenerbit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPengunjung.Designer.vb">
+      <DependentUpon>frmPengunjung.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPengunjung.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPengunjungList.Designer.vb">
+      <DependentUpon>frmPengunjungList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPengunjungList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPengunjungValid.Designer.vb">
+      <DependentUpon>frmPengunjungValid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPengunjungValid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPengunjungValidList.Designer.vb">
+      <DependentUpon>frmPengunjungValidList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPengunjungValidList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPenjualanBO.Designer.vb">
+      <DependentUpon>frmPenjualanBO.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPenjualanBO.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRetur.Designer.vb">
+      <DependentUpon>frmRetur.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRetur.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReturKonsUtm.Designer.vb">
+      <DependentUpon>frmReturKonsUtm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReturKonsUtm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReturPenjualan.Designer.vb">
+      <DependentUpon>frmReturPenjualan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReturPenjualan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReturPembelian.Designer.vb">
+      <DependentUpon>frmReturPembelian.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReturPembelian.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReturPembelianUtm.Designer.vb">
+      <DependentUpon>frmReturPembelianUtm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReturPembelianUtm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPenjualanBOUtm.Designer.vb">
+      <DependentUpon>frmPenjualanBOUtm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPenjualanBOUtm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReturPenjualanUtm.Designer.vb">
+      <DependentUpon>frmReturPenjualanUtm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReturPenjualanUtm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRptBarangKeluarMasuk.designer.vb">
+      <DependentUpon>frmRptBarangKeluarMasuk.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRptBarangKeluarMasuk.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRptGolSupTerlaris.designer.vb">
+      <DependentUpon>frmRptGolSupTerlaris.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRptGolSupTerlaris.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRptUmurStok.designer.vb">
+      <DependentUpon>frmRptUmurStok.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRptUmurStok.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRptUmurStokSupGolDetail.designer.vb">
+      <DependentUpon>frmRptUmurStokSupGolDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRptUmurStokSupGolDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRptUmurStokSupGol.designer.vb">
+      <DependentUpon>frmRptUmurStokSupGol.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmRptUmurStokSupGol.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSettingATK.Designer.vb">
+      <DependentUpon>frmSettingATK.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSettingATK.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSettingBuku.Designer.vb">
+      <DependentUpon>frmSettingBuku.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSettingBuku.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTerimaEkspedisi.Designer.vb">
+      <DependentUpon>frmTerimaEkspedisi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTerimaEkspedisi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTerimaEkspedisiList.Designer.vb">
+      <DependentUpon>frmTerimaEkspedisiList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmTerimaEkspedisiList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmtrKirimEkspedisi.designer.vb">
+      <DependentUpon>frmtrKirimEkspedisi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmtrKirimEkspedisi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmtrKirimEkspedisiList.designer.vb">
+      <DependentUpon>frmtrKirimEkspedisiList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmtrKirimEkspedisiList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmuAddItem.designer.vb">
+      <DependentUpon>frmuAddItem.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmuAddItem.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="frmValidKEPBY.Designer.vb">
+      <DependentUpon>frmValidKEPBY.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmValidKEPBY.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmValidReturBeli.Designer.vb">
+      <DependentUpon>frmValidReturBeli.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmValidReturBeli.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmValidReturBeliDetail.Designer.vb">
+      <DependentUpon>frmValidReturBeliDetail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmValidReturBeliDetail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmValidReturRB.Designer.vb">
+      <DependentUpon>frmValidReturRB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmValidReturRB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmValidUser.Designer.vb">
+      <DependentUpon>frmValidUser.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmValidUser.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="menuValid.Designer.vb">
+      <DependentUpon>menuValid.vb</DependentUpon>
+    </Compile>
+    <Compile Include="menuValid.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="modIris.vb" />
+    <Compile Include="Module1.vb" />
+    <Compile Include="mstcoba.Designer.vb">
+      <DependentUpon>mstcoba.vb</DependentUpon>
+    </Compile>
+    <Compile Include="mstcoba.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mstcobalist.Designer.vb">
+      <DependentUpon>mstcobalist.vb</DependentUpon>
+    </Compile>
+    <Compile Include="mstcobalist.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mstCustomer.Designer.vb">
+      <DependentUpon>mstCustomer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="mstCustomer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="mstCustomerList.Designer.vb">
+      <DependentUpon>mstCustomerList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="mstCustomerList.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="SplashScreen1.Designer.vb">
+      <DependentUpon>SplashScreen1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="SplashScreen1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XtraForm1.Designer.vb">
+      <DependentUpon>XtraForm1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="XtraForm1.vb">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ctrlFilterStock.resx">
+      <DependentUpon>ctrlFilterStock.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form3.resx">
+      <DependentUpon>Form3.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAmbilFaktur.resx">
+      <DependentUpon>frmAmbilFaktur.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmBlokirNomorNota.resx">
+      <DependentUpon>frmBlokirNomorNota.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDetailBarang.resx">
+      <DependentUpon>frmDetailBarang.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDetailCard.resx">
+      <DependentUpon>frmDetailCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDetailStockNonProfit.resx">
+      <DependentUpon>frmDetailStockNonProfit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDetailNoNota.resx">
+      <DependentUpon>frmDetailNoNota.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDetailGudang.resx">
+      <DependentUpon>frmDetailGudang.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmGrafikBig.resx">
+      <DependentUpon>frmGrafikBig.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLapKartuPiutangCustomer.resx">
+      <DependentUpon>frmLapKartuPiutangCustomer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLaporanNotaManual.resx">
+      <DependentUpon>frmLaporanNotaManual.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstBank.resx">
+      <DependentUpon>frmMstBank.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmmstBankAdd.resx">
+      <DependentUpon>frmmstBankAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstATK.resx">
+      <DependentUpon>frmMstATK.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstBuku.resx">
+      <DependentUpon>frmMstBuku.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstMargin.resx">
+      <DependentUpon>frmMstMargin.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstMarginList.resx">
+      <DependentUpon>frmMstMarginList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstOutlet.resx">
+      <DependentUpon>frmMstOutlet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstVoucherBuatEvent.resx">
+      <DependentUpon>frmMstVoucherBuatEvent.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstVoucherBuatEventAdd.resx">
+      <DependentUpon>frmMstVoucherBuatEventAdd.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstVoucherList.resx">
+      <DependentUpon>frmMstVoucherList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstPenerbitList.resx">
+      <DependentUpon>frmMstPenerbitList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstOutletList.resx">
+      <DependentUpon>frmMstOutletList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstSalesmanList.resx">
+      <DependentUpon>frmMstSalesmanList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstSalesman.resx">
+      <DependentUpon>frmMstSalesman.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstEkspedisi.resx">
+      <DependentUpon>frmMstEkspedisi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstEkspedisiList.resx">
+      <DependentUpon>frmMstEkspedisiList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstGudang.resx">
+      <DependentUpon>frmMstGudang.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstTeamOrder.resx">
+      <DependentUpon>frmMstTeamOrder.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstVoucher.resx">
+      <DependentUpon>frmMstVoucher.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMutasi.resx">
+      <DependentUpon>frmMutasi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPenerbit.resx">
+      <DependentUpon>frmPenerbit.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPengunjung.resx">
+      <DependentUpon>frmPengunjung.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPengunjungList.resx">
+      <DependentUpon>frmPengunjungList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPengunjungValid.resx">
+      <DependentUpon>frmPengunjungValid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPengunjungValidList.resx">
+      <DependentUpon>frmPengunjungValidList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPenjualanBO.resx">
+      <DependentUpon>frmPenjualanBO.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRetur.resx">
+      <DependentUpon>frmRetur.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReturKonsUtm.resx">
+      <DependentUpon>frmReturKonsUtm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReturPenjualan.resx">
+      <DependentUpon>frmReturPenjualan.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReturPembelian.resx">
+      <DependentUpon>frmReturPembelian.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReturPembelianUtm.resx">
+      <DependentUpon>frmReturPembelianUtm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPenjualanBOUtm.resx">
+      <DependentUpon>frmPenjualanBOUtm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReturPenjualanUtm.resx">
+      <DependentUpon>frmReturPenjualanUtm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRptBarangKeluarMasuk.resx">
+      <DependentUpon>frmRptBarangKeluarMasuk.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRptGolSupTerlaris.resx">
+      <DependentUpon>frmRptGolSupTerlaris.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRptUmurStok.resx">
+      <DependentUpon>frmRptUmurStok.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRptUmurStokSupGolDetail.resx">
+      <DependentUpon>frmRptUmurStokSupGolDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmRptUmurStokSupGol.resx">
+      <DependentUpon>frmRptUmurStokSupGol.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSettingATK.resx">
+      <DependentUpon>frmSettingATK.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSettingBuku.resx">
+      <DependentUpon>frmSettingBuku.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTerimaEkspedisi.resx">
+      <DependentUpon>frmTerimaEkspedisi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTerimaEkspedisiList.resx">
+      <DependentUpon>frmTerimaEkspedisiList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmtrKirimEkspedisi.resx">
+      <DependentUpon>frmtrKirimEkspedisi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmtrKirimEkspedisiList.resx">
+      <DependentUpon>frmtrKirimEkspedisiList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmuAddItem.resx">
+      <DependentUpon>frmuAddItem.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmValidKEPBY.resx">
+      <DependentUpon>frmValidKEPBY.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmValidReturBeli.resx">
+      <DependentUpon>frmValidReturBeli.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmValidReturBeliDetail.resx">
+      <DependentUpon>frmValidReturBeliDetail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmValidReturRB.resx">
+      <DependentUpon>frmValidReturRB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmValidUser.resx">
+      <DependentUpon>frmValidUser.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="menuValid.resx">
+      <DependentUpon>menuValid.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mstcoba.resx">
+      <DependentUpon>mstcoba.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mstcobalist.resx">
+      <DependentUpon>mstcobalist.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mstCustomer.resx">
+      <DependentUpon>mstCustomer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="mstCustomerList.resx">
+      <DependentUpon>mstCustomerList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\licenses.licx" />
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplashScreen1.resx">
+      <DependentUpon>SplashScreen1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XtraForm1.resx">
+      <DependentUpon>XtraForm1.vb</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

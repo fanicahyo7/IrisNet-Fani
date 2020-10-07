@@ -1,0 +1,4 @@
+select b.*, a.Faktur,a.NoBukti,a.FakturReferensi,a.Tujuan,(select Nama from mstSupplier where Kode=a.Tujuan) as NamaTujuan,(select Alamat from mstSupplier where Kode=a.Tujuan) as AlamatTujuan,a.Total, 
+(select Nama from mstEkspedisi where Kode = b.KodeEkspedisi) as NamaEkspedisi from trKirimEkspedisiDetail a
+inner join trKirimEkspedisi b on a.NoBukti = b.Faktur
+where b.faktur = '601QCX-KE20031800001'
