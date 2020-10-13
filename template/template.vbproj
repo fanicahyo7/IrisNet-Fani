@@ -357,6 +357,12 @@
     <Compile Include="frmGrafikBig.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmLapForecastHutang.Designer.vb">
+      <DependentUpon>frmLapForecastHutang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLapForecastHutang.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmLapKartuPiutangCustomer.Designer.vb">
       <DependentUpon>frmLapKartuPiutangCustomer.vb</DependentUpon>
     </Compile>
@@ -765,6 +771,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGrafikBig.resx">
       <DependentUpon>frmGrafikBig.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLapForecastHutang.resx">
+      <DependentUpon>frmLapForecastHutang.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLapKartuPiutangCustomer.resx">
       <DependentUpon>frmLapKartuPiutangCustomer.vb</DependentUpon>

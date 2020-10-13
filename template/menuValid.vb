@@ -425,4 +425,10 @@ Public Class menuValid
             xx.ShowDialog(Me)
         End Using
     End Sub
+
+    Private Sub ForeCastHutangToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ForeCastHutangToolStripMenuItem.Click
+        Using xx As New frmLapForecastHutang
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
 End Class

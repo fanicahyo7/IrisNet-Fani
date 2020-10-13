@@ -601,3 +601,4 @@ D:\IrisNet-Fani\template\obj\Debug\template.SplashScreen1.resources
 D:\IrisNet-Fani\template\obj\Debug\template.XtraForm1.resources
 D:\IrisNet-Fani\template\obj\Debug\template.vbproj.GenerateResource.Cache
 D:\IrisNet-Fani\template\obj\Debug\template.exe.licenses
+D:\IrisNet-Fani\template\obj\Debug\template.frmLapForecastHutang.resources

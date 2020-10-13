@@ -140,8 +140,8 @@ Public Class frmtrKirimEkspedisi
     End Sub
 
     Sub fakturotomatis()
-        tFaktur.Text = GetNewFakturSQLServ(PubConnStr, "trKirimEkspedisi", "Faktur", pubKodeUnit & pubUserInit & "-KE", Date.Now.ToString("yyMMdd"), 5, "")
-
+        'tFaktur.Text = GetNewFakturSQLServ(PubConnStr, "trKirimEkspedisi", "Faktur", pubKodeUnit & pubUserInit & "-KE", Date.Now.ToString("yyMMdd"), 5, "")
+        tFaktur.Text = GetNewFakturTogamasSQLServ(PubConnStr, "trKirimEkspedisi", FakturReset.Tahunan, "Faktur", pubKodeUnit & pubUserInit & "-KE", DTOC(Now), 5, "")
         'Dim cari As String
         'cmd = New SqlCommand("select * from trKirimEkspedisi order by Faktur DESC", kon)
         'rd = cmd.ExecuteReader
