@@ -497,11 +497,8 @@ D:\14 Jan 2020\TrPengunjung\template\template\obj\Debug\template.pdb
 D:\14 Jan 2020\TrPengunjung\template\template\obj\Debug\template.vbprojResolveAssemblyReference.cache
 D:\14 Jan 2020\TrPengunjung\template\template\obj\Debug\template.frmMstBuku.resources
 D:\14 Jan 2020\TrPengunjung\template\template\obj\Debug\template.frmMstATK.resources
-D:\IrisNet-Fani\template\bin\Debug\template.exe.config
-D:\IrisNet-Fani\template\obj\Debug\template.exe
-D:\IrisNet-Fani\template\obj\Debug\template.xml
-D:\IrisNet-Fani\template\obj\Debug\template.pdb
 D:\IrisNet-Fani\template\bin\Debug\template.exe
+D:\IrisNet-Fani\template\bin\Debug\template.exe.config
 D:\IrisNet-Fani\template\bin\Debug\template.pdb
 D:\IrisNet-Fani\template\bin\Debug\template.xml
 D:\IrisNet-Fani\template\bin\Debug\Accessibility.dll
@@ -526,7 +523,6 @@ D:\IrisNet-Fani\template\bin\Debug\de\DevExpress.DataAccess.v16.2.resources.dll
 D:\IrisNet-Fani\template\bin\Debug\es\DevExpress.DataAccess.v16.2.resources.dll
 D:\IrisNet-Fani\template\bin\Debug\ja\DevExpress.DataAccess.v16.2.resources.dll
 D:\IrisNet-Fani\template\bin\Debug\ru\DevExpress.DataAccess.v16.2.resources.dll
-D:\IrisNet-Fani\template\obj\Debug\template.vbprojResolveAssemblyReference.cache
 D:\IrisNet-Fani\template\obj\Debug\template.ctrlFilterStock.resources
 D:\IrisNet-Fani\template\obj\Debug\template.Form1.resources
 D:\IrisNet-Fani\template\obj\Debug\template.Form2.resources
@@ -539,6 +535,7 @@ D:\IrisNet-Fani\template\obj\Debug\template.frmDetailStockNonProfit.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmDetailNoNota.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmDetailGudang.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmGrafikBig.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmLapForecastHutang.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmLapKartuPiutangCustomer.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmLaporanNotaManual.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmMstBank.resources
@@ -601,4 +598,6 @@ D:\IrisNet-Fani\template\obj\Debug\template.SplashScreen1.resources
 D:\IrisNet-Fani\template\obj\Debug\template.XtraForm1.resources
 D:\IrisNet-Fani\template\obj\Debug\template.vbproj.GenerateResource.Cache
 D:\IrisNet-Fani\template\obj\Debug\template.exe.licenses
-D:\IrisNet-Fani\template\obj\Debug\template.frmLapForecastHutang.resources
+D:\IrisNet-Fani\template\obj\Debug\template.exe
+D:\IrisNet-Fani\template\obj\Debug\template.xml
+D:\IrisNet-Fani\template\obj\Debug\template.pdb

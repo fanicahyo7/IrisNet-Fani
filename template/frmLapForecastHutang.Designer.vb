@@ -76,7 +76,7 @@ Partial Class frmLapForecastHutang
         Me.dgPengajuan.ConnString = Nothing
         Me.dgPengajuan.dSourceUsePK = True
         Me.dgPengajuan.FilterPopUpMode = DevExpress.XtraGrid.Columns.FilterPopupMode.[Default]
-        Me.dgPengajuan.Location = New System.Drawing.Point(400, 170)
+        Me.dgPengajuan.Location = New System.Drawing.Point(353, 170)
         Me.dgPengajuan.Name = "dgPengajuan"
         Me.dgPengajuan.PopDeleteShow = False
         Me.dgPengajuan.PopExportShow = True
@@ -87,7 +87,7 @@ Partial Class frmLapForecastHutang
         Me.dgPengajuan.Query = Nothing
         Me.dgPengajuan.QueryTime = Nothing
         Me.dgPengajuan.ShowFooter = True
-        Me.dgPengajuan.Size = New System.Drawing.Size(384, 330)
+        Me.dgPengajuan.Size = New System.Drawing.Size(431, 330)
         Me.dgPengajuan.TabIndex = 7
         '
         'dgOmzet
@@ -107,7 +107,7 @@ Partial Class frmLapForecastHutang
         Me.dgOmzet.Query = Nothing
         Me.dgOmzet.QueryTime = Nothing
         Me.dgOmzet.ShowFooter = True
-        Me.dgOmzet.Size = New System.Drawing.Size(384, 330)
+        Me.dgOmzet.Size = New System.Drawing.Size(337, 330)
         Me.dgOmzet.TabIndex = 6
         '
         'dTahun
@@ -174,16 +174,16 @@ Partial Class frmLapForecastHutang
         Me.LayoutControlItem3.Control = Me.dgOmzet
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 158)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(388, 334)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(341, 334)
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextVisible = False
         '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.dgPengajuan
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(388, 158)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(341, 158)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(388, 334)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(435, 334)
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem4.TextVisible = False
         '
