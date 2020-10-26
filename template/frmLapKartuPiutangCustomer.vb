@@ -1,5 +1,6 @@
 ﻿Imports meCore
 Imports System.Data.SqlClient
+Imports DevExpress.XtraGrid.Views.Base
 Public Class frmLapKartuPiutangCustomer
 
     Private Sub frmLapKartuPiutangCustomer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -58,12 +59,13 @@ Public Class frmLapKartuPiutangCustomer
                 "ctefinal as (" & _
                     "select *,ROW_NUMBER() over(order by Tanggal,Faktur,Urutan) as urut from cteunion " & _
                     ") " & _
-                    "select Tanggal,Faktur,FakturAsli,JthTmp,NoBuktiKas,Keterangan,Debet,Kredit,(select sum(debet-Kredit) " & _
+                    "select a.Tanggal,a.Faktur,a.FakturAsli,JthTmp,NoBuktiKas,Keterangan,Debet,Kredit,(select sum(debet-Kredit) " & _
                     "from ctefinal b " & _
                     "where b.Tanggal <= a.Tanggal and b.urut<=a.urut) as Saldo," & _
-                    "sisa, urutan, urut " & _
+                    "sisa, a.urutan, urut, c.FakturAsli as FakturAsliPP " & _
                     "from ctefinal a " & _
-                    "order by Tanggal,Faktur,urutan"
+                    "left join trLPtgDetail c on a.Faktur = c.FakturAsli " & _
+                    "order by a.Tanggal,Faktur,a.urutan"
 
             'Dim dt As New DataTable
             'da = New SqlDataAdapter(query, kon)
@@ -76,9 +78,11 @@ Public Class frmLapKartuPiutangCustomer
             'dgLap.colWidth = {0.8, 1, 1, 0.8, 1, 1, 0.8, 0.8, 0.8, 0.2, 0.2, 0.2}
             'dgLap.RefreshDataView()
 
-            dgLap.FirstInit(query, {0.8, 1, 1, 0.8, 1, 1, 0.8, 0.8, 0.8, 0.2, 0.2, 0.2}, {"Debet", "Kredit"}, , {"sisa", "urutan", "urut"})
+            dgLap.FirstInit(query, {0.8, 1, 1, 0.8, 1, 1, 0.8, 0.8, 0.8, 0.2, 0.2, 0.2, 0.2}, , , {"sisa", "urutan", "urut", "FakturAsliPP"})
             dgLap.dSourceUsePK = False
             dgLap.RefreshData(False)
+
+            dgLap.gvMain.MoveLast()
         End If
     End Sub
 
@@ -87,6 +91,36 @@ Public Class frmLapKartuPiutangCustomer
             LayoutControlItem6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         Else
             LayoutControlItem6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        End If
+    End Sub
+
+    Private Sub dgLap_DoubleClick(sender As Object, e As EventArgs) Handles dgLap.DoubleClick
+        
+    End Sub
+
+    Private Sub dgLap_Grid_CustomDrawCell(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs) Handles dgLap.Grid_CustomDrawCell
+        If Strings.Mid(dgLap.GetRowCellValue(e.RowHandle, "Faktur"), 8, 2).ToUpper = "PP" And Not Strings.Trim(dgLap.GetRowCellValue(e.RowHandle, "Keterangan")).ToString.ToUpper = "PEMBULATAN" Then
+            If e.Column.FieldName.ToUpper = "SALDO" Then
+                e.Appearance.ForeColor = Color.Black
+            Else
+                e.Appearance.ForeColor = Color.Green
+            End If
+        End If
+
+        If dgLap.GetRowCellValue(e.RowHandle, "FakturAsliPP").ToString.Length > 0 Then
+            If e.Column.FieldName.ToUpper = "SALDO" Then
+                e.Appearance.ForeColor = Color.Black
+            Else
+                e.Appearance.ForeColor = Color.Gray
+            End If
+        End If
+    End Sub
+
+    Private Sub dgLap_Grid_DoubleClick(sender As Object, e As EventArgs) Handles dgLap.Grid_DoubleClick
+        If Strings.Mid(dgLap.GetRowCellValue(dgLap.FocusedRowHandle, "Faktur"), 8, 2).ToUpper = "PP" Then
+            Using xx As New frmDetailPelunasan(dgLap.GetRowCellValue(dgLap.FocusedRowHandle, "Faktur"))
+                xx.ShowDialog(Me)
+            End Using
         End If
     End Sub
 End Class

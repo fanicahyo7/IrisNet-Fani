@@ -20,6 +20,7 @@ Partial Class frmLapForecastHutang
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmLapForecastHutang))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.btnAmbilData = New DevExpress.XtraEditors.SimpleButton()
         Me.dgPengajuan = New meCore.ctrlMeDataGrid()
@@ -63,9 +64,10 @@ Partial Class frmLapForecastHutang
         '
         'btnAmbilData
         '
+        Me.btnAmbilData.Image = CType(resources.GetObject("btnAmbilData.Image"), System.Drawing.Image)
         Me.btnAmbilData.Location = New System.Drawing.Point(124, 12)
         Me.btnAmbilData.Name = "btnAmbilData"
-        Me.btnAmbilData.Size = New System.Drawing.Size(162, 22)
+        Me.btnAmbilData.Size = New System.Drawing.Size(125, 38)
         Me.btnAmbilData.StyleController = Me.LayoutControl1
         Me.btnAmbilData.TabIndex = 8
         Me.btnAmbilData.Text = "Ambil Data"
@@ -76,7 +78,7 @@ Partial Class frmLapForecastHutang
         Me.dgPengajuan.ConnString = Nothing
         Me.dgPengajuan.dSourceUsePK = True
         Me.dgPengajuan.FilterPopUpMode = DevExpress.XtraGrid.Columns.FilterPopupMode.[Default]
-        Me.dgPengajuan.Location = New System.Drawing.Point(353, 170)
+        Me.dgPengajuan.Location = New System.Drawing.Point(353, 213)
         Me.dgPengajuan.Name = "dgPengajuan"
         Me.dgPengajuan.PopDeleteShow = False
         Me.dgPengajuan.PopExportShow = True
@@ -87,7 +89,7 @@ Partial Class frmLapForecastHutang
         Me.dgPengajuan.Query = Nothing
         Me.dgPengajuan.QueryTime = Nothing
         Me.dgPengajuan.ShowFooter = True
-        Me.dgPengajuan.Size = New System.Drawing.Size(431, 330)
+        Me.dgPengajuan.Size = New System.Drawing.Size(431, 287)
         Me.dgPengajuan.TabIndex = 7
         '
         'dgOmzet
@@ -96,7 +98,7 @@ Partial Class frmLapForecastHutang
         Me.dgOmzet.ConnString = Nothing
         Me.dgOmzet.dSourceUsePK = True
         Me.dgOmzet.FilterPopUpMode = DevExpress.XtraGrid.Columns.FilterPopupMode.[Default]
-        Me.dgOmzet.Location = New System.Drawing.Point(12, 170)
+        Me.dgOmzet.Location = New System.Drawing.Point(12, 213)
         Me.dgOmzet.Name = "dgOmzet"
         Me.dgOmzet.PopDeleteShow = False
         Me.dgOmzet.PopExportShow = True
@@ -107,7 +109,7 @@ Partial Class frmLapForecastHutang
         Me.dgOmzet.Query = Nothing
         Me.dgOmzet.QueryTime = Nothing
         Me.dgOmzet.ShowFooter = True
-        Me.dgOmzet.Size = New System.Drawing.Size(337, 330)
+        Me.dgOmzet.Size = New System.Drawing.Size(337, 287)
         Me.dgOmzet.TabIndex = 6
         '
         'dTahun
@@ -127,7 +129,7 @@ Partial Class frmLapForecastHutang
         Me.dgPerhitunganUnit.ConnString = Nothing
         Me.dgPerhitunganUnit.dSourceUsePK = True
         Me.dgPerhitunganUnit.FilterPopUpMode = DevExpress.XtraGrid.Columns.FilterPopupMode.[Default]
-        Me.dgPerhitunganUnit.Location = New System.Drawing.Point(12, 38)
+        Me.dgPerhitunganUnit.Location = New System.Drawing.Point(12, 54)
         Me.dgPerhitunganUnit.Name = "dgPerhitunganUnit"
         Me.dgPerhitunganUnit.PopDeleteShow = False
         Me.dgPerhitunganUnit.PopExportShow = True
@@ -138,7 +140,7 @@ Partial Class frmLapForecastHutang
         Me.dgPerhitunganUnit.Query = Nothing
         Me.dgPerhitunganUnit.QueryTime = Nothing
         Me.dgPerhitunganUnit.ShowFooter = True
-        Me.dgPerhitunganUnit.Size = New System.Drawing.Size(772, 128)
+        Me.dgPerhitunganUnit.Size = New System.Drawing.Size(772, 155)
         Me.dgPerhitunganUnit.TabIndex = 4
         '
         'LayoutControlGroup1
@@ -154,9 +156,9 @@ Partial Class frmLapForecastHutang
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.dgPerhitunganUnit
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 26)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 42)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(776, 132)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(776, 159)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
@@ -164,26 +166,29 @@ Partial Class frmLapForecastHutang
         '
         Me.LayoutControlItem2.Control = Me.dTahun
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem2.MaxSize = New System.Drawing.Size(112, 42)
+        Me.LayoutControlItem2.MinSize = New System.Drawing.Size(112, 42)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(112, 26)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(112, 42)
+        Me.LayoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem2.Text = "Tahun"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(30, 13)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.dgOmzet
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 158)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 201)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(341, 334)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(341, 291)
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextVisible = False
         '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.dgPengajuan
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(341, 158)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(341, 201)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(435, 334)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(435, 291)
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem4.TextVisible = False
         '
@@ -191,17 +196,20 @@ Partial Class frmLapForecastHutang
         '
         Me.LayoutControlItem5.Control = Me.btnAmbilData
         Me.LayoutControlItem5.Location = New System.Drawing.Point(112, 0)
+        Me.LayoutControlItem5.MaxSize = New System.Drawing.Size(129, 42)
+        Me.LayoutControlItem5.MinSize = New System.Drawing.Size(129, 42)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(166, 26)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(129, 42)
+        Me.LayoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem5.TextVisible = False
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(278, 0)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(241, 0)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(498, 26)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(535, 42)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'frmLapForecastHutang

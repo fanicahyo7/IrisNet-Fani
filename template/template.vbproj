@@ -333,6 +333,12 @@
     <Compile Include="frmDetailCard.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmDetailPelunasan.Designer.vb">
+      <DependentUpon>frmDetailPelunasan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDetailPelunasan.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDetailStockNonProfit.Designer.vb">
       <DependentUpon>frmDetailStockNonProfit.vb</DependentUpon>
     </Compile>
@@ -759,6 +765,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDetailCard.resx">
       <DependentUpon>frmDetailCard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDetailPelunasan.resx">
+      <DependentUpon>frmDetailPelunasan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDetailStockNonProfit.resx">
       <DependentUpon>frmDetailStockNonProfit.vb</DependentUpon>
