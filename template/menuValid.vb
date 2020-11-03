@@ -431,4 +431,10 @@ Public Class menuValid
             xx.ShowDialog(Me)
         End Using
     End Sub
+
+    Private Sub ToolStripMenuItem3_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem3.Click
+        Using xx As New Form4
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
 End Class

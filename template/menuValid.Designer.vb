@@ -74,11 +74,12 @@ Partial Class menuValid
         Me.AsdsdfdgToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BarangMasukKeluarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PiutangCustomerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ForeCastHutangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FormCobaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
-        Me.ForeCastHutangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -414,9 +415,15 @@ Partial Class menuValid
         Me.PiutangCustomerToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.PiutangCustomerToolStripMenuItem.Text = "Piutang Customer"
         '
+        'ForeCastHutangToolStripMenuItem
+        '
+        Me.ForeCastHutangToolStripMenuItem.Name = "ForeCastHutangToolStripMenuItem"
+        Me.ForeCastHutangToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.ForeCastHutangToolStripMenuItem.Text = "ForeCast Hutang"
+        '
         'FormCobaToolStripMenuItem
         '
-        Me.FormCobaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2})
+        Me.FormCobaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem3})
         Me.FormCobaToolStripMenuItem.Name = "FormCobaToolStripMenuItem"
         Me.FormCobaToolStripMenuItem.Size = New System.Drawing.Size(78, 20)
         Me.FormCobaToolStripMenuItem.Text = "Form Coba"
@@ -424,7 +431,7 @@ Partial Class menuValid
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(80, 22)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
         Me.ToolStripMenuItem2.Text = "1"
         '
         'TreeView1
@@ -441,11 +448,11 @@ Partial Class menuValid
         Me.ImageList1.ImageSize = New System.Drawing.Size(16, 16)
         Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
         '
-        'ForeCastHutangToolStripMenuItem
+        'ToolStripMenuItem3
         '
-        Me.ForeCastHutangToolStripMenuItem.Name = "ForeCastHutangToolStripMenuItem"
-        Me.ForeCastHutangToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
-        Me.ForeCastHutangToolStripMenuItem.Text = "ForeCast Hutang"
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem3.Text = "2"
         '
         'menuValid
         '
@@ -521,4 +528,5 @@ Partial Class menuValid
     Friend WithEvents BukuToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ATKToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ForeCastHutangToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem3 As System.Windows.Forms.ToolStripMenuItem
 End Class
