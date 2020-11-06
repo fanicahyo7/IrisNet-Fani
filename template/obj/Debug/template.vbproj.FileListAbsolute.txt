@@ -604,3 +604,4 @@ D:\IrisNet-Fani\template\bin\Debug\template.xml
 D:\IrisNet-Fani\template\obj\Debug\template.vbprojResolveAssemblyReference.cache
 D:\IrisNet-Fani\template\obj\Debug\template.frmDetailPelunasan.resources
 D:\IrisNet-Fani\template\obj\Debug\template.Form4.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmReturKredit.resources

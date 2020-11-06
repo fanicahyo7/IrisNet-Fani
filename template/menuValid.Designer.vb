@@ -77,9 +77,10 @@ Partial Class menuValid
         Me.ForeCastHutangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FormCobaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
-        Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ReturKreditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -423,7 +424,7 @@ Partial Class menuValid
         '
         'FormCobaToolStripMenuItem
         '
-        Me.FormCobaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem3})
+        Me.FormCobaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem3, Me.ReturKreditToolStripMenuItem})
         Me.FormCobaToolStripMenuItem.Name = "FormCobaToolStripMenuItem"
         Me.FormCobaToolStripMenuItem.Size = New System.Drawing.Size(78, 20)
         Me.FormCobaToolStripMenuItem.Text = "Form Coba"
@@ -433,6 +434,12 @@ Partial Class menuValid
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
         Me.ToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
         Me.ToolStripMenuItem2.Text = "1"
+        '
+        'ToolStripMenuItem3
+        '
+        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem3.Text = "2"
         '
         'TreeView1
         '
@@ -448,11 +455,11 @@ Partial Class menuValid
         Me.ImageList1.ImageSize = New System.Drawing.Size(16, 16)
         Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
         '
-        'ToolStripMenuItem3
+        'ReturKreditToolStripMenuItem
         '
-        Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(152, 22)
-        Me.ToolStripMenuItem3.Text = "2"
+        Me.ReturKreditToolStripMenuItem.Name = "ReturKreditToolStripMenuItem"
+        Me.ReturKreditToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.ReturKreditToolStripMenuItem.Text = "Retur Kredit"
         '
         'menuValid
         '
@@ -529,4 +536,5 @@ Partial Class menuValid
     Friend WithEvents ATKToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ForeCastHutangToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem3 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ReturKreditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

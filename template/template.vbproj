@@ -555,6 +555,12 @@
     <Compile Include="frmReturKonsUtm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmReturKredit.Designer.vb">
+      <DependentUpon>frmReturKredit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmReturKredit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmReturPenjualan.Designer.vb">
       <DependentUpon>frmReturPenjualan.vb</DependentUpon>
     </Compile>
@@ -882,6 +888,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmReturKonsUtm.resx">
       <DependentUpon>frmReturKonsUtm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReturKredit.resx">
+      <DependentUpon>frmReturKredit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReturPenjualan.resx">
       <DependentUpon>frmReturPenjualan.vb</DependentUpon>

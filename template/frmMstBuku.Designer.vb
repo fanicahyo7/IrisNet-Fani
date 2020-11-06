@@ -21,7 +21,9 @@ Partial Class frmMstBuku
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.DateEdit3 = New DevExpress.XtraEditors.DateEdit()
+        Me.tKertas = New DevExpress.XtraEditors.TextEdit()
+        Me.tCover = New DevExpress.XtraEditors.TextEdit()
+        Me.dThnBln = New DevExpress.XtraEditors.DateEdit()
         Me.cPenyusun3 = New System.Windows.Forms.ComboBox()
         Me.cPenyusun2 = New System.Windows.Forms.ComboBox()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
@@ -30,15 +32,15 @@ Partial Class frmMstBuku
         Me.XtraTabControl1 = New DevExpress.XtraTab.XtraTabControl()
         Me.xtraUmum = New DevExpress.XtraTab.XtraTabPage()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
-        Me.TextEdit20 = New DevExpress.XtraEditors.TextEdit()
-        Me.CheckEdit3 = New DevExpress.XtraEditors.CheckEdit()
-        Me.TextEdit19 = New DevExpress.XtraEditors.TextEdit()
-        Me.DateEdit2 = New DevExpress.XtraEditors.DateEdit()
-        Me.DateEdit1 = New DevExpress.XtraEditors.DateEdit()
-        Me.ComboBoxEdit4 = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.TextEdit18 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit17 = New DevExpress.XtraEditors.TextEdit()
-        Me.CMeButtonBrowser9 = New meCore.cMeButtonBrowser()
+        Me.tKeteranganSerial = New DevExpress.XtraEditors.TextEdit()
+        Me.ccSerial = New DevExpress.XtraEditors.CheckEdit()
+        Me.tMode = New DevExpress.XtraEditors.TextEdit()
+        Me.dTanggalMode2 = New DevExpress.XtraEditors.DateEdit()
+        Me.dTanggalMode1 = New DevExpress.XtraEditors.DateEdit()
+        Me.cMode = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.tEdisi = New DevExpress.XtraEditors.TextEdit()
+        Me.tJilid = New DevExpress.XtraEditors.TextEdit()
+        Me.cSerial = New meCore.cMeButtonBrowser()
         Me.CMeButtonBrowser9View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem41 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -53,15 +55,15 @@ Partial Class frmMstBuku
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.xtraBuPel = New DevExpress.XtraTab.XtraTabPage()
         Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
-        Me.TextEdit16 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit15 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit14 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit13 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit12 = New DevExpress.XtraEditors.TextEdit()
-        Me.ComboBoxEdit3 = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.ComboBoxEdit2 = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.TextEdit11 = New DevExpress.XtraEditors.TextEdit()
-        Me.ComboBoxEdit1 = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.tJilidSemKode = New DevExpress.XtraEditors.TextEdit()
+        Me.tJilidSem = New DevExpress.XtraEditors.TextEdit()
+        Me.tProgramKode = New DevExpress.XtraEditors.TextEdit()
+        Me.tProgram = New DevExpress.XtraEditors.TextEdit()
+        Me.tLain = New DevExpress.XtraEditors.TextEdit()
+        Me.cProgram = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.cJilidSem = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.tKelas = New DevExpress.XtraEditors.TextEdit()
+        Me.cJenjang = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.LayoutControlGroup5 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem32 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem33 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -74,27 +76,28 @@ Partial Class frmMstBuku
         Me.LayoutControlItem40 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem5 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.CheckEdit2 = New DevExpress.XtraEditors.CheckEdit()
-        Me.CheckEdit1 = New DevExpress.XtraEditors.CheckEdit()
-        Me.TextEdit10 = New DevExpress.XtraEditors.TextEdit()
-        Me.CMeButtonBrowser8 = New meCore.cMeButtonBrowser()
+        Me.EmptySpaceItem8 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.ccKertas = New DevExpress.XtraEditors.CheckEdit()
+        Me.ccCover = New DevExpress.XtraEditors.CheckEdit()
+        Me.tBonus = New DevExpress.XtraEditors.TextEdit()
+        Me.cUkuran = New meCore.cMeButtonBrowser()
         Me.CMeButtonBrowser8View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.CMeButtonBrowser7 = New meCore.cMeButtonBrowser()
+        Me.cKertas = New meCore.cMeButtonBrowser()
         Me.CMeButtonBrowser7View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.CMeButtonBrowser6 = New meCore.cMeButtonBrowser()
+        Me.cCover = New meCore.cMeButtonBrowser()
         Me.CMeButtonBrowser6View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.SpinEdit1 = New DevExpress.XtraEditors.SpinEdit()
-        Me.TextEdit9 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit8 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit7 = New DevExpress.XtraEditors.TextEdit()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.TextEdit6 = New DevExpress.XtraEditors.TextEdit()
+        Me.sHalaman = New DevExpress.XtraEditors.SpinEdit()
+        Me.tKeterangan = New DevExpress.XtraEditors.TextEdit()
+        Me.tKodeProduksi = New DevExpress.XtraEditors.TextEdit()
+        Me.tKodeDPH = New DevExpress.XtraEditors.TextEdit()
+        Me.cJenisBuku = New System.Windows.Forms.ComboBox()
+        Me.tISBN = New DevExpress.XtraEditors.TextEdit()
         Me.rJudulEng = New System.Windows.Forms.RadioButton()
         Me.rJudulIndo = New System.Windows.Forms.RadioButton()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.dgHistory = New meCore.ctrlMeDataGrid()
-        Me.CMeButtonBrowser5 = New meCore.cMeButtonBrowser()
+        Me.cGolongan = New meCore.cMeButtonBrowser()
         Me.CMeButtonBrowser5View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.tNamaPenerbit = New DevExpress.XtraEditors.TextEdit()
         Me.cPenerbit = New meCore.cMeButtonBrowser()
@@ -106,15 +109,17 @@ Partial Class frmMstBuku
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlGroup4 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem23 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem24 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem26 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem29 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem28 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem28 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem23 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem31 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -140,27 +145,30 @@ Partial Class frmMstBuku
         Me.LayoutControlItem21 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem22 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.EmptySpaceItem6 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.EmptySpaceItem7 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
-        CType(Me.DateEdit3.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tKertas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tCover.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dThnBln.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dThnBln.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.XtraTabControl1.SuspendLayout()
         Me.xtraUmum.SuspendLayout()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
-        CType(Me.TextEdit20.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CheckEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit19.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ComboBoxEdit4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit18.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit17.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CMeButtonBrowser9.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tKeteranganSerial.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ccSerial.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tMode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dTanggalMode2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dTanggalMode2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dTanggalMode1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dTanggalMode1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cMode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tEdisi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tJilid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cSerial.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CMeButtonBrowser9View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem41, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -176,15 +184,15 @@ Partial Class frmMstBuku
         Me.xtraBuPel.SuspendLayout()
         CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl3.SuspendLayout()
-        CType(Me.TextEdit16.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit15.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit14.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit13.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit12.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ComboBoxEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ComboBoxEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit11.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tJilidSemKode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tJilidSem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tProgramKode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tProgram.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tLain.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cProgram.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cJilidSem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tKelas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cJenjang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem32, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem33, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -197,21 +205,22 @@ Partial Class frmMstBuku
         CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CheckEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit10.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CMeButtonBrowser8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ccKertas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ccCover.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tBonus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cUkuran.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CMeButtonBrowser8View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CMeButtonBrowser7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cKertas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CMeButtonBrowser7View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CMeButtonBrowser6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cCover.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CMeButtonBrowser6View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SpinEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit9.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CMeButtonBrowser5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.sHalaman.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tKeterangan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tKodeProduksi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tKodeDPH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tISBN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cGolongan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CMeButtonBrowser5View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tNamaPenerbit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cPenerbit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -222,15 +231,17 @@ Partial Class frmMstBuku
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem29, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -256,35 +267,39 @@ Partial Class frmMstBuku
         CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
-        Me.LayoutControl1.Controls.Add(Me.DateEdit3)
+        Me.LayoutControl1.Controls.Add(Me.tKertas)
+        Me.LayoutControl1.Controls.Add(Me.tCover)
+        Me.LayoutControl1.Controls.Add(Me.dThnBln)
         Me.LayoutControl1.Controls.Add(Me.cPenyusun3)
         Me.LayoutControl1.Controls.Add(Me.cPenyusun2)
         Me.LayoutControl1.Controls.Add(Me.SimpleButton3)
         Me.LayoutControl1.Controls.Add(Me.cPenyusun1)
         Me.LayoutControl1.Controls.Add(Me.tJudul)
         Me.LayoutControl1.Controls.Add(Me.XtraTabControl1)
-        Me.LayoutControl1.Controls.Add(Me.CheckEdit2)
-        Me.LayoutControl1.Controls.Add(Me.CheckEdit1)
-        Me.LayoutControl1.Controls.Add(Me.TextEdit10)
-        Me.LayoutControl1.Controls.Add(Me.CMeButtonBrowser8)
-        Me.LayoutControl1.Controls.Add(Me.CMeButtonBrowser7)
-        Me.LayoutControl1.Controls.Add(Me.CMeButtonBrowser6)
-        Me.LayoutControl1.Controls.Add(Me.SpinEdit1)
-        Me.LayoutControl1.Controls.Add(Me.TextEdit9)
-        Me.LayoutControl1.Controls.Add(Me.TextEdit8)
-        Me.LayoutControl1.Controls.Add(Me.TextEdit7)
-        Me.LayoutControl1.Controls.Add(Me.ComboBox1)
-        Me.LayoutControl1.Controls.Add(Me.TextEdit6)
+        Me.LayoutControl1.Controls.Add(Me.ccKertas)
+        Me.LayoutControl1.Controls.Add(Me.ccCover)
+        Me.LayoutControl1.Controls.Add(Me.tBonus)
+        Me.LayoutControl1.Controls.Add(Me.cUkuran)
+        Me.LayoutControl1.Controls.Add(Me.cKertas)
+        Me.LayoutControl1.Controls.Add(Me.cCover)
+        Me.LayoutControl1.Controls.Add(Me.sHalaman)
+        Me.LayoutControl1.Controls.Add(Me.tKeterangan)
+        Me.LayoutControl1.Controls.Add(Me.tKodeProduksi)
+        Me.LayoutControl1.Controls.Add(Me.tKodeDPH)
+        Me.LayoutControl1.Controls.Add(Me.cJenisBuku)
+        Me.LayoutControl1.Controls.Add(Me.tISBN)
         Me.LayoutControl1.Controls.Add(Me.rJudulEng)
         Me.LayoutControl1.Controls.Add(Me.rJudulIndo)
         Me.LayoutControl1.Controls.Add(Me.SimpleButton2)
         Me.LayoutControl1.Controls.Add(Me.SimpleButton1)
         Me.LayoutControl1.Controls.Add(Me.dgHistory)
-        Me.LayoutControl1.Controls.Add(Me.CMeButtonBrowser5)
+        Me.LayoutControl1.Controls.Add(Me.cGolongan)
         Me.LayoutControl1.Controls.Add(Me.tNamaPenerbit)
         Me.LayoutControl1.Controls.Add(Me.cPenerbit)
         Me.LayoutControl1.Controls.Add(Me.tSubJudul)
@@ -299,16 +314,32 @@ Partial Class frmMstBuku
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
-        'DateEdit3
+        'tKertas
         '
-        Me.DateEdit3.EditValue = Nothing
-        Me.DateEdit3.Location = New System.Drawing.Point(705, 379)
-        Me.DateEdit3.Name = "DateEdit3"
-        Me.DateEdit3.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit3.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit3.Size = New System.Drawing.Size(235, 20)
-        Me.DateEdit3.StyleController = Me.LayoutControl1
-        Me.DateEdit3.TabIndex = 46
+        Me.tKertas.Location = New System.Drawing.Point(679, 451)
+        Me.tKertas.Name = "tKertas"
+        Me.tKertas.Size = New System.Drawing.Size(134, 20)
+        Me.tKertas.StyleController = Me.LayoutControl1
+        Me.tKertas.TabIndex = 48
+        '
+        'tCover
+        '
+        Me.tCover.Location = New System.Drawing.Point(679, 427)
+        Me.tCover.Name = "tCover"
+        Me.tCover.Size = New System.Drawing.Size(134, 20)
+        Me.tCover.StyleController = Me.LayoutControl1
+        Me.tCover.TabIndex = 47
+        '
+        'dThnBln
+        '
+        Me.dThnBln.EditValue = Nothing
+        Me.dThnBln.Location = New System.Drawing.Point(591, 379)
+        Me.dThnBln.Name = "dThnBln"
+        Me.dThnBln.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dThnBln.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dThnBln.Size = New System.Drawing.Size(349, 20)
+        Me.dThnBln.StyleController = Me.LayoutControl1
+        Me.dThnBln.TabIndex = 46
         '
         'cPenyusun3
         '
@@ -328,9 +359,9 @@ Partial Class frmMstBuku
         '
         'SimpleButton3
         '
-        Me.SimpleButton3.Location = New System.Drawing.Point(634, 523)
+        Me.SimpleButton3.Location = New System.Drawing.Point(520, 523)
         Me.SimpleButton3.Name = "SimpleButton3"
-        Me.SimpleButton3.Size = New System.Drawing.Size(306, 22)
+        Me.SimpleButton3.Size = New System.Drawing.Size(420, 22)
         Me.SimpleButton3.StyleController = Me.LayoutControl1
         Me.SimpleButton3.TabIndex = 43
         Me.SimpleButton3.Text = "Simpan Buku"
@@ -357,7 +388,7 @@ Partial Class frmMstBuku
         Me.XtraTabControl1.Location = New System.Drawing.Point(12, 464)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.xtraUmum
-        Me.XtraTabControl1.Size = New System.Drawing.Size(606, 171)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(492, 171)
         Me.XtraTabControl1.TabIndex = 37
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.xtraUmum, Me.xtraBuPel})
         '
@@ -365,110 +396,111 @@ Partial Class frmMstBuku
         '
         Me.xtraUmum.Controls.Add(Me.LayoutControl2)
         Me.xtraUmum.Name = "xtraUmum"
-        Me.xtraUmum.Size = New System.Drawing.Size(600, 143)
+        Me.xtraUmum.Size = New System.Drawing.Size(486, 143)
         Me.xtraUmum.Text = "Umum"
         '
         'LayoutControl2
         '
-        Me.LayoutControl2.Controls.Add(Me.TextEdit20)
-        Me.LayoutControl2.Controls.Add(Me.CheckEdit3)
-        Me.LayoutControl2.Controls.Add(Me.TextEdit19)
-        Me.LayoutControl2.Controls.Add(Me.DateEdit2)
-        Me.LayoutControl2.Controls.Add(Me.DateEdit1)
-        Me.LayoutControl2.Controls.Add(Me.ComboBoxEdit4)
-        Me.LayoutControl2.Controls.Add(Me.TextEdit18)
-        Me.LayoutControl2.Controls.Add(Me.TextEdit17)
-        Me.LayoutControl2.Controls.Add(Me.CMeButtonBrowser9)
+        Me.LayoutControl2.Controls.Add(Me.tKeteranganSerial)
+        Me.LayoutControl2.Controls.Add(Me.ccSerial)
+        Me.LayoutControl2.Controls.Add(Me.tMode)
+        Me.LayoutControl2.Controls.Add(Me.dTanggalMode2)
+        Me.LayoutControl2.Controls.Add(Me.dTanggalMode1)
+        Me.LayoutControl2.Controls.Add(Me.cMode)
+        Me.LayoutControl2.Controls.Add(Me.tEdisi)
+        Me.LayoutControl2.Controls.Add(Me.tJilid)
+        Me.LayoutControl2.Controls.Add(Me.cSerial)
         Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl2.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.Root = Me.LayoutControlGroup2
-        Me.LayoutControl2.Size = New System.Drawing.Size(600, 143)
+        Me.LayoutControl2.Size = New System.Drawing.Size(486, 143)
         Me.LayoutControl2.TabIndex = 0
         Me.LayoutControl2.Text = "LayoutControl2"
         '
-        'TextEdit20
+        'tKeteranganSerial
         '
-        Me.TextEdit20.Location = New System.Drawing.Point(250, 12)
-        Me.TextEdit20.Name = "TextEdit20"
-        Me.TextEdit20.Size = New System.Drawing.Size(338, 20)
-        Me.TextEdit20.StyleController = Me.LayoutControl2
-        Me.TextEdit20.TabIndex = 12
+        Me.tKeteranganSerial.Location = New System.Drawing.Point(205, 12)
+        Me.tKeteranganSerial.Name = "tKeteranganSerial"
+        Me.tKeteranganSerial.Size = New System.Drawing.Size(269, 20)
+        Me.tKeteranganSerial.StyleController = Me.LayoutControl2
+        Me.tKeteranganSerial.TabIndex = 12
         '
-        'CheckEdit3
+        'ccSerial
         '
-        Me.CheckEdit3.Location = New System.Drawing.Point(226, 12)
-        Me.CheckEdit3.Name = "CheckEdit3"
-        Me.CheckEdit3.Properties.Caption = ""
-        Me.CheckEdit3.Size = New System.Drawing.Size(20, 19)
-        Me.CheckEdit3.StyleController = Me.LayoutControl2
-        Me.CheckEdit3.TabIndex = 11
+        Me.ccSerial.Location = New System.Drawing.Point(155, 12)
+        Me.ccSerial.Name = "ccSerial"
+        Me.ccSerial.Properties.Caption = ""
+        Me.ccSerial.Size = New System.Drawing.Size(46, 19)
+        Me.ccSerial.StyleController = Me.LayoutControl2
+        Me.ccSerial.TabIndex = 11
         '
-        'TextEdit19
+        'tMode
         '
-        Me.TextEdit19.Location = New System.Drawing.Point(196, 84)
-        Me.TextEdit19.Name = "TextEdit19"
-        Me.TextEdit19.Size = New System.Drawing.Size(392, 20)
-        Me.TextEdit19.StyleController = Me.LayoutControl2
-        Me.TextEdit19.TabIndex = 10
+        Me.tMode.Location = New System.Drawing.Point(135, 84)
+        Me.tMode.Name = "tMode"
+        Me.tMode.Size = New System.Drawing.Size(339, 20)
+        Me.tMode.StyleController = Me.LayoutControl2
+        Me.tMode.TabIndex = 10
         '
-        'DateEdit2
+        'dTanggalMode2
         '
-        Me.DateEdit2.EditValue = Nothing
-        Me.DateEdit2.Location = New System.Drawing.Point(237, 108)
-        Me.DateEdit2.Name = "DateEdit2"
-        Me.DateEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit2.Size = New System.Drawing.Size(137, 20)
-        Me.DateEdit2.StyleController = Me.LayoutControl2
-        Me.DateEdit2.TabIndex = 9
+        Me.dTanggalMode2.EditValue = Nothing
+        Me.dTanggalMode2.Location = New System.Drawing.Point(176, 108)
+        Me.dTanggalMode2.Name = "dTanggalMode2"
+        Me.dTanggalMode2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dTanggalMode2.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dTanggalMode2.Size = New System.Drawing.Size(76, 20)
+        Me.dTanggalMode2.StyleController = Me.LayoutControl2
+        Me.dTanggalMode2.TabIndex = 9
         '
-        'DateEdit1
+        'dTanggalMode1
         '
-        Me.DateEdit1.EditValue = Nothing
-        Me.DateEdit1.Location = New System.Drawing.Point(53, 108)
-        Me.DateEdit1.Name = "DateEdit1"
-        Me.DateEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.DateEdit1.Size = New System.Drawing.Size(139, 20)
-        Me.DateEdit1.StyleController = Me.LayoutControl2
-        Me.DateEdit1.TabIndex = 8
+        Me.dTanggalMode1.EditValue = Nothing
+        Me.dTanggalMode1.Location = New System.Drawing.Point(53, 108)
+        Me.dTanggalMode1.Name = "dTanggalMode1"
+        Me.dTanggalMode1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dTanggalMode1.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dTanggalMode1.Size = New System.Drawing.Size(78, 20)
+        Me.dTanggalMode1.StyleController = Me.LayoutControl2
+        Me.dTanggalMode1.TabIndex = 8
         '
-        'ComboBoxEdit4
+        'cMode
         '
-        Me.ComboBoxEdit4.Location = New System.Drawing.Point(53, 84)
-        Me.ComboBoxEdit4.Name = "ComboBoxEdit4"
-        Me.ComboBoxEdit4.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.ComboBoxEdit4.Size = New System.Drawing.Size(139, 20)
-        Me.ComboBoxEdit4.StyleController = Me.LayoutControl2
-        Me.ComboBoxEdit4.TabIndex = 7
+        Me.cMode.Location = New System.Drawing.Point(53, 84)
+        Me.cMode.Name = "cMode"
+        Me.cMode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cMode.Properties.Items.AddRange(New Object() {" ", "dd mmm yy", "mmm yyyy", "dd mmm yy - dd mmm yy"})
+        Me.cMode.Size = New System.Drawing.Size(78, 20)
+        Me.cMode.StyleController = Me.LayoutControl2
+        Me.cMode.TabIndex = 7
         '
-        'TextEdit18
+        'tEdisi
         '
-        Me.TextEdit18.Location = New System.Drawing.Point(53, 60)
-        Me.TextEdit18.Name = "TextEdit18"
-        Me.TextEdit18.Size = New System.Drawing.Size(535, 20)
-        Me.TextEdit18.StyleController = Me.LayoutControl2
-        Me.TextEdit18.TabIndex = 6
+        Me.tEdisi.Location = New System.Drawing.Point(53, 60)
+        Me.tEdisi.Name = "tEdisi"
+        Me.tEdisi.Size = New System.Drawing.Size(421, 20)
+        Me.tEdisi.StyleController = Me.LayoutControl2
+        Me.tEdisi.TabIndex = 6
         '
-        'TextEdit17
+        'tJilid
         '
-        Me.TextEdit17.Location = New System.Drawing.Point(53, 36)
-        Me.TextEdit17.Name = "TextEdit17"
-        Me.TextEdit17.Size = New System.Drawing.Size(535, 20)
-        Me.TextEdit17.StyleController = Me.LayoutControl2
-        Me.TextEdit17.TabIndex = 5
+        Me.tJilid.Location = New System.Drawing.Point(53, 36)
+        Me.tJilid.Name = "tJilid"
+        Me.tJilid.Size = New System.Drawing.Size(421, 20)
+        Me.tJilid.StyleController = Me.LayoutControl2
+        Me.tJilid.TabIndex = 5
         '
-        'CMeButtonBrowser9
+        'cSerial
         '
-        Me.CMeButtonBrowser9.Location = New System.Drawing.Point(53, 12)
-        Me.CMeButtonBrowser9.Name = "CMeButtonBrowser9"
-        Me.CMeButtonBrowser9.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CMeButtonBrowser9.Properties.NullText = ""
-        Me.CMeButtonBrowser9.Properties.View = Me.CMeButtonBrowser9View
-        Me.CMeButtonBrowser9.Size = New System.Drawing.Size(169, 20)
-        Me.CMeButtonBrowser9.StyleController = Me.LayoutControl2
-        Me.CMeButtonBrowser9.TabIndex = 4
+        Me.cSerial.Location = New System.Drawing.Point(53, 12)
+        Me.cSerial.Name = "cSerial"
+        Me.cSerial.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cSerial.Properties.NullText = ""
+        Me.cSerial.Properties.View = Me.CMeButtonBrowser9View
+        Me.cSerial.Size = New System.Drawing.Size(98, 20)
+        Me.cSerial.StyleController = Me.LayoutControl2
+        Me.cSerial.TabIndex = 4
         '
         'CMeButtonBrowser9View
         '
@@ -484,342 +516,353 @@ Partial Class frmMstBuku
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem41, Me.LayoutControlItem42, Me.LayoutControlItem43, Me.LayoutControlItem44, Me.LayoutControlItem45, Me.LayoutControlItem46, Me.LayoutControlItem47, Me.LayoutControlItem48, Me.LayoutControlItem49, Me.EmptySpaceItem1})
         Me.LayoutControlGroup2.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(600, 143)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(486, 143)
         Me.LayoutControlGroup2.TextVisible = False
         '
         'LayoutControlItem41
         '
-        Me.LayoutControlItem41.Control = Me.CMeButtonBrowser9
+        Me.LayoutControlItem41.Control = Me.cSerial
         Me.LayoutControlItem41.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem41.Name = "LayoutControlItem41"
-        Me.LayoutControlItem41.Size = New System.Drawing.Size(214, 24)
+        Me.LayoutControlItem41.Size = New System.Drawing.Size(143, 24)
         Me.LayoutControlItem41.Text = "Serial"
         Me.LayoutControlItem41.TextSize = New System.Drawing.Size(38, 13)
         '
         'LayoutControlItem42
         '
-        Me.LayoutControlItem42.Control = Me.TextEdit17
+        Me.LayoutControlItem42.Control = Me.tJilid
         Me.LayoutControlItem42.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem42.Name = "LayoutControlItem42"
-        Me.LayoutControlItem42.Size = New System.Drawing.Size(580, 24)
+        Me.LayoutControlItem42.Size = New System.Drawing.Size(466, 24)
         Me.LayoutControlItem42.Text = "Jilid"
         Me.LayoutControlItem42.TextSize = New System.Drawing.Size(38, 13)
         '
         'LayoutControlItem43
         '
-        Me.LayoutControlItem43.Control = Me.TextEdit18
+        Me.LayoutControlItem43.Control = Me.tEdisi
         Me.LayoutControlItem43.Location = New System.Drawing.Point(0, 48)
         Me.LayoutControlItem43.Name = "LayoutControlItem43"
-        Me.LayoutControlItem43.Size = New System.Drawing.Size(580, 24)
+        Me.LayoutControlItem43.Size = New System.Drawing.Size(466, 24)
         Me.LayoutControlItem43.Text = "Edisi"
         Me.LayoutControlItem43.TextSize = New System.Drawing.Size(38, 13)
         '
         'LayoutControlItem44
         '
-        Me.LayoutControlItem44.Control = Me.ComboBoxEdit4
+        Me.LayoutControlItem44.Control = Me.cMode
         Me.LayoutControlItem44.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem44.Name = "LayoutControlItem44"
-        Me.LayoutControlItem44.Size = New System.Drawing.Size(184, 24)
+        Me.LayoutControlItem44.Size = New System.Drawing.Size(123, 24)
         Me.LayoutControlItem44.Text = "Mode"
         Me.LayoutControlItem44.TextSize = New System.Drawing.Size(38, 13)
         '
         'LayoutControlItem45
         '
-        Me.LayoutControlItem45.Control = Me.DateEdit1
+        Me.LayoutControlItem45.Control = Me.dTanggalMode1
         Me.LayoutControlItem45.Location = New System.Drawing.Point(0, 96)
         Me.LayoutControlItem45.Name = "LayoutControlItem45"
-        Me.LayoutControlItem45.Size = New System.Drawing.Size(184, 27)
+        Me.LayoutControlItem45.Size = New System.Drawing.Size(123, 27)
         Me.LayoutControlItem45.Text = "Tanggal"
         Me.LayoutControlItem45.TextSize = New System.Drawing.Size(38, 13)
         '
         'LayoutControlItem46
         '
-        Me.LayoutControlItem46.Control = Me.DateEdit2
-        Me.LayoutControlItem46.Location = New System.Drawing.Point(184, 96)
+        Me.LayoutControlItem46.Control = Me.dTanggalMode2
+        Me.LayoutControlItem46.Location = New System.Drawing.Point(123, 96)
         Me.LayoutControlItem46.Name = "LayoutControlItem46"
-        Me.LayoutControlItem46.Size = New System.Drawing.Size(182, 27)
+        Me.LayoutControlItem46.Size = New System.Drawing.Size(121, 27)
         Me.LayoutControlItem46.Text = "    S/D"
         Me.LayoutControlItem46.TextSize = New System.Drawing.Size(38, 13)
         '
         'LayoutControlItem47
         '
-        Me.LayoutControlItem47.Control = Me.TextEdit19
-        Me.LayoutControlItem47.Location = New System.Drawing.Point(184, 72)
+        Me.LayoutControlItem47.Control = Me.tMode
+        Me.LayoutControlItem47.Location = New System.Drawing.Point(123, 72)
         Me.LayoutControlItem47.Name = "LayoutControlItem47"
-        Me.LayoutControlItem47.Size = New System.Drawing.Size(396, 24)
+        Me.LayoutControlItem47.Size = New System.Drawing.Size(343, 24)
         Me.LayoutControlItem47.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem47.TextVisible = False
         '
         'LayoutControlItem48
         '
-        Me.LayoutControlItem48.Control = Me.CheckEdit3
-        Me.LayoutControlItem48.Location = New System.Drawing.Point(214, 0)
+        Me.LayoutControlItem48.Control = Me.ccSerial
+        Me.LayoutControlItem48.Location = New System.Drawing.Point(143, 0)
         Me.LayoutControlItem48.Name = "LayoutControlItem48"
-        Me.LayoutControlItem48.Size = New System.Drawing.Size(24, 24)
+        Me.LayoutControlItem48.Size = New System.Drawing.Size(50, 24)
         Me.LayoutControlItem48.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem48.TextVisible = False
         '
         'LayoutControlItem49
         '
-        Me.LayoutControlItem49.Control = Me.TextEdit20
-        Me.LayoutControlItem49.Location = New System.Drawing.Point(238, 0)
+        Me.LayoutControlItem49.Control = Me.tKeteranganSerial
+        Me.LayoutControlItem49.Location = New System.Drawing.Point(193, 0)
         Me.LayoutControlItem49.Name = "LayoutControlItem49"
-        Me.LayoutControlItem49.Size = New System.Drawing.Size(342, 24)
+        Me.LayoutControlItem49.Size = New System.Drawing.Size(273, 24)
         Me.LayoutControlItem49.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem49.TextVisible = False
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(366, 96)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(244, 96)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(214, 27)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(222, 27)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'xtraBuPel
         '
         Me.xtraBuPel.Controls.Add(Me.LayoutControl3)
         Me.xtraBuPel.Name = "xtraBuPel"
-        Me.xtraBuPel.Size = New System.Drawing.Size(600, 143)
+        Me.xtraBuPel.Size = New System.Drawing.Size(486, 143)
         Me.xtraBuPel.Text = "BuPel"
         '
         'LayoutControl3
         '
-        Me.LayoutControl3.Controls.Add(Me.TextEdit16)
-        Me.LayoutControl3.Controls.Add(Me.TextEdit15)
-        Me.LayoutControl3.Controls.Add(Me.TextEdit14)
-        Me.LayoutControl3.Controls.Add(Me.TextEdit13)
-        Me.LayoutControl3.Controls.Add(Me.TextEdit12)
-        Me.LayoutControl3.Controls.Add(Me.ComboBoxEdit3)
-        Me.LayoutControl3.Controls.Add(Me.ComboBoxEdit2)
-        Me.LayoutControl3.Controls.Add(Me.TextEdit11)
-        Me.LayoutControl3.Controls.Add(Me.ComboBoxEdit1)
+        Me.LayoutControl3.Controls.Add(Me.tJilidSemKode)
+        Me.LayoutControl3.Controls.Add(Me.tJilidSem)
+        Me.LayoutControl3.Controls.Add(Me.tProgramKode)
+        Me.LayoutControl3.Controls.Add(Me.tProgram)
+        Me.LayoutControl3.Controls.Add(Me.tLain)
+        Me.LayoutControl3.Controls.Add(Me.cProgram)
+        Me.LayoutControl3.Controls.Add(Me.cJilidSem)
+        Me.LayoutControl3.Controls.Add(Me.tKelas)
+        Me.LayoutControl3.Controls.Add(Me.cJenjang)
         Me.LayoutControl3.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl3.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl3.Name = "LayoutControl3"
         Me.LayoutControl3.Root = Me.LayoutControlGroup5
-        Me.LayoutControl3.Size = New System.Drawing.Size(600, 143)
+        Me.LayoutControl3.Size = New System.Drawing.Size(486, 143)
         Me.LayoutControl3.TabIndex = 0
         Me.LayoutControl3.Text = "LayoutControl3"
         '
-        'TextEdit16
+        'tJilidSemKode
         '
-        Me.TextEdit16.Location = New System.Drawing.Point(318, 60)
-        Me.TextEdit16.Name = "TextEdit16"
-        Me.TextEdit16.Size = New System.Drawing.Size(270, 20)
-        Me.TextEdit16.StyleController = Me.LayoutControl3
-        Me.TextEdit16.TabIndex = 12
+        Me.tJilidSemKode.Location = New System.Drawing.Point(258, 60)
+        Me.tJilidSemKode.Name = "tJilidSemKode"
+        Me.tJilidSemKode.Size = New System.Drawing.Size(216, 20)
+        Me.tJilidSemKode.StyleController = Me.LayoutControl3
+        Me.tJilidSemKode.TabIndex = 12
         '
-        'TextEdit15
+        'tJilidSem
         '
-        Me.TextEdit15.Location = New System.Drawing.Point(261, 60)
-        Me.TextEdit15.Name = "TextEdit15"
-        Me.TextEdit15.Size = New System.Drawing.Size(53, 20)
-        Me.TextEdit15.StyleController = Me.LayoutControl3
-        Me.TextEdit15.TabIndex = 11
+        Me.tJilidSem.Location = New System.Drawing.Point(204, 60)
+        Me.tJilidSem.Name = "tJilidSem"
+        Me.tJilidSem.Size = New System.Drawing.Size(50, 20)
+        Me.tJilidSem.StyleController = Me.LayoutControl3
+        Me.tJilidSem.TabIndex = 11
         '
-        'TextEdit14
+        'tProgramKode
         '
-        Me.TextEdit14.Location = New System.Drawing.Point(318, 84)
-        Me.TextEdit14.Name = "TextEdit14"
-        Me.TextEdit14.Size = New System.Drawing.Size(270, 20)
-        Me.TextEdit14.StyleController = Me.LayoutControl3
-        Me.TextEdit14.TabIndex = 10
+        Me.tProgramKode.Location = New System.Drawing.Point(258, 84)
+        Me.tProgramKode.Name = "tProgramKode"
+        Me.tProgramKode.Size = New System.Drawing.Size(216, 20)
+        Me.tProgramKode.StyleController = Me.LayoutControl3
+        Me.tProgramKode.TabIndex = 10
         '
-        'TextEdit13
+        'tProgram
         '
-        Me.TextEdit13.Location = New System.Drawing.Point(261, 84)
-        Me.TextEdit13.Name = "TextEdit13"
-        Me.TextEdit13.Size = New System.Drawing.Size(53, 20)
-        Me.TextEdit13.StyleController = Me.LayoutControl3
-        Me.TextEdit13.TabIndex = 9
+        Me.tProgram.Location = New System.Drawing.Point(204, 84)
+        Me.tProgram.Name = "tProgram"
+        Me.tProgram.Size = New System.Drawing.Size(50, 20)
+        Me.tProgram.StyleController = Me.LayoutControl3
+        Me.tProgram.TabIndex = 9
         '
-        'TextEdit12
+        'tLain
         '
-        Me.TextEdit12.Location = New System.Drawing.Point(57, 108)
-        Me.TextEdit12.Name = "TextEdit12"
-        Me.TextEdit12.Size = New System.Drawing.Size(257, 20)
-        Me.TextEdit12.StyleController = Me.LayoutControl3
-        Me.TextEdit12.TabIndex = 8
+        Me.tLain.Location = New System.Drawing.Point(57, 108)
+        Me.tLain.Name = "tLain"
+        Me.tLain.Size = New System.Drawing.Size(197, 20)
+        Me.tLain.StyleController = Me.LayoutControl3
+        Me.tLain.TabIndex = 8
         '
-        'ComboBoxEdit3
+        'cProgram
         '
-        Me.ComboBoxEdit3.Location = New System.Drawing.Point(57, 84)
-        Me.ComboBoxEdit3.Name = "ComboBoxEdit3"
-        Me.ComboBoxEdit3.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.ComboBoxEdit3.Size = New System.Drawing.Size(200, 20)
-        Me.ComboBoxEdit3.StyleController = Me.LayoutControl3
-        Me.ComboBoxEdit3.TabIndex = 7
+        Me.cProgram.Location = New System.Drawing.Point(57, 84)
+        Me.cProgram.Name = "cProgram"
+        Me.cProgram.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cProgram.Properties.Items.AddRange(New Object() {" ", "KBK", "DIKDASMEN"})
+        Me.cProgram.Size = New System.Drawing.Size(143, 20)
+        Me.cProgram.StyleController = Me.LayoutControl3
+        Me.cProgram.TabIndex = 7
         '
-        'ComboBoxEdit2
+        'cJilidSem
         '
-        Me.ComboBoxEdit2.Location = New System.Drawing.Point(57, 60)
-        Me.ComboBoxEdit2.Name = "ComboBoxEdit2"
-        Me.ComboBoxEdit2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.ComboBoxEdit2.Size = New System.Drawing.Size(200, 20)
-        Me.ComboBoxEdit2.StyleController = Me.LayoutControl3
-        Me.ComboBoxEdit2.TabIndex = 6
+        Me.cJilidSem.Location = New System.Drawing.Point(57, 60)
+        Me.cJilidSem.Name = "cJilidSem"
+        Me.cJilidSem.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cJilidSem.Properties.Items.AddRange(New Object() {" ", "JILID", "SEMESTER"})
+        Me.cJilidSem.Size = New System.Drawing.Size(143, 20)
+        Me.cJilidSem.StyleController = Me.LayoutControl3
+        Me.cJilidSem.TabIndex = 6
         '
-        'TextEdit11
+        'tKelas
         '
-        Me.TextEdit11.Location = New System.Drawing.Point(57, 36)
-        Me.TextEdit11.Name = "TextEdit11"
-        Me.TextEdit11.Size = New System.Drawing.Size(122, 20)
-        Me.TextEdit11.StyleController = Me.LayoutControl3
-        Me.TextEdit11.TabIndex = 5
+        Me.tKelas.Location = New System.Drawing.Point(57, 36)
+        Me.tKelas.Name = "tKelas"
+        Me.tKelas.Size = New System.Drawing.Size(89, 20)
+        Me.tKelas.StyleController = Me.LayoutControl3
+        Me.tKelas.TabIndex = 5
         '
-        'ComboBoxEdit1
+        'cJenjang
         '
-        Me.ComboBoxEdit1.Location = New System.Drawing.Point(57, 12)
-        Me.ComboBoxEdit1.Name = "ComboBoxEdit1"
-        Me.ComboBoxEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.ComboBoxEdit1.Size = New System.Drawing.Size(531, 20)
-        Me.ComboBoxEdit1.StyleController = Me.LayoutControl3
-        Me.ComboBoxEdit1.TabIndex = 4
+        Me.cJenjang.Location = New System.Drawing.Point(57, 12)
+        Me.cJenjang.Name = "cJenjang"
+        Me.cJenjang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cJenjang.Properties.Items.AddRange(New Object() {"TK", "SD", "SMP", "SLTP", "SMA", "SMU"})
+        Me.cJenjang.Size = New System.Drawing.Size(89, 20)
+        Me.cJenjang.StyleController = Me.LayoutControl3
+        Me.cJenjang.TabIndex = 4
         '
         'LayoutControlGroup5
         '
         Me.LayoutControlGroup5.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup5.GroupBordersVisible = False
-        Me.LayoutControlGroup5.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem32, Me.LayoutControlItem33, Me.LayoutControlItem34, Me.LayoutControlItem35, Me.LayoutControlItem36, Me.LayoutControlItem37, Me.LayoutControlItem38, Me.LayoutControlItem39, Me.LayoutControlItem40, Me.EmptySpaceItem4, Me.EmptySpaceItem5})
+        Me.LayoutControlGroup5.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem32, Me.LayoutControlItem33, Me.LayoutControlItem34, Me.LayoutControlItem35, Me.LayoutControlItem36, Me.LayoutControlItem37, Me.LayoutControlItem38, Me.LayoutControlItem39, Me.LayoutControlItem40, Me.EmptySpaceItem4, Me.EmptySpaceItem5, Me.EmptySpaceItem8})
         Me.LayoutControlGroup5.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup5.Name = "LayoutControlGroup5"
-        Me.LayoutControlGroup5.Size = New System.Drawing.Size(600, 143)
+        Me.LayoutControlGroup5.Size = New System.Drawing.Size(486, 143)
         Me.LayoutControlGroup5.TextVisible = False
         '
         'LayoutControlItem32
         '
-        Me.LayoutControlItem32.Control = Me.ComboBoxEdit1
+        Me.LayoutControlItem32.Control = Me.cJenjang
         Me.LayoutControlItem32.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem32.Name = "LayoutControlItem32"
-        Me.LayoutControlItem32.Size = New System.Drawing.Size(580, 24)
+        Me.LayoutControlItem32.Size = New System.Drawing.Size(138, 24)
         Me.LayoutControlItem32.Text = "Jenjang"
         Me.LayoutControlItem32.TextSize = New System.Drawing.Size(42, 13)
         '
         'LayoutControlItem33
         '
-        Me.LayoutControlItem33.Control = Me.TextEdit11
+        Me.LayoutControlItem33.Control = Me.tKelas
         Me.LayoutControlItem33.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem33.Name = "LayoutControlItem33"
-        Me.LayoutControlItem33.Size = New System.Drawing.Size(171, 24)
+        Me.LayoutControlItem33.Size = New System.Drawing.Size(138, 24)
         Me.LayoutControlItem33.Text = "Kelas"
         Me.LayoutControlItem33.TextSize = New System.Drawing.Size(42, 13)
         '
         'LayoutControlItem34
         '
-        Me.LayoutControlItem34.Control = Me.ComboBoxEdit2
+        Me.LayoutControlItem34.Control = Me.cJilidSem
         Me.LayoutControlItem34.Location = New System.Drawing.Point(0, 48)
         Me.LayoutControlItem34.Name = "LayoutControlItem34"
-        Me.LayoutControlItem34.Size = New System.Drawing.Size(249, 24)
+        Me.LayoutControlItem34.Size = New System.Drawing.Size(192, 24)
         Me.LayoutControlItem34.Text = "Jilid/Sem"
         Me.LayoutControlItem34.TextSize = New System.Drawing.Size(42, 13)
         '
         'LayoutControlItem35
         '
-        Me.LayoutControlItem35.Control = Me.ComboBoxEdit3
+        Me.LayoutControlItem35.Control = Me.cProgram
         Me.LayoutControlItem35.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem35.Name = "LayoutControlItem35"
-        Me.LayoutControlItem35.Size = New System.Drawing.Size(249, 24)
+        Me.LayoutControlItem35.Size = New System.Drawing.Size(192, 24)
         Me.LayoutControlItem35.Text = "Program"
         Me.LayoutControlItem35.TextSize = New System.Drawing.Size(42, 13)
         '
         'LayoutControlItem36
         '
-        Me.LayoutControlItem36.Control = Me.TextEdit12
+        Me.LayoutControlItem36.Control = Me.tLain
         Me.LayoutControlItem36.Location = New System.Drawing.Point(0, 96)
         Me.LayoutControlItem36.Name = "LayoutControlItem36"
-        Me.LayoutControlItem36.Size = New System.Drawing.Size(306, 27)
+        Me.LayoutControlItem36.Size = New System.Drawing.Size(246, 27)
         Me.LayoutControlItem36.Text = "Lain-Lain"
         Me.LayoutControlItem36.TextSize = New System.Drawing.Size(42, 13)
         '
         'LayoutControlItem37
         '
-        Me.LayoutControlItem37.Control = Me.TextEdit13
-        Me.LayoutControlItem37.Location = New System.Drawing.Point(249, 72)
+        Me.LayoutControlItem37.Control = Me.tProgram
+        Me.LayoutControlItem37.Location = New System.Drawing.Point(192, 72)
         Me.LayoutControlItem37.Name = "LayoutControlItem37"
-        Me.LayoutControlItem37.Size = New System.Drawing.Size(57, 24)
+        Me.LayoutControlItem37.Size = New System.Drawing.Size(54, 24)
         Me.LayoutControlItem37.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem37.TextVisible = False
         '
         'LayoutControlItem38
         '
-        Me.LayoutControlItem38.Control = Me.TextEdit14
-        Me.LayoutControlItem38.Location = New System.Drawing.Point(306, 72)
+        Me.LayoutControlItem38.Control = Me.tProgramKode
+        Me.LayoutControlItem38.Location = New System.Drawing.Point(246, 72)
         Me.LayoutControlItem38.Name = "LayoutControlItem38"
-        Me.LayoutControlItem38.Size = New System.Drawing.Size(274, 24)
+        Me.LayoutControlItem38.Size = New System.Drawing.Size(220, 24)
         Me.LayoutControlItem38.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem38.TextVisible = False
         '
         'LayoutControlItem39
         '
-        Me.LayoutControlItem39.Control = Me.TextEdit15
-        Me.LayoutControlItem39.Location = New System.Drawing.Point(249, 48)
+        Me.LayoutControlItem39.Control = Me.tJilidSem
+        Me.LayoutControlItem39.Location = New System.Drawing.Point(192, 48)
         Me.LayoutControlItem39.Name = "LayoutControlItem39"
-        Me.LayoutControlItem39.Size = New System.Drawing.Size(57, 24)
+        Me.LayoutControlItem39.Size = New System.Drawing.Size(54, 24)
         Me.LayoutControlItem39.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem39.TextVisible = False
         '
         'LayoutControlItem40
         '
-        Me.LayoutControlItem40.Control = Me.TextEdit16
-        Me.LayoutControlItem40.Location = New System.Drawing.Point(306, 48)
+        Me.LayoutControlItem40.Control = Me.tJilidSemKode
+        Me.LayoutControlItem40.Location = New System.Drawing.Point(246, 48)
         Me.LayoutControlItem40.Name = "LayoutControlItem40"
-        Me.LayoutControlItem40.Size = New System.Drawing.Size(274, 24)
+        Me.LayoutControlItem40.Size = New System.Drawing.Size(220, 24)
         Me.LayoutControlItem40.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem40.TextVisible = False
         '
         'EmptySpaceItem4
         '
         Me.EmptySpaceItem4.AllowHotTrack = False
-        Me.EmptySpaceItem4.Location = New System.Drawing.Point(171, 24)
+        Me.EmptySpaceItem4.Location = New System.Drawing.Point(138, 24)
         Me.EmptySpaceItem4.Name = "EmptySpaceItem4"
-        Me.EmptySpaceItem4.Size = New System.Drawing.Size(409, 24)
+        Me.EmptySpaceItem4.Size = New System.Drawing.Size(328, 24)
         Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
         '
         'EmptySpaceItem5
         '
         Me.EmptySpaceItem5.AllowHotTrack = False
-        Me.EmptySpaceItem5.Location = New System.Drawing.Point(306, 96)
+        Me.EmptySpaceItem5.Location = New System.Drawing.Point(246, 96)
         Me.EmptySpaceItem5.Name = "EmptySpaceItem5"
-        Me.EmptySpaceItem5.Size = New System.Drawing.Size(274, 27)
+        Me.EmptySpaceItem5.Size = New System.Drawing.Size(220, 27)
         Me.EmptySpaceItem5.TextSize = New System.Drawing.Size(0, 0)
         '
-        'CheckEdit2
+        'EmptySpaceItem8
         '
-        Me.CheckEdit2.Location = New System.Drawing.Point(921, 451)
-        Me.CheckEdit2.Name = "CheckEdit2"
-        Me.CheckEdit2.Properties.Caption = ""
-        Me.CheckEdit2.Size = New System.Drawing.Size(19, 19)
-        Me.CheckEdit2.StyleController = Me.LayoutControl1
-        Me.CheckEdit2.TabIndex = 35
+        Me.EmptySpaceItem8.AllowHotTrack = False
+        Me.EmptySpaceItem8.Location = New System.Drawing.Point(138, 0)
+        Me.EmptySpaceItem8.Name = "EmptySpaceItem8"
+        Me.EmptySpaceItem8.Size = New System.Drawing.Size(328, 24)
+        Me.EmptySpaceItem8.TextSize = New System.Drawing.Size(0, 0)
         '
-        'CheckEdit1
+        'ccKertas
         '
-        Me.CheckEdit1.Location = New System.Drawing.Point(921, 427)
-        Me.CheckEdit1.Name = "CheckEdit1"
-        Me.CheckEdit1.Properties.Caption = ""
-        Me.CheckEdit1.Size = New System.Drawing.Size(19, 19)
-        Me.CheckEdit1.StyleController = Me.LayoutControl1
-        Me.CheckEdit1.TabIndex = 34
+        Me.ccKertas.Location = New System.Drawing.Point(817, 451)
+        Me.ccKertas.Name = "ccKertas"
+        Me.ccKertas.Properties.Caption = ""
+        Me.ccKertas.Size = New System.Drawing.Size(123, 19)
+        Me.ccKertas.StyleController = Me.LayoutControl1
+        Me.ccKertas.TabIndex = 35
         '
-        'TextEdit10
+        'ccCover
         '
-        Me.TextEdit10.Location = New System.Drawing.Point(705, 499)
-        Me.TextEdit10.Name = "TextEdit10"
-        Me.TextEdit10.Size = New System.Drawing.Size(235, 20)
-        Me.TextEdit10.StyleController = Me.LayoutControl1
-        Me.TextEdit10.TabIndex = 32
+        Me.ccCover.Location = New System.Drawing.Point(817, 427)
+        Me.ccCover.Name = "ccCover"
+        Me.ccCover.Properties.Caption = ""
+        Me.ccCover.Size = New System.Drawing.Size(123, 19)
+        Me.ccCover.StyleController = Me.LayoutControl1
+        Me.ccCover.TabIndex = 34
         '
-        'CMeButtonBrowser8
+        'tBonus
         '
-        Me.CMeButtonBrowser8.Location = New System.Drawing.Point(705, 475)
-        Me.CMeButtonBrowser8.Name = "CMeButtonBrowser8"
-        Me.CMeButtonBrowser8.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CMeButtonBrowser8.Properties.NullText = ""
-        Me.CMeButtonBrowser8.Properties.View = Me.CMeButtonBrowser8View
-        Me.CMeButtonBrowser8.Size = New System.Drawing.Size(235, 20)
-        Me.CMeButtonBrowser8.StyleController = Me.LayoutControl1
-        Me.CMeButtonBrowser8.TabIndex = 31
+        Me.tBonus.Location = New System.Drawing.Point(591, 499)
+        Me.tBonus.Name = "tBonus"
+        Me.tBonus.Size = New System.Drawing.Size(349, 20)
+        Me.tBonus.StyleController = Me.LayoutControl1
+        Me.tBonus.TabIndex = 32
+        '
+        'cUkuran
+        '
+        Me.cUkuran.Location = New System.Drawing.Point(591, 475)
+        Me.cUkuran.Name = "cUkuran"
+        Me.cUkuran.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cUkuran.Properties.NullText = ""
+        Me.cUkuran.Properties.View = Me.CMeButtonBrowser8View
+        Me.cUkuran.Size = New System.Drawing.Size(349, 20)
+        Me.cUkuran.StyleController = Me.LayoutControl1
+        Me.cUkuran.TabIndex = 31
         '
         'CMeButtonBrowser8View
         '
@@ -828,16 +871,16 @@ Partial Class frmMstBuku
         Me.CMeButtonBrowser8View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.CMeButtonBrowser8View.OptionsView.ShowGroupPanel = False
         '
-        'CMeButtonBrowser7
+        'cKertas
         '
-        Me.CMeButtonBrowser7.Location = New System.Drawing.Point(705, 451)
-        Me.CMeButtonBrowser7.Name = "CMeButtonBrowser7"
-        Me.CMeButtonBrowser7.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CMeButtonBrowser7.Properties.NullText = ""
-        Me.CMeButtonBrowser7.Properties.View = Me.CMeButtonBrowser7View
-        Me.CMeButtonBrowser7.Size = New System.Drawing.Size(212, 20)
-        Me.CMeButtonBrowser7.StyleController = Me.LayoutControl1
-        Me.CMeButtonBrowser7.TabIndex = 30
+        Me.cKertas.Location = New System.Drawing.Point(591, 451)
+        Me.cKertas.Name = "cKertas"
+        Me.cKertas.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cKertas.Properties.NullText = ""
+        Me.cKertas.Properties.View = Me.CMeButtonBrowser7View
+        Me.cKertas.Size = New System.Drawing.Size(84, 20)
+        Me.cKertas.StyleController = Me.LayoutControl1
+        Me.cKertas.TabIndex = 30
         '
         'CMeButtonBrowser7View
         '
@@ -846,16 +889,16 @@ Partial Class frmMstBuku
         Me.CMeButtonBrowser7View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.CMeButtonBrowser7View.OptionsView.ShowGroupPanel = False
         '
-        'CMeButtonBrowser6
+        'cCover
         '
-        Me.CMeButtonBrowser6.Location = New System.Drawing.Point(705, 427)
-        Me.CMeButtonBrowser6.Name = "CMeButtonBrowser6"
-        Me.CMeButtonBrowser6.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CMeButtonBrowser6.Properties.NullText = ""
-        Me.CMeButtonBrowser6.Properties.View = Me.CMeButtonBrowser6View
-        Me.CMeButtonBrowser6.Size = New System.Drawing.Size(212, 20)
-        Me.CMeButtonBrowser6.StyleController = Me.LayoutControl1
-        Me.CMeButtonBrowser6.TabIndex = 29
+        Me.cCover.Location = New System.Drawing.Point(591, 427)
+        Me.cCover.Name = "cCover"
+        Me.cCover.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cCover.Properties.NullText = ""
+        Me.cCover.Properties.View = Me.CMeButtonBrowser6View
+        Me.cCover.Size = New System.Drawing.Size(84, 20)
+        Me.cCover.StyleController = Me.LayoutControl1
+        Me.cCover.TabIndex = 29
         '
         'CMeButtonBrowser6View
         '
@@ -864,55 +907,55 @@ Partial Class frmMstBuku
         Me.CMeButtonBrowser6View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.CMeButtonBrowser6View.OptionsView.ShowGroupPanel = False
         '
-        'SpinEdit1
+        'sHalaman
         '
-        Me.SpinEdit1.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.SpinEdit1.Location = New System.Drawing.Point(705, 403)
-        Me.SpinEdit1.Name = "SpinEdit1"
-        Me.SpinEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.SpinEdit1.Size = New System.Drawing.Size(235, 20)
-        Me.SpinEdit1.StyleController = Me.LayoutControl1
-        Me.SpinEdit1.TabIndex = 28
+        Me.sHalaman.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.sHalaman.Location = New System.Drawing.Point(591, 403)
+        Me.sHalaman.Name = "sHalaman"
+        Me.sHalaman.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.sHalaman.Size = New System.Drawing.Size(349, 20)
+        Me.sHalaman.StyleController = Me.LayoutControl1
+        Me.sHalaman.TabIndex = 28
         '
-        'TextEdit9
+        'tKeterangan
         '
-        Me.TextEdit9.Location = New System.Drawing.Point(331, 355)
-        Me.TextEdit9.Name = "TextEdit9"
-        Me.TextEdit9.Size = New System.Drawing.Size(275, 20)
-        Me.TextEdit9.StyleController = Me.LayoutControl1
-        Me.TextEdit9.TabIndex = 27
+        Me.tKeterangan.Location = New System.Drawing.Point(210, 355)
+        Me.tKeterangan.Name = "tKeterangan"
+        Me.tKeterangan.Size = New System.Drawing.Size(282, 20)
+        Me.tKeterangan.StyleController = Me.LayoutControl1
+        Me.tKeterangan.TabIndex = 27
         '
-        'TextEdit8
+        'tKodeProduksi
         '
-        Me.TextEdit8.Location = New System.Drawing.Point(95, 428)
-        Me.TextEdit8.Name = "TextEdit8"
-        Me.TextEdit8.Size = New System.Drawing.Size(511, 20)
-        Me.TextEdit8.StyleController = Me.LayoutControl1
-        Me.TextEdit8.TabIndex = 26
+        Me.tKodeProduksi.Location = New System.Drawing.Point(95, 428)
+        Me.tKodeProduksi.Name = "tKodeProduksi"
+        Me.tKodeProduksi.Size = New System.Drawing.Size(397, 20)
+        Me.tKodeProduksi.StyleController = Me.LayoutControl1
+        Me.tKodeProduksi.TabIndex = 26
         '
-        'TextEdit7
+        'tKodeDPH
         '
-        Me.TextEdit7.Location = New System.Drawing.Point(95, 404)
-        Me.TextEdit7.Name = "TextEdit7"
-        Me.TextEdit7.Size = New System.Drawing.Size(511, 20)
-        Me.TextEdit7.StyleController = Me.LayoutControl1
-        Me.TextEdit7.TabIndex = 25
+        Me.tKodeDPH.Location = New System.Drawing.Point(95, 404)
+        Me.tKodeDPH.Name = "tKodeDPH"
+        Me.tKodeDPH.Size = New System.Drawing.Size(111, 20)
+        Me.tKodeDPH.StyleController = Me.LayoutControl1
+        Me.tKodeDPH.TabIndex = 25
         '
-        'ComboBox1
+        'cJenisBuku
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(95, 379)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(511, 21)
-        Me.ComboBox1.TabIndex = 24
+        Me.cJenisBuku.FormattingEnabled = True
+        Me.cJenisBuku.Location = New System.Drawing.Point(95, 379)
+        Me.cJenisBuku.Name = "cJenisBuku"
+        Me.cJenisBuku.Size = New System.Drawing.Size(111, 21)
+        Me.cJenisBuku.TabIndex = 24
         '
-        'TextEdit6
+        'tISBN
         '
-        Me.TextEdit6.Location = New System.Drawing.Point(705, 355)
-        Me.TextEdit6.Name = "TextEdit6"
-        Me.TextEdit6.Size = New System.Drawing.Size(235, 20)
-        Me.TextEdit6.StyleController = Me.LayoutControl1
-        Me.TextEdit6.TabIndex = 23
+        Me.tISBN.Location = New System.Drawing.Point(591, 355)
+        Me.tISBN.Name = "tISBN"
+        Me.tISBN.Size = New System.Drawing.Size(349, 20)
+        Me.tISBN.StyleController = Me.LayoutControl1
+        Me.tISBN.TabIndex = 23
         '
         'rJudulEng
         '
@@ -970,16 +1013,16 @@ Partial Class frmMstBuku
         Me.dgHistory.Size = New System.Drawing.Size(456, 309)
         Me.dgHistory.TabIndex = 17
         '
-        'CMeButtonBrowser5
+        'cGolongan
         '
-        Me.CMeButtonBrowser5.Location = New System.Drawing.Point(95, 355)
-        Me.CMeButtonBrowser5.Name = "CMeButtonBrowser5"
-        Me.CMeButtonBrowser5.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.CMeButtonBrowser5.Properties.NullText = ""
-        Me.CMeButtonBrowser5.Properties.View = Me.CMeButtonBrowser5View
-        Me.CMeButtonBrowser5.Size = New System.Drawing.Size(232, 20)
-        Me.CMeButtonBrowser5.StyleController = Me.LayoutControl1
-        Me.CMeButtonBrowser5.TabIndex = 16
+        Me.cGolongan.Location = New System.Drawing.Point(95, 355)
+        Me.cGolongan.Name = "cGolongan"
+        Me.cGolongan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cGolongan.Properties.NullText = ""
+        Me.cGolongan.Properties.View = Me.CMeButtonBrowser5View
+        Me.cGolongan.Size = New System.Drawing.Size(111, 20)
+        Me.cGolongan.StyleController = Me.LayoutControl1
+        Me.cGolongan.TabIndex = 16
         '
         'CMeButtonBrowser5View
         '
@@ -1057,108 +1100,132 @@ Partial Class frmMstBuku
         '
         'LayoutControlGroup4
         '
-        Me.LayoutControlGroup4.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem18, Me.LayoutControlItem23, Me.LayoutControlItem24, Me.LayoutControlItem25, Me.LayoutControlItem26, Me.LayoutControlItem27, Me.LayoutControlItem29, Me.LayoutControlItem28, Me.LayoutControlItem12, Me.LayoutControlItem10})
-        Me.LayoutControlGroup4.Location = New System.Drawing.Point(610, 313)
+        Me.LayoutControlGroup4.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem18, Me.LayoutControlItem24, Me.LayoutControlItem25, Me.LayoutControlItem26, Me.LayoutControlItem27, Me.LayoutControlItem29, Me.LayoutControlItem12, Me.LayoutControlItem10, Me.LayoutControlItem17, Me.LayoutControlItem28, Me.LayoutControlItem23, Me.LayoutControlItem11})
+        Me.LayoutControlGroup4.Location = New System.Drawing.Point(496, 313)
         Me.LayoutControlGroup4.Name = "LayoutControlGroup4"
-        Me.LayoutControlGroup4.Size = New System.Drawing.Size(334, 314)
+        Me.LayoutControlGroup4.Size = New System.Drawing.Size(448, 314)
         Me.LayoutControlGroup4.Text = "Fisik Buku"
         '
         'LayoutControlItem18
         '
-        Me.LayoutControlItem18.Control = Me.TextEdit6
+        Me.LayoutControlItem18.Control = Me.tISBN
         Me.LayoutControlItem18.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem18.Name = "LayoutControlItem18"
-        Me.LayoutControlItem18.Size = New System.Drawing.Size(310, 24)
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(424, 24)
         Me.LayoutControlItem18.Text = "ISBN"
         Me.LayoutControlItem18.TextSize = New System.Drawing.Size(68, 13)
         '
-        'LayoutControlItem23
-        '
-        Me.LayoutControlItem23.Control = Me.SpinEdit1
-        Me.LayoutControlItem23.Location = New System.Drawing.Point(0, 48)
-        Me.LayoutControlItem23.Name = "LayoutControlItem23"
-        Me.LayoutControlItem23.Size = New System.Drawing.Size(310, 24)
-        Me.LayoutControlItem23.Text = "Halaman"
-        Me.LayoutControlItem23.TextSize = New System.Drawing.Size(68, 13)
-        '
         'LayoutControlItem24
         '
-        Me.LayoutControlItem24.Control = Me.CMeButtonBrowser6
+        Me.LayoutControlItem24.Control = Me.cCover
         Me.LayoutControlItem24.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem24.Name = "LayoutControlItem24"
-        Me.LayoutControlItem24.Size = New System.Drawing.Size(287, 24)
+        Me.LayoutControlItem24.Size = New System.Drawing.Size(159, 24)
         Me.LayoutControlItem24.Text = "Cover"
         Me.LayoutControlItem24.TextSize = New System.Drawing.Size(68, 13)
         '
         'LayoutControlItem25
         '
-        Me.LayoutControlItem25.Control = Me.CMeButtonBrowser7
+        Me.LayoutControlItem25.Control = Me.cKertas
         Me.LayoutControlItem25.Location = New System.Drawing.Point(0, 96)
         Me.LayoutControlItem25.Name = "LayoutControlItem25"
-        Me.LayoutControlItem25.Size = New System.Drawing.Size(287, 24)
+        Me.LayoutControlItem25.Size = New System.Drawing.Size(159, 24)
         Me.LayoutControlItem25.Text = "Kertas"
         Me.LayoutControlItem25.TextSize = New System.Drawing.Size(68, 13)
         '
         'LayoutControlItem26
         '
-        Me.LayoutControlItem26.Control = Me.CMeButtonBrowser8
+        Me.LayoutControlItem26.Control = Me.cUkuran
         Me.LayoutControlItem26.Location = New System.Drawing.Point(0, 120)
         Me.LayoutControlItem26.Name = "LayoutControlItem26"
-        Me.LayoutControlItem26.Size = New System.Drawing.Size(310, 24)
+        Me.LayoutControlItem26.Size = New System.Drawing.Size(424, 24)
         Me.LayoutControlItem26.Text = "Ukuran"
         Me.LayoutControlItem26.TextSize = New System.Drawing.Size(68, 13)
         '
         'LayoutControlItem27
         '
-        Me.LayoutControlItem27.Control = Me.TextEdit10
+        Me.LayoutControlItem27.Control = Me.tBonus
         Me.LayoutControlItem27.Location = New System.Drawing.Point(0, 144)
         Me.LayoutControlItem27.Name = "LayoutControlItem27"
-        Me.LayoutControlItem27.Size = New System.Drawing.Size(310, 24)
+        Me.LayoutControlItem27.Size = New System.Drawing.Size(424, 24)
         Me.LayoutControlItem27.Text = "Bonus"
         Me.LayoutControlItem27.TextSize = New System.Drawing.Size(68, 13)
         '
         'LayoutControlItem29
         '
-        Me.LayoutControlItem29.Control = Me.CheckEdit1
-        Me.LayoutControlItem29.Location = New System.Drawing.Point(287, 72)
+        Me.LayoutControlItem29.Control = Me.ccCover
+        Me.LayoutControlItem29.Location = New System.Drawing.Point(297, 72)
         Me.LayoutControlItem29.Name = "LayoutControlItem29"
-        Me.LayoutControlItem29.Size = New System.Drawing.Size(23, 24)
+        Me.LayoutControlItem29.Size = New System.Drawing.Size(127, 24)
         Me.LayoutControlItem29.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem29.TextVisible = False
-        '
-        'LayoutControlItem28
-        '
-        Me.LayoutControlItem28.Control = Me.CheckEdit2
-        Me.LayoutControlItem28.Location = New System.Drawing.Point(287, 96)
-        Me.LayoutControlItem28.Name = "LayoutControlItem28"
-        Me.LayoutControlItem28.Size = New System.Drawing.Size(23, 24)
-        Me.LayoutControlItem28.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem28.TextVisible = False
         '
         'LayoutControlItem12
         '
         Me.LayoutControlItem12.Control = Me.SimpleButton3
         Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 168)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(310, 104)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(424, 104)
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem12.TextVisible = False
         '
         'LayoutControlItem10
         '
-        Me.LayoutControlItem10.Control = Me.DateEdit3
+        Me.LayoutControlItem10.Control = Me.dThnBln
         Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(310, 24)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(424, 24)
         Me.LayoutControlItem10.Text = "Tahun/Bulan"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(68, 13)
+        '
+        'LayoutControlItem17
+        '
+        Me.LayoutControlItem17.Control = Me.tKertas
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(159, 96)
+        Me.LayoutControlItem17.MaxSize = New System.Drawing.Size(138, 24)
+        Me.LayoutControlItem17.MinSize = New System.Drawing.Size(138, 24)
+        Me.LayoutControlItem17.Name = "LayoutControlItem17"
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(138, 24)
+        Me.LayoutControlItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem17.TextVisible = False
+        '
+        'LayoutControlItem28
+        '
+        Me.LayoutControlItem28.Control = Me.ccKertas
+        Me.LayoutControlItem28.Location = New System.Drawing.Point(297, 96)
+        Me.LayoutControlItem28.Name = "LayoutControlItem28"
+        Me.LayoutControlItem28.Size = New System.Drawing.Size(127, 24)
+        Me.LayoutControlItem28.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem28.TextVisible = False
+        '
+        'LayoutControlItem23
+        '
+        Me.LayoutControlItem23.Control = Me.sHalaman
+        Me.LayoutControlItem23.Location = New System.Drawing.Point(0, 48)
+        Me.LayoutControlItem23.Name = "LayoutControlItem23"
+        Me.LayoutControlItem23.Size = New System.Drawing.Size(424, 24)
+        Me.LayoutControlItem23.Text = "Halaman"
+        Me.LayoutControlItem23.TextSize = New System.Drawing.Size(68, 13)
+        '
+        'LayoutControlItem11
+        '
+        Me.LayoutControlItem11.Control = Me.tCover
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(159, 72)
+        Me.LayoutControlItem11.MaxSize = New System.Drawing.Size(138, 24)
+        Me.LayoutControlItem11.MinSize = New System.Drawing.Size(138, 24)
+        Me.LayoutControlItem11.Name = "LayoutControlItem11"
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(138, 24)
+        Me.LayoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem11.TextVisible = False
         '
         'LayoutControlItem31
         '
         Me.LayoutControlItem31.Control = Me.XtraTabControl1
         Me.LayoutControlItem31.Location = New System.Drawing.Point(0, 452)
         Me.LayoutControlItem31.Name = "LayoutControlItem31"
-        Me.LayoutControlItem31.Size = New System.Drawing.Size(610, 175)
+        Me.LayoutControlItem31.Size = New System.Drawing.Size(496, 175)
         Me.LayoutControlItem31.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem31.TextVisible = False
         '
@@ -1329,56 +1396,72 @@ Partial Class frmMstBuku
         '
         'LayoutControlGroup6
         '
-        Me.LayoutControlGroup6.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem19, Me.LayoutControlItem20, Me.LayoutControlItem21, Me.LayoutControlItem22, Me.LayoutControlItem13})
+        Me.LayoutControlGroup6.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem19, Me.LayoutControlItem20, Me.LayoutControlItem21, Me.LayoutControlItem22, Me.LayoutControlItem13, Me.EmptySpaceItem6, Me.EmptySpaceItem7})
         Me.LayoutControlGroup6.Location = New System.Drawing.Point(0, 313)
         Me.LayoutControlGroup6.Name = "LayoutControlGroup6"
-        Me.LayoutControlGroup6.Size = New System.Drawing.Size(610, 139)
+        Me.LayoutControlGroup6.Size = New System.Drawing.Size(496, 139)
         Me.LayoutControlGroup6.Text = "Detail Buku"
         '
         'LayoutControlItem19
         '
-        Me.LayoutControlItem19.Control = Me.ComboBox1
+        Me.LayoutControlItem19.Control = Me.cJenisBuku
         Me.LayoutControlItem19.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem19.Name = "LayoutControlItem19"
-        Me.LayoutControlItem19.Size = New System.Drawing.Size(586, 25)
+        Me.LayoutControlItem19.Size = New System.Drawing.Size(186, 25)
         Me.LayoutControlItem19.Text = "Jenis Buku"
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(68, 13)
         '
         'LayoutControlItem20
         '
-        Me.LayoutControlItem20.Control = Me.TextEdit7
+        Me.LayoutControlItem20.Control = Me.tKodeDPH
         Me.LayoutControlItem20.Location = New System.Drawing.Point(0, 49)
         Me.LayoutControlItem20.Name = "LayoutControlItem20"
-        Me.LayoutControlItem20.Size = New System.Drawing.Size(586, 24)
+        Me.LayoutControlItem20.Size = New System.Drawing.Size(186, 24)
         Me.LayoutControlItem20.Text = "Kode DPH"
         Me.LayoutControlItem20.TextSize = New System.Drawing.Size(68, 13)
         '
         'LayoutControlItem21
         '
-        Me.LayoutControlItem21.Control = Me.TextEdit8
+        Me.LayoutControlItem21.Control = Me.tKodeProduksi
         Me.LayoutControlItem21.Location = New System.Drawing.Point(0, 73)
         Me.LayoutControlItem21.Name = "LayoutControlItem21"
-        Me.LayoutControlItem21.Size = New System.Drawing.Size(586, 24)
+        Me.LayoutControlItem21.Size = New System.Drawing.Size(472, 24)
         Me.LayoutControlItem21.Text = "Kode Produksi"
         Me.LayoutControlItem21.TextSize = New System.Drawing.Size(68, 13)
         '
         'LayoutControlItem22
         '
-        Me.LayoutControlItem22.Control = Me.TextEdit9
-        Me.LayoutControlItem22.Location = New System.Drawing.Point(307, 0)
+        Me.LayoutControlItem22.Control = Me.tKeterangan
+        Me.LayoutControlItem22.Location = New System.Drawing.Point(186, 0)
         Me.LayoutControlItem22.Name = "LayoutControlItem22"
-        Me.LayoutControlItem22.Size = New System.Drawing.Size(279, 24)
+        Me.LayoutControlItem22.Size = New System.Drawing.Size(286, 24)
         Me.LayoutControlItem22.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem22.TextVisible = False
         '
         'LayoutControlItem13
         '
-        Me.LayoutControlItem13.Control = Me.CMeButtonBrowser5
+        Me.LayoutControlItem13.Control = Me.cGolongan
         Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(307, 24)
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(186, 24)
         Me.LayoutControlItem13.Text = "Golongan"
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(68, 13)
+        '
+        'EmptySpaceItem6
+        '
+        Me.EmptySpaceItem6.AllowHotTrack = False
+        Me.EmptySpaceItem6.Location = New System.Drawing.Point(186, 24)
+        Me.EmptySpaceItem6.Name = "EmptySpaceItem6"
+        Me.EmptySpaceItem6.Size = New System.Drawing.Size(286, 25)
+        Me.EmptySpaceItem6.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'EmptySpaceItem7
+        '
+        Me.EmptySpaceItem7.AllowHotTrack = False
+        Me.EmptySpaceItem7.Location = New System.Drawing.Point(186, 49)
+        Me.EmptySpaceItem7.Name = "EmptySpaceItem7"
+        Me.EmptySpaceItem7.Size = New System.Drawing.Size(286, 24)
+        Me.EmptySpaceItem7.TextSize = New System.Drawing.Size(0, 0)
         '
         'frmMstBuku
         '
@@ -1391,24 +1474,26 @@ Partial Class frmMstBuku
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
-        CType(Me.DateEdit3.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tKertas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tCover.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dThnBln.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dThnBln.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.XtraTabControl1.ResumeLayout(False)
         Me.xtraUmum.ResumeLayout(False)
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl2.ResumeLayout(False)
-        CType(Me.TextEdit20.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CheckEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit19.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DateEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ComboBoxEdit4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit18.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit17.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CMeButtonBrowser9.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tKeteranganSerial.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ccSerial.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tMode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dTanggalMode2.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dTanggalMode2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dTanggalMode1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dTanggalMode1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cMode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tEdisi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tJilid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cSerial.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CMeButtonBrowser9View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem41, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1424,15 +1509,15 @@ Partial Class frmMstBuku
         Me.xtraBuPel.ResumeLayout(False)
         CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl3.ResumeLayout(False)
-        CType(Me.TextEdit16.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit15.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit14.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit13.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit12.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ComboBoxEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ComboBoxEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit11.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.ComboBoxEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tJilidSemKode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tJilidSem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tProgramKode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tProgram.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tLain.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cProgram.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cJilidSem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tKelas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cJenjang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem32, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem33, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1445,21 +1530,22 @@ Partial Class frmMstBuku
         CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CheckEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CheckEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit10.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CMeButtonBrowser8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ccKertas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ccCover.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tBonus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cUkuran.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CMeButtonBrowser8View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CMeButtonBrowser7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cKertas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CMeButtonBrowser7View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CMeButtonBrowser6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cCover.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CMeButtonBrowser6View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SpinEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit9.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CMeButtonBrowser5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.sHalaman.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tKeterangan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tKodeProduksi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tKodeDPH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tISBN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cGolongan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CMeButtonBrowser5View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tNamaPenerbit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cPenerbit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1470,15 +1556,17 @@ Partial Class frmMstBuku
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem29, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1504,12 +1592,14 @@ Partial Class frmMstBuku
         CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
     Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
-    Friend WithEvents CMeButtonBrowser5 As meCore.cMeButtonBrowser
+    Friend WithEvents cGolongan As meCore.cMeButtonBrowser
     Friend WithEvents CMeButtonBrowser5View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents tNamaPenerbit As DevExpress.XtraEditors.TextEdit
     Friend WithEvents cPenerbit As meCore.cMeButtonBrowser
@@ -1519,27 +1609,27 @@ Partial Class frmMstBuku
     Friend WithEvents tJudulIndo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents tKodeBuku As System.Windows.Forms.TextBox
     Friend WithEvents dgHistory As meCore.ctrlMeDataGrid
-    Friend WithEvents TextEdit9 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit8 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit7 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
-    Friend WithEvents TextEdit6 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents tKeterangan As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents tKodeProduksi As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents tKodeDPH As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents cJenisBuku As System.Windows.Forms.ComboBox
+    Friend WithEvents tISBN As DevExpress.XtraEditors.TextEdit
     Friend WithEvents rJudulEng As System.Windows.Forms.RadioButton
     Friend WithEvents rJudulIndo As System.Windows.Forms.RadioButton
     Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlGroup4 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem18 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents CheckEdit2 As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents CheckEdit1 As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents TextEdit10 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents CMeButtonBrowser8 As meCore.cMeButtonBrowser
+    Friend WithEvents ccKertas As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents ccCover As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents tBonus As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents cUkuran As meCore.cMeButtonBrowser
     Friend WithEvents CMeButtonBrowser8View As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents CMeButtonBrowser7 As meCore.cMeButtonBrowser
+    Friend WithEvents cKertas As meCore.cMeButtonBrowser
     Friend WithEvents CMeButtonBrowser7View As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents CMeButtonBrowser6 As meCore.cMeButtonBrowser
+    Friend WithEvents cCover As meCore.cMeButtonBrowser
     Friend WithEvents CMeButtonBrowser6View As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents SpinEdit1 As DevExpress.XtraEditors.SpinEdit
+    Friend WithEvents sHalaman As DevExpress.XtraEditors.SpinEdit
     Friend WithEvents LayoutControlItem23 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem24 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem25 As DevExpress.XtraLayout.LayoutControlItem
@@ -1552,15 +1642,15 @@ Partial Class frmMstBuku
     Friend WithEvents xtraBuPel As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents LayoutControlItem31 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControl2 As DevExpress.XtraLayout.LayoutControl
-    Friend WithEvents TextEdit20 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents CheckEdit3 As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents TextEdit19 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents DateEdit2 As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents DateEdit1 As DevExpress.XtraEditors.DateEdit
-    Friend WithEvents ComboBoxEdit4 As DevExpress.XtraEditors.ComboBoxEdit
-    Friend WithEvents TextEdit18 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit17 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents CMeButtonBrowser9 As meCore.cMeButtonBrowser
+    Friend WithEvents tKeteranganSerial As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents ccSerial As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents tMode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents dTanggalMode2 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents dTanggalMode1 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents cMode As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents tEdisi As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents tJilid As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents cSerial As meCore.cMeButtonBrowser
     Friend WithEvents CMeButtonBrowser9View As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LayoutControlGroup2 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem41 As DevExpress.XtraLayout.LayoutControlItem
@@ -1573,15 +1663,15 @@ Partial Class frmMstBuku
     Friend WithEvents LayoutControlItem48 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem49 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControl3 As DevExpress.XtraLayout.LayoutControl
-    Friend WithEvents TextEdit16 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit15 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit14 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit13 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit12 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents ComboBoxEdit3 As DevExpress.XtraEditors.ComboBoxEdit
-    Friend WithEvents ComboBoxEdit2 As DevExpress.XtraEditors.ComboBoxEdit
-    Friend WithEvents TextEdit11 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents ComboBoxEdit1 As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents tJilidSemKode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents tJilidSem As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents tProgramKode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents tProgram As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents tLain As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents cProgram As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents cJilidSem As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents tKelas As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents cJenjang As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents LayoutControlGroup5 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem32 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem33 As DevExpress.XtraLayout.LayoutControlItem
@@ -1624,8 +1714,14 @@ Partial Class frmMstBuku
     Friend WithEvents cPenyusun2 As System.Windows.Forms.ComboBox
     Friend WithEvents LayoutControlItem30 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem51 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents DateEdit3 As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents dThnBln As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
-    Friend WithEvents BackgroundWorker1 As System.ComponentModel.BackgroundWorker
+    Friend WithEvents EmptySpaceItem6 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents EmptySpaceItem7 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents tKertas As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents tCover As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem11 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem17 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents EmptySpaceItem8 As DevExpress.XtraLayout.EmptySpaceItem
 End Class

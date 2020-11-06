@@ -437,4 +437,10 @@ Public Class menuValid
             xx.ShowDialog(Me)
         End Using
     End Sub
+
+    Private Sub ReturKreditToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReturKreditToolStripMenuItem.Click
+        Using xx As New frmReturKredit
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
 End Class
