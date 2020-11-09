@@ -29,11 +29,14 @@ Public Class frmMstBuku
         Dim qGolongan As String = "select Kode,Keterangan from mstGolongan order by Kode"
         cGolongan.FirstInit(PubConnStr, qGolongan, {tKeterangan})
 
-        Dim qCover As String = "select Kode, Keterangan from mstCover order by Keterangan"
+        Dim qCover As String = "select Kode, Keterangan from mstCover order by Kode"
         cCover.FirstInit(PubConnStr, qCover, {tCover})
 
-        Dim qKertas As String = "select Kode, Keterangan from mstJenisKertas order by Keterangan"
+        Dim qKertas As String = "select Kode, Keterangan from mstJenisKertas order by Kode"
         cKertas.FirstInit(PubConnStr, qKertas, {tKertas})
+
+        Dim qSerial As String = "select Kode, Keterangan from mstSerial order by Kode"
+        cSerial.FirstInit(PubConnStr, qSerial, {tKeteranganSerial})
 
         dThnBln.Properties.DisplayFormat.FormatString = "yyyy MMMM"
         dThnBln.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
@@ -45,7 +48,7 @@ Public Class frmMstBuku
 
         tJudul.ReadOnly = True
         tNamaPenerbit.ReadOnly = True
-        'SetTextReadOnly({tJudul, tNamaPenerbit})
+        SetTextReadOnly({tJilidSemKode, tProgramKode})
 
         Dim qPenyusun As String = "select Keterangan from mstPenyusun order by keterangan"
         da = New SqlDataAdapter(qPenyusun, kon)
@@ -183,6 +186,7 @@ Public Class frmMstBuku
         Dim judul As String
         Dim sjenjang As String = jenjang
         Dim skelas As String = kelas
+        Dim slain As String = lain
 
         Dim sjilidsem As String = ""
         If cJilidSem.Text.ToUpper = " " Then
@@ -222,19 +226,15 @@ Public Class frmMstBuku
         End If
         tJilidSemKode.Text = sprogram
 
-
-        Dim slain As String = lain
-
         judul = sjenjang & " " & skelas & " " & sjilidsem & " " & sprogram & " " & slain
         Return judul
     End Function
 
     Sub judulrule()
-        Dim judulfinal As String
-        Dim judultabmain As String
-        Dim judultabfisik As String
-        Dim judultabumum As String
-        Dim judultabbupel As String
+        Dim judulfinal As String = ""
+        Dim judultabmain As String = ""
+        Dim judultabfisik As String = ""
+        Dim judultabkiribawah As String = ""
 
         'indo english
         Dim aktif As Boolean
@@ -252,14 +252,14 @@ Public Class frmMstBuku
         If indextab = 0 Then
             'tab umum
             '--------------------------------------------------
-            judultabumum = judulrulebupel(cJenjang.Text, tKelas.Text, cJilidSem.Text, cProgram.Text, tLain.Text)
+            judultabkiribawah = judulrulebupel(cJenjang.Text, tKelas.Text, cJilidSem.Text, cProgram.Text, tLain.Text)
             '--------------------------------------------------
         ElseIf indextab = 1 Then
             'tab bupel
-            judultabbupel = judulrulebupel(cJenjang.Text, tKelas.Text, cJilidSem.Text, cProgram.Text, tLain.Text)
+            judultabkiribawah = judulrulebupel(cJenjang.Text, tKelas.Text, cJilidSem.Text, cProgram.Text, tLain.Text)
         End If
 
-        judulfinal = judultabmain & " " & judultabbupel & " " & judultabfisik
+        judulfinal = judultabmain & " " & judultabkiribawah & " " & judultabfisik
         tJudul.Text = judulfinal
     End Sub
 

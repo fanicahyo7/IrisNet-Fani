@@ -315,6 +315,12 @@
     <Compile Include="Form4.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form5.Designer.vb">
+      <DependentUpon>Form5.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form5.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmAmbilFaktur.designer.vb">
       <DependentUpon>frmAmbilFaktur.vb</DependentUpon>
     </Compile>
@@ -409,6 +415,18 @@
       <DependentUpon>frmMstBuku.vb</DependentUpon>
     </Compile>
     <Compile Include="frmMstBuku.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstCustomer.designer.vb">
+      <DependentUpon>frmMstCustomer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstCustomer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMstCustomerList.Designer.vb">
+      <DependentUpon>frmMstCustomerList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmMstCustomerList.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMstMargin.Designer.vb">
@@ -769,6 +787,9 @@
     <EmbeddedResource Include="Form4.resx">
       <DependentUpon>Form4.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form5.resx">
+      <DependentUpon>Form5.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAmbilFaktur.resx">
       <DependentUpon>frmAmbilFaktur.vb</DependentUpon>
     </EmbeddedResource>
@@ -816,6 +837,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMstBuku.resx">
       <DependentUpon>frmMstBuku.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstCustomer.resx">
+      <DependentUpon>frmMstCustomer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMstCustomerList.resx">
+      <DependentUpon>frmMstCustomerList.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMstMargin.resx">
       <DependentUpon>frmMstMargin.vb</DependentUpon>

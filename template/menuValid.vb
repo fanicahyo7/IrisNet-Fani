@@ -443,4 +443,16 @@ Public Class menuValid
             xx.ShowDialog(Me)
         End Using
     End Sub
+
+    Private Sub CustomerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CustomerToolStripMenuItem.Click
+        Using xx As New frmMstCustomerList
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
+
+    Private Sub DownloadToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles DownloadToolStripMenuItem.Click
+        Using xx As New Form5
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
 End Class
