@@ -19,6 +19,8 @@ Public Class frmMstBuku
     Sub loaddata()
         rJudulIndo.Checked = True
         tKodeBuku.Text = "B"
+        dTanggalMode1.EditValue = Now
+        dTanggalMode2.EditValue = Now
 
         cJenisBuku.Items.AddRange({"LITERATUR", "REFERENSI", "PENGAYAAN", "BACAAN", "MAJALAH"})
 
@@ -184,8 +186,8 @@ Public Class frmMstBuku
 
     Function judulrulebupel(ByVal jenjang As String, ByVal kelas As String, ByVal jilidsem As String, ByVal program As String, ByVal lain As String) As String
         Dim judul As String
-        Dim sjenjang As String = jenjang
-        Dim skelas As String = kelas
+        Dim sjenjang As String = IIf(jenjang = "", "", jenjang & " ")
+        Dim skelas As String = IIf(kelas = "", "", kelas & " ")
         Dim slain As String = lain
 
         Dim sjilidsem As String = ""
@@ -196,13 +198,13 @@ Public Class frmMstBuku
             If tJilidSem.Text = "" Then
                 sjilidsem = ""
             Else
-                sjilidsem = "JL" & tJilidSem.Text
+                sjilidsem = "JL" & tJilidSem.Text & " "
             End If
         ElseIf cJilidSem.Text.ToUpper = "SEMESTER" Then
             If tJilidSem.Text = "" Then
                 sjilidsem = ""
             Else
-                sjilidsem = "SMT " & tJilidSem.Text
+                sjilidsem = "SMT " & tJilidSem.Text & " "
             End If
         End If
         tJilidSemKode.Text = sjilidsem
@@ -215,18 +217,54 @@ Public Class frmMstBuku
             If tProgram.Text = "" Then
                 sprogram = ""
             Else
-                sprogram = "JL" & tProgram.Text
+                sprogram = "JL" & tProgram.Text & " "
             End If
         ElseIf cJilidSem.Text.ToUpper = "SEMESTER" Then
             If tProgram.Text = "" Then
                 sprogram = ""
             Else
-                sprogram = "SMT " & tProgram.Text
+                sprogram = "SMT " & tProgram.Text & " "
             End If
         End If
         tJilidSemKode.Text = sprogram
 
-        judul = sjenjang & " " & skelas & " " & sjilidsem & " " & sprogram & " " & slain
+        judul = sjenjang & skelas & sjilidsem & sprogram & slain
+        Return judul
+    End Function
+
+    Function judulruleumum(ByVal serial As String, ByVal jilid As String, ByVal edisi As String, ByVal mode As String) As String
+        Dim judul As String
+
+        Dim sserial As String = ""
+        If ccSerial.Checked = True Then
+            sserial = IIf(serial = "", "", serial & ": ")
+        End If
+
+        Dim sjilid As String = IIf(jilid = "", "", jilid & " ")
+        Dim sedisi As String = IIf(edisi = "", "", "ED. " & edisi)
+
+        Dim smode As String = ""
+        If mode.ToLower = "" Then
+            smode = ""
+        ElseIf mode.ToLower = "dd mmm yy" Then
+            smode = "/" & Format(dTanggalMode1.EditValue, "dd MMM yy").ToString
+        ElseIf mode.ToLower = "mmm yyyy" Then
+            smode = "/" & Format(dTanggalMode1.EditValue, "MMM yyyy").ToString
+        ElseIf mode.ToLower = "dd mmm yy - dd mmm yy" Then
+            If Format(dTanggalMode1.EditValue, "MM").ToString = Format(dTanggalMode2.EditValue, "MM").ToString Then
+                smode = "/" & Format(dTanggalMode1.EditValue, "dd").ToString & " - " & Format(dTanggalMode2.EditValue, "dd MMM yy").ToString
+            Else
+                smode = "/" & Format(dTanggalMode1.EditValue, "dd MMM yy").ToString & " - " & Format(dTanggalMode2.EditValue, "dd MMM yy").ToString
+            End If
+        End If
+
+        If smode.Length = 0 Then
+            tMode.Text = ""
+        Else
+            tMode.Text = Strings.Right(smode, smode.Length - 1)
+        End If
+
+        judul = sserial & sjilid & sedisi & smode
         Return judul
     End Function
 
@@ -243,23 +281,23 @@ Public Class frmMstBuku
         ElseIf rJudulEng.Checked = True Then
             aktif = False
         End If
-        judultabmain = judulruleindoeng(aktif)
+        judultabmain = judulruleindoeng(aktif) & " "
 
         'fisik
         judultabfisik = judulrulefisik(IIf(ccCover.Checked, True, False), IIf(ccKertas.Checked, True, False))
 
         Dim indextab As Integer = XtraTabControl1.SelectedTabPageIndex
-        If indextab = 0 Then
-            'tab umum
-            '--------------------------------------------------
-            judultabkiribawah = judulrulebupel(cJenjang.Text, tKelas.Text, cJilidSem.Text, cProgram.Text, tLain.Text)
-            '--------------------------------------------------
-        ElseIf indextab = 1 Then
+        If indextab = 1 Then
             'tab bupel
-            judultabkiribawah = judulrulebupel(cJenjang.Text, tKelas.Text, cJilidSem.Text, cProgram.Text, tLain.Text)
+            '--------------------------------------------------
+            judultabkiribawah = judulrulebupel(cJenjang.Text, tKelas.Text, cJilidSem.Text, cProgram.Text, tLain.Text) & " "
+            '--------------------------------------------------
+        ElseIf indextab = 0 Then
+            'tab umum
+            judultabkiribawah = judulruleumum(cSerial.Text, tJilid.Text, tEdisi.Text, cMode.Text) & " "
         End If
 
-        judulfinal = judultabmain & " " & judultabkiribawah & " " & judultabfisik
+        judulfinal = judultabmain & judultabkiribawah & judultabfisik
         tJudul.Text = judulfinal
     End Sub
 
@@ -343,6 +381,28 @@ Public Class frmMstBuku
     End Sub
 
     Private Sub tLain_Validated(sender As Object, e As EventArgs) Handles tLain.Validated
+        judulrule()
+    End Sub
+
+    Private Sub tJilid_Validated(sender As Object, e As EventArgs) Handles tJilid.Validated
+        judulrule()
+    End Sub
+
+    Private Sub tEdisi_Validated(sender As Object, e As EventArgs) Handles tEdisi.Validated
+        judulrule()
+    End Sub
+
+    Private Sub cSerial_EditValueChanged(sender As Object, e As EventArgs) Handles cSerial.EditValueChanged
+        If ccSerial.Checked = True Then
+            judulrule()
+        End If
+    End Sub
+
+    Private Sub ccSerial_CheckedChanged(sender As Object, e As EventArgs) Handles ccSerial.CheckedChanged
+        judulrule()
+    End Sub
+
+    Private Sub cMode_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cMode.SelectedIndexChanged
         judulrule()
     End Sub
 End Class
