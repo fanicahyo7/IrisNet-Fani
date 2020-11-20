@@ -59,6 +59,7 @@ Partial Class menuValid
         Me.BlokirNomorNotaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BukuToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ATKToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CustomerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TransaksiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PembelianToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MutasiToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -79,10 +80,10 @@ Partial Class menuValid
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReturKreditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.DownloadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
-        Me.CustomerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.DownloadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -325,6 +326,12 @@ Partial Class menuValid
         Me.ATKToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
         Me.ATKToolStripMenuItem.Text = "ATK"
         '
+        'CustomerToolStripMenuItem
+        '
+        Me.CustomerToolStripMenuItem.Name = "CustomerToolStripMenuItem"
+        Me.CustomerToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
+        Me.CustomerToolStripMenuItem.Text = "Customer"
+        '
         'TransaksiToolStripMenuItem
         '
         Me.TransaksiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PembelianToolStripMenuItem2, Me.MutasiToolStripMenuItem1, Me.KirimEkspedisiToolStripMenuItem1, Me.PengunjungToolStripMenuItem, Me.TerimaEkspedisiToolStripMenuItem})
@@ -426,7 +433,7 @@ Partial Class menuValid
         '
         'FormCobaToolStripMenuItem
         '
-        Me.FormCobaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem3, Me.ReturKreditToolStripMenuItem, Me.DownloadToolStripMenuItem})
+        Me.FormCobaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem3, Me.ReturKreditToolStripMenuItem, Me.DownloadToolStripMenuItem, Me.ToolStripMenuItem4})
         Me.FormCobaToolStripMenuItem.Name = "FormCobaToolStripMenuItem"
         Me.FormCobaToolStripMenuItem.Size = New System.Drawing.Size(78, 20)
         Me.FormCobaToolStripMenuItem.Text = "Form Coba"
@@ -434,20 +441,26 @@ Partial Class menuValid
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(136, 22)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
         Me.ToolStripMenuItem2.Text = "1"
         '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(136, 22)
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(152, 22)
         Me.ToolStripMenuItem3.Text = "2"
         '
         'ReturKreditToolStripMenuItem
         '
         Me.ReturKreditToolStripMenuItem.Name = "ReturKreditToolStripMenuItem"
-        Me.ReturKreditToolStripMenuItem.Size = New System.Drawing.Size(136, 22)
+        Me.ReturKreditToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
         Me.ReturKreditToolStripMenuItem.Text = "Retur Kredit"
+        '
+        'DownloadToolStripMenuItem
+        '
+        Me.DownloadToolStripMenuItem.Name = "DownloadToolStripMenuItem"
+        Me.DownloadToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.DownloadToolStripMenuItem.Text = "download"
         '
         'TreeView1
         '
@@ -463,17 +476,11 @@ Partial Class menuValid
         Me.ImageList1.ImageSize = New System.Drawing.Size(16, 16)
         Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
         '
-        'CustomerToolStripMenuItem
+        'ToolStripMenuItem4
         '
-        Me.CustomerToolStripMenuItem.Name = "CustomerToolStripMenuItem"
-        Me.CustomerToolStripMenuItem.Size = New System.Drawing.Size(199, 22)
-        Me.CustomerToolStripMenuItem.Text = "Customer"
-        '
-        'DownloadToolStripMenuItem
-        '
-        Me.DownloadToolStripMenuItem.Name = "DownloadToolStripMenuItem"
-        Me.DownloadToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
-        Me.DownloadToolStripMenuItem.Text = "download"
+        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(152, 22)
+        Me.ToolStripMenuItem4.Text = "6"
         '
         'menuValid
         '
@@ -554,4 +561,5 @@ Partial Class menuValid
     Friend WithEvents ReturKreditToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CustomerToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DownloadToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem4 As System.Windows.Forms.ToolStripMenuItem
 End Class

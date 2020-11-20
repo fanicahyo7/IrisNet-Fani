@@ -152,4 +152,8 @@ Public Class frmAmbilFaktur
             dgDetail.RefreshData(False)
         End If
     End Sub
+
+    Private Sub dgfaktur_Load(sender As Object, e As EventArgs) Handles dgfaktur.Load
+
+    End Sub
 End Class

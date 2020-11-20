@@ -608,3 +608,9 @@ D:\IrisNet-Fani\template\obj\Debug\template.frmReturKredit.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmMstCustomerList.resources
 D:\IrisNet-Fani\template\obj\Debug\template.Form5.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmMstCustomer.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmWithdrawalMarketPlace.resources
+D:\IrisNet-Fani\template\bin\Debug\Newtonsoft.Json.dll
+D:\IrisNet-Fani\template\bin\Debug\Newtonsoft.Json.xml
+D:\IrisNet-Fani\template\obj\Debug\template.Form6.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmTotalWithdrawal.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmTotalWithdrawalDetail.resources

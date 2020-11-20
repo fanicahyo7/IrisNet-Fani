@@ -455,4 +455,10 @@ Public Class menuValid
             xx.ShowDialog(Me)
         End Using
     End Sub
+
+    Private Sub ToolStripMenuItem4_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItem4.Click
+        Using xx As New frmTotalWithdrawal
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
 End Class
