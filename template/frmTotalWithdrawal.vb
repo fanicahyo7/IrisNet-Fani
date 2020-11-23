@@ -29,6 +29,7 @@ Public Class frmTotalWithdrawal
 
             Dim keterangan As Integer = 0
             Dim keteranganlunas As Integer = 0
+            Dim keteranganFJ As Integer = 0
             For a = 0 To dgList.gvMain.RowCount - 1
                 Dim qcaritotalFJ As String = _
                     "select sum(isnull(a.Total,0)) - sum(isnull(b.Total,0)) as Total from trSLHeader a " & _
@@ -62,19 +63,22 @@ Public Class frmTotalWithdrawal
                 rd.Close()
 
                 Dim totalfj As Double = 0
+                Dim datanull As Boolean = False
                 If IsDBNull(dgList.GetRowCellValue(a, "TotalFJ")) Then
                     totalfj = 0
+                    datanull = True
                 Else
                     totalfj = dgList.GetRowCellValue(a, "TotalFJ")
                 End If
                 Dim total As Double = 0
                 If IsDBNull(dgList.GetRowCellValue(a, "Total")) Then
                     total = 0
+                    datanull = True
                 Else
                     total = dgList.GetRowCellValue(a, "Total")
                 End If
 
-                If total = totalfj Then
+                If total = totalfj And datanull = False Then
                     dgList.SetRowCellValue(a, "Keterangan", True)
                 Else
                     dgList.SetRowCellValue(a, "Keterangan", False)
@@ -114,7 +118,50 @@ Public Class frmTotalWithdrawal
         End Using
     End Sub
 
-    Private Sub dgList_Load(sender As Object, e As EventArgs) Handles dgList.Load
+    Private Sub btnPelunasan_Click(sender As Object, e As EventArgs) Handles btnPelunasan.Click
+        If tNoBukti.Text = "" Then
+            MsgBox("No. Bukti Belum diisi!!", vbCritical + vbOKOnly, "Peringatan")
+        Else
+            Dim invoice As String = ""
+            For a = 0 To dgList.gvMain.RowCount - 1
+                invoice += "'" & dgList.GetRowCellValue(a, "Invoice") & "',"
+                If a = dgList.gvMain.RowCount - 1 Then
+                    invoice += "'" & dgList.GetRowCellValue(a, "Invoice") & "'"
+                End If
+            Next
 
+            If invoice = "" Then
+                invoice = "''"
+            End If
+
+            Dim dtcustomer As New cMeDB
+            Dim query As String = _
+                "select kdcustomer,count(KdCustomer) from trSLHeader where Keterangan in (" & invoice & ") group by KdCustomer"
+            dtcustomer.FillMe(query)
+
+            If dtcustomer.Rows.Count > 1 Then
+                MsgBox("Data Memiliki KdCustomer Lebih dari Satu." + vbCrLf + "Mohon Periksa Kembali!!", vbCritical + vbOKOnly, "Peringatan")
+            Else
+                Dim fakturpp As String = _
+                    GetNewFakturTogamasSQLServ(PubConnStr, "trLPtgHeader", FakturReset.Tahunan, "Faktur", pubKodeUnit & pubUserInit & "-PP", DTOC(Now), 5, "")
+
+                Dim carifj As String = _
+                    "select * from trSLHeader where Keterangan in (" & invoice & ")"
+                Dim dtfj As New cMeDB
+                dtfj.FillMe(carifj)
+
+                Dim result As Double = Convert.ToDouble(dtfj.Compute("SUM(Total)", String.Empty))
+
+
+                Dim simpanheader As String = _
+                    "insert into trLPtgHeader (Faktur,KdCustomer,Tanggal,TglLunas,SubTotal,Total,Tunai,UserEntry,DateTimeEntry,NoBukti,Pembulatan) values " & _
+                    "('" & fakturpp & "')"
+
+
+                Dim simpandetail As String = _
+                    "insert into trLPtgDetail (Faktur,Tanggal,FakturAsli,Jumlah) values ()"
+
+            End If
+        End If
     End Sub
 End Class

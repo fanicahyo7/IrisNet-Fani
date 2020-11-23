@@ -34,6 +34,9 @@ Partial Class frmTotalWithdrawal
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.tNoBukti = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.tLokasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -44,10 +47,14 @@ Partial Class frmTotalWithdrawal
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tNoBukti.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.tNoBukti)
         Me.LayoutControl1.Controls.Add(Me.tLokasi)
         Me.LayoutControl1.Controls.Add(Me.btnPelunasan)
         Me.LayoutControl1.Controls.Add(Me.btnImport)
@@ -62,9 +69,9 @@ Partial Class frmTotalWithdrawal
         '
         'tLokasi
         '
-        Me.tLokasi.Location = New System.Drawing.Point(44, 12)
+        Me.tLokasi.Location = New System.Drawing.Point(58, 12)
         Me.tLokasi.Name = "tLokasi"
-        Me.tLokasi.Size = New System.Drawing.Size(280, 20)
+        Me.tLokasi.Size = New System.Drawing.Size(266, 20)
         Me.tLokasi.StyleController = Me.LayoutControl1
         Me.tLokasi.TabIndex = 8
         '
@@ -104,14 +111,14 @@ Partial Class frmTotalWithdrawal
         Me.dgList.Query = Nothing
         Me.dgList.QueryTime = Nothing
         Me.dgList.ShowFooter = True
-        Me.dgList.Size = New System.Drawing.Size(692, 276)
+        Me.dgList.Size = New System.Drawing.Size(692, 252)
         Me.dgList.TabIndex = 4
         '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.EmptySpaceItem1, Me.LayoutControlItem4, Me.EmptySpaceItem2, Me.LayoutControlItem2})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.EmptySpaceItem1, Me.LayoutControlItem4, Me.EmptySpaceItem2, Me.LayoutControlItem2, Me.LayoutControlItem5, Me.EmptySpaceItem3})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(716, 368)
@@ -122,7 +129,7 @@ Partial Class frmTotalWithdrawal
         Me.LayoutControlItem1.Control = Me.dgList
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 42)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(696, 280)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(696, 256)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
@@ -170,11 +177,39 @@ Partial Class frmTotalWithdrawal
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Size = New System.Drawing.Size(316, 42)
         Me.LayoutControlItem2.Text = "Lokasi"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(29, 13)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(43, 13)
         '
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'tNoBukti
+        '
+        Me.tNoBukti.Location = New System.Drawing.Point(58, 310)
+        Me.tNoBukti.Name = "tNoBukti"
+        Me.tNoBukti.Size = New System.Drawing.Size(207, 20)
+        Me.tNoBukti.StyleController = Me.LayoutControl1
+        Me.tNoBukti.TabIndex = 9
+        '
+        'LayoutControlItem5
+        '
+        Me.LayoutControlItem5.Control = Me.tNoBukti
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 298)
+        Me.LayoutControlItem5.MaxSize = New System.Drawing.Size(257, 24)
+        Me.LayoutControlItem5.MinSize = New System.Drawing.Size(257, 24)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(257, 24)
+        Me.LayoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem5.Text = "No. Bukti"
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(43, 13)
+        '
+        'EmptySpaceItem3
+        '
+        Me.EmptySpaceItem3.AllowHotTrack = False
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(257, 298)
+        Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(439, 24)
+        Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
         '
         'frmTotalWithdrawal
         '
@@ -184,6 +219,7 @@ Partial Class frmTotalWithdrawal
         Me.Controls.Add(Me.LayoutControl1)
         Me.Name = "frmTotalWithdrawal"
         Me.Text = "frmTotalWithdrawal"
+        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.tLokasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -194,6 +230,9 @@ Partial Class frmTotalWithdrawal
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tNoBukti.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -210,4 +249,7 @@ Partial Class frmTotalWithdrawal
     Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents tLokasi As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents tNoBukti As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents EmptySpaceItem3 As DevExpress.XtraLayout.EmptySpaceItem
 End Class
