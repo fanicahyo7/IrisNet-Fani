@@ -22,6 +22,7 @@ Partial Class frmTotalWithdrawal
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTotalWithdrawal))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.tNoBukti = New DevExpress.XtraEditors.TextEdit()
         Me.tLokasi = New DevExpress.XtraEditors.TextEdit()
         Me.btnPelunasan = New DevExpress.XtraEditors.SimpleButton()
         Me.btnImport = New DevExpress.XtraEditors.SimpleButton()
@@ -33,12 +34,18 @@ Partial Class frmTotalWithdrawal
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.tNoBukti = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.sTotal = New DevExpress.XtraEditors.SpinEdit()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.sPembulatan = New DevExpress.XtraEditors.SpinEdit()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.sTotalTunai = New DevExpress.XtraEditors.SpinEdit()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.tNoBukti.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tLokasi.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -47,13 +54,21 @@ Partial Class frmTotalWithdrawal
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tNoBukti.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.sTotal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.sPembulatan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.sTotalTunai.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.sTotalTunai)
+        Me.LayoutControl1.Controls.Add(Me.sPembulatan)
+        Me.LayoutControl1.Controls.Add(Me.sTotal)
         Me.LayoutControl1.Controls.Add(Me.tNoBukti)
         Me.LayoutControl1.Controls.Add(Me.tLokasi)
         Me.LayoutControl1.Controls.Add(Me.btnPelunasan)
@@ -67,11 +82,19 @@ Partial Class frmTotalWithdrawal
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        'tNoBukti
+        '
+        Me.tNoBukti.Location = New System.Drawing.Point(71, 238)
+        Me.tNoBukti.Name = "tNoBukti"
+        Me.tNoBukti.Size = New System.Drawing.Size(194, 20)
+        Me.tNoBukti.StyleController = Me.LayoutControl1
+        Me.tNoBukti.TabIndex = 9
+        '
         'tLokasi
         '
-        Me.tLokasi.Location = New System.Drawing.Point(58, 12)
+        Me.tLokasi.Location = New System.Drawing.Point(71, 12)
         Me.tLokasi.Name = "tLokasi"
-        Me.tLokasi.Size = New System.Drawing.Size(266, 20)
+        Me.tLokasi.Size = New System.Drawing.Size(253, 20)
         Me.tLokasi.StyleController = Me.LayoutControl1
         Me.tLokasi.TabIndex = 8
         '
@@ -111,14 +134,14 @@ Partial Class frmTotalWithdrawal
         Me.dgList.Query = Nothing
         Me.dgList.QueryTime = Nothing
         Me.dgList.ShowFooter = True
-        Me.dgList.Size = New System.Drawing.Size(692, 252)
+        Me.dgList.Size = New System.Drawing.Size(692, 180)
         Me.dgList.TabIndex = 4
         '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.EmptySpaceItem1, Me.LayoutControlItem4, Me.EmptySpaceItem2, Me.LayoutControlItem2, Me.LayoutControlItem5, Me.EmptySpaceItem3})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.EmptySpaceItem1, Me.LayoutControlItem4, Me.EmptySpaceItem2, Me.LayoutControlItem2, Me.LayoutControlItem5, Me.EmptySpaceItem3, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(716, 368)
@@ -129,7 +152,7 @@ Partial Class frmTotalWithdrawal
         Me.LayoutControlItem1.Control = Me.dgList
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 42)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(696, 256)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(696, 184)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
@@ -177,39 +200,88 @@ Partial Class frmTotalWithdrawal
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Size = New System.Drawing.Size(316, 42)
         Me.LayoutControlItem2.Text = "Lokasi"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(43, 13)
-        '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'tNoBukti
-        '
-        Me.tNoBukti.Location = New System.Drawing.Point(58, 310)
-        Me.tNoBukti.Name = "tNoBukti"
-        Me.tNoBukti.Size = New System.Drawing.Size(207, 20)
-        Me.tNoBukti.StyleController = Me.LayoutControl1
-        Me.tNoBukti.TabIndex = 9
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(56, 13)
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.tNoBukti
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 298)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 226)
         Me.LayoutControlItem5.MaxSize = New System.Drawing.Size(257, 24)
         Me.LayoutControlItem5.MinSize = New System.Drawing.Size(257, 24)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Size = New System.Drawing.Size(257, 24)
         Me.LayoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem5.Text = "No. Bukti"
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(43, 13)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(56, 13)
         '
         'EmptySpaceItem3
         '
         Me.EmptySpaceItem3.AllowHotTrack = False
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(257, 298)
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(257, 226)
         Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
-        Me.EmptySpaceItem3.Size = New System.Drawing.Size(439, 24)
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(439, 96)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'sTotal
+        '
+        Me.sTotal.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.sTotal.Location = New System.Drawing.Point(71, 262)
+        Me.sTotal.Name = "sTotal"
+        Me.sTotal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.sTotal.Size = New System.Drawing.Size(194, 20)
+        Me.sTotal.StyleController = Me.LayoutControl1
+        Me.sTotal.TabIndex = 10
+        '
+        'LayoutControlItem6
+        '
+        Me.LayoutControlItem6.Control = Me.sTotal
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 250)
+        Me.LayoutControlItem6.Name = "LayoutControlItem6"
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(257, 24)
+        Me.LayoutControlItem6.Text = "Total"
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(56, 13)
+        '
+        'sPembulatan
+        '
+        Me.sPembulatan.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.sPembulatan.Location = New System.Drawing.Point(71, 286)
+        Me.sPembulatan.Name = "sPembulatan"
+        Me.sPembulatan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.sPembulatan.Size = New System.Drawing.Size(194, 20)
+        Me.sPembulatan.StyleController = Me.LayoutControl1
+        Me.sPembulatan.TabIndex = 11
+        '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.sPembulatan
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 274)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(257, 24)
+        Me.LayoutControlItem7.Text = "Pembulatan"
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(56, 13)
+        '
+        'sTotalTunai
+        '
+        Me.sTotalTunai.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.sTotalTunai.Location = New System.Drawing.Point(71, 310)
+        Me.sTotalTunai.Name = "sTotalTunai"
+        Me.sTotalTunai.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.sTotalTunai.Size = New System.Drawing.Size(194, 20)
+        Me.sTotalTunai.StyleController = Me.LayoutControl1
+        Me.sTotalTunai.TabIndex = 12
+        '
+        'LayoutControlItem8
+        '
+        Me.LayoutControlItem8.Control = Me.sTotalTunai
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 298)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(257, 24)
+        Me.LayoutControlItem8.Text = "Total Tunai"
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(56, 13)
         '
         'frmTotalWithdrawal
         '
@@ -222,6 +294,7 @@ Partial Class frmTotalWithdrawal
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.tNoBukti.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tLokasi.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -230,9 +303,14 @@ Partial Class frmTotalWithdrawal
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tNoBukti.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.sTotal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.sPembulatan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.sTotalTunai.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -252,4 +330,10 @@ Partial Class frmTotalWithdrawal
     Friend WithEvents tNoBukti As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem3 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents sTotalTunai As DevExpress.XtraEditors.SpinEdit
+    Friend WithEvents sPembulatan As DevExpress.XtraEditors.SpinEdit
+    Friend WithEvents sTotal As DevExpress.XtraEditors.SpinEdit
+    Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
 End Class

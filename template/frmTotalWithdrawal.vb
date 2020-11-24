@@ -94,13 +94,17 @@ Public Class frmTotalWithdrawal
 
             dgList.colSum = {"Total", "TotalFJ"}
             dgList.RefreshDataView()
+            sTotal.Text = dgList.GetSummaryColDB("TotalFJ")
+            sTotalTunai.Text = CDbl(sTotal.Text) + CDbl(sPembulatan.Text)
             dgList.gvMain.LoadingPanelVisible = False
         End If
     End Sub
 
     Private Sub frmTotalWithdrawal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         koneksi()
-        SetTextReadOnly({tLokasi})
+        SetTextReadOnly({tLokasi, sTotal, sTotalTunai})
+        tNoBukti.Properties.CharacterCasing = CharacterCasing.Upper
+        bersih()
     End Sub
 
     Private Sub dgList_Grid_CustomDrawCell(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs) Handles dgList.Grid_CustomDrawCell
@@ -150,18 +154,43 @@ Public Class frmTotalWithdrawal
                 Dim dtfj As New cMeDB
                 dtfj.FillMe(carifj)
 
-                Dim result As Double = Convert.ToDouble(dtfj.Compute("SUM(Total)", String.Empty))
+                'Dim sumresult As Double = Convert.ToDouble(dtfj.Compute("SUM(Total)", String.Empty))
 
+                Dim dtdisticnt As DataTable = dtfj.DefaultView.ToTable(True, "KdCustomer")
 
                 Dim simpanheader As String = _
                     "insert into trLPtgHeader (Faktur,KdCustomer,Tanggal,TglLunas,SubTotal,Total,Tunai,UserEntry,DateTimeEntry,NoBukti,Pembulatan) values " & _
-                    "('" & fakturpp & "')"
+                    "('" & fakturpp & "','" & dtdisticnt.Rows(0)!KdCustomer & "','" & DTOC(Now, "-", False) & "','" & DTOC(Now, "-", False) & "'," & _
+                    "'" & sTotal.Text & "','" & sTotal.Text & "','" & sTotalTunai.Text & "','" & pubUserEntry & "','" & DTOC(Now, "-", True) & "','" & tNoBukti.Text & "','" & sPembulatan.Text & "')"
+                cmd = New SqlCommand(simpanheader, kon)
+                cmd.ExecuteNonQuery()
 
-
-                Dim simpandetail As String = _
-                    "insert into trLPtgDetail (Faktur,Tanggal,FakturAsli,Jumlah) values ()"
-
+                For a = 0 To dtfj.Rows.Count - 1
+                    Dim simpandetail As String = _
+                   "insert into trLPtgDetail (Faktur,Tanggal,FakturAsli,Jumlah,Urutan) values (" & _
+                   "'" & fakturpp & "','" & DTOC(Now, "-", False) & "','" & dtfj.Rows(a)!Faktur & "','" & dtfj.Rows(a)!Total & "','" & a & "')"
+                    cmd = New SqlCommand(simpandetail, kon)
+                    cmd.ExecuteNonQuery()
+                Next
+                MsgBox("Pelunasan Berhasil", vbInformation + vbOKOnly, "Informasi")
+                bersih()
             End If
         End If
+    End Sub
+    Sub bersih()
+        sTotal.Text = "0"
+        sTotalTunai.Text = "0"
+        sPembulatan.Text = "0"
+        tLokasi.Text = ""
+        tNoBukti.Text = ""
+
+        Dim query As String = _
+            "select cast('' as varchar(225)) as Invoice,cast('' as varchar(225)) as Tanggal,cast(0 as numeric(10)) as Total, cast(0 as numeric(10)) as TotalFJ, cast('' as varchar(225)) as Keterangan,cast('' as varchar(225)) as KeteranganLunas from trSLHeader where Faktur='jdhfsjkdbg3465655sdgdfg'"
+        dgList.FirstInit(query, {1, 0.5, 0.8, 0.8, 0.8}, , , , , , True)
+        dgList.RefreshData(False)
+    End Sub
+
+    Private Sub sPembulatan_EditValueChanged(sender As Object, e As EventArgs) Handles sPembulatan.EditValueChanged
+        sTotalTunai.Text = CDbl(sTotal.Text) + CDbl(sPembulatan.Text)
     End Sub
 End Class
