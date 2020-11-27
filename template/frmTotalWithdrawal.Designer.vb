@@ -84,7 +84,7 @@ Partial Class frmTotalWithdrawal
         '
         'tNoBukti
         '
-        Me.tNoBukti.Location = New System.Drawing.Point(71, 238)
+        Me.tNoBukti.Location = New System.Drawing.Point(71, 222)
         Me.tNoBukti.Name = "tNoBukti"
         Me.tNoBukti.Size = New System.Drawing.Size(194, 20)
         Me.tNoBukti.StyleController = Me.LayoutControl1
@@ -100,9 +100,10 @@ Partial Class frmTotalWithdrawal
         '
         'btnPelunasan
         '
-        Me.btnPelunasan.Location = New System.Drawing.Point(529, 334)
+        Me.btnPelunasan.Image = CType(resources.GetObject("btnPelunasan.Image"), System.Drawing.Image)
+        Me.btnPelunasan.Location = New System.Drawing.Point(562, 318)
         Me.btnPelunasan.Name = "btnPelunasan"
-        Me.btnPelunasan.Size = New System.Drawing.Size(175, 22)
+        Me.btnPelunasan.Size = New System.Drawing.Size(142, 38)
         Me.btnPelunasan.StyleController = Me.LayoutControl1
         Me.btnPelunasan.TabIndex = 7
         Me.btnPelunasan.Text = "Pelunasan"
@@ -134,7 +135,7 @@ Partial Class frmTotalWithdrawal
         Me.dgList.Query = Nothing
         Me.dgList.QueryTime = Nothing
         Me.dgList.ShowFooter = True
-        Me.dgList.Size = New System.Drawing.Size(692, 180)
+        Me.dgList.Size = New System.Drawing.Size(692, 164)
         Me.dgList.TabIndex = 4
         '
         'LayoutControlGroup1
@@ -152,7 +153,7 @@ Partial Class frmTotalWithdrawal
         Me.LayoutControlItem1.Control = Me.dgList
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 42)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(696, 184)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(696, 168)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
@@ -179,18 +180,21 @@ Partial Class frmTotalWithdrawal
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.btnPelunasan
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(517, 322)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(550, 306)
+        Me.LayoutControlItem4.MaxSize = New System.Drawing.Size(146, 42)
+        Me.LayoutControlItem4.MinSize = New System.Drawing.Size(146, 42)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(179, 26)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(146, 42)
+        Me.LayoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem4.TextVisible = False
         '
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(0, 322)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(0, 306)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(517, 26)
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(550, 42)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem2
@@ -205,7 +209,7 @@ Partial Class frmTotalWithdrawal
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.tNoBukti
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 226)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 210)
         Me.LayoutControlItem5.MaxSize = New System.Drawing.Size(257, 24)
         Me.LayoutControlItem5.MinSize = New System.Drawing.Size(257, 24)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
@@ -217,7 +221,7 @@ Partial Class frmTotalWithdrawal
         'EmptySpaceItem3
         '
         Me.EmptySpaceItem3.AllowHotTrack = False
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(257, 226)
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(257, 210)
         Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
         Me.EmptySpaceItem3.Size = New System.Drawing.Size(439, 96)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
@@ -229,7 +233,7 @@ Partial Class frmTotalWithdrawal
         'sTotal
         '
         Me.sTotal.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sTotal.Location = New System.Drawing.Point(71, 262)
+        Me.sTotal.Location = New System.Drawing.Point(71, 246)
         Me.sTotal.Name = "sTotal"
         Me.sTotal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.sTotal.Size = New System.Drawing.Size(194, 20)
@@ -239,7 +243,7 @@ Partial Class frmTotalWithdrawal
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.sTotal
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 250)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 234)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Size = New System.Drawing.Size(257, 24)
         Me.LayoutControlItem6.Text = "Total"
@@ -248,7 +252,7 @@ Partial Class frmTotalWithdrawal
         'sPembulatan
         '
         Me.sPembulatan.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sPembulatan.Location = New System.Drawing.Point(71, 286)
+        Me.sPembulatan.Location = New System.Drawing.Point(71, 270)
         Me.sPembulatan.Name = "sPembulatan"
         Me.sPembulatan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.sPembulatan.Size = New System.Drawing.Size(194, 20)
@@ -258,7 +262,7 @@ Partial Class frmTotalWithdrawal
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.sPembulatan
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 274)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 258)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Size = New System.Drawing.Size(257, 24)
         Me.LayoutControlItem7.Text = "Pembulatan"
@@ -267,7 +271,7 @@ Partial Class frmTotalWithdrawal
         'sTotalTunai
         '
         Me.sTotalTunai.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sTotalTunai.Location = New System.Drawing.Point(71, 310)
+        Me.sTotalTunai.Location = New System.Drawing.Point(71, 294)
         Me.sTotalTunai.Name = "sTotalTunai"
         Me.sTotalTunai.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.sTotalTunai.Size = New System.Drawing.Size(194, 20)
@@ -277,7 +281,7 @@ Partial Class frmTotalWithdrawal
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.sTotalTunai
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 298)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 282)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
         Me.LayoutControlItem8.Size = New System.Drawing.Size(257, 24)
         Me.LayoutControlItem8.Text = "Total Tunai"

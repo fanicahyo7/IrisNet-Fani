@@ -158,29 +158,54 @@ Public Class frmTotalWithdrawal
 
                 Dim dtdisticnt As DataTable = dtfj.DefaultView.ToTable(True, "KdCustomer")
 
-                Dim simpanheader As String = _
-                    "insert into trLPtgHeader (Faktur,KdCustomer,Tanggal,TglLunas,SubTotal,Total,Tunai,UserEntry,DateTimeEntry,NoBukti,Pembulatan) values " & _
-                    "('" & fakturpp & "','" & dtdisticnt.Rows(0)!KdCustomer & "','" & DTOC(Now, "-", False) & "','" & DTOC(Now, "-", False) & "'," & _
-                    "'" & sTotal.Text & "','" & sTotal.Text & "','" & sTotalTunai.Text & "','" & pubUserEntry & "','" & DTOC(Now, "-", True) & "','" & tNoBukti.Text & "','" & sPembulatan.Text & "')"
-                cmd = New SqlCommand(simpanheader, kon)
-                cmd.ExecuteNonQuery()
+                'Dim simpanheader As String = _
+                '    "insert into trLPtgHeader (Faktur,KdCustomer,Tanggal,TglLunas,SubTotal,Total,Tunai,UserEntry,DateTimeEntry,NoBukti,Pembulatan) values " & _
+                '    "('" & fakturpp & "','" & dtdisticnt.Rows(0)!KdCustomer & "','" & DTOC(Now, "-", False) & "','" & DTOC(Now, "-", False) & "'," & _
+                '    "'" & sTotal.Text & "','" & sTotal.Text & "','" & sTotalTunai.Text & "','" & pubUserEntry & "','" & DTOC(Now, "-", True) & "','" & tNoBukti.Text & "','" & sPembulatan.Text & "')"
+                'cmd = New SqlCommand(simpanheader, kon)
+                'cmd.ExecuteNonQuery()
 
-                For a = 0 To dtfj.Rows.Count - 1
-                    Dim simpandetail As String = _
-                   "insert into trLPtgDetail (Faktur,Tanggal,FakturAsli,Jumlah,Urutan) values (" & _
-                   "'" & fakturpp & "','" & DTOC(Now, "-", False) & "','" & dtfj.Rows(a)!Faktur & "','" & dtfj.Rows(a)!Total & "','" & a & "')"
-                    cmd = New SqlCommand(simpandetail, kon)
+                'For a = 0 To dtfj.Rows.Count - 1
+                '    Dim simpandetail As String = _
+                '   "insert into trLPtgDetail (Faktur,Tanggal,FakturAsli,Jumlah,Urutan) values (" & _
+                '   "'" & fakturpp & "','" & DTOC(Now, "-", False) & "','" & dtfj.Rows(a)!Faktur & "','" & dtfj.Rows(a)!Total & "','" & a & "')"
+                '    cmd = New SqlCommand(simpandetail, kon)
+                '    cmd.ExecuteNonQuery()
+                'Next
+
+                Try
+                    Dim q As String = "begin try begin transaction "
+                    q += "insert into trLPtgHeader (Faktur,KdCustomer,Tanggal,TglLunas,SubTotal,Total,Tunai,UserEntry,DateTimeEntry,NoBukti,Pembulatan) values " & _
+                        "('" & fakturpp & "','" & dtdisticnt.Rows(0)!KdCustomer & "','" & DTOC(Now, "-", False) & "','" & DTOC(Now, "-", False) & "'," & _
+                        "'" & sTotal.Text & "','" & sTotal.Text & "','" & sTotalTunai.Text & "','" & pubUserEntry & "','" & DTOC(Now, "-", True) & "','" & tNoBukti.Text & "','" & sPembulatan.Text & "'); " & _
+                        "update trLPtgHeader set Fire=1 where Faktur='" & fakturpp & "'; "
+
+                    For a = 0 To dtfj.Rows.Count - 1
+                        q += _
+                       "insert into trLPtgDetail (Faktur,Tanggal,FakturAsli,Jumlah,Urutan) values (" & _
+                       "'" & fakturpp & "','" & DTOC(Now, "-", False) & "','" & dtfj.Rows(a)!Faktur & "','" & dtfj.Rows(a)!Total & "','" & a & "'); " & _
+                       "update trLPtgDetail set Fire=1,Jumlah='" & dtfj.Rows(a)!Total & "',FakturAsli='" & dtfj.Rows(a)!Faktur & "' where Faktur='" & fakturpp & "'; "
+                    Next
+
+                    q += "commit end try begin catch rollback select ERROR_MESSAGE() end catch"
+
+                    cmd = New SqlCommand(q, kon)
                     cmd.ExecuteNonQuery()
-                Next
-                MsgBox("Pelunasan Berhasil", vbInformation + vbOKOnly, "Informasi")
-                bersih()
+                    MsgBox("Pelunasan Berhasil", vbInformation + vbOKOnly, "Informasi")
+                    bersih()
+                Catch ex As Exception
+                    MsgBox(ex.Message, vbOKOnly + vbCritical, "Peringatan")
+                End Try
+
+                'MsgBox("Pelunasan Berhasil", vbInformation + vbOKOnly, "Informasi")
+                'bersih()
             End If
         End If
     End Sub
     Sub bersih()
-        sTotal.Text = "0"
-        sTotalTunai.Text = "0"
-        sPembulatan.Text = "0"
+        sTotal.EditValue = 0
+        sTotalTunai.EditValue = 0
+        sPembulatan.EditValue = 0
         tLokasi.Text = ""
         tNoBukti.Text = ""
 
@@ -191,6 +216,6 @@ Public Class frmTotalWithdrawal
     End Sub
 
     Private Sub sPembulatan_EditValueChanged(sender As Object, e As EventArgs) Handles sPembulatan.EditValueChanged
-        sTotalTunai.Text = CDbl(sTotal.Text) + CDbl(sPembulatan.Text)
+        sTotalTunai.EditValue = CDbl(sTotal.EditValue) + CDbl(sPembulatan.EditValue)
     End Sub
 End Class

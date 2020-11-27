@@ -58,6 +58,41 @@ Public Class mstCustomer
         End If
     End Sub
 
+    'Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave3.Click
+    '    If CheckBeforeSave({tKode, tNama, tAlamat, tKodepos}) = True Then
+    '        Try
+    '            Dim drow As DataRow
+    '            If isNew = True Then
+    '                drow = db.NewRow
+    '            Else
+    '                drow = db.Rows(0)
+    '            End If
+
+    '            drow!Kode = tKode.Text
+    '            drow!Nama = tNama.Text
+    '            drow!Alamat = tAlamat.Text
+    '            drow!Kodepos = tKodepos.Text
+
+    '            If isNew Then db.Rows.Add(drow)
+    '            db.UpdateMeToRealDBNoTry()
+    '            Dim dbheader As New cMeDB
+    '            Dim dbdetail As New cMeDB
+
+    '            Dim trans As New cMeDBTransaction
+    '            Dim result As Boolean = trans.StartTransactionSQLServ(db.SQLConnection, {dbheader, dbdetail})
+    '            If result = False Then
+    '                Pesan({"Gagal"})
+    '            Else
+    '                Pesan({"OK"})
+    '            End If
+
+    '            Pesan({IIf(isNew = True, "Simpan", "Update") & " Data BERHASIL"})
+    '        Catch ex As Exception
+    '            Pesan({"GAGAL SIMPAN DATA", "", "Err : " & ex.Message.ToString})
+    '        End Try
+    '    End If
+    'End Sub
+
     Private Sub cmdSave2_Click(sender As Object, e As EventArgs) Handles cmdSave2.Click
         If CheckBeforeSave({tKode, tNama, tAlamat, tKodepos}) = True Then
             Try
