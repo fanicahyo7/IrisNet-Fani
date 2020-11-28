@@ -30,11 +30,22 @@ Public Class frmTotalWithdrawal
             Dim keterangan As Integer = 0
             Dim keteranganlunas As Integer = 0
             Dim keteranganFJ As Integer = 0
+            Dim cashback As Double = 0
             For a = 0 To dgList.gvMain.RowCount - 1
                 Dim qcaritotalFJ As String = _
-                    "select sum(isnull(a.Total,0)) - sum(isnull(b.Total,0)) as Total from trSLHeader a " & _
-                    "left join trSLRHeader b on a.Faktur=b.FakturJual " & _
-                    "where a.Keterangan='" & dgList.GetRowCellValue(a, "Invoice") & "'"
+                    "with cteSL as(" & _
+                        "select Faktur,sum(isnull(Total,0)) as Total from trSLHeader where Keterangan='" & dgList.GetRowCellValue(a, "Invoice") & "' " & _
+                        "group by Faktur " & _
+                        ")," & _
+                        "cteSLR as (" & _
+                        "select a.Faktur, sum(isnull(b.Total,0)) as TotalR from cteSL a " & _
+                        "left join trSLRHeader b on a.Faktur = b.FakturJual " & _
+                        "group by a.Faktur " & _
+                        ") " & _
+                        "select a.Total-b.TotalR as Total from cteSL a " & _
+                        "left join cteSLR b " & _
+                        "on a.Faktur = b.Faktur"
+
                 cmd = New SqlCommand(qcaritotalFJ, kon)
                 rd = cmd.ExecuteReader
                 rd.Read()
@@ -64,18 +75,26 @@ Public Class frmTotalWithdrawal
 
                 Dim totalfj As Double = 0
                 Dim datanull As Boolean = False
-                If IsDBNull(dgList.GetRowCellValue(a, "TotalFJ")) Then
-                    totalfj = 0
-                    datanull = True
-                Else
-                    totalfj = dgList.GetRowCellValue(a, "TotalFJ")
-                End If
+                
                 Dim total As Double = 0
                 If IsDBNull(dgList.GetRowCellValue(a, "Total")) Then
                     total = 0
                     datanull = True
                 Else
                     total = dgList.GetRowCellValue(a, "Total")
+                End If
+
+                If IsDBNull(dgList.GetRowCellValue(a, "TotalFJ")) Or dgList.GetRowCellValue(a, "TotalFJ") = 0 Then
+                    If dgList.GetRowCellValue(a, "Invoice").ToString.ToUpper = "CASHBACK" Then
+                        dgList.SetRowCellValue(a, "TotalFJ", dgList.GetRowCellValue(a, "Total"))
+                        totalfj = dgList.GetRowCellValue(a, "TotalFJ")
+                        cashback += CDbl(dgList.GetRowCellValue(a, "TotalFJ"))
+                    Else
+                        totalfj = 0
+                        datanull = True
+                    End If
+                Else
+                    totalfj = dgList.GetRowCellValue(a, "TotalFJ")
                 End If
 
                 If total = totalfj And datanull = False Then
@@ -94,7 +113,8 @@ Public Class frmTotalWithdrawal
 
             dgList.colSum = {"Total", "TotalFJ"}
             dgList.RefreshDataView()
-            sTotal.Text = dgList.GetSummaryColDB("TotalFJ")
+            Dim ttl As Double = dgList.GetSummaryColDB("TotalFJ")
+            sTotal.Text = ttl - cashback
             sTotalTunai.Text = CDbl(sTotal.Text) + CDbl(sPembulatan.Text)
             dgList.gvMain.LoadingPanelVisible = False
         End If
