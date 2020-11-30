@@ -148,9 +148,10 @@ Public Class frmTotalWithdrawal
         Else
             Dim invoice As String = ""
             For a = 0 To dgList.gvMain.RowCount - 1
-                invoice += "'" & dgList.GetRowCellValue(a, "Invoice") & "',"
                 If a = dgList.gvMain.RowCount - 1 Then
                     invoice += "'" & dgList.GetRowCellValue(a, "Invoice") & "'"
+                Else
+                    invoice += "'" & dgList.GetRowCellValue(a, "Invoice") & "',"
                 End If
             Next
 
