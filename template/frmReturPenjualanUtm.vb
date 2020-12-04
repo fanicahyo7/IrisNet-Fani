@@ -12,16 +12,6 @@ Public Class frmReturPenjualanUtm
     End Sub
 
     Private Sub frmReturPenjualanUtm_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        meCore.pubServerType = enServerType.enStSQLServer
-        'pubServer = "10.10.2.23"
-        pubServer = "192.168.3.212"
-        'pubServer = "DESKTOP-9DMUOAP"
-        pubDatabase = "TM601KEDIRI"
-        pubUserIdDB = "sa"
-        'pubPass = "fafafa"
-        pubPass = "gogogo"
-        PubConnStr = CreateConnString(pubServer, pubDatabase, pubUserIdDB, pubPass, , enDBType.SQLServ, "appname")
-
         DateEdit2.EditValue = Now
         DateEdit1.EditValue = DateAdd(DateInterval.Day, -44, DateEdit2.EditValue)
     End Sub

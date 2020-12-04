@@ -158,7 +158,6 @@ Partial Class frmReturPenjualan
         Me.LabelControl1.Size = New System.Drawing.Size(89, 16)
         Me.LabelControl1.StyleController = Me.LayoutControl1
         Me.LabelControl1.TabIndex = 53
-        Me.LabelControl1.Text = "LabelControl1"
         '
         'tDiscFaktur
         '

@@ -499,9 +499,12 @@ D:\14 Jan 2020\TrPengunjung\template\template\obj\Debug\template.frmMstBuku.reso
 D:\14 Jan 2020\TrPengunjung\template\template\obj\Debug\template.frmMstATK.resources
 D:\IrisNet-Fani\template\bin\Debug\template.exe
 D:\IrisNet-Fani\template\bin\Debug\template.exe.config
+D:\IrisNet-Fani\template\bin\Debug\template.pdb
+D:\IrisNet-Fani\template\bin\Debug\template.xml
 D:\IrisNet-Fani\template\bin\Debug\Accessibility.dll
 D:\IrisNet-Fani\template\bin\Debug\DevExpress.DataAccess.v16.2.dll
 D:\IrisNet-Fani\template\bin\Debug\DevExpress.XtraCharts.v16.2.UI.dll
+D:\IrisNet-Fani\template\bin\Debug\Newtonsoft.Json.dll
 D:\IrisNet-Fani\template\bin\Debug\System.ComponentModel.DataAnnotations.dll
 D:\IrisNet-Fani\template\bin\Debug\System.Configuration.dll
 D:\IrisNet-Fani\template\bin\Debug\System.Data.DataSetExtensions.dll
@@ -517,6 +520,7 @@ D:\IrisNet-Fani\template\bin\Debug\System.Xml.dll
 D:\IrisNet-Fani\template\bin\Debug\System.Xml.Linq.dll
 D:\IrisNet-Fani\template\bin\Debug\DevExpress.DataAccess.v16.2.xml
 D:\IrisNet-Fani\template\bin\Debug\DevExpress.XtraCharts.v16.2.UI.xml
+D:\IrisNet-Fani\template\bin\Debug\Newtonsoft.Json.xml
 D:\IrisNet-Fani\template\bin\Debug\de\DevExpress.DataAccess.v16.2.resources.dll
 D:\IrisNet-Fani\template\bin\Debug\es\DevExpress.DataAccess.v16.2.resources.dll
 D:\IrisNet-Fani\template\bin\Debug\ja\DevExpress.DataAccess.v16.2.resources.dll
@@ -525,10 +529,14 @@ D:\IrisNet-Fani\template\obj\Debug\template.ctrlFilterStock.resources
 D:\IrisNet-Fani\template\obj\Debug\template.Form1.resources
 D:\IrisNet-Fani\template\obj\Debug\template.Form2.resources
 D:\IrisNet-Fani\template\obj\Debug\template.Form3.resources
+D:\IrisNet-Fani\template\obj\Debug\template.Form4.resources
+D:\IrisNet-Fani\template\obj\Debug\template.Form5.resources
+D:\IrisNet-Fani\template\obj\Debug\template.Form6.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmAmbilFaktur.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmBlokirNomorNota.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmDetailBarang.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmDetailCard.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmDetailPelunasan.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmDetailStockNonProfit.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmDetailNoNota.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmDetailGudang.resources
@@ -540,6 +548,8 @@ D:\IrisNet-Fani\template\obj\Debug\template.frmMstBank.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmmstBankAdd.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmMstATK.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmMstBuku.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmMstCustomer.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmMstCustomerList.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmMstMargin.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmMstMarginList.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmMstOutlet.resources
@@ -564,6 +574,7 @@ D:\IrisNet-Fani\template\obj\Debug\template.frmPengunjungValidList.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmPenjualanBO.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmRetur.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmReturKonsUtm.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmReturKredit.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmReturPenjualan.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmReturPembelian.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmReturPembelianUtm.resources
@@ -578,6 +589,8 @@ D:\IrisNet-Fani\template\obj\Debug\template.frmSettingATK.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmSettingBuku.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmTerimaEkspedisi.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmTerimaEkspedisiList.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmTotalWithdrawal.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmTotalWithdrawalDetail.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmtrKirimEkspedisi.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmtrKirimEkspedisiList.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmuAddItem.resources
@@ -586,6 +599,7 @@ D:\IrisNet-Fani\template\obj\Debug\template.frmValidReturBeli.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmValidReturBeliDetail.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmValidReturRB.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmValidUser.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmWithdrawalMarketPlace.resources
 D:\IrisNet-Fani\template\obj\Debug\template.menuValid.resources
 D:\IrisNet-Fani\template\obj\Debug\template.mstcoba.resources
 D:\IrisNet-Fani\template\obj\Debug\template.mstcobalist.resources
@@ -599,18 +613,5 @@ D:\IrisNet-Fani\template\obj\Debug\template.exe.licenses
 D:\IrisNet-Fani\template\obj\Debug\template.exe
 D:\IrisNet-Fani\template\obj\Debug\template.xml
 D:\IrisNet-Fani\template\obj\Debug\template.pdb
-D:\IrisNet-Fani\template\bin\Debug\template.pdb
-D:\IrisNet-Fani\template\bin\Debug\template.xml
+D:\IrisNet-Fani\template\bin\Debug\Toxy.dll
 D:\IrisNet-Fani\template\obj\Debug\template.vbprojResolveAssemblyReference.cache
-D:\IrisNet-Fani\template\obj\Debug\template.frmDetailPelunasan.resources
-D:\IrisNet-Fani\template\obj\Debug\template.Form4.resources
-D:\IrisNet-Fani\template\obj\Debug\template.frmReturKredit.resources
-D:\IrisNet-Fani\template\obj\Debug\template.frmMstCustomerList.resources
-D:\IrisNet-Fani\template\obj\Debug\template.Form5.resources
-D:\IrisNet-Fani\template\obj\Debug\template.frmMstCustomer.resources
-D:\IrisNet-Fani\template\obj\Debug\template.frmWithdrawalMarketPlace.resources
-D:\IrisNet-Fani\template\bin\Debug\Newtonsoft.Json.dll
-D:\IrisNet-Fani\template\bin\Debug\Newtonsoft.Json.xml
-D:\IrisNet-Fani\template\obj\Debug\template.Form6.resources
-D:\IrisNet-Fani\template\obj\Debug\template.frmTotalWithdrawal.resources
-D:\IrisNet-Fani\template\obj\Debug\template.frmTotalWithdrawalDetail.resources

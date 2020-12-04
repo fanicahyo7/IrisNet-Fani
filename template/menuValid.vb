@@ -461,4 +461,10 @@ Public Class menuValid
             xx.ShowDialog(Me)
         End Using
     End Sub
+
+    Private Sub PenjualanToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles PenjualanToolStripMenuItem2.Click
+        Using xx As New frmReturPenjualanUtm
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
 End Class

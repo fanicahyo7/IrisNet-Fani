@@ -3,9 +3,6 @@ Imports System.Data.SqlClient
 Imports meCore
 Public Class frmReturPenjualan
     Dim db, db1 As New cMeDB
-    Dim pubKodeUnit As String = "601"
-    Dim pubUserInit As String = "FAN"
-    Dim pubUserEntry As String = "FANI"
     Public kdkd, gdg As String
     Dim isNew As Boolean = True
     Dim pKode As String = "asdjaksdjqi01298310owueqiowueakdh"

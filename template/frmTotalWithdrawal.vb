@@ -128,18 +128,20 @@ Public Class frmTotalWithdrawal
     End Sub
 
     Private Sub dgList_Grid_CustomDrawCell(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs) Handles dgList.Grid_CustomDrawCell
-        If dgList.GetRowCellValue(e.RowHandle, "Keterangan").ToString = "False" Or dgList.GetRowCellValue(e.RowHandle, "KeteranganLunas").ToString = "Terdapat FJ Lunas" Then
-            e.Appearance.ForeColor = Color.Red
-        Else
-            e.Appearance.ForeColor = Color.Green
-        End If
+        'If dgList.GetRowCellValue(e.RowHandle, "Keterangan").ToString = "False" Or dgList.GetRowCellValue(e.RowHandle, "KeteranganLunas").ToString = "Terdapat FJ Lunas" Then
+        '    e.Appearance.ForeColor = Color.Red
+        'Else
+        '    e.Appearance.ForeColor = Color.Green
+        'End If
     End Sub
 
     Private Sub dgList_Grid_DoubleClick(sender As Object, e As EventArgs) Handles dgList.Grid_DoubleClick
-        Using xx As New frmTotalWithdrawalDetail
-            xx.Tag = dgList.GetRowCellValue(dgList.FocusedRowHandle, "Invoice")
-            xx.ShowDialog()
-        End Using
+        If dgList.gvMain.RowCount >= 1 Then
+            Using xx As New frmTotalWithdrawalDetail
+                xx.Tag = dgList.GetRowCellValue(dgList.FocusedRowHandle, "Invoice")
+                xx.ShowDialog()
+            End Using
+        End If
     End Sub
 
     Private Sub btnPelunasan_Click(sender As Object, e As EventArgs) Handles btnPelunasan.Click
@@ -238,5 +240,47 @@ Public Class frmTotalWithdrawal
 
     Private Sub sPembulatan_EditValueChanged(sender As Object, e As EventArgs) Handles sPembulatan.EditValueChanged
         sTotalTunai.EditValue = CDbl(sTotal.EditValue) + CDbl(sPembulatan.EditValue)
+    End Sub
+
+    Private Sub dgList_Load(sender As Object, e As EventArgs) Handles dgList.Load
+
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        OpenFileDialog1.Filter = "Excel file |*.xls;*.xlsx"
+        OpenFileDialog1.Multiselect = False
+        If OpenFileDialog1.ShowDialog = DialogResult.OK Then
+            tLokasi.Text = OpenFileDialog1.FileName
+            If Len(tLokasi.Text) > 0 Then
+                Try
+                    Dim pKode As String = ""
+                    Dim cLio As New cClosedXML
+                    Dim ds As DataSet = cLio.XLStoDataset_thisWorking(tLokasi.Text)
+                    Dim db As New cMeDB
+                    db.FillMe(ds.Tables(0))
+                    'Dim db As DataTable = cLio.xlsxToDT(txtFileExcel.Text)
+                    'For i As Integer = 0 To db.Rows.Count - 1
+                    '    Try
+                    '        If db.Rows(i).Item(1) > 0 Then
+                    '            Dim drow As DataRow = dgList.DataSource.Rows.Find({Invoice, meDBNull(db.Rows(i).Item(0))})
+                    '            If drow IsNot Nothing Then
+                    '                drow!Qty = meDBNullnum(db.Rows(i).Item(1))
+                    '            End If
+                    '        End If
+                    '    Catch ex As Exception
+
+                    '    End Try
+                    'Next
+
+                    dgList.DataSource = db
+                    dgList.RefreshDataView()
+                Catch ex As Exception
+                    Pesan({ex.Message.ToString})
+                    Exit Sub
+                End Try
+            End If
+        Else
+            tLokasi.Text = ""
+        End If
     End Sub
 End Class
