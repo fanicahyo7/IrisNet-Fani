@@ -128,11 +128,11 @@ Public Class frmTotalWithdrawal
     End Sub
 
     Private Sub dgList_Grid_CustomDrawCell(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs) Handles dgList.Grid_CustomDrawCell
-        'If dgList.GetRowCellValue(e.RowHandle, "Keterangan").ToString = "False" Or dgList.GetRowCellValue(e.RowHandle, "KeteranganLunas").ToString = "Terdapat FJ Lunas" Then
-        '    e.Appearance.ForeColor = Color.Red
-        'Else
-        '    e.Appearance.ForeColor = Color.Green
-        'End If
+        If dgList.GetRowCellValue(e.RowHandle, "Keterangan").ToString = "False" Or dgList.GetRowCellValue(e.RowHandle, "KeteranganLunas").ToString = "Terdapat FJ Lunas" Then
+            e.Appearance.ForeColor = Color.Red
+        Else
+            e.Appearance.ForeColor = Color.Green
+        End If
     End Sub
 
     Private Sub dgList_Grid_DoubleClick(sender As Object, e As EventArgs) Handles dgList.Grid_DoubleClick

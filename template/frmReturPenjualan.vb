@@ -24,7 +24,6 @@ Public Class frmReturPenjualan
         Else
             pFaktur = pKodeInit
         End If
-        
 
         Dim p As String = "select Kode,Nama,Alamat from mstCustomer Where Left(kode,3) = '" & pubKodeUnit & "' Order by kode"
         cKdCustomer.FirstInit(PubConnStr, p, {tNama, tAlamat})
@@ -49,11 +48,11 @@ Public Class frmReturPenjualan
         dbHead.FillMe(pQuery, True)
 
         isNew = True
+        tFaktur.Text = GetNewFakturSQLServ(PubConnStr, "trSLRHeader", "Faktur", pubKodeUnit & pubUserInit & "-RJ", Date.Now.ToString("yyMMdd"), 5, "")
         If dbHead.Rows.Count > 0 Then
             isNew = False
             FillFormFromDataRow(Me, dbHead.Rows(0))
             cFakturJual.Text = dbHead.Rows(0)!FakturJual
-
 
             Dim rr As String = "select * from trValidasi where Faktur='" & tFaktur.Text & "'"
             cmd = New SqlCommand(rr, kon)
@@ -83,31 +82,30 @@ Public Class frmReturPenjualan
                           , {"Qty"}, {"Faktur", "Urutan", "Status", "Tanggal", "Kode1", "KdBuku"}, , 40)
         mdgList.RefreshData(False)
 
-
         'tampilkan barang yg sudah tersimpan
-        If isNew = False Then
-            'fakjualdg()
-            SetTextReadOnly({tKdGudang, tFaktur, tTanggal, cFakturJual, cKdCustomer})
-            Dim qq As String = "select * from vwSL where Faktur='" & cFakturJual.Text & "' and Qty <> 0"
-            cmd = New SqlCommand(qq, kon)
-            dt = New DataTable
-            dt.Load(cmd.ExecuteReader())
-            DataGridView1.DataSource = dt
+        'If isNew = False Then
+        '    'fakjualdg()
+        '    SetTextReadOnly({tKdGudang, tFaktur, tTanggal, cFakturJual, cKdCustomer})
+        '    Dim qq As String = "select * from vwSL where Faktur='" & cFakturJual.Text & "' and Qty <> 0"
+        '    cmd = New SqlCommand(qq, kon)
+        '    dt = New DataTable
+        '    dt.Load(cmd.ExecuteReader())
+        '    DataGridView1.DataSource = dt
 
-            For c = 0 To DataGridView1.RowCount - 2
-                For a = 0 To mdgList.DataSource.Rows.Count - 1
-                    If DataGridView1.Item(0, c).Value = mdgList.GetRowCellValue(a, "Kode") Then
-                        mdgList.SetRowCellValue(a, "QtyFkt", DataGridView1.Item(1, c).Value)
-                        mdgList.SetRowCellValue(a, "QtyRetur", DataGridView1.Item(57, c).Value)
+        '    For c = 0 To DataGridView1.RowCount - 2
+        '        For a = 0 To mdgList.DataSource.Rows.Count - 1
+        '            If DataGridView1.Item(0, c).Value = mdgList.GetRowCellValue(a, "Kode") Then
+        '                mdgList.SetRowCellValue(a, "QtyFkt", DataGridView1.Item(1, c).Value)
+        '                mdgList.SetRowCellValue(a, "QtyRetur", DataGridView1.Item(57, c).Value)
 
-                        Dim total, diskon As Double
-                        total = CDbl(mdgList.GetRowCellValue(a, "Harga")) * CDbl(mdgList.GetRowCellValue(a, "Qty"))
-                        diskon = total * (CDbl(mdgList.GetRowCellValue(a, "Disc")) / 100)
-                        mdgList.SetRowCellValue(a, "Jumlah", total - diskon)
-                    End If
-                Next
-            Next
-        End If
+        '                Dim total, diskon As Double
+        '                total = CDbl(mdgList.GetRowCellValue(a, "Harga")) * CDbl(mdgList.GetRowCellValue(a, "Qty"))
+        '                diskon = total * (CDbl(mdgList.GetRowCellValue(a, "Disc")) / 100)
+        '                mdgList.SetRowCellValue(a, "Jumlah", total - diskon)
+        '            End If
+        '        Next
+        '    Next
+        'End If
 
     End Sub
 
@@ -147,21 +145,24 @@ Public Class frmReturPenjualan
     Sub fakjualdg()
         Dim q As String =
             "select Status,Kode,Judul,Penyusun,KdSupplier,NamaPenerbit,Qty as QtyFkt,QtyRetur, 0 as Qty, Harga,Disc, 0 as Jumlah,case LockJual when '1' then 'Saldo Terkunci' when '0' then '' end as InfoSaldo,Urutan,Tanggal,Kode1,KdBuku from vwSL where Faktur='" & cFakturJual.Text & "'"
+        mdgList.Grid_ClearData()
+        mdgList.FirstInit(q, , , {"Qty"}, {"Urutan", "Status", "Tanggal", "Kode1", "KdBuku"}, , 40)
+        mdgList.RefreshData()
 
-        Using dbt As New cMeDB
-            dbt.FillMe(q)
-            For i As Integer = 0 To dbt.Rows.Count - 1
-                Dim dr As DataRow = mdgList.DataSource.NewRow
-                dr!Faktur = pKodeInit
-                For col As Integer = 0 To mdgList.DataSource.Columns.Count - 1
-                    Dim NmCol As String = mdgList.DataSource.Columns(col).ColumnName
-                    If dbt.Columns.Contains(NmCol) = True Then
-                        dr(NmCol) = dbt.Rows(i)(NmCol)
-                    End If
-                Next
-                mdgList.DataSource.Rows.Add(dr)
-            Next
-        End Using
+        'Using dbt As New cMeDB
+        '    dbt.FillMe(q)
+        '    For i As Integer = 0 To dbt.Rows.Count - 1
+        '        Dim dr As DataRow = mdgList.DataSource.NewRow
+        '        dr!Faktur = pKodeInit
+        '        For col As Integer = 0 To mdgList.DataSource.Columns.Count - 1
+        '            Dim NmCol As String = mdgList.DataSource.Columns(col).ColumnName
+        '            If dbt.Columns.Contains(NmCol) = True Then
+        '                dr(NmCol) = dbt.Rows(i)(NmCol)
+        '            End If
+        '        Next
+        '        mdgList.DataSource.Rows.Add(dr)
+        '    Next
+        'End Using
 
         'mdgList.FirstInit(q, {1, 0.8, 1, 0.8, 0.8, 1, 0.8, 0.5, 0.8, 0.8, 0.5, 0.8, 0.8, 0.5, 0.5}, , {"QTY"}, {"Faktur", "Urutan", "Status", "Tanggal", "Kode1", "KdBuku"}, , 40)
         'mdgList.RefreshData(False)
@@ -187,17 +188,14 @@ Public Class frmReturPenjualan
                 total = CDbl(mdgList.GetRowCellValue(mdgList.FocusedRowHandle, "Harga")) * CDbl(mdgList.GetRowCellValue(mdgList.FocusedRowHandle, "Qty"))
                 diskon = total * (CDbl(mdgList.GetRowCellValue(mdgList.FocusedRowHandle, "Disc")) / 100)
                 mdgList.SetRowCellValue(mdgList.FocusedRowHandle, "Jumlah", total - diskon)
-
                 tSubTotal.Text = mdgList.GetSummaryCol("Jumlah")
             ElseIf mdgList.GetRowCellValue(e.RowHandle, "Qty") > mdgList.GetRowCellValue(e.RowHandle, "QtyFkt") Then
                 mdgList.SetRowCellValue(mdgList.FocusedRowHandle, "Qty", 0)
-
             Else
                 Dim total, diskon As Double
                 total = CDbl(mdgList.GetRowCellValue(mdgList.FocusedRowHandle, "Harga")) * CDbl(mdgList.GetRowCellValue(mdgList.FocusedRowHandle, "Qty"))
                 diskon = total * (CDbl(mdgList.GetRowCellValue(mdgList.FocusedRowHandle, "Disc")) / 100)
                 mdgList.SetRowCellValue(mdgList.FocusedRowHandle, "Jumlah", total - diskon)
-
             End If
         Else
             mdgList.SetRowCellValue(mdgList.FocusedRowHandle, "Qty", 0)
@@ -233,7 +231,6 @@ Public Class frmReturPenjualan
 
         Dim dRow As DataRow
         If isNew Then
-            tFaktur.Text = GetNewFakturSQLServ(PubConnStr, "trSLRHeader", "Faktur", pubKodeUnit & pubUserInit & "-RJ", Date.Now.ToString("yyMMdd"), 5, "")
             dRow = dbHead.NewRow
         Else
             dRow = dbHead.Rows(0)
