@@ -5,119 +5,130 @@ Public Class frmTotalWithdrawal
 
     Private Sub btnImport_Click(sender As Object, e As EventArgs) Handles btnImport.Click
         OpenFileDialog1.Filter = "(*.xlsx)|*.xlsx|(*.xls)|*.xls|All files (*.*)|*.*"
-        If OpenFileDialog1.ShowDialog = Windows.Forms.DialogResult.Cancel Then
-            Exit Sub
-        Else
-            dgList.gvMain.LoadingPanelVisible = True
-            tLokasi.Text = OpenFileDialog1.FileName
-            Dim CONN As OleDbConnection
-            Dim daexcel As OleDbDataAdapter
-            Dim ds As New DataSet
-            Dim TabelExcel As New cMeDB
-            CONN = New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;" & _
-                        "data source='" & OpenFileDialog1.FileName & "';Extended Properties=Excel 8.0;")
-
-            Dim query As String = "select [Invoice],[Tanggal],[Total], 0 as [TotalFJ], '' as [Keterangan],'' as [KeteranganLunas] from [Sheet1$]"
-            daexcel = New OleDbDataAdapter(query, CONN)
-            ds.Clear()
-            daexcel.Fill(TabelExcel)
-
-            dgList.DataSource = TabelExcel
-            dgList.colFitGrid = True
-            dgList.colWidth = {1, 0.5, 0.8, 0.8, 0.8}
-            dgList.RefreshDataView()
-
-            Dim keterangan As Integer = 0
-            Dim keteranganlunas As Integer = 0
-            Dim keteranganFJ As Integer = 0
-            Dim cashback As Double = 0
-            For a = 0 To dgList.gvMain.RowCount - 1
-                Dim qcaritotalFJ As String = _
-                    "with cteSL as(" & _
-                        "select Faktur,sum(isnull(Total,0)) as Total from trSLHeader where Keterangan='" & dgList.GetRowCellValue(a, "Invoice") & "' " & _
-                        "group by Faktur " & _
-                        ")," & _
-                        "cteSLR as (" & _
-                        "select a.Faktur, sum(isnull(b.Total,0)) as TotalR from cteSL a " & _
-                        "left join trSLRHeader b on a.Faktur = b.FakturJual " & _
-                        "group by a.Faktur " & _
-                        ") " & _
-                        "select a.Total-b.TotalR as Total from cteSL a " & _
-                        "left join cteSLR b " & _
-                        "on a.Faktur = b.Faktur"
-
-                cmd = New SqlCommand(qcaritotalFJ, kon)
-                rd = cmd.ExecuteReader
-                rd.Read()
-                If rd.HasRows Then
-                    dgList.SetRowCellValue(a, "TotalFJ", rd!Total)
-                Else
-                    dgList.SetRowCellValue(a, "TotalFJ", 0)
-                End If
-                rd.Close()
-
-                Dim qcaritotalFJlunas As String = _
-                    "select case when sum(a.Total-b.Jumlah) = 0 then 'Terdapat FJ Lunas' else 'Belum Lunas' end as Lunas from trSLHeader a " & _
-                    "left join trLPtgDetail b on a.Faktur = b.FakturAsli " & _
-                    "where a.Keterangan='" & dgList.GetRowCellValue(a, "Invoice") & "'"
-                cmd = New SqlCommand(qcaritotalFJlunas, kon)
-                rd = cmd.ExecuteReader
-                rd.Read()
-                If rd.HasRows Then
-                    dgList.SetRowCellValue(a, "KeteranganLunas", rd!Lunas)
-                    If rd!Lunas = "Terdapat FJ Lunas" Then
-                        keteranganlunas += 1
-                    End If
-                Else
-                    dgList.SetRowCellValue(a, "KeteranganLunas", "unknown")
-                End If
-                rd.Close()
-
-                Dim totalfj As Double = 0
-                Dim datanull As Boolean = False
-                
-                Dim total As Double = 0
-                If IsDBNull(dgList.GetRowCellValue(a, "Total")) Then
-                    total = 0
-                    datanull = True
-                Else
-                    total = dgList.GetRowCellValue(a, "Total")
-                End If
-
-                If IsDBNull(dgList.GetRowCellValue(a, "TotalFJ")) Or dgList.GetRowCellValue(a, "TotalFJ") = 0 Then
-                    If dgList.GetRowCellValue(a, "Invoice").ToString.ToUpper = "CASHBACK" Then
-                        dgList.SetRowCellValue(a, "TotalFJ", dgList.GetRowCellValue(a, "Total"))
-                        totalfj = dgList.GetRowCellValue(a, "TotalFJ")
-                        cashback += CDbl(dgList.GetRowCellValue(a, "TotalFJ"))
-                    Else
-                        totalfj = 0
-                        datanull = True
-                    End If
-                Else
-                    totalfj = dgList.GetRowCellValue(a, "TotalFJ")
-                End If
-
-                If total = totalfj And datanull = False Then
-                    dgList.SetRowCellValue(a, "Keterangan", True)
-                Else
-                    dgList.SetRowCellValue(a, "Keterangan", False)
-                    keterangan += 1
-                End If
-            Next
-
-            If keterangan > 0 Or keteranganlunas > 0 Then
-                btnPelunasan.Enabled = False
+        Try
+            If OpenFileDialog1.ShowDialog = Windows.Forms.DialogResult.Cancel Then
+                Exit Sub
             Else
-                btnPelunasan.Enabled = True
-            End If
+                dgList.gvMain.LoadingPanelVisible = True
+                tLokasi.Text = OpenFileDialog1.FileName
+                Dim CONN As OleDbConnection
+                Dim daexcel As OleDbDataAdapter
+                Dim ds As New DataSet
+                Dim TabelExcel As New cMeDB
+                CONN = New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;" & _
+                            "data source='" & OpenFileDialog1.FileName & "';Extended Properties=Excel 8.0;")
 
-            dgList.colSum = {"Total", "TotalFJ"}
-            dgList.RefreshDataView()
-            Dim ttl As Double = dgList.GetSummaryColDB("TotalFJ")
-            sTotal.Text = ttl - cashback
-            sTotalTunai.Text = CDbl(sTotal.Text) + CDbl(sPembulatan.Text)
-            dgList.gvMain.LoadingPanelVisible = False
-        End If
+                Dim query As String = "select [Invoice],[Tanggal],[Total], 0 as [TotalFJ], '' as [Keterangan],'' as [KeteranganLunas] from [Sheet1$]"
+                daexcel = New OleDbDataAdapter(query, CONN)
+                ds.Clear()
+                daexcel.Fill(TabelExcel)
+
+                dgList.DataSource = TabelExcel
+                dgList.colFitGrid = True
+                dgList.colWidth = {1, 0.5, 0.8, 0.8, 0.8}
+                dgList.RefreshDataView()
+
+                Dim keterangan As Integer = 0
+                Dim keteranganlunas As Integer = 0
+                Dim keteranganFJ As Integer = 0
+                Dim cashback As Double = 0
+                For a = 0 To dgList.gvMain.RowCount - 1
+                    Dim qcaritotalFJ As String = _
+                        "with cteSL as(" & _
+                            "select Faktur,sum(isnull(Total,0)) as Total from trSLHeader where Keterangan='" & dgList.GetRowCellValue(a, "Invoice") & "' " & _
+                            "group by Faktur " & _
+                            ")," & _
+                            "cteSLR as (" & _
+                            "select a.Faktur, sum(isnull(b.Total,0)) as TotalR from cteSL a " & _
+                            "left join trSLRHeader b on a.Faktur = b.FakturJual " & _
+                            "group by a.Faktur " & _
+                            ") " & _
+                            "select a.Total-b.TotalR as Total from cteSL a " & _
+                            "left join cteSLR b " & _
+                            "on a.Faktur = b.Faktur"
+
+                    cmd = New SqlCommand(qcaritotalFJ, kon)
+                    rd = cmd.ExecuteReader
+                    rd.Read()
+                    If rd.HasRows Then
+                        dgList.SetRowCellValue(a, "TotalFJ", rd!Total)
+                    Else
+                        dgList.SetRowCellValue(a, "TotalFJ", 0)
+                    End If
+                    rd.Close()
+
+                    Dim qcaritotalFJlunas As String = _
+                        "select case when sum(a.Total-b.Jumlah) = 0 then 'Terdapat FJ Lunas' else 'Belum Lunas' end as Lunas from trSLHeader a " & _
+                        "left join trLPtgDetail b on a.Faktur = b.FakturAsli " & _
+                        "where a.Keterangan='" & dgList.GetRowCellValue(a, "Invoice") & "'"
+                    cmd = New SqlCommand(qcaritotalFJlunas, kon)
+                    rd = cmd.ExecuteReader
+                    rd.Read()
+                    If rd.HasRows Then
+                        dgList.SetRowCellValue(a, "KeteranganLunas", rd!Lunas)
+                        If rd!Lunas = "Terdapat FJ Lunas" Then
+                            keteranganlunas += 1
+                        End If
+                    Else
+                        dgList.SetRowCellValue(a, "KeteranganLunas", "unknown")
+                    End If
+                    rd.Close()
+
+                    Dim totalfj As Double = 0
+                    Dim datanull As Boolean = False
+
+                    Dim total As Double = 0
+                    If IsDBNull(dgList.GetRowCellValue(a, "Total")) Then
+                        total = 0
+                        datanull = True
+                    Else
+                        total = dgList.GetRowCellValue(a, "Total")
+                    End If
+
+                    If IsDBNull(dgList.GetRowCellValue(a, "TotalFJ")) Or dgList.GetRowCellValue(a, "TotalFJ") = 0 Then
+                        If dgList.GetRowCellValue(a, "Invoice").ToString.ToUpper = "CASHBACK" Then
+                            dgList.SetRowCellValue(a, "TotalFJ", dgList.GetRowCellValue(a, "Total"))
+                            totalfj = dgList.GetRowCellValue(a, "TotalFJ")
+                            cashback += CDbl(dgList.GetRowCellValue(a, "TotalFJ"))
+                        Else
+                            totalfj = 0
+                            datanull = True
+                        End If
+                    Else
+                        totalfj = dgList.GetRowCellValue(a, "TotalFJ")
+                    End If
+
+                    If total = totalfj And datanull = False Then
+                        dgList.SetRowCellValue(a, "Keterangan", True)
+                    Else
+                        dgList.SetRowCellValue(a, "Keterangan", False)
+                        keterangan += 1
+                    End If
+                Next
+
+                If keterangan > 0 Or keteranganlunas > 0 Then
+                    btnPelunasan.Enabled = False
+                Else
+                    btnPelunasan.Enabled = True
+                End If
+
+                dgList.colSum = {"Total", "TotalFJ"}
+                dgList.RefreshDataView()
+                Dim ttl As Double = dgList.GetSummaryColDB("TotalFJ")
+                sTotal.Text = ttl - cashback
+                sTotalTunai.Text = CDbl(sTotal.Text) + CDbl(sPembulatan.Text)
+                dgList.gvMain.LoadingPanelVisible = False
+            End If
+        Catch ex As Exception
+            MsgBox("Format Excel Salah!" & vbCrLf & "Silahkan cek Format Excel anda.", vbCritical + vbOKOnly, "Peringatan")
+            dgList.Grid_ClearData()
+            tLokasi.Text = ""
+            btnPelunasan.Enabled = False
+            sTotal.EditValue = 0
+            sPembulatan.EditValue = 0
+            sTotalTunai.EditValue = 0
+            tNoBukti.Text = ""
+        End Try
     End Sub
 
     Private Sub frmTotalWithdrawal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -125,6 +136,8 @@ Public Class frmTotalWithdrawal
         SetTextReadOnly({tLokasi, sTotal, sTotalTunai})
         tNoBukti.Properties.CharacterCasing = CharacterCasing.Upper
         bersih()
+        LayoutControlItem9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        btnPelunasan.Enabled = False
     End Sub
 
     Private Sub dgList_Grid_CustomDrawCell(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs) Handles dgList.Grid_CustomDrawCell
@@ -165,6 +178,10 @@ Public Class frmTotalWithdrawal
             Dim query As String = _
                 "select kdcustomer,count(KdCustomer) from trSLHeader where Keterangan in (" & invoice & ") group by KdCustomer"
             dtcustomer.FillMe(query)
+
+
+            '----------------- tanggal withdrawal harus sama ---------------------- '
+            ''
 
             If dtcustomer.Rows.Count > 1 Then
                 MsgBox("Data Memiliki KdCustomer Lebih dari Satu." + vbCrLf + "Mohon Periksa Kembali!!", vbCritical + vbOKOnly, "Peringatan")
@@ -282,5 +299,11 @@ Public Class frmTotalWithdrawal
         Else
             tLokasi.Text = ""
         End If
+    End Sub
+
+    Private Sub btnContohExcel_Click(sender As Object, e As EventArgs) Handles btnContohExcel.Click
+        Using xx As New frmFormatExcel
+            xx.ShowDialog(Me)
+        End Using
     End Sub
 End Class

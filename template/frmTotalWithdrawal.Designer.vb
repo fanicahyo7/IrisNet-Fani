@@ -22,6 +22,8 @@ Partial Class frmTotalWithdrawal
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTotalWithdrawal))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.btnContohExcel = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.sTotalTunai = New DevExpress.XtraEditors.SpinEdit()
         Me.sPembulatan = New DevExpress.XtraEditors.SpinEdit()
         Me.sTotal = New DevExpress.XtraEditors.SpinEdit()
@@ -42,9 +44,9 @@ Partial Class frmTotalWithdrawal
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.sTotalTunai.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,10 +67,12 @@ Partial Class frmTotalWithdrawal
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.btnContohExcel)
         Me.LayoutControl1.Controls.Add(Me.SimpleButton1)
         Me.LayoutControl1.Controls.Add(Me.sTotalTunai)
         Me.LayoutControl1.Controls.Add(Me.sPembulatan)
@@ -81,10 +85,30 @@ Partial Class frmTotalWithdrawal
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl1.Name = "LayoutControl1"
+        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(650, 120, 450, 400)
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
         Me.LayoutControl1.Size = New System.Drawing.Size(716, 368)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'btnContohExcel
+        '
+        Me.btnContohExcel.Image = CType(resources.GetObject("btnContohExcel.Image"), System.Drawing.Image)
+        Me.btnContohExcel.Location = New System.Drawing.Point(12, 318)
+        Me.btnContohExcel.Name = "btnContohExcel"
+        Me.btnContohExcel.Size = New System.Drawing.Size(144, 38)
+        Me.btnContohExcel.StyleController = Me.LayoutControl1
+        Me.btnContohExcel.TabIndex = 14
+        Me.btnContohExcel.Text = "Contoh Format Excel"
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Location = New System.Drawing.Point(450, 12)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(77, 22)
+        Me.SimpleButton1.StyleController = Me.LayoutControl1
+        Me.SimpleButton1.TabIndex = 13
+        Me.SimpleButton1.Text = "SimpleButton1"
         '
         'sTotalTunai
         '
@@ -176,9 +200,9 @@ Partial Class frmTotalWithdrawal
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.EmptySpaceItem1, Me.LayoutControlItem4, Me.EmptySpaceItem2, Me.LayoutControlItem2, Me.LayoutControlItem5, Me.EmptySpaceItem3, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.EmptySpaceItem1, Me.LayoutControlItem4, Me.EmptySpaceItem2, Me.LayoutControlItem2, Me.LayoutControlItem5, Me.EmptySpaceItem3, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
+        Me.LayoutControlGroup1.Name = "Root"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(716, 368)
         Me.LayoutControlGroup1.TextVisible = False
         '
@@ -226,9 +250,9 @@ Partial Class frmTotalWithdrawal
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(0, 306)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(148, 306)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(550, 42)
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(402, 42)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem2
@@ -287,19 +311,6 @@ Partial Class frmTotalWithdrawal
         Me.LayoutControlItem8.Text = "Total Tunai"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(56, 13)
         '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Location = New System.Drawing.Point(450, 12)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(77, 22)
-        Me.SimpleButton1.StyleController = Me.LayoutControl1
-        Me.SimpleButton1.TabIndex = 13
-        Me.SimpleButton1.Text = "SimpleButton1"
-        '
         'LayoutControlItem9
         '
         Me.LayoutControlItem9.Control = Me.SimpleButton1
@@ -308,6 +319,22 @@ Partial Class frmTotalWithdrawal
         Me.LayoutControlItem9.Size = New System.Drawing.Size(81, 42)
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem9.TextVisible = False
+        '
+        'LayoutControlItem10
+        '
+        Me.LayoutControlItem10.Control = Me.btnContohExcel
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 306)
+        Me.LayoutControlItem10.MaxSize = New System.Drawing.Size(148, 42)
+        Me.LayoutControlItem10.MinSize = New System.Drawing.Size(148, 42)
+        Me.LayoutControlItem10.Name = "LayoutControlItem10"
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(148, 42)
+        Me.LayoutControlItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem10.TextVisible = False
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
         'frmTotalWithdrawal
         '
@@ -338,6 +365,7 @@ Partial Class frmTotalWithdrawal
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -365,4 +393,6 @@ Partial Class frmTotalWithdrawal
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents btnContohExcel As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
 End Class

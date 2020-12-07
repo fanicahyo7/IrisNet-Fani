@@ -379,6 +379,12 @@
     <Compile Include="frmDetailGudang.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmFormatExcel.Designer.vb">
+      <DependentUpon>frmFormatExcel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmFormatExcel.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmGrafikBig.designer.vb">
       <DependentUpon>frmGrafikBig.vb</DependentUpon>
     </Compile>
@@ -844,6 +850,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmDetailGudang.resx">
       <DependentUpon>frmDetailGudang.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmFormatExcel.resx">
+      <DependentUpon>frmFormatExcel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGrafikBig.resx">
       <DependentUpon>frmGrafikBig.vb</DependentUpon>
