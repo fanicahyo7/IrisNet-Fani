@@ -179,12 +179,21 @@ Public Class frmTotalWithdrawal
                 "select kdcustomer,count(KdCustomer) from trSLHeader where Keterangan in (" & invoice & ") group by KdCustomer"
             dtcustomer.FillMe(query)
 
-
-            '----------------- tanggal withdrawal harus sama ---------------------- '
-            ''
-
+            Dim cstmr1 As Boolean = False
             If dtcustomer.Rows.Count > 1 Then
+                cstmr1 = True
+            End If
+
+            Dim tgl1 As Boolean = False
+            Dim disticttgl As DataTable = dgList.DataSource.DefaultView.ToTable(True, "Tanggal")
+            If disticttgl.Rows.Count > 1 Then
+                tgl1 = True
+            End If
+
+            If cstmr1 = True Then
                 MsgBox("Data Memiliki KdCustomer Lebih dari Satu." + vbCrLf + "Mohon Periksa Kembali!!", vbCritical + vbOKOnly, "Peringatan")
+            ElseIf tgl1 = True Then
+                MsgBox("Data Memiliki Tanggal Berbeda." + vbCrLf + "Mohon Periksa Kembali!!", vbCritical + vbOKOnly, "Peringatan")
             Else
                 Dim fakturpp As String = _
                     GetNewFakturTogamasSQLServ(PubConnStr, "trLPtgHeader", FakturReset.Tahunan, "Faktur", pubKodeUnit & pubUserInit & "-PP", DTOC(Now), 5, "")
@@ -198,32 +207,17 @@ Public Class frmTotalWithdrawal
 
                 Dim dtdisticnt As DataTable = dtfj.DefaultView.ToTable(True, "KdCustomer")
 
-                'Dim simpanheader As String = _
-                '    "insert into trLPtgHeader (Faktur,KdCustomer,Tanggal,TglLunas,SubTotal,Total,Tunai,UserEntry,DateTimeEntry,NoBukti,Pembulatan) values " & _
-                '    "('" & fakturpp & "','" & dtdisticnt.Rows(0)!KdCustomer & "','" & DTOC(Now, "-", False) & "','" & DTOC(Now, "-", False) & "'," & _
-                '    "'" & sTotal.Text & "','" & sTotal.Text & "','" & sTotalTunai.Text & "','" & pubUserEntry & "','" & DTOC(Now, "-", True) & "','" & tNoBukti.Text & "','" & sPembulatan.Text & "')"
-                'cmd = New SqlCommand(simpanheader, kon)
-                'cmd.ExecuteNonQuery()
-
-                'For a = 0 To dtfj.Rows.Count - 1
-                '    Dim simpandetail As String = _
-                '   "insert into trLPtgDetail (Faktur,Tanggal,FakturAsli,Jumlah,Urutan) values (" & _
-                '   "'" & fakturpp & "','" & DTOC(Now, "-", False) & "','" & dtfj.Rows(a)!Faktur & "','" & dtfj.Rows(a)!Total & "','" & a & "')"
-                '    cmd = New SqlCommand(simpandetail, kon)
-                '    cmd.ExecuteNonQuery()
-                'Next
-
                 Try
                     Dim q As String = "begin try begin transaction "
                     q += "insert into trLPtgHeader (Faktur,KdCustomer,Tanggal,TglLunas,SubTotal,Total,Tunai,UserEntry,DateTimeEntry,NoBukti,Pembulatan) values " & _
-                        "('" & fakturpp & "','" & dtdisticnt.Rows(0)!KdCustomer & "','" & DTOC(Now, "-", False) & "','" & DTOC(Now, "-", False) & "'," & _
+                        "('" & fakturpp & "','" & dtdisticnt.Rows(0)!KdCustomer & "','" & DTOC(disticttgl.Rows(0)!Tanggal, "-", False) & "','" & DTOC(disticttgl.Rows(0)!Tanggal, "-", False) & "'," & _
                         "'" & sTotal.Text & "','" & sTotal.Text & "','" & sTotalTunai.Text & "','" & pubUserEntry & "','" & DTOC(Now, "-", True) & "','" & tNoBukti.Text & "','" & sPembulatan.Text & "'); " & _
                         "update trLPtgHeader set Fire=1 where Faktur='" & fakturpp & "'; "
 
                     For a = 0 To dtfj.Rows.Count - 1
                         q += _
                        "insert into trLPtgDetail (Faktur,Tanggal,FakturAsli,Jumlah,Urutan) values (" & _
-                       "'" & fakturpp & "','" & DTOC(Now, "-", False) & "','" & dtfj.Rows(a)!Faktur & "','" & dtfj.Rows(a)!Total & "','" & a & "'); " & _
+                       "'" & fakturpp & "','" & DTOC(disticttgl.Rows(0)!Tanggal, "-", False) & "','" & dtfj.Rows(a)!Faktur & "','" & dtfj.Rows(a)!Total & "','" & a & "'); " & _
                        "update trLPtgDetail set Fire=1,Jumlah='" & dtfj.Rows(a)!Total & "',FakturAsli='" & dtfj.Rows(a)!Faktur & "' where Faktur='" & fakturpp & "'; "
                     Next
 
