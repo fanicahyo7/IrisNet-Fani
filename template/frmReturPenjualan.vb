@@ -144,29 +144,17 @@ Public Class frmReturPenjualan
     End Sub
     Sub fakjualdg()
         Dim q As String =
-            "select Status,Kode,Judul,Penyusun,KdSupplier,NamaPenerbit,Qty as QtyFkt,QtyRetur, 0 as Qty, Harga,Disc, 0 as Jumlah,case LockJual when '1' then 'Saldo Terkunci' when '0' then '' end as InfoSaldo,Urutan,Tanggal,Kode1,KdBuku from vwSL where Faktur='" & cFakturJual.Text & "'"
+            "select Status,Faktur,Kode,Judul,Penyusun,KdSupplier,NamaPenerbit,Qty as QtyFkt,QtyRetur, 0 as Qty, Harga,Disc, 0 as Jumlah,case LockJual when '1' then 'Saldo Terkunci' when '0' then '' end as InfoSaldo,Urutan,Tanggal,Kode1,KdBuku from vwSL where Faktur='" & cFakturJual.Text & "'"
         mdgList.Grid_ClearData()
-        mdgList.FirstInit(q, , , {"Qty"}, {"Urutan", "Status", "Tanggal", "Kode1", "KdBuku"}, , 40)
-        mdgList.RefreshData()
+        mdgList.FirstInit(q, , , {"Qty"}, {"Urutan", "Faktur", "Status", "Tanggal", "Kode1", "KdBuku"}, , 40)
+        mdgList.RefreshData(False)
+        mdgList.DataSource.SetPK({"Faktur", "Kode"})
 
-        'Using dbt As New cMeDB
-        '    dbt.FillMe(q)
-        '    For i As Integer = 0 To dbt.Rows.Count - 1
-        '        Dim dr As DataRow = mdgList.DataSource.NewRow
-        '        dr!Faktur = pKodeInit
-        '        For col As Integer = 0 To mdgList.DataSource.Columns.Count - 1
-        '            Dim NmCol As String = mdgList.DataSource.Columns(col).ColumnName
-        '            If dbt.Columns.Contains(NmCol) = True Then
-        '                dr(NmCol) = dbt.Rows(i)(NmCol)
-        '            End If
-        '        Next
-        '        mdgList.DataSource.Rows.Add(dr)
-        '    Next
-        'End Using
-
-        'mdgList.FirstInit(q, {1, 0.8, 1, 0.8, 0.8, 1, 0.8, 0.5, 0.8, 0.8, 0.5, 0.8, 0.8, 0.5, 0.5}, , {"QTY"}, {"Faktur", "Urutan", "Status", "Tanggal", "Kode1", "KdBuku"}, , 40)
-        'mdgList.RefreshData(False)
+        For Each dd As DataRow In mdgList.DataSource.Rows
+            dd.SetAdded()
+        Next
     End Sub
+
     Private Sub cFakturJual_EditValueChanged(sender As Object, e As EventArgs) Handles cFakturJual.EditValueChanged
         mdgList.Grid_ClearData()
         fakjualdg()
@@ -257,11 +245,16 @@ Public Class frmReturPenjualan
         If isNew Then dbHead.Rows.Add(dRow)
         isNew = False
 
+        Dim dbr() As DataRow = mdgList.DataSource.Select("Qty = 0 ")
+        For Each dx As DataRow In dbr
+            dx.Delete()
+        Next
+
         '----------------------------------Prepare Detail
         For j As Integer = mdgList.GetRowCount_dSource - 1 To 0 Step -1
             If mdgList.DataSource.Rows(j).RowState <> DataRowState.Deleted Then
-                mdgList.DataSource.Rows(j)!Faktur = tFaktur.Text
-                mdgList.DataSource.Rows(j)!Urutan = j + 1
+                    mdgList.DataSource.Rows(j)!Faktur = tFaktur.Text
+                    mdgList.DataSource.Rows(j)!Urutan = j + 1
             End If
         Next
 
@@ -270,6 +263,14 @@ Public Class frmReturPenjualan
             Dim dbtrans(1) As cMeDB
             dbtrans(0) = dbHead
             dbtrans(1) = mdgList.DataSource
+
+            'Dim dbr() As DataRow = mdgList.DataSource.Select("Qty > 0 ")
+            'Dim dbxx As DataTable = dbr.CopyToDataTable()
+            'Dim dbx As New cMeDB
+            'dbx.FillMe(dbxx)
+            'dbx.SetPK(mdgList.DataSource.PrimaryKey)
+            'dbx.TableName = "trsldetail"
+            'dbtrans(1) = dbx
 
             Dim pQuez(1) As String
             pQuez(0) = ""

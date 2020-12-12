@@ -86,7 +86,7 @@ Public Class frmTotalWithdrawal
                     End If
 
                     If IsDBNull(dgList.GetRowCellValue(a, "TotalFJ")) Or dgList.GetRowCellValue(a, "TotalFJ") = 0 Then
-                        If dgList.GetRowCellValue(a, "Invoice").ToString.ToUpper = "CASHBACK" Then
+                        If dgList.GetRowCellValue(a, "Invoice").ToString.ToUpper = "#VALUE!" Then
                             dgList.SetRowCellValue(a, "TotalFJ", dgList.GetRowCellValue(a, "Total"))
                             totalfj = dgList.GetRowCellValue(a, "TotalFJ")
                             cashback += CDbl(dgList.GetRowCellValue(a, "TotalFJ"))
@@ -117,7 +117,6 @@ Public Class frmTotalWithdrawal
                 Dim ttl As Double = dgList.GetSummaryColDB("TotalFJ")
                 sTotal.Text = ttl - cashback
                 sTotalTunai.Text = CDbl(sTotal.Text) + CDbl(sPembulatan.Text)
-                dgList.gvMain.LoadingPanelVisible = False
             End If
         Catch ex As Exception
             MsgBox("Format Excel Salah!" & vbCrLf & "Silahkan cek Format Excel anda.", vbCritical + vbOKOnly, "Peringatan")
@@ -129,6 +128,7 @@ Public Class frmTotalWithdrawal
             sTotalTunai.EditValue = 0
             tNoBukti.Text = ""
         End Try
+        dgList.gvMain.LoadingPanelVisible = False
     End Sub
 
     Private Sub frmTotalWithdrawal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -137,6 +137,7 @@ Public Class frmTotalWithdrawal
         tNoBukti.Properties.CharacterCasing = CharacterCasing.Upper
         bersih()
         LayoutControlItem9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        LayoutControlItem7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         btnPelunasan.Enabled = False
     End Sub
 
@@ -218,14 +219,23 @@ Public Class frmTotalWithdrawal
                         q += _
                        "insert into trLPtgDetail (Faktur,Tanggal,FakturAsli,Jumlah,Urutan) values (" & _
                        "'" & fakturpp & "','" & DTOC(disticttgl.Rows(0)!Tanggal, "-", False) & "','" & dtfj.Rows(a)!Faktur & "','" & dtfj.Rows(a)!Total & "','" & a & "'); " & _
-                       "update trLPtgDetail set Fire=1,Jumlah='" & dtfj.Rows(a)!Total & "',FakturAsli='" & dtfj.Rows(a)!Faktur & "' where Faktur='" & fakturpp & "'; "
+                       "update trLPtgDetail set Fire=1,Jumlah=Jumlah,FakturAsli=FakturAsli where Faktur='" & fakturpp & "' ; "
                     Next
 
-                    q += "commit end try begin catch rollback select ERROR_MESSAGE() end catch"
+                    q += "commit select 'sukses' as statusx end try begin catch rollback select 'gagal : ' + ERROR_MESSAGE() as statusx end catch"
 
-                    cmd = New SqlCommand(q, kon)
-                    cmd.ExecuteNonQuery()
-                    MsgBox("Pelunasan Berhasil", vbInformation + vbOKOnly, "Informasi")
+                    Dim db As New DataTable
+                    da = New SqlDataAdapter(q, kon)
+                    da.Fill(db)
+
+                    If db.Rows.Count > 0 Then
+                        If (db.Rows(0)!statusx).ToString.Contains("gagal") Then
+                            Pesan({"Penyimpanan gagal", "", db.Rows(0)!statusx})
+                        Else
+                            MsgBox("Pelunasan Berhasil", vbInformation + vbOKOnly, "Informasi")
+                        End If
+                    End If
+
                     bersih()
                 Catch ex As Exception
                     MsgBox(ex.Message, vbOKOnly + vbCritical, "Peringatan")

@@ -540,6 +540,7 @@ D:\IrisNet-Fani\template\obj\Debug\template.frmDetailPelunasan.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmDetailStockNonProfit.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmDetailNoNota.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmDetailGudang.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmFormatExcel.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmGrafikBig.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmLapForecastHutang.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmLapKartuPiutangCustomer.resources
@@ -613,6 +614,3 @@ D:\IrisNet-Fani\template\obj\Debug\template.exe.licenses
 D:\IrisNet-Fani\template\obj\Debug\template.exe
 D:\IrisNet-Fani\template\obj\Debug\template.xml
 D:\IrisNet-Fani\template\obj\Debug\template.pdb
-D:\IrisNet-Fani\template\bin\Debug\Toxy.dll
-D:\IrisNet-Fani\template\obj\Debug\template.vbprojResolveAssemblyReference.cache
-D:\IrisNet-Fani\template\obj\Debug\template.frmFormatExcel.resources
