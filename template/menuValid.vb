@@ -467,4 +467,18 @@ Public Class menuValid
             xx.ShowDialog(Me)
         End Using
     End Sub
+
+    Private Sub UangMukaCustomerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UangMukaCustomerToolStripMenuItem.Click
+        Using xx As New frmDepositCustomerSupplier
+            xx.Text = "Deposit Customer / Uang Muka"
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
+
+    Private Sub UangMukaSupplierToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UangMukaSupplierToolStripMenuItem.Click
+        Using xx As New frmDepositCustomerSupplier
+            xx.Text = "Deposit Supplier"
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
 End Class

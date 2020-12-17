@@ -343,6 +343,12 @@
     <Compile Include="frmBlokirNomorNota.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmDepositCustomerSupplier.Designer.vb">
+      <DependentUpon>frmDepositCustomerSupplier.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmDepositCustomerSupplier.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDetailBarang.Designer.vb">
       <DependentUpon>frmDetailBarang.vb</DependentUpon>
     </Compile>
@@ -832,6 +838,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmBlokirNomorNota.resx">
       <DependentUpon>frmBlokirNomorNota.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDepositCustomerSupplier.resx">
+      <DependentUpon>frmDepositCustomerSupplier.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmDetailBarang.resx">
       <DependentUpon>frmDetailBarang.vb</DependentUpon>

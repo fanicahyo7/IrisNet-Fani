@@ -69,6 +69,7 @@ Partial Class menuValid
         Me.ReturToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PembelianToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.KonsinyasiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PenjualanToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.Jan20ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PenjualanToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.MutasiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -84,7 +85,10 @@ Partial Class menuValid
         Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
-        Me.PenjualanToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CustomerToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SupplierToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UangMukaCustomerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UangMukaSupplierToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -335,7 +339,7 @@ Partial Class menuValid
         '
         'TransaksiToolStripMenuItem
         '
-        Me.TransaksiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PembelianToolStripMenuItem2, Me.MutasiToolStripMenuItem1, Me.KirimEkspedisiToolStripMenuItem1, Me.PengunjungToolStripMenuItem, Me.TerimaEkspedisiToolStripMenuItem})
+        Me.TransaksiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PembelianToolStripMenuItem2, Me.MutasiToolStripMenuItem1, Me.KirimEkspedisiToolStripMenuItem1, Me.PengunjungToolStripMenuItem, Me.TerimaEkspedisiToolStripMenuItem, Me.CustomerToolStripMenuItem1, Me.SupplierToolStripMenuItem})
         Me.TransaksiToolStripMenuItem.Name = "TransaksiToolStripMenuItem"
         Me.TransaksiToolStripMenuItem.Size = New System.Drawing.Size(66, 20)
         Me.TransaksiToolStripMenuItem.Text = "Transaksi"
@@ -380,14 +384,20 @@ Partial Class menuValid
         'PembelianToolStripMenuItem1
         '
         Me.PembelianToolStripMenuItem1.Name = "PembelianToolStripMenuItem1"
-        Me.PembelianToolStripMenuItem1.Size = New System.Drawing.Size(152, 22)
+        Me.PembelianToolStripMenuItem1.Size = New System.Drawing.Size(130, 22)
         Me.PembelianToolStripMenuItem1.Text = "Pembelian"
         '
         'KonsinyasiToolStripMenuItem
         '
         Me.KonsinyasiToolStripMenuItem.Name = "KonsinyasiToolStripMenuItem"
-        Me.KonsinyasiToolStripMenuItem.Size = New System.Drawing.Size(152, 22)
+        Me.KonsinyasiToolStripMenuItem.Size = New System.Drawing.Size(130, 22)
         Me.KonsinyasiToolStripMenuItem.Text = "Konsinyasi"
+        '
+        'PenjualanToolStripMenuItem2
+        '
+        Me.PenjualanToolStripMenuItem2.Name = "PenjualanToolStripMenuItem2"
+        Me.PenjualanToolStripMenuItem2.Size = New System.Drawing.Size(130, 22)
+        Me.PenjualanToolStripMenuItem2.Text = "Penjualan"
         '
         'Jan20ToolStripMenuItem
         '
@@ -483,11 +493,31 @@ Partial Class menuValid
         Me.ImageList1.ImageSize = New System.Drawing.Size(16, 16)
         Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
         '
-        'PenjualanToolStripMenuItem2
+        'CustomerToolStripMenuItem1
         '
-        Me.PenjualanToolStripMenuItem2.Name = "PenjualanToolStripMenuItem2"
-        Me.PenjualanToolStripMenuItem2.Size = New System.Drawing.Size(152, 22)
-        Me.PenjualanToolStripMenuItem2.Text = "Penjualan"
+        Me.CustomerToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UangMukaCustomerToolStripMenuItem})
+        Me.CustomerToolStripMenuItem1.Name = "CustomerToolStripMenuItem1"
+        Me.CustomerToolStripMenuItem1.Size = New System.Drawing.Size(160, 22)
+        Me.CustomerToolStripMenuItem1.Text = "Customer"
+        '
+        'SupplierToolStripMenuItem
+        '
+        Me.SupplierToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UangMukaSupplierToolStripMenuItem})
+        Me.SupplierToolStripMenuItem.Name = "SupplierToolStripMenuItem"
+        Me.SupplierToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
+        Me.SupplierToolStripMenuItem.Text = "Supplier"
+        '
+        'UangMukaCustomerToolStripMenuItem
+        '
+        Me.UangMukaCustomerToolStripMenuItem.Name = "UangMukaCustomerToolStripMenuItem"
+        Me.UangMukaCustomerToolStripMenuItem.Size = New System.Drawing.Size(190, 22)
+        Me.UangMukaCustomerToolStripMenuItem.Text = "Uang Muka Customer"
+        '
+        'UangMukaSupplierToolStripMenuItem
+        '
+        Me.UangMukaSupplierToolStripMenuItem.Name = "UangMukaSupplierToolStripMenuItem"
+        Me.UangMukaSupplierToolStripMenuItem.Size = New System.Drawing.Size(181, 22)
+        Me.UangMukaSupplierToolStripMenuItem.Text = "Uang Muka Supplier"
         '
         'menuValid
         '
@@ -570,4 +600,8 @@ Partial Class menuValid
     Friend WithEvents DownloadToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem4 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PenjualanToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents CustomerToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents UangMukaCustomerToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents SupplierToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents UangMukaSupplierToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

@@ -615,3 +615,4 @@ D:\IrisNet-Fani\template\obj\Debug\template.exe
 D:\IrisNet-Fani\template\obj\Debug\template.xml
 D:\IrisNet-Fani\template\obj\Debug\template.pdb
 D:\IrisNet-Fani\template\obj\Debug\template.vbprojResolveAssemblyReference.cache
+D:\IrisNet-Fani\template\obj\Debug\template.frmDepositCustomerSupplier.resources

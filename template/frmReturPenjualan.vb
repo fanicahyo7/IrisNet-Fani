@@ -291,9 +291,13 @@ Public Class frmReturPenjualan
                 End If
 
                 If Tanya({"Buat transaksi baru lagi?"}) Then
-                    btnbaru.PerformClick()
+                    ClearValue(Me)
+                    pFaktur = pKodeInit
+                    LoadDetail()
+                    tKdGudang.Text = pKdGudang
+                    cKdCustomer.Enabled = True
                 Else
-                    Close()
+                    Me.Close()
                 End If
             End If
         End Using

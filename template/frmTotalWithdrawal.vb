@@ -25,7 +25,7 @@ Public Class frmTotalWithdrawal
 
                 dgList.DataSource = TabelExcel
                 dgList.colFitGrid = True
-                dgList.colWidth = {1, 0.5, 0.8, 0.8, 0.8, 0.8}
+                dgList.colWidth = {1, 0.5, 0.8, 0.8, 0.8, 0.8, 0.8}
                 dgList.RefreshDataView()
 
                 Dim keterangan As Integer = 0
@@ -153,6 +153,16 @@ Public Class frmTotalWithdrawal
                         dgList.SetRowCellValue(a, "Keterangan", False)
                         keterangan += 1
                     End If
+
+                    'Dim qcarifj As String = _
+                    '    "select top 1 Faktur from trSLHeader where Keterangan='" & dgList.GetRowCellValue(a, "Invoice") & "' order by DateTimeEntry desc"
+                    'cmd = New SqlCommand(qcaritotalFJ, kon)
+                    'rd = cmd.ExecuteReader
+                    'rd.Read()
+                    'If rd.HasRows Then
+                    '    dgList.SetRowCellValue(a, "FakturJual", rd!Faktur)
+                    'End If
+                    'rd.Close()
                 Next
 
                 If keterangan > 0 Or keteranganlunas > 0 Then
@@ -174,7 +184,7 @@ Public Class frmTotalWithdrawal
                 sTotalPiutangOngkir.EditValue = piutangongkir
             End If
         Catch ex As Exception
-            MsgBox("Format Excel Salah!" & vbCrLf & "Silahkan cek Format Excel anda.", vbCritical + vbOKOnly, "Peringatan")
+            MsgBox("Format Excel Salah!" & vbCrLf & "Silahkan cek Format Excel anda." & ex.ToString, vbCritical + vbOKOnly, "Peringatan")
             dgList.Grid_ClearData()
             tLokasi.Text = ""
             btnPelunasan.Enabled = False
