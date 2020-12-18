@@ -547,6 +547,12 @@
     <Compile Include="frmMutasi.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmPelunasanPiutang.Designer.vb">
+      <DependentUpon>frmPelunasanPiutang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPelunasanPiutang.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmPenerbit.Designer.vb">
       <DependentUpon>frmPenerbit.vb</DependentUpon>
     </Compile>
@@ -940,6 +946,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMutasi.resx">
       <DependentUpon>frmMutasi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPelunasanPiutang.resx">
+      <DependentUpon>frmPelunasanPiutang.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPenerbit.resx">
       <DependentUpon>frmPenerbit.vb</DependentUpon>

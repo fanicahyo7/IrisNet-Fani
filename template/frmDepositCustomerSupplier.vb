@@ -57,25 +57,24 @@ Public Class frmDepositCustomerSupplier
 
             Dim query As String = _
                 "insert into trDeposit (Status,Faktur,Jenis,Tanggal,KdCusSup, " & _
-                "Keterangan,Masuk,Lunas,UserEntry, " & _
-                "DateTimeEntry,NoBukti,FlagPosted) values (" & _
+                "Keterangan,Masuk,UserEntry, " & _
+                "DateTimeEntry,NoBukti) values (" & _
                 "'1','" & tFaktur.Text & "','" & isSupplier & "','" & DTOC(dTanggal.EditValue, "-", False) & "','" & cKdCusSup.Text & "'," & _
-                "'" & tKeterangan.Text & "','" & sJumlah.EditValue & "','" & sJumlah.EditValue & "','" & pubUserEntry & "'," & _
-                "'" & DTOC(Now, "-", True) & "','" & tNoBukti.Text & "','0')"
+                "'" & tKeterangan.Text & "','" & sJumlah.EditValue & "','" & pubUserEntry & "'," & _
+                "'" & DTOC(Now, "-", True) & "','" & tNoBukti.Text & "')"
             cmd = New SqlCommand(query, kon)
             cmd.ExecuteNonQuery()
 
-
-            'If Tanya({"Penyimpanan Transaksi SUKSES", "", "Cetak Faktur?"}) Then
-            '    Dim pQueRpt As String = "Select * from vwSLR where faktur in ('" & tFaktur.Text & "') order by faktur, urutan"
-            '    ShowReport(pQueRpt, "rptSL", {compNama, compAlamat, compNoTlp, compNPWP})
-            'End If
+            If Tanya({"Penyimpanan Transaksi SUKSES", "", "Cetak Faktur?"}) Then
+                '    Dim pQueRpt As String = "Select * from vwSLR where faktur in ('" & tFaktur.Text & "') order by faktur, urutan"
+                '    ShowReport(pQueRpt, "rptSL", {compNama, compAlamat, compNoTlp, compNPWP})
+            End If
 
             If Tanya({"Buat transaksi baru lagi?"}) Then
                 btnBaru.PerformClick()
             Else
                 Me.Close()
             End If
-        End If
+            End If
     End Sub
 End Class
