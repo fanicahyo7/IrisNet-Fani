@@ -21,13 +21,13 @@ Partial Class frmPelunasanPiutang
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.sTotalTagihan = New DevExpress.XtraEditors.SpinEdit()
         Me.btnReset = New DevExpress.XtraEditors.SimpleButton()
         Me.btnBayar = New DevExpress.XtraEditors.SimpleButton()
         Me.sTotalBayar = New DevExpress.XtraEditors.SpinEdit()
         Me.sDendaDisc = New DevExpress.XtraEditors.SpinEdit()
         Me.sTotalHutang = New DevExpress.XtraEditors.SpinEdit()
         Me.sSisaHutang = New DevExpress.XtraEditors.SpinEdit()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.sBalance = New DevExpress.XtraEditors.SpinEdit()
         Me.sPembulatan = New DevExpress.XtraEditors.SpinEdit()
         Me.sTunaiGiro = New DevExpress.XtraEditors.SpinEdit()
@@ -56,16 +56,14 @@ Partial Class frmPelunasanPiutang
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem5 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.EmptySpaceItem6 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem23 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -77,8 +75,17 @@ Partial Class frmPelunasanPiutang
         Me.EmptySpaceItem9 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem10 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem11 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.cCekGiro = New DevExpress.XtraEditors.CheckEdit()
+        Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.tNoTglCair = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.dJthTempo = New DevExpress.XtraEditors.DateEdit()
+        Me.LayoutControlItem24 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.sJmlCekbg = New DevExpress.XtraEditors.SpinEdit()
+        Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.sTotalTagihan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.sTotalBayar.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.sDendaDisc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.sTotalHutang.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -111,16 +118,14 @@ Partial Class frmPelunasanPiutang
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -132,17 +137,30 @@ Partial Class frmPelunasanPiutang
         CType(Me.EmptySpaceItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cCekGiro.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tNoTglCair.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dJthTempo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dJthTempo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.sJmlCekbg.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.sJmlCekbg)
+        Me.LayoutControl1.Controls.Add(Me.dJthTempo)
+        Me.LayoutControl1.Controls.Add(Me.tNoTglCair)
+        Me.LayoutControl1.Controls.Add(Me.cCekGiro)
+        Me.LayoutControl1.Controls.Add(Me.sTotalTagihan)
         Me.LayoutControl1.Controls.Add(Me.btnReset)
         Me.LayoutControl1.Controls.Add(Me.btnBayar)
         Me.LayoutControl1.Controls.Add(Me.sTotalBayar)
         Me.LayoutControl1.Controls.Add(Me.sDendaDisc)
         Me.LayoutControl1.Controls.Add(Me.sTotalHutang)
         Me.LayoutControl1.Controls.Add(Me.sSisaHutang)
-        Me.LayoutControl1.Controls.Add(Me.SimpleButton1)
         Me.LayoutControl1.Controls.Add(Me.sBalance)
         Me.LayoutControl1.Controls.Add(Me.sPembulatan)
         Me.LayoutControl1.Controls.Add(Me.sTunaiGiro)
@@ -160,25 +178,36 @@ Partial Class frmPelunasanPiutang
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl1.Name = "LayoutControl1"
+        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(563, 113, 450, 400)
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
         Me.LayoutControl1.Size = New System.Drawing.Size(803, 481)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        'sTotalTagihan
+        '
+        Me.sTotalTagihan.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.sTotalTagihan.Location = New System.Drawing.Point(306, 291)
+        Me.sTotalTagihan.Name = "sTotalTagihan"
+        Me.sTotalTagihan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.sTotalTagihan.Size = New System.Drawing.Size(113, 20)
+        Me.sTotalTagihan.StyleController = Me.LayoutControl1
+        Me.sTotalTagihan.TabIndex = 29
+        '
         'btnReset
         '
-        Me.btnReset.Location = New System.Drawing.Point(504, 447)
+        Me.btnReset.Location = New System.Drawing.Point(466, 447)
         Me.btnReset.Name = "btnReset"
-        Me.btnReset.Size = New System.Drawing.Size(131, 22)
+        Me.btnReset.Size = New System.Drawing.Size(121, 22)
         Me.btnReset.StyleController = Me.LayoutControl1
         Me.btnReset.TabIndex = 27
         Me.btnReset.Text = "Reset"
         '
         'btnBayar
         '
-        Me.btnBayar.Location = New System.Drawing.Point(639, 447)
+        Me.btnBayar.Location = New System.Drawing.Point(591, 447)
         Me.btnBayar.Name = "btnBayar"
-        Me.btnBayar.Size = New System.Drawing.Size(152, 22)
+        Me.btnBayar.Size = New System.Drawing.Size(200, 22)
         Me.btnBayar.StyleController = Me.LayoutControl1
         Me.btnBayar.TabIndex = 26
         Me.btnBayar.Text = "Bayar Pelunasan"
@@ -186,7 +215,7 @@ Partial Class frmPelunasanPiutang
         'sTotalBayar
         '
         Me.sTotalBayar.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sTotalBayar.Location = New System.Drawing.Point(662, 283)
+        Me.sTotalBayar.Location = New System.Drawing.Point(662, 261)
         Me.sTotalBayar.Name = "sTotalBayar"
         Me.sTotalBayar.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.sTotalBayar.Size = New System.Drawing.Size(129, 20)
@@ -196,7 +225,7 @@ Partial Class frmPelunasanPiutang
         'sDendaDisc
         '
         Me.sDendaDisc.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sDendaDisc.Location = New System.Drawing.Point(662, 307)
+        Me.sDendaDisc.Location = New System.Drawing.Point(662, 285)
         Me.sDendaDisc.Name = "sDendaDisc"
         Me.sDendaDisc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.sDendaDisc.Size = New System.Drawing.Size(129, 20)
@@ -206,7 +235,7 @@ Partial Class frmPelunasanPiutang
         'sTotalHutang
         '
         Me.sTotalHutang.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sTotalHutang.Location = New System.Drawing.Point(662, 259)
+        Me.sTotalHutang.Location = New System.Drawing.Point(662, 237)
         Me.sTotalHutang.Name = "sTotalHutang"
         Me.sTotalHutang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.sTotalHutang.Size = New System.Drawing.Size(129, 20)
@@ -216,21 +245,12 @@ Partial Class frmPelunasanPiutang
         'sSisaHutang
         '
         Me.sSisaHutang.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sSisaHutang.Location = New System.Drawing.Point(662, 331)
+        Me.sSisaHutang.Location = New System.Drawing.Point(662, 309)
         Me.sSisaHutang.Name = "sSisaHutang"
         Me.sSisaHutang.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.sSisaHutang.Size = New System.Drawing.Size(129, 20)
         Me.sSisaHutang.StyleController = Me.LayoutControl1
         Me.sSisaHutang.TabIndex = 21
-        '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Location = New System.Drawing.Point(108, 361)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(110, 22)
-        Me.SimpleButton1.StyleController = Me.LayoutControl1
-        Me.SimpleButton1.TabIndex = 20
-        Me.SimpleButton1.Text = "Isi Cek/Giro"
         '
         'sBalance
         '
@@ -255,7 +275,7 @@ Partial Class frmPelunasanPiutang
         'sTunaiGiro
         '
         Me.sTunaiGiro.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sTunaiGiro.Location = New System.Drawing.Point(306, 361)
+        Me.sTunaiGiro.Location = New System.Drawing.Point(306, 363)
         Me.sTunaiGiro.Name = "sTunaiGiro"
         Me.sTunaiGiro.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.sTunaiGiro.Size = New System.Drawing.Size(113, 20)
@@ -264,7 +284,7 @@ Partial Class frmPelunasanPiutang
         '
         'tNoBukti
         '
-        Me.tNoBukti.Location = New System.Drawing.Point(108, 289)
+        Me.tNoBukti.Location = New System.Drawing.Point(108, 267)
         Me.tNoBukti.Name = "tNoBukti"
         Me.tNoBukti.Size = New System.Drawing.Size(173, 20)
         Me.tNoBukti.StyleController = Me.LayoutControl1
@@ -273,7 +293,7 @@ Partial Class frmPelunasanPiutang
         'sRetur
         '
         Me.sRetur.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sRetur.Location = New System.Drawing.Point(306, 313)
+        Me.sRetur.Location = New System.Drawing.Point(306, 315)
         Me.sRetur.Name = "sRetur"
         Me.sRetur.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.sRetur.Size = New System.Drawing.Size(113, 20)
@@ -283,7 +303,7 @@ Partial Class frmPelunasanPiutang
         'sDeposit
         '
         Me.sDeposit.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sDeposit.Location = New System.Drawing.Point(306, 337)
+        Me.sDeposit.Location = New System.Drawing.Point(306, 339)
         Me.sDeposit.Name = "sDeposit"
         Me.sDeposit.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.sDeposit.Size = New System.Drawing.Size(113, 20)
@@ -293,7 +313,7 @@ Partial Class frmPelunasanPiutang
         'sCekGiro
         '
         Me.sCekGiro.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sCekGiro.Location = New System.Drawing.Point(108, 337)
+        Me.sCekGiro.Location = New System.Drawing.Point(108, 315)
         Me.sCekGiro.Name = "sCekGiro"
         Me.sCekGiro.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.sCekGiro.Size = New System.Drawing.Size(110, 20)
@@ -303,7 +323,7 @@ Partial Class frmPelunasanPiutang
         'sTunai
         '
         Me.sTunai.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sTunai.Location = New System.Drawing.Point(108, 313)
+        Me.sTunai.Location = New System.Drawing.Point(108, 291)
         Me.sTunai.Name = "sTunai"
         Me.sTunai.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.sTunai.Size = New System.Drawing.Size(110, 20)
@@ -380,7 +400,7 @@ Partial Class frmPelunasanPiutang
         Me.dgList.Query = Nothing
         Me.dgList.QueryTime = Nothing
         Me.dgList.ShowFooter = True
-        Me.dgList.Size = New System.Drawing.Size(779, 147)
+        Me.dgList.Size = New System.Drawing.Size(779, 125)
         Me.dgList.TabIndex = 4
         '
         'LayoutControlGroup1
@@ -389,7 +409,7 @@ Partial Class frmPelunasanPiutang
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.EmptySpaceItem1, Me.EmptySpaceItem2, Me.EmptySpaceItem3, Me.LayoutControlGroup2, Me.LayoutControlItem16, Me.LayoutControlItem17, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem21, Me.LayoutControlItem22, Me.EmptySpaceItem7, Me.EmptySpaceItem8, Me.EmptySpaceItem9, Me.EmptySpaceItem10, Me.EmptySpaceItem11})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
+        Me.LayoutControlGroup1.Name = "Root"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(803, 481)
         Me.LayoutControlGroup1.TextVisible = False
         '
@@ -398,7 +418,7 @@ Partial Class frmPelunasanPiutang
         Me.LayoutControlItem1.Control = Me.dgList
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 96)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(783, 151)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(783, 129)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
@@ -491,10 +511,10 @@ Partial Class frmPelunasanPiutang
         '
         'LayoutControlGroup2
         '
-        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem3, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem12, Me.LayoutControlItem11, Me.EmptySpaceItem4, Me.LayoutControlItem8, Me.LayoutControlItem13, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.EmptySpaceItem5, Me.EmptySpaceItem6})
-        Me.LayoutControlGroup2.Location = New System.Drawing.Point(0, 247)
+        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem3, Me.LayoutControlItem9, Me.LayoutControlItem12, Me.EmptySpaceItem4, Me.LayoutControlItem13, Me.LayoutControlItem10, Me.LayoutControlItem14, Me.LayoutControlItem23, Me.LayoutControlItem11, Me.LayoutControlItem8, Me.LayoutControlItem20, Me.LayoutControlItem15, Me.LayoutControlItem24, Me.LayoutControlItem25})
+        Me.LayoutControlGroup2.Location = New System.Drawing.Point(0, 225)
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(423, 188)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(423, 210)
         Me.LayoutControlGroup2.Text = "Pembayaran"
         '
         'LayoutControlItem3
@@ -521,6 +541,38 @@ Partial Class frmPelunasanPiutang
         Me.LayoutControlItem9.Text = "Tunai"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(81, 13)
         '
+        'LayoutControlItem12
+        '
+        Me.LayoutControlItem12.Control = Me.sRetur
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(198, 48)
+        Me.LayoutControlItem12.MaxSize = New System.Drawing.Size(201, 24)
+        Me.LayoutControlItem12.MinSize = New System.Drawing.Size(201, 24)
+        Me.LayoutControlItem12.Name = "LayoutControlItem12"
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(201, 24)
+        Me.LayoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem12.Text = "Retur"
+        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(81, 13)
+        '
+        'EmptySpaceItem4
+        '
+        Me.EmptySpaceItem4.AllowHotTrack = False
+        Me.EmptySpaceItem4.Location = New System.Drawing.Point(261, 0)
+        Me.EmptySpaceItem4.Name = "EmptySpaceItem4"
+        Me.EmptySpaceItem4.Size = New System.Drawing.Size(138, 24)
+        Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'LayoutControlItem13
+        '
+        Me.LayoutControlItem13.Control = Me.sPembulatan
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(198, 120)
+        Me.LayoutControlItem13.MaxSize = New System.Drawing.Size(201, 24)
+        Me.LayoutControlItem13.MinSize = New System.Drawing.Size(201, 24)
+        Me.LayoutControlItem13.Name = "LayoutControlItem13"
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(201, 24)
+        Me.LayoutControlItem13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem13.Text = "Pembulatan"
+        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(81, 13)
+        '
         'LayoutControlItem10
         '
         Me.LayoutControlItem10.Control = Me.sCekGiro
@@ -533,66 +585,10 @@ Partial Class frmPelunasanPiutang
         Me.LayoutControlItem10.Text = "Cek/Giro"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(81, 13)
         '
-        'LayoutControlItem12
-        '
-        Me.LayoutControlItem12.Control = Me.sRetur
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(198, 24)
-        Me.LayoutControlItem12.MaxSize = New System.Drawing.Size(201, 24)
-        Me.LayoutControlItem12.MinSize = New System.Drawing.Size(201, 24)
-        Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(201, 24)
-        Me.LayoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.LayoutControlItem12.Text = "Retur"
-        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(81, 13)
-        '
-        'LayoutControlItem11
-        '
-        Me.LayoutControlItem11.Control = Me.sDeposit
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(198, 48)
-        Me.LayoutControlItem11.MaxSize = New System.Drawing.Size(201, 24)
-        Me.LayoutControlItem11.MinSize = New System.Drawing.Size(201, 24)
-        Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(201, 24)
-        Me.LayoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.LayoutControlItem11.Text = "Deposit"
-        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(81, 13)
-        '
-        'EmptySpaceItem4
-        '
-        Me.EmptySpaceItem4.AllowHotTrack = False
-        Me.EmptySpaceItem4.Location = New System.Drawing.Point(261, 0)
-        Me.EmptySpaceItem4.Name = "EmptySpaceItem4"
-        Me.EmptySpaceItem4.Size = New System.Drawing.Size(138, 24)
-        Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
-        '
-        'LayoutControlItem8
-        '
-        Me.LayoutControlItem8.Control = Me.sTunaiGiro
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(198, 72)
-        Me.LayoutControlItem8.MaxSize = New System.Drawing.Size(201, 26)
-        Me.LayoutControlItem8.MinSize = New System.Drawing.Size(201, 26)
-        Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(201, 26)
-        Me.LayoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.LayoutControlItem8.Text = "Tunai + Giro"
-        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(81, 13)
-        '
-        'LayoutControlItem13
-        '
-        Me.LayoutControlItem13.Control = Me.sPembulatan
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(198, 98)
-        Me.LayoutControlItem13.MaxSize = New System.Drawing.Size(201, 24)
-        Me.LayoutControlItem13.MinSize = New System.Drawing.Size(201, 24)
-        Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(201, 24)
-        Me.LayoutControlItem13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.LayoutControlItem13.Text = "Pembulatan"
-        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(81, 13)
-        '
         'LayoutControlItem14
         '
         Me.LayoutControlItem14.Control = Me.sBalance
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(198, 122)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(198, 144)
         Me.LayoutControlItem14.MaxSize = New System.Drawing.Size(201, 24)
         Me.LayoutControlItem14.MinSize = New System.Drawing.Size(201, 24)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
@@ -601,38 +597,46 @@ Partial Class frmPelunasanPiutang
         Me.LayoutControlItem14.Text = "Balance"
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(81, 13)
         '
-        'LayoutControlItem15
+        'LayoutControlItem23
         '
-        Me.LayoutControlItem15.Control = Me.SimpleButton1
-        Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 72)
-        Me.LayoutControlItem15.MaxSize = New System.Drawing.Size(198, 26)
-        Me.LayoutControlItem15.MinSize = New System.Drawing.Size(198, 26)
-        Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(198, 26)
-        Me.LayoutControlItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.LayoutControlItem15.Text = " "
-        Me.LayoutControlItem15.TextSize = New System.Drawing.Size(81, 13)
+        Me.LayoutControlItem23.Control = Me.sTotalTagihan
+        Me.LayoutControlItem23.Location = New System.Drawing.Point(198, 24)
+        Me.LayoutControlItem23.MaxSize = New System.Drawing.Size(201, 24)
+        Me.LayoutControlItem23.MinSize = New System.Drawing.Size(201, 24)
+        Me.LayoutControlItem23.Name = "LayoutControlItem23"
+        Me.LayoutControlItem23.Size = New System.Drawing.Size(201, 24)
+        Me.LayoutControlItem23.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem23.Text = "Total Tagihan"
+        Me.LayoutControlItem23.TextSize = New System.Drawing.Size(81, 13)
         '
-        'EmptySpaceItem5
+        'LayoutControlItem11
         '
-        Me.EmptySpaceItem5.AllowHotTrack = False
-        Me.EmptySpaceItem5.Location = New System.Drawing.Point(0, 98)
-        Me.EmptySpaceItem5.Name = "EmptySpaceItem5"
-        Me.EmptySpaceItem5.Size = New System.Drawing.Size(198, 24)
-        Me.EmptySpaceItem5.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem11.Control = Me.sDeposit
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(198, 72)
+        Me.LayoutControlItem11.MaxSize = New System.Drawing.Size(201, 24)
+        Me.LayoutControlItem11.MinSize = New System.Drawing.Size(201, 24)
+        Me.LayoutControlItem11.Name = "LayoutControlItem11"
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(201, 24)
+        Me.LayoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem11.Text = "Deposit"
+        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(81, 13)
         '
-        'EmptySpaceItem6
+        'LayoutControlItem8
         '
-        Me.EmptySpaceItem6.AllowHotTrack = False
-        Me.EmptySpaceItem6.Location = New System.Drawing.Point(0, 122)
-        Me.EmptySpaceItem6.Name = "EmptySpaceItem6"
-        Me.EmptySpaceItem6.Size = New System.Drawing.Size(198, 24)
-        Me.EmptySpaceItem6.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem8.Control = Me.sTunaiGiro
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(198, 96)
+        Me.LayoutControlItem8.MaxSize = New System.Drawing.Size(201, 24)
+        Me.LayoutControlItem8.MinSize = New System.Drawing.Size(201, 24)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(201, 24)
+        Me.LayoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem8.Text = "Tunai + Giro"
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(81, 13)
         '
         'LayoutControlItem16
         '
         Me.LayoutControlItem16.Control = Me.sSisaHutang
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(566, 319)
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(566, 297)
         Me.LayoutControlItem16.MaxSize = New System.Drawing.Size(217, 24)
         Me.LayoutControlItem16.MinSize = New System.Drawing.Size(217, 24)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
@@ -644,7 +648,7 @@ Partial Class frmPelunasanPiutang
         'LayoutControlItem17
         '
         Me.LayoutControlItem17.Control = Me.sTotalHutang
-        Me.LayoutControlItem17.Location = New System.Drawing.Point(566, 247)
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(566, 225)
         Me.LayoutControlItem17.MaxSize = New System.Drawing.Size(217, 24)
         Me.LayoutControlItem17.MinSize = New System.Drawing.Size(217, 24)
         Me.LayoutControlItem17.Name = "LayoutControlItem17"
@@ -656,7 +660,7 @@ Partial Class frmPelunasanPiutang
         'LayoutControlItem18
         '
         Me.LayoutControlItem18.Control = Me.sDendaDisc
-        Me.LayoutControlItem18.Location = New System.Drawing.Point(566, 295)
+        Me.LayoutControlItem18.Location = New System.Drawing.Point(566, 273)
         Me.LayoutControlItem18.MaxSize = New System.Drawing.Size(217, 24)
         Me.LayoutControlItem18.MinSize = New System.Drawing.Size(217, 24)
         Me.LayoutControlItem18.Name = "LayoutControlItem18"
@@ -668,7 +672,7 @@ Partial Class frmPelunasanPiutang
         'LayoutControlItem19
         '
         Me.LayoutControlItem19.Control = Me.sTotalBayar
-        Me.LayoutControlItem19.Location = New System.Drawing.Point(566, 271)
+        Me.LayoutControlItem19.Location = New System.Drawing.Point(566, 249)
         Me.LayoutControlItem19.MaxSize = New System.Drawing.Size(217, 24)
         Me.LayoutControlItem19.MinSize = New System.Drawing.Size(217, 24)
         Me.LayoutControlItem19.Name = "LayoutControlItem19"
@@ -680,35 +684,35 @@ Partial Class frmPelunasanPiutang
         'LayoutControlItem21
         '
         Me.LayoutControlItem21.Control = Me.btnBayar
-        Me.LayoutControlItem21.Location = New System.Drawing.Point(627, 435)
+        Me.LayoutControlItem21.Location = New System.Drawing.Point(579, 435)
         Me.LayoutControlItem21.Name = "LayoutControlItem21"
-        Me.LayoutControlItem21.Size = New System.Drawing.Size(156, 26)
+        Me.LayoutControlItem21.Size = New System.Drawing.Size(204, 26)
         Me.LayoutControlItem21.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem21.TextVisible = False
         '
         'LayoutControlItem22
         '
         Me.LayoutControlItem22.Control = Me.btnReset
-        Me.LayoutControlItem22.Location = New System.Drawing.Point(492, 435)
+        Me.LayoutControlItem22.Location = New System.Drawing.Point(454, 435)
         Me.LayoutControlItem22.Name = "LayoutControlItem22"
-        Me.LayoutControlItem22.Size = New System.Drawing.Size(135, 26)
+        Me.LayoutControlItem22.Size = New System.Drawing.Size(125, 26)
         Me.LayoutControlItem22.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem22.TextVisible = False
         '
         'EmptySpaceItem7
         '
         Me.EmptySpaceItem7.AllowHotTrack = False
-        Me.EmptySpaceItem7.Location = New System.Drawing.Point(566, 343)
+        Me.EmptySpaceItem7.Location = New System.Drawing.Point(566, 321)
         Me.EmptySpaceItem7.Name = "EmptySpaceItem7"
-        Me.EmptySpaceItem7.Size = New System.Drawing.Size(217, 92)
+        Me.EmptySpaceItem7.Size = New System.Drawing.Size(217, 114)
         Me.EmptySpaceItem7.TextSize = New System.Drawing.Size(0, 0)
         '
         'EmptySpaceItem8
         '
         Me.EmptySpaceItem8.AllowHotTrack = False
-        Me.EmptySpaceItem8.Location = New System.Drawing.Point(423, 247)
+        Me.EmptySpaceItem8.Location = New System.Drawing.Point(423, 225)
         Me.EmptySpaceItem8.Name = "EmptySpaceItem8"
-        Me.EmptySpaceItem8.Size = New System.Drawing.Size(143, 188)
+        Me.EmptySpaceItem8.Size = New System.Drawing.Size(143, 210)
         Me.EmptySpaceItem8.TextSize = New System.Drawing.Size(0, 0)
         '
         'EmptySpaceItem9
@@ -732,8 +736,94 @@ Partial Class frmPelunasanPiutang
         Me.EmptySpaceItem11.AllowHotTrack = False
         Me.EmptySpaceItem11.Location = New System.Drawing.Point(0, 435)
         Me.EmptySpaceItem11.Name = "EmptySpaceItem11"
-        Me.EmptySpaceItem11.Size = New System.Drawing.Size(492, 26)
+        Me.EmptySpaceItem11.Size = New System.Drawing.Size(454, 26)
         Me.EmptySpaceItem11.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'cCekGiro
+        '
+        Me.cCekGiro.Location = New System.Drawing.Point(24, 339)
+        Me.cCekGiro.Name = "cCekGiro"
+        Me.cCekGiro.Properties.Caption = "Isi Cek/Giro"
+        Me.cCekGiro.Size = New System.Drawing.Size(194, 19)
+        Me.cCekGiro.StyleController = Me.LayoutControl1
+        Me.cCekGiro.TabIndex = 30
+        '
+        'LayoutControlItem20
+        '
+        Me.LayoutControlItem20.Control = Me.cCekGiro
+        Me.LayoutControlItem20.Location = New System.Drawing.Point(0, 72)
+        Me.LayoutControlItem20.MaxSize = New System.Drawing.Size(198, 23)
+        Me.LayoutControlItem20.MinSize = New System.Drawing.Size(198, 23)
+        Me.LayoutControlItem20.Name = "LayoutControlItem20"
+        Me.LayoutControlItem20.Size = New System.Drawing.Size(198, 23)
+        Me.LayoutControlItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem20.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem20.TextVisible = False
+        '
+        'tNoTglCair
+        '
+        Me.tNoTglCair.Location = New System.Drawing.Point(108, 362)
+        Me.tNoTglCair.Name = "tNoTglCair"
+        Me.tNoTglCair.Size = New System.Drawing.Size(110, 20)
+        Me.tNoTglCair.StyleController = Me.LayoutControl1
+        Me.tNoTglCair.TabIndex = 31
+        '
+        'LayoutControlItem15
+        '
+        Me.LayoutControlItem15.Control = Me.tNoTglCair
+        Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 95)
+        Me.LayoutControlItem15.MaxSize = New System.Drawing.Size(198, 25)
+        Me.LayoutControlItem15.MinSize = New System.Drawing.Size(198, 25)
+        Me.LayoutControlItem15.Name = "LayoutControlItem15"
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(198, 25)
+        Me.LayoutControlItem15.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem15.Text = "No/Tgl. Cair"
+        Me.LayoutControlItem15.TextSize = New System.Drawing.Size(81, 13)
+        '
+        'dJthTempo
+        '
+        Me.dJthTempo.EditValue = Nothing
+        Me.dJthTempo.Location = New System.Drawing.Point(108, 387)
+        Me.dJthTempo.Name = "dJthTempo"
+        Me.dJthTempo.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dJthTempo.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dJthTempo.Size = New System.Drawing.Size(110, 20)
+        Me.dJthTempo.StyleController = Me.LayoutControl1
+        Me.dJthTempo.TabIndex = 32
+        '
+        'LayoutControlItem24
+        '
+        Me.LayoutControlItem24.Control = Me.dJthTempo
+        Me.LayoutControlItem24.Location = New System.Drawing.Point(0, 120)
+        Me.LayoutControlItem24.MaxSize = New System.Drawing.Size(198, 24)
+        Me.LayoutControlItem24.MinSize = New System.Drawing.Size(198, 24)
+        Me.LayoutControlItem24.Name = "LayoutControlItem24"
+        Me.LayoutControlItem24.Size = New System.Drawing.Size(198, 24)
+        Me.LayoutControlItem24.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem24.Text = "Jatuh Tempo"
+        Me.LayoutControlItem24.TextSize = New System.Drawing.Size(81, 13)
+        '
+        'sJmlCekbg
+        '
+        Me.sJmlCekbg.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.sJmlCekbg.Location = New System.Drawing.Point(108, 411)
+        Me.sJmlCekbg.Name = "sJmlCekbg"
+        Me.sJmlCekbg.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.sJmlCekbg.Size = New System.Drawing.Size(110, 20)
+        Me.sJmlCekbg.StyleController = Me.LayoutControl1
+        Me.sJmlCekbg.TabIndex = 33
+        '
+        'LayoutControlItem25
+        '
+        Me.LayoutControlItem25.Control = Me.sJmlCekbg
+        Me.LayoutControlItem25.Location = New System.Drawing.Point(0, 144)
+        Me.LayoutControlItem25.MaxSize = New System.Drawing.Size(198, 24)
+        Me.LayoutControlItem25.MinSize = New System.Drawing.Size(198, 24)
+        Me.LayoutControlItem25.Name = "LayoutControlItem25"
+        Me.LayoutControlItem25.Size = New System.Drawing.Size(198, 24)
+        Me.LayoutControlItem25.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem25.Text = "Jml. Cek/BG"
+        Me.LayoutControlItem25.TextSize = New System.Drawing.Size(81, 13)
         '
         'frmPelunasanPiutang
         '
@@ -746,6 +836,7 @@ Partial Class frmPelunasanPiutang
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.sTotalTagihan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.sTotalBayar.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.sDendaDisc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.sTotalHutang.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -778,16 +869,14 @@ Partial Class frmPelunasanPiutang
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
@@ -799,6 +888,15 @@ Partial Class frmPelunasanPiutang
         CType(Me.EmptySpaceItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cCekGiro.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tNoTglCair.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dJthTempo.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dJthTempo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.sJmlCekbg.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -837,7 +935,6 @@ Partial Class frmPelunasanPiutang
     Friend WithEvents sDendaDisc As DevExpress.XtraEditors.SpinEdit
     Friend WithEvents sTotalHutang As DevExpress.XtraEditors.SpinEdit
     Friend WithEvents sSisaHutang As DevExpress.XtraEditors.SpinEdit
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents sBalance As DevExpress.XtraEditors.SpinEdit
     Friend WithEvents sPembulatan As DevExpress.XtraEditors.SpinEdit
     Friend WithEvents sTunaiGiro As DevExpress.XtraEditors.SpinEdit
@@ -845,9 +942,6 @@ Partial Class frmPelunasanPiutang
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem14 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem15 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents EmptySpaceItem5 As DevExpress.XtraLayout.EmptySpaceItem
-    Friend WithEvents EmptySpaceItem6 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LayoutControlItem16 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem17 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem18 As DevExpress.XtraLayout.LayoutControlItem
@@ -859,4 +953,14 @@ Partial Class frmPelunasanPiutang
     Friend WithEvents EmptySpaceItem9 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents EmptySpaceItem10 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents EmptySpaceItem11 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents sTotalTagihan As DevExpress.XtraEditors.SpinEdit
+    Friend WithEvents LayoutControlItem23 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents sJmlCekbg As DevExpress.XtraEditors.SpinEdit
+    Friend WithEvents dJthTempo As DevExpress.XtraEditors.DateEdit
+    Friend WithEvents tNoTglCair As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents cCekGiro As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LayoutControlItem20 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem15 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem24 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem25 As DevExpress.XtraLayout.LayoutControlItem
 End Class
