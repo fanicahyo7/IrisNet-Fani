@@ -667,6 +667,12 @@
     <Compile Include="frmRptUmurStokSupGol.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmSaldoPiutang.Designer.vb">
+      <DependentUpon>frmSaldoPiutang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmSaldoPiutang.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmSettingATK.Designer.vb">
       <DependentUpon>frmSettingATK.vb</DependentUpon>
     </Compile>
@@ -1006,6 +1012,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmRptUmurStokSupGol.resx">
       <DependentUpon>frmRptUmurStokSupGol.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSaldoPiutang.resx">
+      <DependentUpon>frmSaldoPiutang.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSettingATK.resx">
       <DependentUpon>frmSettingATK.vb</DependentUpon>

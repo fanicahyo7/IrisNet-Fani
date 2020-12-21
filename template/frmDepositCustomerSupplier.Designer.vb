@@ -21,34 +21,34 @@ Partial Class frmDepositCustomerSupplier
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDepositCustomerSupplier))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.btnBaru = New DevExpress.XtraEditors.SimpleButton()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txtJudul = New DevExpress.XtraEditors.LabelControl()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.tFaktur = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.cKdCusSup = New meCore.cMeButtonBrowser()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.CMeButtonBrowser1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.tNoBukti = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.tNama = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.btnKeluar = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnSimpan = New DevExpress.XtraEditors.SimpleButton()
+        Me.tKeterangan = New DevExpress.XtraEditors.TextEdit()
+        Me.sJumlah = New DevExpress.XtraEditors.SpinEdit()
+        Me.dTanggal = New DevExpress.XtraEditors.DateEdit()
+        Me.sSisa = New DevExpress.XtraEditors.SpinEdit()
         Me.tAlamat = New DevExpress.XtraEditors.TextEdit()
+        Me.tNama = New DevExpress.XtraEditors.TextEdit()
+        Me.tNoBukti = New DevExpress.XtraEditors.TextEdit()
+        Me.cKdCusSup = New meCore.cMeButtonBrowser()
+        Me.CMeButtonBrowser1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.tFaktur = New DevExpress.XtraEditors.TextEdit()
+        Me.txtJudul = New DevExpress.XtraEditors.LabelControl()
+        Me.btnBaru = New DevExpress.XtraEditors.SimpleButton()
+        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.sSisa = New DevExpress.XtraEditors.SpinEdit()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.dTanggal = New DevExpress.XtraEditors.DateEdit()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.sJumlah = New DevExpress.XtraEditors.SpinEdit()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.tKeterangan = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.btnSimpan = New DevExpress.XtraEditors.SimpleButton()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.btnKeluar = New DevExpress.XtraEditors.SimpleButton()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
@@ -57,29 +57,29 @@ Partial Class frmDepositCustomerSupplier
         Me.EmptySpaceItem6 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.tKeterangan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.sJumlah.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dTanggal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.sSisa.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tAlamat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tNoBukti.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cKdCusSup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CMeButtonBrowser1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tFaktur.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tFaktur.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cKdCusSup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CMeButtonBrowser1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tNoBukti.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tAlamat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.sSisa.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dTanggal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.sJumlah.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tKeterangan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -113,34 +113,114 @@ Partial Class frmDepositCustomerSupplier
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
-        'LayoutControlGroup1
+        'btnKeluar
         '
-        Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.EmptySpaceItem2, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.EmptySpaceItem3, Me.EmptySpaceItem1, Me.EmptySpaceItem4, Me.EmptySpaceItem5, Me.EmptySpaceItem6})
-        Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(554, 273)
-        Me.LayoutControlGroup1.TextVisible = False
+        Me.btnKeluar.Image = CType(resources.GetObject("btnKeluar.Image"), System.Drawing.Image)
+        Me.btnKeluar.Location = New System.Drawing.Point(418, 222)
+        Me.btnKeluar.Name = "btnKeluar"
+        Me.btnKeluar.Size = New System.Drawing.Size(124, 38)
+        Me.btnKeluar.StyleController = Me.LayoutControl1
+        Me.btnKeluar.TabIndex = 20
+        Me.btnKeluar.Text = "Keluar"
         '
-        'btnBaru
+        'btnSimpan
         '
-        Me.btnBaru.Image = CType(resources.GetObject("btnBaru.Image"), System.Drawing.Image)
-        Me.btnBaru.Location = New System.Drawing.Point(12, 12)
-        Me.btnBaru.Name = "btnBaru"
-        Me.btnBaru.Size = New System.Drawing.Size(98, 38)
-        Me.btnBaru.StyleController = Me.LayoutControl1
-        Me.btnBaru.TabIndex = 4
-        Me.btnBaru.Text = "Baru"
+        Me.btnSimpan.Image = CType(resources.GetObject("btnSimpan.Image"), System.Drawing.Image)
+        Me.btnSimpan.Location = New System.Drawing.Point(290, 222)
+        Me.btnSimpan.Name = "btnSimpan"
+        Me.btnSimpan.Size = New System.Drawing.Size(124, 38)
+        Me.btnSimpan.StyleController = Me.LayoutControl1
+        Me.btnSimpan.TabIndex = 19
+        Me.btnSimpan.Text = "Simpan"
         '
-        'LayoutControlItem1
+        'tKeterangan
         '
-        Me.LayoutControlItem1.Control = Me.btnBaru
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(102, 42)
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem1.TextVisible = False
+        Me.tKeterangan.Location = New System.Drawing.Point(80, 198)
+        Me.tKeterangan.Name = "tKeterangan"
+        Me.tKeterangan.Size = New System.Drawing.Size(462, 20)
+        Me.tKeterangan.StyleController = Me.LayoutControl1
+        Me.tKeterangan.TabIndex = 18
+        '
+        'sJumlah
+        '
+        Me.sJumlah.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.sJumlah.Location = New System.Drawing.Point(80, 174)
+        Me.sJumlah.Name = "sJumlah"
+        Me.sJumlah.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.sJumlah.Size = New System.Drawing.Size(103, 20)
+        Me.sJumlah.StyleController = Me.LayoutControl1
+        Me.sJumlah.TabIndex = 17
+        '
+        'dTanggal
+        '
+        Me.dTanggal.EditValue = Nothing
+        Me.dTanggal.Location = New System.Drawing.Point(80, 150)
+        Me.dTanggal.Name = "dTanggal"
+        Me.dTanggal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dTanggal.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dTanggal.Size = New System.Drawing.Size(103, 20)
+        Me.dTanggal.StyleController = Me.LayoutControl1
+        Me.dTanggal.TabIndex = 16
+        '
+        'sSisa
+        '
+        Me.sSisa.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.sSisa.Location = New System.Drawing.Point(80, 126)
+        Me.sSisa.Name = "sSisa"
+        Me.sSisa.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.sSisa.Size = New System.Drawing.Size(103, 20)
+        Me.sSisa.StyleController = Me.LayoutControl1
+        Me.sSisa.TabIndex = 15
+        '
+        'tAlamat
+        '
+        Me.tAlamat.Location = New System.Drawing.Point(187, 102)
+        Me.tAlamat.Name = "tAlamat"
+        Me.tAlamat.Size = New System.Drawing.Size(355, 20)
+        Me.tAlamat.StyleController = Me.LayoutControl1
+        Me.tAlamat.TabIndex = 14
+        '
+        'tNama
+        '
+        Me.tNama.Location = New System.Drawing.Point(187, 78)
+        Me.tNama.Name = "tNama"
+        Me.tNama.Size = New System.Drawing.Size(355, 20)
+        Me.tNama.StyleController = Me.LayoutControl1
+        Me.tNama.TabIndex = 13
+        '
+        'tNoBukti
+        '
+        Me.tNoBukti.Location = New System.Drawing.Point(332, 54)
+        Me.tNoBukti.Name = "tNoBukti"
+        Me.tNoBukti.Size = New System.Drawing.Size(210, 20)
+        Me.tNoBukti.StyleController = Me.LayoutControl1
+        Me.tNoBukti.TabIndex = 12
+        '
+        'cKdCusSup
+        '
+        Me.cKdCusSup.Location = New System.Drawing.Point(80, 78)
+        Me.cKdCusSup.Name = "cKdCusSup"
+        Me.cKdCusSup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cKdCusSup.Properties.NullText = ""
+        Me.cKdCusSup.Properties.View = Me.CMeButtonBrowser1View
+        Me.cKdCusSup.Size = New System.Drawing.Size(103, 20)
+        Me.cKdCusSup.StyleController = Me.LayoutControl1
+        Me.cKdCusSup.TabIndex = 11
+        '
+        'CMeButtonBrowser1View
+        '
+        Me.CMeButtonBrowser1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.CMeButtonBrowser1View.Name = "CMeButtonBrowser1View"
+        Me.CMeButtonBrowser1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.CMeButtonBrowser1View.OptionsView.ShowGroupPanel = False
+        '
+        'tFaktur
+        '
+        Me.tFaktur.Location = New System.Drawing.Point(80, 54)
+        Me.tFaktur.Name = "tFaktur"
+        Me.tFaktur.Size = New System.Drawing.Size(180, 20)
+        Me.tFaktur.StyleController = Me.LayoutControl1
+        Me.tFaktur.TabIndex = 6
         '
         'txtJudul
         '
@@ -153,6 +233,35 @@ Partial Class frmDepositCustomerSupplier
         Me.txtJudul.TabIndex = 5
         Me.txtJudul.Text = "LabelControl1"
         '
+        'btnBaru
+        '
+        Me.btnBaru.Image = CType(resources.GetObject("btnBaru.Image"), System.Drawing.Image)
+        Me.btnBaru.Location = New System.Drawing.Point(12, 12)
+        Me.btnBaru.Name = "btnBaru"
+        Me.btnBaru.Size = New System.Drawing.Size(98, 38)
+        Me.btnBaru.StyleController = Me.LayoutControl1
+        Me.btnBaru.TabIndex = 4
+        Me.btnBaru.Text = "Baru"
+        '
+        'LayoutControlGroup1
+        '
+        Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlGroup1.GroupBordersVisible = False
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem4, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.EmptySpaceItem2, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.EmptySpaceItem3, Me.EmptySpaceItem1, Me.EmptySpaceItem4, Me.EmptySpaceItem5, Me.EmptySpaceItem6})
+        Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(554, 273)
+        Me.LayoutControlGroup1.TextVisible = False
+        '
+        'LayoutControlItem1
+        '
+        Me.LayoutControlItem1.Control = Me.btnBaru
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(102, 42)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem1.TextVisible = False
+        '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.txtJudul
@@ -161,14 +270,6 @@ Partial Class frmDepositCustomerSupplier
         Me.LayoutControlItem2.Size = New System.Drawing.Size(138, 42)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
-        '
-        'tFaktur
-        '
-        Me.tFaktur.Location = New System.Drawing.Point(81, 54)
-        Me.tFaktur.Name = "tFaktur"
-        Me.tFaktur.Size = New System.Drawing.Size(179, 20)
-        Me.tFaktur.StyleController = Me.LayoutControl1
-        Me.tFaktur.TabIndex = 6
         '
         'LayoutControlItem3
         '
@@ -179,17 +280,6 @@ Partial Class frmDepositCustomerSupplier
         Me.LayoutControlItem3.Text = "No. Dep Sup"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(65, 13)
         '
-        'cKdCusSup
-        '
-        Me.cKdCusSup.Location = New System.Drawing.Point(81, 78)
-        Me.cKdCusSup.Name = "cKdCusSup"
-        Me.cKdCusSup.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cKdCusSup.Properties.NullText = ""
-        Me.cKdCusSup.Properties.View = Me.CMeButtonBrowser1View
-        Me.cKdCusSup.Size = New System.Drawing.Size(102, 20)
-        Me.cKdCusSup.StyleController = Me.LayoutControl1
-        Me.cKdCusSup.TabIndex = 11
-        '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.cKdCusSup
@@ -198,21 +288,6 @@ Partial Class frmDepositCustomerSupplier
         Me.LayoutControlItem5.Size = New System.Drawing.Size(175, 24)
         Me.LayoutControlItem5.Text = "Kode Supplier"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(65, 13)
-        '
-        'CMeButtonBrowser1View
-        '
-        Me.CMeButtonBrowser1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.CMeButtonBrowser1View.Name = "CMeButtonBrowser1View"
-        Me.CMeButtonBrowser1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.CMeButtonBrowser1View.OptionsView.ShowGroupPanel = False
-        '
-        'tNoBukti
-        '
-        Me.tNoBukti.Location = New System.Drawing.Point(333, 54)
-        Me.tNoBukti.Name = "tNoBukti"
-        Me.tNoBukti.Size = New System.Drawing.Size(209, 20)
-        Me.tNoBukti.StyleController = Me.LayoutControl1
-        Me.tNoBukti.TabIndex = 12
         '
         'LayoutControlItem4
         '
@@ -223,14 +298,6 @@ Partial Class frmDepositCustomerSupplier
         Me.LayoutControlItem4.Text = "No. BKK/BBK"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(65, 13)
         '
-        'tNama
-        '
-        Me.tNama.Location = New System.Drawing.Point(187, 78)
-        Me.tNama.Name = "tNama"
-        Me.tNama.Size = New System.Drawing.Size(355, 20)
-        Me.tNama.StyleController = Me.LayoutControl1
-        Me.tNama.TabIndex = 13
-        '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.tNama
@@ -239,14 +306,6 @@ Partial Class frmDepositCustomerSupplier
         Me.LayoutControlItem6.Size = New System.Drawing.Size(359, 24)
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
-        '
-        'tAlamat
-        '
-        Me.tAlamat.Location = New System.Drawing.Point(187, 102)
-        Me.tAlamat.Name = "tAlamat"
-        Me.tAlamat.Size = New System.Drawing.Size(355, 20)
-        Me.tAlamat.StyleController = Me.LayoutControl1
-        Me.tAlamat.TabIndex = 14
         '
         'LayoutControlItem7
         '
@@ -265,16 +324,6 @@ Partial Class frmDepositCustomerSupplier
         Me.EmptySpaceItem2.Size = New System.Drawing.Size(175, 24)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
-        'sSisa
-        '
-        Me.sSisa.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sSisa.Location = New System.Drawing.Point(81, 126)
-        Me.sSisa.Name = "sSisa"
-        Me.sSisa.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.sSisa.Size = New System.Drawing.Size(102, 20)
-        Me.sSisa.StyleController = Me.LayoutControl1
-        Me.sSisa.TabIndex = 15
-        '
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.sSisa
@@ -283,17 +332,6 @@ Partial Class frmDepositCustomerSupplier
         Me.LayoutControlItem8.Size = New System.Drawing.Size(175, 24)
         Me.LayoutControlItem8.Text = "Sisa Deposit"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(65, 13)
-        '
-        'dTanggal
-        '
-        Me.dTanggal.EditValue = Nothing
-        Me.dTanggal.Location = New System.Drawing.Point(81, 150)
-        Me.dTanggal.Name = "dTanggal"
-        Me.dTanggal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dTanggal.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dTanggal.Size = New System.Drawing.Size(102, 20)
-        Me.dTanggal.StyleController = Me.LayoutControl1
-        Me.dTanggal.TabIndex = 16
         '
         'LayoutControlItem9
         '
@@ -304,16 +342,6 @@ Partial Class frmDepositCustomerSupplier
         Me.LayoutControlItem9.Text = "Tanggal"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(65, 13)
         '
-        'sJumlah
-        '
-        Me.sJumlah.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sJumlah.Location = New System.Drawing.Point(81, 174)
-        Me.sJumlah.Name = "sJumlah"
-        Me.sJumlah.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.sJumlah.Size = New System.Drawing.Size(102, 20)
-        Me.sJumlah.StyleController = Me.LayoutControl1
-        Me.sJumlah.TabIndex = 17
-        '
         'LayoutControlItem10
         '
         Me.LayoutControlItem10.Control = Me.sJumlah
@@ -322,14 +350,6 @@ Partial Class frmDepositCustomerSupplier
         Me.LayoutControlItem10.Size = New System.Drawing.Size(175, 24)
         Me.LayoutControlItem10.Text = "Jumlah"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(65, 13)
-        '
-        'tKeterangan
-        '
-        Me.tKeterangan.Location = New System.Drawing.Point(81, 198)
-        Me.tKeterangan.Name = "tKeterangan"
-        Me.tKeterangan.Size = New System.Drawing.Size(461, 20)
-        Me.tKeterangan.StyleController = Me.LayoutControl1
-        Me.tKeterangan.TabIndex = 18
         '
         'LayoutControlItem11
         '
@@ -340,16 +360,6 @@ Partial Class frmDepositCustomerSupplier
         Me.LayoutControlItem11.Text = "Keterangan"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(65, 13)
         '
-        'btnSimpan
-        '
-        Me.btnSimpan.Image = CType(resources.GetObject("btnSimpan.Image"), System.Drawing.Image)
-        Me.btnSimpan.Location = New System.Drawing.Point(290, 222)
-        Me.btnSimpan.Name = "btnSimpan"
-        Me.btnSimpan.Size = New System.Drawing.Size(124, 38)
-        Me.btnSimpan.StyleController = Me.LayoutControl1
-        Me.btnSimpan.TabIndex = 19
-        Me.btnSimpan.Text = "Simpan"
-        '
         'LayoutControlItem12
         '
         Me.LayoutControlItem12.Control = Me.btnSimpan
@@ -358,16 +368,6 @@ Partial Class frmDepositCustomerSupplier
         Me.LayoutControlItem12.Size = New System.Drawing.Size(128, 43)
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem12.TextVisible = False
-        '
-        'btnKeluar
-        '
-        Me.btnKeluar.Image = CType(resources.GetObject("btnKeluar.Image"), System.Drawing.Image)
-        Me.btnKeluar.Location = New System.Drawing.Point(418, 222)
-        Me.btnKeluar.Name = "btnKeluar"
-        Me.btnKeluar.Size = New System.Drawing.Size(124, 38)
-        Me.btnKeluar.StyleController = Me.LayoutControl1
-        Me.btnKeluar.TabIndex = 20
-        Me.btnKeluar.Text = "Keluar"
         '
         'LayoutControlItem13
         '
@@ -431,29 +431,29 @@ Partial Class frmDepositCustomerSupplier
         Me.Text = "frmDepositCustomerSupplier"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.tKeterangan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.sJumlah.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dTanggal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.sSisa.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tAlamat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tNoBukti.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cKdCusSup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CMeButtonBrowser1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tFaktur.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tFaktur.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cKdCusSup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CMeButtonBrowser1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tNoBukti.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tAlamat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.sSisa.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dTanggal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.sJumlah.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tKeterangan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()

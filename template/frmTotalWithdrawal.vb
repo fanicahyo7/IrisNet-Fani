@@ -184,7 +184,7 @@ Public Class frmTotalWithdrawal
                 sTotalPiutangOngkir.EditValue = piutangongkir
             End If
         Catch ex As Exception
-            MsgBox("Format Excel Salah!" & vbCrLf & "Silahkan cek Format Excel anda." & ex.ToString, vbCritical + vbOKOnly, "Peringatan")
+            MsgBox("Format Excel Salah!" & vbCrLf & "Silahkan cek Format Excel anda." & vbCrLf & ex.ToString, vbCritical + vbOKOnly, "Peringatan")
             dgList.Grid_ClearData()
             tLokasi.Text = ""
             btnPelunasan.Enabled = False

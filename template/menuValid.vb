@@ -487,4 +487,10 @@ Public Class menuValid
             xx.ShowDialog(Me)
         End Using
     End Sub
+
+    Private Sub SaldoPiutangPerTanggalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaldoPiutangPerTanggalToolStripMenuItem.Click
+        Using xx As New frmSaldoPiutang
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
 End Class
