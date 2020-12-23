@@ -2,10 +2,17 @@
 Imports System.Data.SqlClient
 Imports DevExpress.XtraGrid.Views.Base
 Public Class frmLapKartuPiutangCustomer
+    Dim pKode As String = ""
 
     Private Sub frmLapKartuPiutangCustomer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         rJenis.SelectedIndex = 0
-        cKdCustomer.FirstInit(PubConnStr, "select Kode,Nama,Alamat from mstCustomer", {tNama, tAlamat})
+        Dim kode As String = ""
+        If Me.Text.ToUpper = "KARTU PIUTANG" Then
+            kode = "select Kode,Nama,Alamat from mstCustomer"
+        ElseIf Me.Text.ToUpper = "KARTU HUTANG" Then
+            kode = "select Kode,Nama,Alamat from mstSupplier"
+        End If
+        cKdCustomer.FirstInit(PubConnStr, kode, {tNama, tAlamat})
 
         dBulan.Properties.DisplayFormat.FormatString = "yyyy MMMM"
         dBulan.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Custom
@@ -15,12 +22,32 @@ Public Class frmLapKartuPiutangCustomer
 
         dBulan.EditValue = Now
         koneksi()
+
+        If Me.Tag <> "" Then pKode = Me.Tag
+        If pKode <> "" Then
+            cKdCustomer.Text = pKode
+            btnAmbilData.PerformClick()
+            SetTextReadOnly({cKdCustomer})
+        End If
     End Sub
 
     Private Sub btnAmbilData_Click(sender As Object, e As EventArgs) Handles btnAmbilData.Click
         If cKdCustomer.Text = "" Then
             MsgBox("Pilih Kode Customer Terlebih Dahulu!", vbOKOnly + vbCritical, "Peringatan")
         Else
+            Dim jenis As String = ""
+            Dim nama As String = ""
+            Dim htgptg As String = ""
+            If Me.Text.ToUpper = "KARTU PIUTANG" Then
+                jenis = "vwKartuPiutang"
+                nama = "KdCustomer"
+                htgptg = "trLPtgDetail"
+            ElseIf Me.Text.ToUpper = "KARTU HUTANG" Then
+                jenis = "vwKartuHutang"
+                nama = "KdSupplier"
+                htgptg = "trLHtgDetail"
+            End If
+
             Dim query As String = ""
             Dim tambahquery As String = ""
             If rJenis.SelectedIndex = 0 Then
@@ -37,21 +64,21 @@ Public Class frmLapKartuPiutangCustomer
             query = _
                 "IF OBJECT_ID('tempdb..##tmpAwal') IS NOT NULL DROP TABLE ##tmpAwal " & _
                     "select Tanggal,Faktur,FakturAsli,JthTmp,NoBuktiKas,Keterangan,Debet,Kredit,debet-Kredit as saldo," & _
-                    "sisa,urutan into ##tmpAwal from vwKartuPiutang where kdcustomer='" & cKdCustomer.Text & "'; " & _
+                    "sisa,urutan into ##tmpAwal from " & jenis & " where " & nama & "='" & cKdCustomer.Text & "'; " & _
                     "CREATE CLUSTERED INDEX ix_tmpAwal ON ##tmpAwal (Tanggal); " & _
                 "with " & _
                 "ctedebet as(" & _
-                    "select 'x' as KdCustomer,sum(Debet) as Debet from ##tmpAwal " & _
+                    "select 'x' as " & nama & ",sum(Debet) as Debet from ##tmpAwal " & _
                     "where convert(varchar(6),ISNULL(Tanggal,'1901-01-01'),112) < '" & Format(dBulan.EditValue, "yyyyMM") & "' " & _
                     ")," & _
                 "ctekredit as(" & _
-                    "select 'x' as KdCustomer,sum(Kredit) as Kredit from ##tmpAwal " & _
+                    "select 'x' as " & nama & ",sum(Kredit) as Kredit from ##tmpAwal " & _
                     "where convert(varchar(6),ISNULL(Tanggal,'1901-01-01'),112) < '" & Format(dBulan.EditValue, "yyyyMM") & "' " & _
                     ")," & _
                 "ctesaldoawal as (" & _
                     "select DATEADD(DAY,-1,'" & Format(dBulan.EditValue, "yyyy/MM") & "/01') as Tanggal,'' as Faktur, '' as FakturAsli, null as JthTmp,'' as NoBuktiKas, " & _
                     "'SALDO AWAL' as Keterangan,a.Debet,b.Kredit, a.Debet-b.Kredit as Saldo, 0 as sisa, 0 as urutan from ctedebet a " & _
-                    "inner join ctekredit b on a.KdCustomer = b.KdCustomer" & _
+                    "inner join ctekredit b on a." & nama & " = b." & nama & "" & _
                     ")," & _
                 "cteunion as (" & _
                     "" & tambahquery & "" & _
@@ -64,19 +91,8 @@ Public Class frmLapKartuPiutangCustomer
                     "where b.Tanggal <= a.Tanggal and b.urut<=a.urut) as Saldo," & _
                     "sisa, a.urutan, urut, c.FakturAsli as FakturAsliPP " & _
                     "from ctefinal a " & _
-                    "left join trLPtgDetail c on a.Faktur = c.FakturAsli " & _
+                    "left join " & htgptg & " c on a.Faktur = c.FakturAsli " & _
                     "order by a.Tanggal,Faktur,a.urutan"
-
-            'Dim dt As New DataTable
-            'da = New SqlDataAdapter(query, kon)
-            'da.Fill(dt)
-
-            'dgLap.DataSource = dt
-            'dgLap.colWidth = {0.8, 1, 1, 0.8, 1, 1, 0.8, 0.8, 0.8, 0.2, 0.2, 0.2}
-            'dgLap.colSum = {"Debet", "Kredit"}
-            'dgLap.colVisibleFalse = {"sisa", "urutan", "urut"}
-            'dgLap.colWidth = {0.8, 1, 1, 0.8, 1, 1, 0.8, 0.8, 0.8, 0.2, 0.2, 0.2}
-            'dgLap.RefreshDataView()
 
             dgLap.FirstInit(query, {0.8, 1, 1, 0.8, 1, 1, 0.8, 0.8, 0.8, 0.2, 0.2, 0.2, 0.2}, , , {"sisa", "urutan", "urut", "FakturAsliPP"})
             dgLap.dSourceUsePK = False
@@ -95,15 +111,27 @@ Public Class frmLapKartuPiutangCustomer
     End Sub
 
     Private Sub dgLap_DoubleClick(sender As Object, e As EventArgs) Handles dgLap.DoubleClick
-        
+
     End Sub
 
     Private Sub dgLap_Grid_CustomDrawCell(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs) Handles dgLap.Grid_CustomDrawCell
-        If Strings.Mid(dgLap.GetRowCellValue(e.RowHandle, "Faktur"), 8, 2).ToUpper = "PP" And Not Strings.Trim(dgLap.GetRowCellValue(e.RowHandle, "Keterangan")).ToString.ToUpper = "PEMBULATAN" Then
-            If e.Column.FieldName.ToUpper = "SALDO" Then
-                e.Appearance.ForeColor = Color.Black
-            Else
-                e.Appearance.ForeColor = Color.Green
+        Dim jenis As String = ""
+        If Me.Text.ToUpper = "KARTU PIUTANG" Then
+            jenis = "PP".ToUpper
+        ElseIf Me.Text.ToUpper = "KARTU HUTANG" Then
+            jenis = "PH".ToUpper
+
+        End If
+
+        If IsDBNull(dgLap.GetRowCellValue(e.RowHandle, "Faktur")) Then
+            e.Appearance.ForeColor = Color.Black
+        Else
+            If Strings.Mid(dgLap.GetRowCellValue(e.RowHandle, "Faktur"), 8, 2).ToUpper = jenis And Not Strings.Trim(dgLap.GetRowCellValue(e.RowHandle, "Keterangan")).ToString.ToUpper = "PEMBULATAN" Then
+                If e.Column.FieldName.ToUpper = "SALDO" Then
+                    e.Appearance.ForeColor = Color.Black
+                Else
+                    e.Appearance.ForeColor = Color.Green
+                End If
             End If
         End If
 
@@ -117,8 +145,13 @@ Public Class frmLapKartuPiutangCustomer
     End Sub
 
     Private Sub dgLap_Grid_DoubleClick(sender As Object, e As EventArgs) Handles dgLap.Grid_DoubleClick
-        If Strings.Mid(dgLap.GetRowCellValue(dgLap.FocusedRowHandle, "Faktur"), 8, 2).ToUpper = "PP" Then
+        If Strings.Mid(dgLap.GetRowCellValue(dgLap.FocusedRowHandle, "Faktur"), 8, 2).ToUpper = "PP" Or Strings.Mid(dgLap.GetRowCellValue(dgLap.FocusedRowHandle, "Faktur"), 8, 2).ToUpper = "PH" Then
             Using xx As New frmDetailPelunasan(dgLap.GetRowCellValue(dgLap.FocusedRowHandle, "Faktur"))
+                If Strings.Mid(dgLap.GetRowCellValue(dgLap.FocusedRowHandle, "Faktur"), 8, 2).ToUpper = "PP" Then
+                    xx.Text = "DETAIL PELUNASAN PIUTANG".ToUpper
+                ElseIf Strings.Mid(dgLap.GetRowCellValue(dgLap.FocusedRowHandle, "Faktur"), 8, 2).ToUpper = "PH" Then
+                    xx.Text = "DETAIL PELUNASAN HUTANG".ToUpper
+                End If
                 xx.ShowDialog(Me)
             End Using
         End If

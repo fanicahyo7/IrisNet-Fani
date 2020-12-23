@@ -36,20 +36,50 @@ Public Class frmDetailPelunasan
         tTotalPelunasan.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
         tTotalPelunasan.Properties.Mask.UseMaskAsDisplayFormat = True
 
-        Dim query As String = _
-            "select a.Faktur as FakturPP, a.FakturAsli as Faktur, b.FakturAsli,Keterangan," & _
-            "case when SUBSTRING(a.FakturAsli,8,2) = 'FJ' then Jumlah else 0 end as Debet," & _
-            "case when SUBSTRING(a.FakturAsli,8,2) <> 'FJ' then Jumlah * -1 else  0 end as Kredit," & _
-            "Jumlah as Pelunasan " & _
-            "from vwDetailPiutang a " & _
-            "left join vwKartuPiutang b on a.FakturAsli = b.faktur " & _
-            "where a.Faktur = '" & faktur & "' order by FktAcuan, a.Tanggal "
-        dgList.FirstInit(query, {0.2, 1, 1, 1, 0.8, 0.8, 0.8}, , , {"FakturPP"})
+        Dim jenis As String = ""
+        Dim kode As String = ""
+        Dim fkt As String = ""
+        Dim ptghtg As String = ""
+        Dim total As String = ""
+        Dim query As String = ""
+        If Me.Text.ToUpper = "DETAIL PELUNASAN PIUTANG" Then
+            jenis = "Piutang"
+            kode = "FJ"
+            fkt = "PP"
+            ptghtg = "trLPtgheader"
+            total = "Total"
+
+
+            query = _
+                "select a.Faktur as FakturPP, a.FakturAsli as Faktur, b.FakturAsli,Keterangan," & _
+                "case when SUBSTRING(a.FakturAsli,8,2) = 'FJ' then Jumlah else 0 end as Debet," & _
+                "case when SUBSTRING(a.FakturAsli,8,2) <> 'FJ' then Jumlah * -1 else  0 end as Kredit," & _
+                "Jumlah as Pelunasan " & _
+                "from vwDetailPiutang a " & _
+                "left join vwKartuPiutang b on a.FakturAsli = b.faktur " & _
+                "where a.Faktur = '" & faktur & "' order by FktAcuan, a.Tanggal "
+            dgList.FirstInit(query, {0.2, 1, 1, 1, 0.8, 0.8, 0.8}, , , {"FakturPP"})
+
+
+        ElseIf Me.Text.ToUpper = "DETAIL PELUNASAN HUTANG" Then
+            jenis = "Hutang"
+            kode = "FB"
+            fkt = "PH"
+            ptghtg = "vwLHtgHeader"
+            total = "Jumlah"
+
+            query = _
+                "select Faktur,Fkt as FakturAsli,Tanggal,'PENJUALAN KONSINYASI' as Keterangan," & _
+                "Jumlah as Debet, '0' as Kredit, Jumlah as Pelunasan from vwDetailHutang where Faktur = '" & faktur & "' order by FktAcuan, Tanggal"
+            dgList.FirstInit(query, {0.2, 1, 1, 1, 0.8, 0.8, 0.8}, , , {"Faktur"})
+        End If
+
         dgList.RefreshData(False)
+
 
         Dim db As New cMeDB
         Dim pQuery As String = _
-            "select Faktur,Total as Pelunasan,Pembulatan,Total+Pembulatan as TotalPelunasan from trLPtgHeader where Faktur='" & faktur & "'"
+            "select Faktur,Total as Pelunasan,Pembulatan,Total+Pembulatan as TotalPelunasan from " & ptghtg & " where Faktur='" & faktur & "'"
         db.FillMe(pQuery, True)
 
         If db.Rows.Count > 0 Then

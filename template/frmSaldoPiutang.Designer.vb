@@ -22,19 +22,19 @@ Partial Class frmSaldoPiutang
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSaldoPiutang))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.dTanggal = New DevExpress.XtraEditors.DateEdit()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.btnTampil = New DevExpress.XtraEditors.SimpleButton()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.dgList = New meCore.ctrlMeDataGrid()
+        Me.btnTampil = New DevExpress.XtraEditors.SimpleButton()
+        Me.dTanggal = New DevExpress.XtraEditors.DateEdit()
+        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dTanggal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,61 +53,6 @@ Partial Class frmSaldoPiutang
         Me.LayoutControl1.Size = New System.Drawing.Size(817, 455)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
-        '
-        'LayoutControlGroup1
-        '
-        Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.EmptySpaceItem1})
-        Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(817, 455)
-        Me.LayoutControlGroup1.TextVisible = False
-        '
-        'dTanggal
-        '
-        Me.dTanggal.EditValue = Nothing
-        Me.dTanggal.Location = New System.Drawing.Point(90, 12)
-        Me.dTanggal.Name = "dTanggal"
-        Me.dTanggal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dTanggal.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dTanggal.Size = New System.Drawing.Size(110, 20)
-        Me.dTanggal.StyleController = Me.LayoutControl1
-        Me.dTanggal.TabIndex = 4
-        '
-        'LayoutControlItem1
-        '
-        Me.LayoutControlItem1.Control = Me.dTanggal
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem1.MaxSize = New System.Drawing.Size(192, 26)
-        Me.LayoutControlItem1.MinSize = New System.Drawing.Size(192, 26)
-        Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(192, 42)
-        Me.LayoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.LayoutControlItem1.Text = "Sampai Dengan"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(74, 13)
-        '
-        'btnTampil
-        '
-        Me.btnTampil.Image = CType(resources.GetObject("btnTampil.Image"), System.Drawing.Image)
-        Me.btnTampil.Location = New System.Drawing.Point(204, 12)
-        Me.btnTampil.Name = "btnTampil"
-        Me.btnTampil.Size = New System.Drawing.Size(127, 38)
-        Me.btnTampil.StyleController = Me.LayoutControl1
-        Me.btnTampil.TabIndex = 5
-        Me.btnTampil.Text = "Tampilkan Data"
-        '
-        'LayoutControlItem2
-        '
-        Me.LayoutControlItem2.Control = Me.btnTampil
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(192, 0)
-        Me.LayoutControlItem2.MaxSize = New System.Drawing.Size(131, 42)
-        Me.LayoutControlItem2.MinSize = New System.Drawing.Size(131, 42)
-        Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(131, 42)
-        Me.LayoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem2.TextVisible = False
         '
         'dgList
         '
@@ -128,6 +73,61 @@ Partial Class frmSaldoPiutang
         Me.dgList.ShowFooter = True
         Me.dgList.Size = New System.Drawing.Size(793, 389)
         Me.dgList.TabIndex = 6
+        '
+        'btnTampil
+        '
+        Me.btnTampil.Image = CType(resources.GetObject("btnTampil.Image"), System.Drawing.Image)
+        Me.btnTampil.Location = New System.Drawing.Point(204, 12)
+        Me.btnTampil.Name = "btnTampil"
+        Me.btnTampil.Size = New System.Drawing.Size(127, 38)
+        Me.btnTampil.StyleController = Me.LayoutControl1
+        Me.btnTampil.TabIndex = 5
+        Me.btnTampil.Text = "Tampilkan Data"
+        '
+        'dTanggal
+        '
+        Me.dTanggal.EditValue = Nothing
+        Me.dTanggal.Location = New System.Drawing.Point(89, 12)
+        Me.dTanggal.Name = "dTanggal"
+        Me.dTanggal.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dTanggal.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dTanggal.Size = New System.Drawing.Size(111, 20)
+        Me.dTanggal.StyleController = Me.LayoutControl1
+        Me.dTanggal.TabIndex = 4
+        '
+        'LayoutControlGroup1
+        '
+        Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlGroup1.GroupBordersVisible = False
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.EmptySpaceItem1})
+        Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(817, 455)
+        Me.LayoutControlGroup1.TextVisible = False
+        '
+        'LayoutControlItem1
+        '
+        Me.LayoutControlItem1.Control = Me.dTanggal
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.MaxSize = New System.Drawing.Size(192, 26)
+        Me.LayoutControlItem1.MinSize = New System.Drawing.Size(192, 26)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(192, 42)
+        Me.LayoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem1.Text = "Sampai Dengan"
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(74, 13)
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me.btnTampil
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(192, 0)
+        Me.LayoutControlItem2.MaxSize = New System.Drawing.Size(131, 42)
+        Me.LayoutControlItem2.MinSize = New System.Drawing.Size(131, 42)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(131, 42)
+        Me.LayoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem2.TextVisible = False
         '
         'LayoutControlItem3
         '
@@ -157,9 +157,9 @@ Partial Class frmSaldoPiutang
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dTanggal.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dTanggal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()

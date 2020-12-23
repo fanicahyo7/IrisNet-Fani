@@ -294,6 +294,7 @@ Partial Class frmLapKartuPiutangCustomer
         Me.ClientSize = New System.Drawing.Size(882, 483)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Name = "frmLapKartuPiutangCustomer"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmLapKartuPiutangCustomer"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)

@@ -404,6 +404,7 @@ Public Class menuValid
 
     Private Sub PiutangCustomerToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PiutangCustomerToolStripMenuItem.Click
         Using xx As New frmLapKartuPiutangCustomer
+            xx.Text = "KARTU PIUTANG".ToUpper
             xx.ShowDialog(Me)
         End Using
     End Sub
@@ -490,6 +491,21 @@ Public Class menuValid
 
     Private Sub SaldoPiutangPerTanggalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaldoPiutangPerTanggalToolStripMenuItem.Click
         Using xx As New frmSaldoPiutang
+            xx.Text = "SALDO PIUTANG".ToUpper
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
+
+    Private Sub SaldoHutangPerTanggalToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaldoHutangPerTanggalToolStripMenuItem.Click
+        Using xx As New frmSaldoPiutang
+            xx.Text = "SALDO HUTANG".ToUpper
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
+
+    Private Sub HutangSupplierToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HutangSupplierToolStripMenuItem.Click
+        Using xx As New frmLapKartuPiutangCustomer
+            xx.Text = "KARTU HUTANG".ToUpper
             xx.ShowDialog(Me)
         End Using
     End Sub
