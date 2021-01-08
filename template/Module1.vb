@@ -9,11 +9,20 @@ Module Module1
     Public ds As DataSet
     Public dt As DataTable
 
-    Sub koneksi()
+    Sub koneksi(Optional connstr As String = Nothing)
+        If connstr Is Nothing Then connstr = meCore.PubConnStr
         'kon = New SqlConnection("data source=FANI; initial catalog=TM601KEDIRI; uid=sa; password=gogogo")
-        kon = New SqlConnection(PubConnStr)
+        kon = New SqlConnection(connstr)
         If kon.State = ConnectionState.Closed Then
             kon.Open()
         End If
     End Sub
+
+    'Sub koneksi()
+    '    'kon = New SqlConnection("data source=FANI; initial catalog=TM601KEDIRI; uid=sa; password=gogogo")
+    '    kon = New SqlConnection(PubConnStr)
+    '    If kon.State = ConnectionState.Closed Then
+    '        kon.Open()
+    '    End If
+    'End Sub
 End Module

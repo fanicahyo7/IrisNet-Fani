@@ -72,6 +72,8 @@ Partial Class menuValid
         Me.SaldoPiutangPerTanggalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SupplierToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.UangMukaSupplierToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.SaldoHutangPerTanggalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PelunasanHutangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReturToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PembelianToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.KonsinyasiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -83,6 +85,7 @@ Partial Class menuValid
         Me.BarangMasukKeluarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PiutangCustomerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ForeCastHutangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HutangSupplierToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FormCobaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
@@ -91,8 +94,7 @@ Partial Class menuValid
         Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
-        Me.SaldoHutangPerTanggalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.HutangSupplierToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NPMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -405,7 +407,7 @@ Partial Class menuValid
         '
         'SupplierToolStripMenuItem
         '
-        Me.SupplierToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UangMukaSupplierToolStripMenuItem, Me.SaldoHutangPerTanggalToolStripMenuItem})
+        Me.SupplierToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UangMukaSupplierToolStripMenuItem, Me.SaldoHutangPerTanggalToolStripMenuItem, Me.PelunasanHutangToolStripMenuItem})
         Me.SupplierToolStripMenuItem.Name = "SupplierToolStripMenuItem"
         Me.SupplierToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
         Me.SupplierToolStripMenuItem.Text = "Supplier"
@@ -415,6 +417,18 @@ Partial Class menuValid
         Me.UangMukaSupplierToolStripMenuItem.Name = "UangMukaSupplierToolStripMenuItem"
         Me.UangMukaSupplierToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
         Me.UangMukaSupplierToolStripMenuItem.Text = "Uang Muka Supplier"
+        '
+        'SaldoHutangPerTanggalToolStripMenuItem
+        '
+        Me.SaldoHutangPerTanggalToolStripMenuItem.Name = "SaldoHutangPerTanggalToolStripMenuItem"
+        Me.SaldoHutangPerTanggalToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.SaldoHutangPerTanggalToolStripMenuItem.Text = "Saldo Hutang Per Tanggal"
+        '
+        'PelunasanHutangToolStripMenuItem
+        '
+        Me.PelunasanHutangToolStripMenuItem.Name = "PelunasanHutangToolStripMenuItem"
+        Me.PelunasanHutangToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.PelunasanHutangToolStripMenuItem.Text = "Pelunasan Hutang"
         '
         'ReturToolStripMenuItem1
         '
@@ -443,7 +457,7 @@ Partial Class menuValid
         '
         'Jan20ToolStripMenuItem
         '
-        Me.Jan20ToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PenjualanToolStripMenuItem1, Me.MutasiToolStripMenuItem, Me.AsdsdfdgToolStripMenuItem, Me.BarangMasukKeluarToolStripMenuItem, Me.PiutangCustomerToolStripMenuItem, Me.ForeCastHutangToolStripMenuItem, Me.HutangSupplierToolStripMenuItem})
+        Me.Jan20ToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PenjualanToolStripMenuItem1, Me.MutasiToolStripMenuItem, Me.AsdsdfdgToolStripMenuItem, Me.BarangMasukKeluarToolStripMenuItem, Me.PiutangCustomerToolStripMenuItem, Me.ForeCastHutangToolStripMenuItem, Me.HutangSupplierToolStripMenuItem, Me.NPMToolStripMenuItem})
         Me.Jan20ToolStripMenuItem.Name = "Jan20ToolStripMenuItem"
         Me.Jan20ToolStripMenuItem.Size = New System.Drawing.Size(62, 20)
         Me.Jan20ToolStripMenuItem.Text = "Laporan"
@@ -483,6 +497,12 @@ Partial Class menuValid
         Me.ForeCastHutangToolStripMenuItem.Name = "ForeCastHutangToolStripMenuItem"
         Me.ForeCastHutangToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
         Me.ForeCastHutangToolStripMenuItem.Text = "ForeCast Hutang"
+        '
+        'HutangSupplierToolStripMenuItem
+        '
+        Me.HutangSupplierToolStripMenuItem.Name = "HutangSupplierToolStripMenuItem"
+        Me.HutangSupplierToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.HutangSupplierToolStripMenuItem.Text = "Hutang Supplier"
         '
         'FormCobaToolStripMenuItem
         '
@@ -535,17 +555,11 @@ Partial Class menuValid
         Me.ImageList1.ImageSize = New System.Drawing.Size(16, 16)
         Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
         '
-        'SaldoHutangPerTanggalToolStripMenuItem
+        'NPMToolStripMenuItem
         '
-        Me.SaldoHutangPerTanggalToolStripMenuItem.Name = "SaldoHutangPerTanggalToolStripMenuItem"
-        Me.SaldoHutangPerTanggalToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
-        Me.SaldoHutangPerTanggalToolStripMenuItem.Text = "Saldo Hutang Per Tanggal"
-        '
-        'HutangSupplierToolStripMenuItem
-        '
-        Me.HutangSupplierToolStripMenuItem.Name = "HutangSupplierToolStripMenuItem"
-        Me.HutangSupplierToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
-        Me.HutangSupplierToolStripMenuItem.Text = "Hutang Supplier"
+        Me.NPMToolStripMenuItem.Name = "NPMToolStripMenuItem"
+        Me.NPMToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.NPMToolStripMenuItem.Text = "NPM"
         '
         'menuValid
         '
@@ -636,4 +650,6 @@ Partial Class menuValid
     Friend WithEvents SaldoPiutangPerTanggalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SaldoHutangPerTanggalToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HutangSupplierToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PelunasanHutangToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents NPMToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

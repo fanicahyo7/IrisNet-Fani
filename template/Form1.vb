@@ -31,4 +31,24 @@ Public Class Form1
         CtrlMeDataGrid1.DataSource = dbx
         CtrlMeDataGrid1.RefreshDataView()
     End Sub
+
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        Control.CheckForIllegalCrossThreadCalls = False
+    End Sub
+
+    Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
+        For I = 0 To 80 'Telling the program to count from 0 - 200
+            TextBox1.Text = I
+            BackgroundWorker1.ReportProgress(I)
+            System.Threading.Thread.Sleep(100)
+        Next
+    End Sub
+
+    Private Sub SimpleButton3_Click(sender As Object, e As EventArgs) Handles SimpleButton3.Click
+        BackgroundWorker1.RunWorkerAsync()
+    End Sub
+
+    Private Sub BackgroundWorker1_ProgressChanged(sender As Object, e As System.ComponentModel.ProgressChangedEventArgs) Handles BackgroundWorker1.ProgressChanged
+        ProgressBar1.Value = e.ProgressPercentage
+    End Sub
 End Class

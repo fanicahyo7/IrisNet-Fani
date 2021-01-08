@@ -497,8 +497,8 @@ D:\14 Jan 2020\TrPengunjung\template\template\obj\Debug\template.pdb
 D:\14 Jan 2020\TrPengunjung\template\template\obj\Debug\template.vbprojResolveAssemblyReference.cache
 D:\14 Jan 2020\TrPengunjung\template\template\obj\Debug\template.frmMstBuku.resources
 D:\14 Jan 2020\TrPengunjung\template\template\obj\Debug\template.frmMstATK.resources
-D:\IrisNet-Fani\template\bin\Debug\template.exe
 D:\IrisNet-Fani\template\bin\Debug\template.exe.config
+D:\IrisNet-Fani\template\bin\Debug\template.exe
 D:\IrisNet-Fani\template\bin\Debug\template.pdb
 D:\IrisNet-Fani\template\bin\Debug\template.xml
 D:\IrisNet-Fani\template\bin\Debug\Accessibility.dll
@@ -525,6 +525,7 @@ D:\IrisNet-Fani\template\bin\Debug\de\DevExpress.DataAccess.v16.2.resources.dll
 D:\IrisNet-Fani\template\bin\Debug\es\DevExpress.DataAccess.v16.2.resources.dll
 D:\IrisNet-Fani\template\bin\Debug\ja\DevExpress.DataAccess.v16.2.resources.dll
 D:\IrisNet-Fani\template\bin\Debug\ru\DevExpress.DataAccess.v16.2.resources.dll
+D:\IrisNet-Fani\template\obj\Debug\template.vbprojResolveAssemblyReference.cache
 D:\IrisNet-Fani\template\obj\Debug\template.ctrlFilterStock.resources
 D:\IrisNet-Fani\template\obj\Debug\template.Form1.resources
 D:\IrisNet-Fani\template\obj\Debug\template.Form2.resources
@@ -534,6 +535,7 @@ D:\IrisNet-Fani\template\obj\Debug\template.Form5.resources
 D:\IrisNet-Fani\template\obj\Debug\template.Form6.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmAmbilFaktur.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmBlokirNomorNota.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmDepositCustomerSupplier.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmDetailBarang.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmDetailCard.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmDetailPelunasan.resources
@@ -567,6 +569,8 @@ D:\IrisNet-Fani\template\obj\Debug\template.frmMstGudang.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmMstTeamOrder.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmMstVoucher.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmMutasi.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmPelunasanHutang.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmPelunasanPiutang.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmPenerbit.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmPengunjung.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmPengunjungList.resources
@@ -586,6 +590,7 @@ D:\IrisNet-Fani\template\obj\Debug\template.frmRptGolSupTerlaris.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmRptUmurStok.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmRptUmurStokSupGolDetail.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmRptUmurStokSupGol.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmSaldoPiutang.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmSettingATK.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmSettingBuku.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmTerimaEkspedisi.resources
@@ -614,7 +619,4 @@ D:\IrisNet-Fani\template\obj\Debug\template.exe.licenses
 D:\IrisNet-Fani\template\obj\Debug\template.exe
 D:\IrisNet-Fani\template\obj\Debug\template.xml
 D:\IrisNet-Fani\template\obj\Debug\template.pdb
-D:\IrisNet-Fani\template\obj\Debug\template.vbprojResolveAssemblyReference.cache
-D:\IrisNet-Fani\template\obj\Debug\template.frmDepositCustomerSupplier.resources
-D:\IrisNet-Fani\template\obj\Debug\template.frmPelunasanPiutang.resources
-D:\IrisNet-Fani\template\obj\Debug\template.frmSaldoPiutang.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmLapNPM.resources

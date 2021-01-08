@@ -409,6 +409,12 @@
     <Compile Include="frmLapKartuPiutangCustomer.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmLapNPM.Designer.vb">
+      <DependentUpon>frmLapNPM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLapNPM.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmLaporanNotaManual.Designer.vb">
       <DependentUpon>frmLaporanNotaManual.vb</DependentUpon>
     </Compile>
@@ -545,6 +551,12 @@
       <DependentUpon>frmMutasi.vb</DependentUpon>
     </Compile>
     <Compile Include="frmMutasi.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPelunasanHutang.Designer.vb">
+      <DependentUpon>frmPelunasanHutang.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPelunasanHutang.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmPelunasanPiutang.Designer.vb">
@@ -884,6 +896,9 @@
     <EmbeddedResource Include="frmLapKartuPiutangCustomer.resx">
       <DependentUpon>frmLapKartuPiutangCustomer.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmLapNPM.resx">
+      <DependentUpon>frmLapNPM.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmLaporanNotaManual.resx">
       <DependentUpon>frmLaporanNotaManual.vb</DependentUpon>
     </EmbeddedResource>
@@ -952,6 +967,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMutasi.resx">
       <DependentUpon>frmMutasi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPelunasanHutang.resx">
+      <DependentUpon>frmPelunasanHutang.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPelunasanPiutang.resx">
       <DependentUpon>frmPelunasanPiutang.vb</DependentUpon>

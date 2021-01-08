@@ -509,4 +509,16 @@ Public Class menuValid
             xx.ShowDialog(Me)
         End Using
     End Sub
+
+    Private Sub PelunasanHutangToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PelunasanHutangToolStripMenuItem.Click
+        Using xx As New frmPelunasanHutang
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
+
+    Private Sub NPMToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles NPMToolStripMenuItem.Click
+        Using xx As New frmLapNPM
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
 End Class
