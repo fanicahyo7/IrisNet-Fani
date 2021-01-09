@@ -525,7 +525,6 @@ D:\IrisNet-Fani\template\bin\Debug\de\DevExpress.DataAccess.v16.2.resources.dll
 D:\IrisNet-Fani\template\bin\Debug\es\DevExpress.DataAccess.v16.2.resources.dll
 D:\IrisNet-Fani\template\bin\Debug\ja\DevExpress.DataAccess.v16.2.resources.dll
 D:\IrisNet-Fani\template\bin\Debug\ru\DevExpress.DataAccess.v16.2.resources.dll
-D:\IrisNet-Fani\template\obj\Debug\template.vbprojResolveAssemblyReference.cache
 D:\IrisNet-Fani\template\obj\Debug\template.ctrlFilterStock.resources
 D:\IrisNet-Fani\template\obj\Debug\template.Form1.resources
 D:\IrisNet-Fani\template\obj\Debug\template.Form2.resources
@@ -546,6 +545,7 @@ D:\IrisNet-Fani\template\obj\Debug\template.frmFormatExcel.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmGrafikBig.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmLapForecastHutang.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmLapKartuPiutangCustomer.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmLapNPM.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmLaporanNotaManual.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmMstBank.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmmstBankAdd.resources
@@ -619,4 +619,3 @@ D:\IrisNet-Fani\template\obj\Debug\template.exe.licenses
 D:\IrisNet-Fani\template\obj\Debug\template.exe
 D:\IrisNet-Fani\template\obj\Debug\template.xml
 D:\IrisNet-Fani\template\obj\Debug\template.pdb
-D:\IrisNet-Fani\template\obj\Debug\template.frmLapNPM.resources

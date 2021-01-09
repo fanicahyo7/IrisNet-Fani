@@ -19,9 +19,11 @@ Partial Class frmLapNPM
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
+        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmLapNPM))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.cJenis = New System.Windows.Forms.ComboBox()
         Me.dPeriode = New DevExpress.XtraEditors.DateEdit()
         Me.tJenis = New DevExpress.XtraEditors.TextEdit()
@@ -29,9 +31,7 @@ Partial Class frmLapNPM
         Me.tNama = New DevExpress.XtraEditors.TextEdit()
         Me.cKdCompany = New meCore.cMeButtonBrowser()
         Me.CMeButtonBrowser2View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.dgList = New meCore.ctrlMeDataGrid()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -41,8 +41,12 @@ Partial Class frmLapNPM
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dPeriode.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dPeriode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tJenis.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,7 +54,6 @@ Partial Class frmLapNPM
         CType(Me.cKdCompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CMeButtonBrowser2View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -60,17 +63,19 @@ Partial Class frmLapNPM
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.GridControl1)
         Me.LayoutControl1.Controls.Add(Me.cJenis)
         Me.LayoutControl1.Controls.Add(Me.dPeriode)
         Me.LayoutControl1.Controls.Add(Me.tJenis)
         Me.LayoutControl1.Controls.Add(Me.btnAmbilData)
         Me.LayoutControl1.Controls.Add(Me.tNama)
         Me.LayoutControl1.Controls.Add(Me.cKdCompany)
-        Me.LayoutControl1.Controls.Add(Me.dgList)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl1.Name = "LayoutControl1"
@@ -78,6 +83,23 @@ Partial Class frmLapNPM
         Me.LayoutControl1.Size = New System.Drawing.Size(796, 444)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'GridControl1
+        '
+        GridLevelNode1.LevelTemplate = Me.GridView2
+        GridLevelNode1.RelationName = "Level1"
+        Me.GridControl1.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
+        Me.GridControl1.Location = New System.Drawing.Point(12, 127)
+        Me.GridControl1.MainView = Me.GridView1
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.Size = New System.Drawing.Size(772, 305)
+        Me.GridControl1.TabIndex = 13
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1, Me.GridView2})
+        '
+        'GridView1
+        '
+        Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.Name = "GridView1"
         '
         'cJenis
         '
@@ -144,44 +166,15 @@ Partial Class frmLapNPM
         Me.CMeButtonBrowser2View.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.CMeButtonBrowser2View.OptionsView.ShowGroupPanel = False
         '
-        'dgList
-        '
-        Me.dgList.colSum = Nothing
-        Me.dgList.ConnString = Nothing
-        Me.dgList.dSourceUsePK = True
-        Me.dgList.FilterPopUpMode = DevExpress.XtraGrid.Columns.FilterPopupMode.[Default]
-        Me.dgList.Location = New System.Drawing.Point(12, 127)
-        Me.dgList.Name = "dgList"
-        Me.dgList.PopDeleteShow = False
-        Me.dgList.PopExportShow = True
-        Me.dgList.PopNewShow = False
-        Me.dgList.PopOpenShow = False
-        Me.dgList.PopPrintShow = False
-        Me.dgList.PopRefreshShow = False
-        Me.dgList.Query = Nothing
-        Me.dgList.QueryTime = Nothing
-        Me.dgList.ShowFooter = True
-        Me.dgList.Size = New System.Drawing.Size(772, 305)
-        Me.dgList.TabIndex = 4
-        '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.EmptySpaceItem1, Me.EmptySpaceItem2, Me.EmptySpaceItem3, Me.LayoutControlItem9})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.EmptySpaceItem1, Me.EmptySpaceItem2, Me.EmptySpaceItem3, Me.LayoutControlItem9, Me.LayoutControlItem2})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(796, 444)
         Me.LayoutControlGroup1.TextVisible = False
-        '
-        'LayoutControlItem1
-        '
-        Me.LayoutControlItem1.Control = Me.dgList
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 115)
-        Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(776, 309)
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem1.TextVisible = False
         '
         'LayoutControlItem3
         '
@@ -276,6 +269,20 @@ Partial Class frmLapNPM
         Me.LayoutControlItem9.Text = "Jenis"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(72, 13)
         '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me.GridControl1
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 115)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(776, 309)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem2.TextVisible = False
+        '
+        'GridView2
+        '
+        Me.GridView2.GridControl = Me.GridControl1
+        Me.GridView2.Name = "GridView2"
+        '
         'frmLapNPM
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -286,6 +293,8 @@ Partial Class frmLapNPM
         Me.Text = "frmLapNPM"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dPeriode.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dPeriode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tJenis.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -293,7 +302,6 @@ Partial Class frmLapNPM
         CType(Me.cKdCompany.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CMeButtonBrowser2View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -303,6 +311,8 @@ Partial Class frmLapNPM
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -313,8 +323,6 @@ Partial Class frmLapNPM
     Friend WithEvents tNama As DevExpress.XtraEditors.TextEdit
     Friend WithEvents cKdCompany As meCore.cMeButtonBrowser
     Friend WithEvents CMeButtonBrowser2View As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents dgList As meCore.ctrlMeDataGrid
-    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
@@ -326,4 +334,8 @@ Partial Class frmLapNPM
     Friend WithEvents EmptySpaceItem3 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents cJenis As System.Windows.Forms.ComboBox
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

@@ -521,4 +521,10 @@ Public Class menuValid
             xx.ShowDialog(Me)
         End Using
     End Sub
+
+    Private Sub WithdrawalMarketplaceToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles WithdrawalMarketplaceToolStripMenuItem.Click
+        Using xx As New frmWithdrawalMarketPlace
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
 End Class
