@@ -21,78 +21,60 @@ Partial Class frmLapNPM
     Private Sub InitializeComponent()
         Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmLapNPM))
-        Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.cCompany = New DevExpress.XtraEditors.CheckedListBoxControl()
         Me.cJenis = New System.Windows.Forms.ComboBox()
         Me.dPeriode = New DevExpress.XtraEditors.DateEdit()
         Me.tJenis = New DevExpress.XtraEditors.TextEdit()
         Me.btnAmbilData = New DevExpress.XtraEditors.SimpleButton()
-        Me.tNama = New DevExpress.XtraEditors.TextEdit()
-        Me.cKdCompany = New meCore.cMeButtonBrowser()
-        Me.CMeButtonBrowser2View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.LayoutControl1.SuspendLayout()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl1.SuspendLayout()
+        CType(Me.cCompany, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dPeriode.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dPeriode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tJenis.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cKdCompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CMeButtonBrowser2View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'LayoutControl1
+        'GridView2
         '
-        Me.LayoutControl1.Controls.Add(Me.GridControl1)
-        Me.LayoutControl1.Controls.Add(Me.cJenis)
-        Me.LayoutControl1.Controls.Add(Me.dPeriode)
-        Me.LayoutControl1.Controls.Add(Me.tJenis)
-        Me.LayoutControl1.Controls.Add(Me.btnAmbilData)
-        Me.LayoutControl1.Controls.Add(Me.tNama)
-        Me.LayoutControl1.Controls.Add(Me.cKdCompany)
-        Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControl1.Name = "LayoutControl1"
-        Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(796, 444)
-        Me.LayoutControl1.TabIndex = 0
-        Me.LayoutControl1.Text = "LayoutControl1"
+        Me.GridView2.GridControl = Me.GridControl1
+        Me.GridView2.Name = "GridView2"
         '
         'GridControl1
         '
         GridLevelNode1.LevelTemplate = Me.GridView2
         GridLevelNode1.RelationName = "Level1"
         Me.GridControl1.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
-        Me.GridControl1.Location = New System.Drawing.Point(12, 127)
+        Me.GridControl1.Location = New System.Drawing.Point(12, 237)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(772, 305)
+        Me.GridControl1.Size = New System.Drawing.Size(772, 195)
         Me.GridControl1.TabIndex = 13
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1, Me.GridView2})
         '
@@ -101,24 +83,49 @@ Partial Class frmLapNPM
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
         '
+        'LayoutControl1
+        '
+        Me.LayoutControl1.Controls.Add(Me.cCompany)
+        Me.LayoutControl1.Controls.Add(Me.GridControl1)
+        Me.LayoutControl1.Controls.Add(Me.cJenis)
+        Me.LayoutControl1.Controls.Add(Me.dPeriode)
+        Me.LayoutControl1.Controls.Add(Me.tJenis)
+        Me.LayoutControl1.Controls.Add(Me.btnAmbilData)
+        Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControl1.Name = "LayoutControl1"
+        Me.LayoutControl1.Root = Me.LayoutControlGroup1
+        Me.LayoutControl1.Size = New System.Drawing.Size(796, 444)
+        Me.LayoutControl1.TabIndex = 0
+        Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'cCompany
+        '
+        Me.cCompany.Cursor = System.Windows.Forms.Cursors.Default
+        Me.cCompany.Location = New System.Drawing.Point(84, 37)
+        Me.cCompany.Name = "cCompany"
+        Me.cCompany.Size = New System.Drawing.Size(496, 130)
+        Me.cCompany.StyleController = Me.LayoutControl1
+        Me.cCompany.TabIndex = 14
+        '
         'cJenis
         '
         Me.cJenis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cJenis.FormattingEnabled = True
         Me.cJenis.Items.AddRange(New Object() {"UE", "UM"})
-        Me.cJenis.Location = New System.Drawing.Point(87, 12)
+        Me.cJenis.Location = New System.Drawing.Point(84, 12)
         Me.cJenis.Name = "cJenis"
-        Me.cJenis.Size = New System.Drawing.Size(75, 21)
+        Me.cJenis.Size = New System.Drawing.Size(78, 21)
         Me.cJenis.TabIndex = 12
         '
         'dPeriode
         '
         Me.dPeriode.EditValue = Nothing
-        Me.dPeriode.Location = New System.Drawing.Point(87, 61)
+        Me.dPeriode.Location = New System.Drawing.Point(84, 171)
         Me.dPeriode.Name = "dPeriode"
         Me.dPeriode.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dPeriode.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dPeriode.Size = New System.Drawing.Size(105, 20)
+        Me.dPeriode.Size = New System.Drawing.Size(108, 20)
         Me.dPeriode.StyleController = Me.LayoutControl1
         Me.dPeriode.TabIndex = 10
         '
@@ -133,84 +140,34 @@ Partial Class frmLapNPM
         'btnAmbilData
         '
         Me.btnAmbilData.Image = CType(resources.GetObject("btnAmbilData.Image"), System.Drawing.Image)
-        Me.btnAmbilData.Location = New System.Drawing.Point(87, 85)
+        Me.btnAmbilData.Location = New System.Drawing.Point(84, 195)
         Me.btnAmbilData.Name = "btnAmbilData"
-        Me.btnAmbilData.Size = New System.Drawing.Size(105, 38)
+        Me.btnAmbilData.Size = New System.Drawing.Size(108, 38)
         Me.btnAmbilData.StyleController = Me.LayoutControl1
         Me.btnAmbilData.TabIndex = 8
         Me.btnAmbilData.Text = "Ambil Data"
-        '
-        'tNama
-        '
-        Me.tNama.Location = New System.Drawing.Point(166, 37)
-        Me.tNama.Name = "tNama"
-        Me.tNama.Size = New System.Drawing.Size(384, 20)
-        Me.tNama.StyleController = Me.LayoutControl1
-        Me.tNama.TabIndex = 7
-        '
-        'cKdCompany
-        '
-        Me.cKdCompany.Location = New System.Drawing.Point(87, 37)
-        Me.cKdCompany.Name = "cKdCompany"
-        Me.cKdCompany.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cKdCompany.Properties.NullText = ""
-        Me.cKdCompany.Properties.View = Me.CMeButtonBrowser2View
-        Me.cKdCompany.Size = New System.Drawing.Size(75, 20)
-        Me.cKdCompany.StyleController = Me.LayoutControl1
-        Me.cKdCompany.TabIndex = 6
-        '
-        'CMeButtonBrowser2View
-        '
-        Me.CMeButtonBrowser2View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.CMeButtonBrowser2View.Name = "CMeButtonBrowser2View"
-        Me.CMeButtonBrowser2View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.CMeButtonBrowser2View.OptionsView.ShowGroupPanel = False
         '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.EmptySpaceItem1, Me.EmptySpaceItem2, Me.EmptySpaceItem3, Me.LayoutControlItem9, Me.LayoutControlItem2})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.EmptySpaceItem2, Me.EmptySpaceItem3, Me.LayoutControlItem9, Me.LayoutControlItem2, Me.LayoutControlItem1, Me.EmptySpaceItem4})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(796, 444)
         Me.LayoutControlGroup1.TextVisible = False
         '
-        'LayoutControlItem3
-        '
-        Me.LayoutControlItem3.Control = Me.cKdCompany
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 25)
-        Me.LayoutControlItem3.MaxSize = New System.Drawing.Size(154, 24)
-        Me.LayoutControlItem3.MinSize = New System.Drawing.Size(154, 24)
-        Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(154, 24)
-        Me.LayoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.LayoutControlItem3.Text = "Kode Company"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(72, 13)
-        '
-        'LayoutControlItem4
-        '
-        Me.LayoutControlItem4.Control = Me.tNama
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(154, 25)
-        Me.LayoutControlItem4.MaxSize = New System.Drawing.Size(388, 24)
-        Me.LayoutControlItem4.MinSize = New System.Drawing.Size(388, 24)
-        Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(388, 24)
-        Me.LayoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem4.TextVisible = False
-        '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.btnAmbilData
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 73)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 183)
         Me.LayoutControlItem5.MaxSize = New System.Drawing.Size(184, 42)
         Me.LayoutControlItem5.MinSize = New System.Drawing.Size(184, 42)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Size = New System.Drawing.Size(184, 42)
         Me.LayoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem5.Text = " "
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(72, 13)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(69, 13)
         '
         'LayoutControlItem6
         '
@@ -224,27 +181,19 @@ Partial Class frmLapNPM
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.dPeriode
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 49)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 159)
         Me.LayoutControlItem7.MaxSize = New System.Drawing.Size(184, 24)
         Me.LayoutControlItem7.MinSize = New System.Drawing.Size(184, 24)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Size = New System.Drawing.Size(184, 24)
         Me.LayoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem7.Text = "Periode"
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(72, 13)
-        '
-        'EmptySpaceItem1
-        '
-        Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(542, 25)
-        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(234, 24)
-        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(69, 13)
         '
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(184, 49)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(184, 159)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
         Me.EmptySpaceItem2.Size = New System.Drawing.Size(592, 24)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
@@ -252,7 +201,7 @@ Partial Class frmLapNPM
         'EmptySpaceItem3
         '
         Me.EmptySpaceItem3.AllowHotTrack = False
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(184, 73)
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(184, 183)
         Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
         Me.EmptySpaceItem3.Size = New System.Drawing.Size(592, 42)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
@@ -267,21 +216,36 @@ Partial Class frmLapNPM
         Me.LayoutControlItem9.Size = New System.Drawing.Size(154, 25)
         Me.LayoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem9.Text = "Jenis"
-        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(72, 13)
+        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(69, 13)
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.GridControl1
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 115)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 225)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(776, 309)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(776, 199)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
         '
-        'GridView2
+        'LayoutControlItem1
         '
-        Me.GridView2.GridControl = Me.GridControl1
-        Me.GridView2.Name = "GridView2"
+        Me.LayoutControlItem1.Control = Me.cCompany
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 25)
+        Me.LayoutControlItem1.MaxSize = New System.Drawing.Size(572, 134)
+        Me.LayoutControlItem1.MinSize = New System.Drawing.Size(572, 134)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(572, 134)
+        Me.LayoutControlItem1.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem1.Text = "KodeCompany"
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(69, 13)
+        '
+        'EmptySpaceItem4
+        '
+        Me.EmptySpaceItem4.AllowHotTrack = False
+        Me.EmptySpaceItem4.Location = New System.Drawing.Point(572, 25)
+        Me.EmptySpaceItem4.Name = "EmptySpaceItem4"
+        Me.EmptySpaceItem4.Size = New System.Drawing.Size(204, 134)
+        Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
         '
         'frmLapNPM
         '
@@ -291,28 +255,25 @@ Partial Class frmLapNPM
         Me.Controls.Add(Me.LayoutControl1)
         Me.Name = "frmLapNPM"
         Me.Text = "frmLapNPM"
-        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.cCompany, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dPeriode.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dPeriode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tJenis.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cKdCompany.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CMeButtonBrowser2View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -320,16 +281,10 @@ Partial Class frmLapNPM
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents tJenis As DevExpress.XtraEditors.TextEdit
     Friend WithEvents btnAmbilData As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents tNama As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents cKdCompany As meCore.cMeButtonBrowser
-    Friend WithEvents CMeButtonBrowser2View As DevExpress.XtraGrid.Views.Grid.GridView
-    Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents dPeriode As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents EmptySpaceItem3 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents cJenis As System.Windows.Forms.ComboBox
@@ -338,4 +293,7 @@ Partial Class frmLapNPM
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents cCompany As DevExpress.XtraEditors.CheckedListBoxControl
+    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents EmptySpaceItem4 As DevExpress.XtraLayout.EmptySpaceItem
 End Class

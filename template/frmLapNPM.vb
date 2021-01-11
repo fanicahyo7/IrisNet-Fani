@@ -3,7 +3,7 @@ Imports System.Data.SqlClient
 Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class frmLapNPM
-
+    Dim datatabel As New DataTable
     Private Sub frmLapNPM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LayoutControlItem6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
 
@@ -27,26 +27,45 @@ Public Class frmLapNPM
         tJenis.Text = "Data Source=" & lokasi & ";Initial Catalog=BukbesAcc;Persist Security Info=True;User ID=sa;Password=pancetgogogo;Connection Timeout=0"
 
         koneksi(tJenis.Text)
-        cKdCompany.FirstInit(tJenis.Text, "Select KodeCompany,Nama from tbGNCompany", {tNama}, , , , , , {0.5, 1})
+        'cKdCompany.FirstInit(tJenis.Text, "Select KodeCompany,Nama from tbGNCompany", {tNama}, , , , , , {0.5, 1})
+        Dim qucompany As String = "Select 0 as cek,KodeCompany,Nama from tbGNCompany"
+        da = New SqlDataAdapter(qucompany, kon)
+        datatabel.Clear()
+        da.Fill(datatabel)
+
+        cCompany.Items.Clear()
+        Dim dtTablename As DataTable = datatabel.DefaultView.ToTable(True, {"cek", "KodeCompany", "Nama"})
+        For i As Integer = 0 To dtTablename.Rows.Count - 1
+            Dim kode As String = dtTablename.Rows(i)!KodeCompany & " - " & dtTablename.Rows(i)!Nama
+            cCompany.Items.Add(kode)
+        Next
     End Sub
 
     Private Sub btnAmbilData_Click(sender As Object, e As EventArgs) Handles btnAmbilData.Click
+        Dim drow() As DataRow = datatabel.Select("cek='1'")
+        Dim aa As Integer = drow.Length
         If cJenis.Text = "" Then
             MsgBox("Pilih Jenis Terlebih Dahulu!", vbCritical + vbOKOnly, "Peringatan")
-        ElseIf cKdCompany.Text = "" Then
+        ElseIf aa < 1 Then
             MsgBox("Pilih Kode Company Terlebih Dahulu!", vbCritical + vbOKOnly, "Peringatan")
         Else
             GridView1.Columns.Clear()
             Dim ds As New DataSet
             Dim dt1 As New DataTable
             Dim dt2 As New DataTable
-            Dim kdcompany As String = cKdCompany.Text
+            'Dim kdcompany As String = cKdCompany.Text
+            Dim kdcompany As String = ""
+            For j = 0 To aa - 1
+                If j = aa - 1 Then
+                    kdcompany += "'" & drow(j)!KodeCompany & "'"
+                Else
+                    kdcompany += "'" & drow(j)!KodeCompany & "',"
+                End If
+            Next
             Dim periode As String = Format(dPeriode.EditValue, "yyyyMM")
             Dim query As String = _
             "DECLARE @tahunbulan AS VARCHAR(6) " & _
-            "DECLARE @kdcompany AS VARCHAR(2) " & _
             "SET @tahunbulan='" & periode & "'; " & _
-            "SET @kdcompany='" & kdcompany & "'; " & _
             "WITH cteLR AS " & _
             "(" & _
                 "SELECT " & _
@@ -57,7 +76,7 @@ Public Class frmLapNPM
                 "LEFT JOIN dbo.tbACKodeAkun b ON b.KodeAkun=a.KodeAkun " & _
                 "WHERE " & _
                 "CONVERT(VARCHAR(6),a.TanggalBukti,112)=@tahunbulan AND " & _
-                "a.KodeCompany=@kdcompany " & _
+                "a.KodeCompany in (" & kdcompany & ") " & _
                 "AND b.IdKategori IN (SELECT IdKategori FROM dbo.tbACKategori WHERE StatusLaporan='LR') " & _
                 "GROUP BY " & _
                 "CONVERT(VARCHAR(6),a.TanggalBukti,112)," & _
@@ -119,9 +138,7 @@ Public Class frmLapNPM
 
             Dim query2 As String = _
             "DECLARE @tahunbulan AS VARCHAR(6) " & _
-            "DECLARE @kdcompany AS VARCHAR(2) " & _
             "SET @tahunbulan='" & periode & "'; " & _
-            "SET @kdcompany='" & kdcompany & "'; " & _
             "WITH cteLR AS " & _
             "(" & _
                 "SELECT " & _
@@ -132,7 +149,7 @@ Public Class frmLapNPM
                 "LEFT JOIN dbo.tbACKodeAkun b ON b.KodeAkun=a.KodeAkun " & _
                 "WHERE " & _
                 "CONVERT(VARCHAR(6),a.TanggalBukti,112)=@tahunbulan AND " & _
-                "a.KodeCompany=@kdcompany " & _
+                "a.KodeCompany in (" & kdcompany & ") " & _
                 "AND b.IdKategori IN (SELECT IdKategori FROM dbo.tbACKategori WHERE StatusLaporan='LR') " & _
                 "GROUP BY " & _
                 "CONVERT(VARCHAR(6),a.TanggalBukti,112)," & _
@@ -154,7 +171,7 @@ Public Class frmLapNPM
                         "aa.kodecompany+'.90.10.610'," & _
                         "aa.kodecompany+'.90.10.620'," & _
                         "aa.kodecompany+'.90.10.630'" & _
-                        ")"
+                        ") order by aa.kodecompany"
 
             'Data1
             Using sqlcon As New Data.SqlClient.SqlConnection(tJenis.Text)
@@ -220,18 +237,10 @@ Public Class frmLapNPM
         End If
     End Sub
 
-    Private Sub GridView1_MasterRowExpanding(sender As Object, e As DevExpress.XtraGrid.Views.Grid.MasterRowCanExpandEventArgs) Handles GridView1.MasterRowExpanding
-        'Dim relidx As Integer = TryCast(sender, GridView).GetVisibleDetailRelationIndex(e.RowHandle)
-        'Dim vwchild As GridView = GridView1.GetDetailView(e.RowHandle, 0)
+    Private Sub cCompany_ItemCheck(sender As Object, e As DevExpress.XtraEditors.Controls.ItemCheckEventArgs) Handles cCompany.ItemCheck
+        Dim nmtable As String = Strings.Left(cCompany.SelectedItem.ToString, 2)
 
-        'vwchild.OptionsBehavior.ReadOnly = True
-    End Sub
-
-    Private Sub GridView1_MasterRowGetChildList(sender As Object, e As DevExpress.XtraGrid.Views.Grid.MasterRowGetChildListEventArgs) Handles GridView1.MasterRowGetChildList
-
-    End Sub
-
-    Private Sub GridView2_CustomDrawCell(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs) Handles GridView2.CustomDrawCell
-
+        Dim drow() As DataRow = datatabel.Select("KodeCompany = '" & nmtable & "'")
+        drow(0)!cek = e.State
     End Sub
 End Class

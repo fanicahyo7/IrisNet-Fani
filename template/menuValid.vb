@@ -527,4 +527,10 @@ Public Class menuValid
             xx.ShowDialog(Me)
         End Using
     End Sub
+
+    Private Sub PengajuanBayarToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PengajuanBayarToolStripMenuItem.Click
+        Using xx As New frmPBYList
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
 End Class

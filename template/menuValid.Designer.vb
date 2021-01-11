@@ -93,9 +93,10 @@ Partial Class menuValid
         Me.ReturKreditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DownloadToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.WithdrawalMarketplaceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
-        Me.WithdrawalMarketplaceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PengajuanBayarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -408,7 +409,7 @@ Partial Class menuValid
         '
         'SupplierToolStripMenuItem
         '
-        Me.SupplierToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UangMukaSupplierToolStripMenuItem, Me.SaldoHutangPerTanggalToolStripMenuItem, Me.PelunasanHutangToolStripMenuItem})
+        Me.SupplierToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UangMukaSupplierToolStripMenuItem, Me.SaldoHutangPerTanggalToolStripMenuItem, Me.PelunasanHutangToolStripMenuItem, Me.PengajuanBayarToolStripMenuItem})
         Me.SupplierToolStripMenuItem.Name = "SupplierToolStripMenuItem"
         Me.SupplierToolStripMenuItem.Size = New System.Drawing.Size(160, 22)
         Me.SupplierToolStripMenuItem.Text = "Supplier"
@@ -548,6 +549,12 @@ Partial Class menuValid
         Me.ToolStripMenuItem4.Size = New System.Drawing.Size(202, 22)
         Me.ToolStripMenuItem4.Text = "6"
         '
+        'WithdrawalMarketplaceToolStripMenuItem
+        '
+        Me.WithdrawalMarketplaceToolStripMenuItem.Name = "WithdrawalMarketplaceToolStripMenuItem"
+        Me.WithdrawalMarketplaceToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
+        Me.WithdrawalMarketplaceToolStripMenuItem.Text = "Withdrawal Marketplace"
+        '
         'TreeView1
         '
         Me.TreeView1.BackColor = System.Drawing.SystemColors.Menu
@@ -562,11 +569,11 @@ Partial Class menuValid
         Me.ImageList1.ImageSize = New System.Drawing.Size(16, 16)
         Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
         '
-        'WithdrawalMarketplaceToolStripMenuItem
+        'PengajuanBayarToolStripMenuItem
         '
-        Me.WithdrawalMarketplaceToolStripMenuItem.Name = "WithdrawalMarketplaceToolStripMenuItem"
-        Me.WithdrawalMarketplaceToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
-        Me.WithdrawalMarketplaceToolStripMenuItem.Text = "Withdrawal Marketplace"
+        Me.PengajuanBayarToolStripMenuItem.Name = "PengajuanBayarToolStripMenuItem"
+        Me.PengajuanBayarToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.PengajuanBayarToolStripMenuItem.Text = "Pengajuan Bayar"
         '
         'menuValid
         '
@@ -660,4 +667,5 @@ Partial Class menuValid
     Friend WithEvents PelunasanHutangToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents NPMToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents WithdrawalMarketplaceToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents PengajuanBayarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class
