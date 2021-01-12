@@ -161,7 +161,7 @@ Public Class frmLapNPM
                 "a.KodeAkun, b.Keterangan, b.DebetOrKredit" & _
             ") " & _
             "SELECT " & _
-                    "aa.TahunBulan, aa.KodeCompany,dd.Aliasing, aa.KodeAkun, aa.Keterangan,  aa.Dok, " & _
+                    "aa.TahunBulan, aa.KodeCompany,dd.Aliasing as KeteranganAkun, aa.KodeAkun, aa.Keterangan,  aa.Dok, " & _
                     "aa.Jumlah AS JumlahNPM, dd.grup " & _
                     "FROM cteLR AS aa " & _
                     "LEFT JOIN dbo.tbACKodeAkun cc ON aa.KodeAkun=cc.KodeAkun " & _
@@ -201,13 +201,13 @@ Public Class frmLapNPM
 
             ds.Tables.Add(dt1)
             ds.Tables.Add(dt2)
-            ds.Relations.Add("Aliasing", dt1.Columns("Keterangan"), dt2.Columns("Aliasing"))
+            ds.Relations.Add("Aliasing", dt1.Columns("Keterangan"), dt2.Columns("KeteranganAkun"))
 
             gcDetail.DataSource = ds.Tables(1)
             GridView4.BestFitColumns()
             FormatGridView(GridView4, , , True)
             GridView4.Columns("grup").Visible = False
-            GridView4.Columns("Aliasing").Width = 200
+            GridView4.Columns("KeteranganAkun").Width = 200
             GridView4.Columns("Keterangan").Width = 200
             GridView4.Columns("JumlahNPM").Width = 250
             GridView4.OptionsView.ShowGroupPanel = False
@@ -233,8 +233,8 @@ Public Class frmLapNPM
             GridView2.BestFitColumns()
             FormatGridView(GridView2, , , True)
             GridView2.Columns("grup").Visible = False
-            GridView2.Columns("Aliasing").Width = 200
-            GridView2.Columns("Keterangan").Width = 200
+            GridView2.Columns("KeteranganAkun").Width = 200
+            GridView2.Columns("KeteranganAkun").Width = 200
             GridView2.Columns("JumlahNPM").Width = 250
             GridView2.OptionsView.ShowGroupPanel = False
             reFormatColumns(GridView2)
@@ -289,7 +289,7 @@ Public Class frmLapNPM
         saveFileDialog1.ShowDialog()
 
         If saveFileDialog1.FileName <> "" Then
-            GridView1.OptionsPrint.PrintDetails = True
+            GridView1.OptionsPrint.PrintDetails = False
 
             Dim options As New XlsxExportOptionsEx
             options.ExportType = ExportType.WYSIWYG
@@ -305,11 +305,7 @@ Public Class frmLapNPM
         saveFileDialog1.ShowDialog()
 
         If saveFileDialog1.FileName <> "" Then
-            'GridView1.OptionsPrint.PrintDetails = True
-            'GridView1.OptionsPrint.ExpandAllDetails = True
-
             GridView4.OptionsPrint.PrintDetails = True
-            'GridView2.OptionsPrint.ExpandAllDetails = True
 
             Dim options As New XlsxExportOptionsEx
             options.ExportType = ExportType.WYSIWYG
