@@ -1,6 +1,10 @@
 ﻿Imports meCore
 Imports System.Data.SqlClient
 Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraPrinting
+Imports DevExpress.Printing.ExportHelpers
+Imports DevExpress.Export
+Imports DevExpress.Export.Xl
 
 Public Class frmLapNPM
     Dim datatabel As New DataTable
@@ -199,6 +203,19 @@ Public Class frmLapNPM
             ds.Tables.Add(dt2)
             ds.Relations.Add("Aliasing", dt1.Columns("Keterangan"), dt2.Columns("Aliasing"))
 
+            gcDetail.DataSource = ds.Tables(1)
+            GridView4.BestFitColumns()
+            FormatGridView(GridView4, , , True)
+            GridView4.Columns("grup").Visible = False
+            GridView4.Columns("Aliasing").Width = 200
+            GridView4.Columns("Keterangan").Width = 200
+            GridView4.Columns("JumlahNPM").Width = 250
+            GridView4.OptionsView.ShowGroupPanel = False
+            reFormatColumns(GridView4)
+            SetFooterSummarySUMs(GridView4, {"JumlahNPM"})
+            GridView4.Columns("JumlahNPM").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GridView4.Columns("JumlahNPM").DisplayFormat.FormatString = "c2"
+
             GridControl1.DataSource = ds.Tables("table1")
             GridView1.BestFitColumns()
             FormatGridView(GridView1, , , True)
@@ -228,7 +245,7 @@ Public Class frmLapNPM
     End Sub
 
     Private Sub GridControl1_Click(sender As Object, e As EventArgs) Handles GridControl1.Click
-        
+
     End Sub
 
     Private Sub GridView1_CustomDrawCell(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs) Handles GridView1.CustomDrawCell
@@ -242,5 +259,62 @@ Public Class frmLapNPM
 
         Dim drow() As DataRow = datatabel.Select("KodeCompany = '" & nmtable & "'")
         drow(0)!cek = e.State
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+
+        Dim saveFileDialog1 As New SaveFileDialog
+        saveFileDialog1.Filter = "Excel File|*.xlsx"
+        saveFileDialog1.Title = "Save an Excel File"
+        saveFileDialog1.ShowDialog()
+
+        If saveFileDialog1.FileName <> "" Then
+            GridView1.OptionsPrint.PrintDetails = True
+            GridView1.OptionsPrint.ExpandAllDetails = True
+
+            GridView2.OptionsPrint.PrintDetails = True
+            GridView2.OptionsPrint.ExpandAllDetails = True
+
+            Dim options As New XlsxExportOptionsEx
+            options.ExportType = ExportType.WYSIWYG
+
+            GridView1.ExportToXlsx(saveFileDialog1.FileName, options)
+        End If
+    End Sub
+
+    Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
+        Dim saveFileDialog1 As New SaveFileDialog
+        saveFileDialog1.Filter = "Excel File|*.xlsx"
+        saveFileDialog1.Title = "Save an Excel File"
+        saveFileDialog1.ShowDialog()
+
+        If saveFileDialog1.FileName <> "" Then
+            GridView1.OptionsPrint.PrintDetails = True
+
+            Dim options As New XlsxExportOptionsEx
+            options.ExportType = ExportType.WYSIWYG
+
+            GridView1.ExportToXlsx(saveFileDialog1.FileName, options)
+        End If
+    End Sub
+
+    Private Sub SimpleButton3_Click(sender As Object, e As EventArgs) Handles SimpleButton3.Click
+        Dim saveFileDialog1 As New SaveFileDialog
+        saveFileDialog1.Filter = "Excel File|*.xlsx"
+        saveFileDialog1.Title = "Save an Excel File"
+        saveFileDialog1.ShowDialog()
+
+        If saveFileDialog1.FileName <> "" Then
+            'GridView1.OptionsPrint.PrintDetails = True
+            'GridView1.OptionsPrint.ExpandAllDetails = True
+
+            GridView4.OptionsPrint.PrintDetails = True
+            'GridView2.OptionsPrint.ExpandAllDetails = True
+
+            Dim options As New XlsxExportOptionsEx
+            options.ExportType = ExportType.WYSIWYG
+
+            GridView4.ExportToXlsx(saveFileDialog1.FileName, options)
+        End If
     End Sub
 End Class
