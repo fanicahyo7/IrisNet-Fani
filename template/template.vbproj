@@ -421,6 +421,12 @@
     <Compile Include="frmLaporanNotaManual.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmLapPBY.Designer.vb">
+      <DependentUpon>frmLapPBY.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLapPBY.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmMstBank.Designer.vb">
       <DependentUpon>frmMstBank.vb</DependentUpon>
     </Compile>
@@ -907,6 +913,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLaporanNotaManual.resx">
       <DependentUpon>frmLaporanNotaManual.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLapPBY.resx">
+      <DependentUpon>frmLapPBY.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMstBank.resx">
       <DependentUpon>frmMstBank.vb</DependentUpon>
