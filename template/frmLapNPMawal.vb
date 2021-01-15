@@ -6,7 +6,7 @@ Imports DevExpress.Printing.ExportHelpers
 Imports DevExpress.Export
 Imports DevExpress.Export.Xl
 
-Public Class frmLapNPM
+Public Class frmLapNPMawal
     Dim datatabel As New DataTable
     Private Sub frmLapNPM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LayoutControlItem6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
@@ -89,9 +89,9 @@ Public Class frmLapNPM
                 End If
             Next
             Dim periode As String = Format(dPeriode.EditValue, "yyyyMM")
-            Dim periode2 As String = ""
             Dim query As String = _
             "DECLARE @tahunbulan AS VARCHAR(6) " & _
+            "SET @tahunbulan='" & periode & "'; " & _
             "WITH cteLR AS " & _
             "(" & _
                 "SELECT " & _
@@ -101,7 +101,7 @@ Public Class frmLapNPM
                 "FROM dbo.tbACJurnal a " & _
                 "LEFT JOIN dbo.tbACKodeAkun b ON b.KodeAkun=a.KodeAkun " & _
                 "WHERE " & _
-                "CONVERT(VARCHAR(6),a.TanggalBukti,112) in (" & periode2 & ") AND " & _
+                "CONVERT(VARCHAR(6),a.TanggalBukti,112)=@tahunbulan AND " & _
                 "a.KodeCompany in (" & kdcompany & ") " & _
                 "AND b.IdKategori IN (SELECT IdKategori FROM dbo.tbACKategori WHERE StatusLaporan='LR') " & _
                 "GROUP BY " & _
@@ -128,88 +128,36 @@ Public Class frmLapNPM
                         ")" & _
             "), " & _
             "ctegabung as(" & _
-                "select TahunBulan,Aliasing, sum(JumlahNPM) as Jumlah,Grup from ctepvot a group by Aliasing,Grup,TahunBulan " & _
+                "select Aliasing, sum(JumlahNPM) as Jumlah,Grup from ctepvot group by Aliasing,Grup " & _
                 "union all " & _
-                "select a.TahunBulan,'PENDAPATAN BERSIH' as Aliasing,(" & _
-                "select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0')-" & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0') " & _
-                "as Jumlah, 2.1 as Grup from ctepvot a group by a.TahunBulan " & _
+                "select 'PENDAPATAN BERSIH' as Aliasing, (select sum(x.JumlahNPM) from ctepvot x group by grup having Grup='1.0') - (select sum(x.JumlahNPM) from ctepvot x group by grup having Grup='2.0') as Jumlah,2.1 as Grup " & _
                 "union all " & _
-                "select a.TahunBulan,'TOTAL HPP BARANG DAGANG' as Aliasing,(" & _
-                "select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0') as Jumlah, 3.1 as Grup " & _
-                "from ctepvot a group by a.TahunBulan " & _
+                "select 'TOTAL HPP BARANG DAGANG' as Aliasing, sum(JumlahNPM) as Jumlah, 3.1 as Grup from ctepvot group by grup having Grup='3.0' " & _
                 "union all " & _
-                "select a.TahunBulan,'LABA-RUGI KOTOR' as Aliasing," & _
-                "((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0')-" & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0'))-" & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0') as Jumlah, 3.2 as Grup " & _
-                "from ctepvot a group by a.TahunBulan " & _
+                "select 'LABA-RUGI KOTOR' as Aliasing," & _
+                "((select sum(x.JumlahNPM) from ctepvot x group by grup having Grup='1.0') - (select sum(x.JumlahNPM) from ctepvot x group by grup having Grup='2.0')) - (select sum(JumlahNPM) from ctepvot group by grup having Grup='3.0') as Jumlah,3.2 as Grup " & _
                 "union all " & _
-                "select a.TahunBulan,'TOTAL BEBAN USAHA' as Aliasing," & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='4.0') as Jumlah, 4.1 as Grup " & _
-                "from ctepvot a group by a.TahunBulan " & _
+                "select 'TOTAL BEBAN USAHA' as Aliasing, sum(JumlahNPM) as Jumlah, 4.1 as Grup from ctepvot group by grup having Grup='4.0' " & _
                 "union all " & _
-                "select a.TahunBulan,'LABA-RUGI OPERASI' as Aliasing," & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0')-" & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0')-" & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0')-" & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='4.0') as Jumlah, 4.2 as Grup " & _
-                "from ctepvot a group by a.TahunBulan " & _
+                "select 'LABA-RUGI OPERASI' as Aliasing," & _
+                "(((select sum(x.JumlahNPM) from ctepvot x group by grup having Grup='1.0') - (select sum(x.JumlahNPM) from ctepvot x group by grup having Grup='2.0')) - (select sum(JumlahNPM) from ctepvot group by grup having Grup='3.0')- " & _
+                "(select sum(JumlahNPM) from ctepvot group by grup having Grup='4.0')) as Jumlah, 4.2 as Grup " & _
                 "union all " & _
-                "select a.TahunBulan,'TOTAL PENDAPATAN & BIAYA DILUAR USAHA' as Aliasing," & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='5.0')-" & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='6.0') as Jumlah, 6.1 as Grup " & _
-                "from ctepvot a group by a.TahunBulan " & _
+                "select 'TOTAL PENDAPATAN & BIAYA DILUAR USAHA' as Aliasing," & _
+                "(select sum(x.JumlahNPM) from ctepvot x group by grup having Grup='5.0') - (select sum(x.JumlahNPM) from ctepvot x group by grup having Grup='6.0') as Jumlah,6.1 as Grup " & _
                 "union all " & _
-                "select a.TahunBulan,'LABA-RUGI SEBELUM PAJAK' as Aliasing," & _
-                "((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0')-" & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0')-" & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0')-" & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='4.0'))+" & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='5.0')-" & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='6.0') " & _
-                "as Jumlah, 6.2 as Grup " & _
-                "from ctepvot a group by a.TahunBulan " & _
+                "select 'LABA-RUGI SEBELUM PAJAK' as Aliasing," & _
+                "(((select sum(x.JumlahNPM) from ctepvot x group by grup having Grup='1.0') - (select sum(x.JumlahNPM) from ctepvot x group by grup having Grup='2.0')) - (select sum(JumlahNPM) from ctepvot group by grup having Grup='3.0')- " & _
+                "(select sum(JumlahNPM) from ctepvot group by grup having Grup='4.0')) + " & _
+                "(select sum(x.JumlahNPM) from ctepvot x group by grup having Grup='5.0') - (select sum(x.JumlahNPM) from ctepvot x group by grup having Grup='6.0') as Jumlah, 6.2 as Grup " & _
                 "union all " & _
-                "select a.TahunBulan,'LABA-RUGI SETELAH PAJAK' as Aliasing," & _
-                "((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0')-" & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0')- " & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0')-" & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='4.0'))+" & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='5.0')-" & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='6.0')-" & _
-                "(select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='7.0') " & _
-                "as Jumlah, 7.1 as Grup " & _
-                "from ctepvot a group by a.TahunBulan " & _
-                ")," & _
-                "ctejml as(" & _
-                "select SUBSTRING(a.TahunBulan,1,4) as Tahun,a.Aliasing,sum(a.Jumlah) as Jumlah, sum(a.Jumlah)/1 as Rata, " & _
-                "(sum(a.Jumlah)/1) / (select sum(x.Jumlah)/1 from ctegabung x where SUBSTRING(x.TahunBulan,1,4)=SUBSTRING(a.TahunBulan,1,4) and x.Aliasing='PENDAPATAN BERSIH') * 100 as Persen" & _
-                ",Grup from ctegabung a " & _
-                "group by SUBSTRING(a.TahunBulan,1,4),a.Aliasing,a.Grup" & _
-                ")," & _
-                "ctepivotrealisasi as(" & _
-                "select P.Aliasing,sum(isnull(p.[2018],0)) as Realiasi2018,sum(isnull(p.[2019],0)) as Realiasi2019,Grup from ctejml D " & _
-                "PIVOT(Sum(Jumlah) FOR D.Tahun IN ([2018], [2019])) P " & _
-                "group by Aliasing,Grup" & _
-                ")," & _
-                "cterata as(" & _
-                "select P.Aliasing,sum(isnull(p.[2018],0)) as Rata2018,sum(isnull(p.[2019],0)) as Rata2019,Grup from ctejml D " & _
-                "PIVOT(max(Rata) FOR D.Tahun IN ([2018], [2019])) P " & _
-                "group by Aliasing,Grup" & _
-                ")," & _
-                "ctepersen as(" & _
-                "select P.Aliasing,sum(isnull(p.[2018],0)) as Persen2018,sum(isnull(p.[2019],0)) as Persen2019,Grup from ctejml D " & _
-                "PIVOT(max(Persen) FOR D.Tahun IN ([2018], [2019])) P " & _
-                "group by Aliasing,Grup" & _
+                "select 'LABA-RUGI SETELAH PAJAK' as Aliasing," & _
+                "((((select sum(x.JumlahNPM) from ctepvot x group by grup having Grup='1.0') - (select sum(x.JumlahNPM) from ctepvot x group by grup having Grup='2.0')) - (select sum(JumlahNPM) from ctepvot group by grup having Grup='3.0')- " & _
+                "(select sum(JumlahNPM) from ctepvot group by grup having Grup='4.0')) + " & _
+                "(select sum(x.JumlahNPM) from ctepvot x group by grup having Grup='5.0') - (select sum(x.JumlahNPM) from ctepvot x group by grup having Grup='6.0') - " & _
+                "(select sum(JumlahNPM) from ctepvot group by grup having Grup='7.0')) as Jumlah, 7.1 as Grup " & _
                 ")" & _
-                "select a.Aliasing,a.Realiasi2018,a.Realiasi2019,b.Rata2018,c.Persen2018,b.Rata2019,c.Persen2019," & _
-                "case when b.Rata2018 = 0 or b.Rata2019 = 0 then 0 else " & _
-                "((b.Rata2019-b.Rata2018)/b.Rata2018*100) end as Selisih," & _
-                "a.Grup from ctepivotrealisasi a " & _
-                "left join cterata b on b.Aliasing = a.Aliasing and b.Grup = a.Grup " & _
-                "left join ctepersen c on c.Aliasing = a.Aliasing and c.Grup = a.Grup " & _
-                "order by a.Grup"
+            "select Aliasing as Keterangan,Jumlah as Realisasi,Grup from ctegabung order by Grup"
             'dgList.FirstInit(query, {2.5, 2}, , , {"Grup"}, , , False)
             'dgList.ConnString = tJenis.Text
             'dgList.RefreshData(False)
