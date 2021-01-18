@@ -409,6 +409,12 @@
     <Compile Include="frmLapKartuPiutangCustomer.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmLapNPMawal.Designer.vb">
+      <DependentUpon>frmLapNPMawal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLapNPMawal.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmLapNPM.Designer.vb">
       <DependentUpon>frmLapNPM.vb</DependentUpon>
     </Compile>
@@ -907,6 +913,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLapKartuPiutangCustomer.resx">
       <DependentUpon>frmLapKartuPiutangCustomer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLapNPMawal.resx">
+      <DependentUpon>frmLapNPMawal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLapNPM.resx">
       <DependentUpon>frmLapNPM.vb</DependentUpon>
