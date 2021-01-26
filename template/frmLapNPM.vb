@@ -32,6 +32,7 @@ Public Class frmLapNPM
         dTahun2.Enabled = False
         dTahun3.Enabled = False
         cbKodeCompany.Enabled = False
+        cJenisLaporan.SelectedIndex = 0
     End Sub
 
     Private Sub cJenis_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cJenis.SelectedIndexChanged
@@ -45,18 +46,11 @@ Public Class frmLapNPM
         tJenis.Text = "Data Source=" & lokasi & ";Initial Catalog=BukbesAcc;Persist Security Info=True;User ID=sa;Password=pancetgogogo;Connection Timeout=0"
 
         koneksi(tJenis.Text)
-        'cKdCompany.FirstInit(tJenis.Text, "Select KodeCompany,Nama from tbGNCompany", {tNama}, , , , , , {0.5, 1})
         Dim qucompany As String = "select KodeCompany,NamaAlias + ' - ' + KodeCompany as Nama from tbGNCompany"
         da = New SqlDataAdapter(qucompany, kon)
         datatabel.Clear()
         da.Fill(datatabel)
 
-        'cCompany.Items.Clear()
-        'Dim dtTablename As DataTable = datatabel.DefaultView.ToTable(True, {"cek", "KodeCompany", "NamaAlias"})
-        'For i As Integer = 0 To dtTablename.Rows.Count - 1
-        '    Dim kode As String = dtTablename.Rows(i)!NamaAlias & " - " & dtTablename.Rows(i)!KodeCompany
-        '    cCompany.Items.Add(kode)
-        'Next
         cbKodeCompany.Enabled = True
         cbKodeCompany.Properties.DataSource = datatabel
         cbKodeCompany.Properties.DisplayMember = "Nama"
@@ -74,22 +68,15 @@ Public Class frmLapNPM
             MsgBox("Pilih Bulan Terlebih Dahulu!", vbCritical + vbOKOnly, "Peringatan")
         Else
             GridView1.Columns.Clear()
-            GridView5.Columns.Clear()
+            GridView2.Columns.Clear()
+            GridView4.Columns.Clear()
             Dim ds As New DataSet
-            Dim ds3 As New DataSet
+            'Dim ds3 As New DataSet
             Dim dt1 As New DataTable
             Dim dt2 As New DataTable
             Dim dt3 As New DataTable
-            'Dim kdcompany As String = cKdCompany.Text
-            Dim kdcompany As String = ""
-            'For j = 0 To aa - 1
-            '    If j = aa - 1 Then
-            '        kdcompany += "'" & drow(j)!KodeCompany & "'"
-            '    Else
-            '        kdcompany += "'" & drow(j)!KodeCompany & "',"
-            '    End If
-            'Next
 
+            Dim kdcompany As String = ""
             For i = 0 To cbKodeCompany.Properties.GetItems.GetCheckedValues.Count - 1
                 If i = cbKodeCompany.Properties.GetItems.GetCheckedValues.Count - 1 Then
                     kdcompany += "'" & cbKodeCompany.Properties.GetItems.GetCheckedValues(i).ToString & "'"
@@ -162,9 +149,137 @@ Public Class frmLapNPM
                 Next
             Next
 
+            Dim query As String = ""
+            Dim query2 As String = ""
+            If cJenisLaporan.SelectedIndex = 0 Then
+                query = _
+           "IF OBJECT_ID('tempdb..#tmptable') IS NOT NULL DROP TABLE #tmptable;" & _
+           "WITH cteLR AS " & _
+           "(" & _
+               "SELECT " & _
+               "CONVERT(VARCHAR(6),a.TanggalBukti,112) as TahunBulan,a.KodeCompany," & _
+               "a.KodeAkun,b.Keterangan,SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah," & _
+               "b.DebetOrKredit AS DoK " & _
+               "FROM dbo.tbACJurnal a " & _
+               "LEFT JOIN dbo.tbACKodeAkun b ON b.KodeAkun=a.KodeAkun " & _
+               "WHERE " & _
+               "CONVERT(VARCHAR(6),a.TanggalBukti,112) in (" & Strings.Left(tahunbulan, tahunbulan.Length - 1) & ") AND " & _
+               "a.KodeCompany in (" & kdcompany & ") " & _
+               "AND b.IdKategori IN (SELECT IdKategori FROM dbo.tbACKategori WHERE StatusLaporan='LR') " & _
+               "GROUP BY " & _
+               "CONVERT(VARCHAR(6),a.TanggalBukti,112)," & _
+               "a.KodeCompany," & _
+               "a.KodeAkun, b.Keterangan, b.DebetOrKredit" & _
+           "), " & _
+           "ctepvot as(" & _
+               "SELECT " & _
+                   "aa.TahunBulan, aa.KODECOMPANY,dd.Aliasing, aa.KODEAKUN, aa.KETERANGAN,  aa.DOK, " & _
+                   "aa.Jumlah AS JumlahNPM, dd.grup " & _
+                   "FROM cteLR AS aa " & _
+                   "LEFT JOIN dbo.tbACKodeAkun cc ON aa.KodeAkun=cc.KodeAkun " & _
+                   "LEFT JOIN dbo.tbACKategoriNPM dd ON cc.KodeAkun=dd.KodeAkun " & _
+                   "WHERE NOT aa.KodeAkun IN " & _
+                       "(aa.kodecompany+'.90.20.210'," & _
+                       "aa.kodecompany+'.90.20.971'," & _
+                       "aa.kodecompany+'.90.20.972'," & _
+                       "aa.kodecompany+'.90.20.973'," & _
+                       "aa.kodecompany+'.90.20.974'," & _
+                       "aa.kodecompany+'.90.10.610'," & _
+                       "aa.kodecompany+'.90.10.620'," & _
+                       "aa.KodeCompany+'.60.01.100'," & _
+                       "aa.kodecompany+'.90.10.630'" & _
+                       ")" & _
+           "), " & _
+           "cteall as(" & _
+               "" & uniontanggal & ")," & _
+           "cteall2 as(" & _
+               "select a.TahunBulan,a.Aliasing, sum(isnull(b.JumlahNPM,0)) as JumlahNPM,a.Grup from cteall a " & _
+               "left join ctepvot b on b.Aliasing = a.Aliasing and b.TahunBulan = a.TahunBulan " & _
+               "group by a.Aliasing,a.Grup,a.TahunBulan " & _
+               ")," & _
+           "ctegabung as(" & _
+               "select * from cteall2 " & _
+               "union all " & _
+               "select a.TahunBulan,'PENDAPATAN BERSIH' as Aliasing,(" & _
+               "select isnull ((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0'),0))-" & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0'),0)) " & _
+               "as Jumlah, 2.1 as Grup from ctepvot a group by a.TahunBulan " & _
+               "union all " & _
+               "select a.TahunBulan,'TOTAL HPP BARANG DAGANG' as Aliasing,(" & _
+               "select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0'),0)) as Jumlah, 3.1 as Grup " & _
+               "from ctepvot a group by a.TahunBulan " & _
+               "union all " & _
+               "select a.TahunBulan,'LABA-RUGI KOTOR' as Aliasing," & _
+               "((select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0'),0))-" & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0'),0)))-" & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0'),0)) as Jumlah, 3.2 as Grup " & _
+               "from ctepvot a group by a.TahunBulan " & _
+               "union all " & _
+               "select a.TahunBulan,'TOTAL BEBAN USAHA' as Aliasing," & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='4.0'),0)) as Jumlah, 4.1 as Grup " & _
+               "from ctepvot a group by a.TahunBulan " & _
+               "union all " & _
+               "select a.TahunBulan,'LABA-RUGI OPERASI' as Aliasing," & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0'),0))-" & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0'),0))-" & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0'),0))-" & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='4.0'),0)) as Jumlah, 4.2 as Grup " & _
+               "from ctepvot a group by a.TahunBulan " & _
+               "union all " & _
+               "select a.TahunBulan,'TOTAL PENDAPATAN & BIAYA DILUAR USAHA' as Aliasing," & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='5.0'),0))-" & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='6.0'),0)) as Jumlah, 6.1 as Grup " & _
+               "from ctepvot a group by a.TahunBulan " & _
+               "union all " & _
+               "select a.TahunBulan,'LABA-RUGI SEBELUM PAJAK' as Aliasing," & _
+               "((select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0'),0))-" & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0'),0))-" & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0'),0))-" & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='4.0'),0)))+" & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='5.0'),0))-" & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='6.0'),0)) " & _
+               "as Jumlah, 6.2 as Grup " & _
+               "from ctepvot a group by a.TahunBulan " & _
+               "union all " & _
+               "select a.TahunBulan,'LABA-RUGI SETELAH PAJAK' as Aliasing," & _
+               "((select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0'),0))-" & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0'),0))- " & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0'),0))-" & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='4.0'),0)))+" & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='5.0'),0))-" & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='6.0'),0))-" & _
+               "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='7.0'),0)) " & _
+               "as Jumlah, 7.1 as Grup " & _
+               "from ctepvot a group by a.TahunBulan " & _
+               ")," & _
+               "ctejml as(" & _
+               "select SUBSTRING(a.TahunBulan,1,4) as Tahun,a.Aliasing,sum(a.JumlahNPM) as Jumlah, sum(a.JumlahNPM)/" & jmlbulan & " as Rata, " & _
+               "(sum(a.JumlahNPM)/" & jmlbulan & ") / (select sum(x.JumlahNPM)/" & jmlbulan & " from ctegabung x where SUBSTRING(x.TahunBulan,1,4)=SUBSTRING(a.TahunBulan,1,4) and x.Aliasing='PENDAPATAN BERSIH') * 100 as Persen" & _
+               ",Grup from ctegabung a " & _
+               "group by SUBSTRING(a.TahunBulan,1,4),a.Aliasing,a.Grup" & _
+               ") select * into #tmptable from ctejml; " & _
+               "with ctepivotrealisasi as(" & _
+               "select P.Aliasing," & ctepivotrealisasistring & ",Grup from #tmptable D " & _
+               "PIVOT(Sum(Jumlah) FOR D.Tahun IN (" & tahunpivot & ")) P " & _
+               "group by Aliasing,Grup" & _
+               ")," & _
+               "cterata as(" & _
+               "select P.Aliasing," & ctepivotratastring & ",Grup from #tmptable D " & _
+               "PIVOT(max(Rata) FOR D.Tahun IN (" & tahunpivot & ")) P " & _
+               "group by Aliasing,Grup" & _
+               ")," & _
+               "ctepersen as(" & _
+               "select P.Aliasing," & ctepivotpersenstring & ",Grup from #tmptable D " & _
+               "PIVOT(max(Persen) FOR D.Tahun IN (" & tahunpivot & ")) P " & _
+               "group by Aliasing,Grup" & _
+               ")" & _
+               "select a.Aliasing as Keterangan," & selecttahun & "," & _
+               "a.Grup from ctepivotrealisasi a " & _
+               "left join cterata b on b.Aliasing = a.Aliasing and b.Grup = a.Grup " & _
+               "left join ctepersen c on c.Aliasing = a.Aliasing and c.Grup = a.Grup " & _
+               "order by a.Grup"
 
-            Dim query As String = _
-            "IF OBJECT_ID('tempdb..#tmptable') IS NOT NULL DROP TABLE #tmptable;" & _
+                query2 = _
             "WITH cteLR AS " & _
             "(" & _
                 "SELECT " & _
@@ -181,10 +296,9 @@ Public Class frmLapNPM
                 "CONVERT(VARCHAR(6),a.TanggalBukti,112)," & _
                 "a.KodeCompany," & _
                 "a.KodeAkun, b.Keterangan, b.DebetOrKredit" & _
-            "), " & _
-            "ctepvot as(" & _
-                "SELECT " & _
-                    "aa.TahunBulan, aa.KODECOMPANY,dd.Aliasing, aa.KODEAKUN, aa.KETERANGAN,  aa.DOK, " & _
+            ") " & _
+            "SELECT " & _
+                    "aa.TahunBulan, aa.KodeCompany,dd.Aliasing as KeteranganAkun, aa.KodeAkun, aa.Keterangan,  aa.Dok, " & _
                     "aa.Jumlah AS JumlahNPM, dd.grup " & _
                     "FROM cteLR AS aa " & _
                     "LEFT JOIN dbo.tbACKodeAkun cc ON aa.KodeAkun=cc.KodeAkun " & _
@@ -199,98 +313,9 @@ Public Class frmLapNPM
                         "aa.kodecompany+'.90.10.620'," & _
                         "aa.KodeCompany+'.60.01.100'," & _
                         "aa.kodecompany+'.90.10.630'" & _
-                        ")" & _
-            "), " & _
-            "cteall as(" & _
-                "" & uniontanggal & ")," & _
-            "cteall2 as(" & _
-                "select a.TahunBulan,a.Aliasing, sum(isnull(b.JumlahNPM,0)) as JumlahNPM,a.Grup from cteall a " & _
-                "left join ctepvot b on b.Aliasing = a.Aliasing and b.TahunBulan = a.TahunBulan " & _
-                "group by a.Aliasing,a.Grup,a.TahunBulan " & _
-                ")," & _
-            "ctegabung as(" & _
-                "select * from cteall2 " & _
-                "union all " & _
-                "select a.TahunBulan,'PENDAPATAN BERSIH' as Aliasing,(" & _
-                "select isnull ((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0'),0))-" & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0'),0)) " & _
-                "as Jumlah, 2.1 as Grup from ctepvot a group by a.TahunBulan " & _
-                "union all " & _
-                "select a.TahunBulan,'TOTAL HPP BARANG DAGANG' as Aliasing,(" & _
-                "select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0'),0)) as Jumlah, 3.1 as Grup " & _
-                "from ctepvot a group by a.TahunBulan " & _
-                "union all " & _
-                "select a.TahunBulan,'LABA-RUGI KOTOR' as Aliasing," & _
-                "((select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0'),0))-" & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0'),0)))-" & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0'),0)) as Jumlah, 3.2 as Grup " & _
-                "from ctepvot a group by a.TahunBulan " & _
-                "union all " & _
-                "select a.TahunBulan,'TOTAL BEBAN USAHA' as Aliasing," & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='4.0'),0)) as Jumlah, 4.1 as Grup " & _
-                "from ctepvot a group by a.TahunBulan " & _
-                "union all " & _
-                "select a.TahunBulan,'LABA-RUGI OPERASI' as Aliasing," & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0'),0))-" & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0'),0))-" & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0'),0))-" & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='4.0'),0)) as Jumlah, 4.2 as Grup " & _
-                "from ctepvot a group by a.TahunBulan " & _
-                "union all " & _
-                "select a.TahunBulan,'TOTAL PENDAPATAN & BIAYA DILUAR USAHA' as Aliasing," & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='5.0'),0))-" & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='6.0'),0)) as Jumlah, 6.1 as Grup " & _
-                "from ctepvot a group by a.TahunBulan " & _
-                "union all " & _
-                "select a.TahunBulan,'LABA-RUGI SEBELUM PAJAK' as Aliasing," & _
-                "((select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0'),0))-" & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0'),0))-" & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0'),0))-" & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='4.0'),0)))+" & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='5.0'),0))-" & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='6.0'),0)) " & _
-                "as Jumlah, 6.2 as Grup " & _
-                "from ctepvot a group by a.TahunBulan " & _
-                "union all " & _
-                "select a.TahunBulan,'LABA-RUGI SETELAH PAJAK' as Aliasing," & _
-                "((select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0'),0))-" & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0'),0))- " & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0'),0))-" & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='4.0'),0)))+" & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='5.0'),0))-" & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='6.0'),0))-" & _
-                "(select isnull((select sum(x.JumlahNPM) from cteall2 x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='7.0'),0)) " & _
-                "as Jumlah, 7.1 as Grup " & _
-                "from ctepvot a group by a.TahunBulan " & _
-                ")," & _
-                "ctejml as(" & _
-                "select SUBSTRING(a.TahunBulan,1,4) as Tahun,a.Aliasing,sum(a.JumlahNPM) as Jumlah, sum(a.JumlahNPM)/" & jmlbulan & " as Rata, " & _
-                "(sum(a.JumlahNPM)/" & jmlbulan & ") / (select sum(x.JumlahNPM)/" & jmlbulan & " from ctegabung x where SUBSTRING(x.TahunBulan,1,4)=SUBSTRING(a.TahunBulan,1,4) and x.Aliasing='PENDAPATAN BERSIH') * 100 as Persen" & _
-                ",Grup from ctegabung a " & _
-                "group by SUBSTRING(a.TahunBulan,1,4),a.Aliasing,a.Grup" & _
-                ") select * into #tmptable from ctejml; " & _
-                "with ctepivotrealisasi as(" & _
-                "select P.Aliasing," & ctepivotrealisasistring & ",Grup from #tmptable D " & _
-                "PIVOT(Sum(Jumlah) FOR D.Tahun IN (" & tahunpivot & ")) P " & _
-                "group by Aliasing,Grup" & _
-                ")," & _
-                "cterata as(" & _
-                "select P.Aliasing," & ctepivotratastring & ",Grup from #tmptable D " & _
-                "PIVOT(max(Rata) FOR D.Tahun IN (" & tahunpivot & ")) P " & _
-                "group by Aliasing,Grup" & _
-                ")," & _
-                "ctepersen as(" & _
-                "select P.Aliasing," & ctepivotpersenstring & ",Grup from #tmptable D " & _
-                "PIVOT(max(Persen) FOR D.Tahun IN (" & tahunpivot & ")) P " & _
-                "group by Aliasing,Grup" & _
-                ")" & _
-                "select a.Aliasing as Keterangan," & selecttahun & "," & _
-                "a.Grup from ctepivotrealisasi a " & _
-                "left join cterata b on b.Aliasing = a.Aliasing and b.Grup = a.Grup " & _
-                "left join ctepersen c on c.Aliasing = a.Aliasing and c.Grup = a.Grup " & _
-                "order by a.Grup"
-
-            Dim query3 As String = _
+                        ") order by aa.kodecompany,aa.TahunBulan"
+            ElseIf cJenisLaporan.SelectedIndex = 1 Then
+                query = _
             "IF OBJECT_ID('tempdb..#tmptmp') IS NOT NULL DROP TABLE #tmptmp; " & _
             "DECLARE @BulanArr VARCHAR(50) " & _
             "SET @BulanArr = '" & Strings.Left(bulan, bulan.Length - 1) & "'; " & _
@@ -461,41 +486,49 @@ Public Class frmLapNPM
             "a.Grup from ctepivotrealisasi a " & _
             "left join ctepivotbudget b on b.Aliasing = a.Aliasing and b.Grup = a.Grup order by Grup"
 
-            Dim query2 As String = _
-            "WITH cteLR AS " & _
-            "(" & _
-                "SELECT " & _
-                "CONVERT(VARCHAR(6),a.TanggalBukti,112) as TahunBulan,a.KodeCompany," & _
-                "a.KodeAkun,b.Keterangan,SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah," & _
-                "b.DebetOrKredit AS DoK " & _
+
+
+                query2 = _
+                "IF OBJECT_ID('tempdb..#tmptmp') IS NOT NULL DROP TABLE #tmptmp; " & _
+                "DECLARE @BulanArr VARCHAR(50) " & _
+                "SET @BulanArr = '" & Strings.Left(bulan, bulan.Length - 1) & "'; " & _
+                "WITH cteLR AS (" & _
+                "SELECT CONVERT(VARCHAR(6),a.TanggalBukti,112) as TahunBulan,a.KodeCompany,a.KodeAkun,b.Keterangan," & _
+                "SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah,b.DebetOrKredit AS DoK " & _
                 "FROM dbo.tbACJurnal a " & _
                 "LEFT JOIN dbo.tbACKodeAkun b ON b.KodeAkun=a.KodeAkun " & _
-                "WHERE " & _
-                "CONVERT(VARCHAR(6),a.TanggalBukti,112) in (" & Strings.Left(tahunbulan, tahunbulan.Length - 1) & ") AND " & _
-                "a.KodeCompany in (" & kdcompany & ") " & _
-                "AND b.IdKategori IN (SELECT IdKategori FROM dbo.tbACKategori WHERE StatusLaporan='LR') " & _
-                "GROUP BY " & _
-                "CONVERT(VARCHAR(6),a.TanggalBukti,112)," & _
-                "a.KodeCompany," & _
-                "a.KodeAkun, b.Keterangan, b.DebetOrKredit" & _
-            ") " & _
-            "SELECT " & _
-                    "aa.TahunBulan, aa.KodeCompany,dd.Aliasing as KeteranganAkun, aa.KodeAkun, aa.Keterangan,  aa.Dok, " & _
-                    "aa.Jumlah AS JumlahNPM, dd.grup " & _
-                    "FROM cteLR AS aa " & _
-                    "LEFT JOIN dbo.tbACKodeAkun cc ON aa.KodeAkun=cc.KodeAkun " & _
-                    "LEFT JOIN dbo.tbACKategoriNPM dd ON cc.KodeAkun=dd.KodeAkun " & _
-                    "WHERE NOT aa.KodeAkun IN " & _
-                        "(aa.kodecompany+'.90.20.210'," & _
-                        "aa.kodecompany+'.90.20.971'," & _
-                        "aa.kodecompany+'.90.20.972'," & _
-                        "aa.kodecompany+'.90.20.973'," & _
-                        "aa.kodecompany+'.90.20.974'," & _
-                        "aa.kodecompany+'.90.10.610'," & _
-                        "aa.kodecompany+'.90.10.620'," & _
-                        "aa.kodecompany+'.90.10.630'" & _
-                        ") order by aa.kodecompany,aa.TahunBulan"
+                "WHERE CONVERT(VARCHAR(6),a.TanggalBukti,112) in (" & Strings.Left(tahunbulan, tahunbulan.Length - 1) & "" & _
+                ") AND a.KodeCompany in (" & kdcompany & ") AND b.IdKategori " & _
+                "IN (SELECT IdKategori FROM dbo.tbACKategori WHERE StatusLaporan='LR') " & _
+                "GROUP BY CONVERT(VARCHAR(6),a.TanggalBukti,112),a.KodeCompany,a.KodeAkun, b.Keterangan, b.DebetOrKredit), " & _
+                "ctepvot as(" & _
+                "SELECT aa.TahunBulan, aa.KodeCompany,dd.Aliasing as KeteranganAkun, aa.KodeAkun, aa.Keterangan,  aa.Dok, aa.Jumlah AS JumlahNPM, dd.grup " & _
+                "FROM cteLR AS aa " & _
+                "LEFT JOIN dbo.tbACKodeAkun cc ON aa.KodeAkun=cc.KodeAkun " & _
+                "LEFT JOIN dbo.tbACKategoriNPM dd ON cc.KodeAkun=dd.KodeAkun " & _
+                "WHERE NOT aa.KodeAkun IN " & _
+                "(aa.kodecompany+'.90.20.210',aa.kodecompany+'.90.20.971',aa.kodecompany+'.90.20.972',aa.kodecompany+'.90.20.973'," & _
+                "aa.kodecompany+'.90.20.974',aa.kodecompany+'.90.10.610',aa.kodecompany+'.90.10.620',aa.kodecompany+'.90.10.630',aa.kodecompany+'.60.01.100')) " & _
+                "select a.*, (" & _
+                "case when substring(TahunBulan,5,2) = '01' then b.Jan " & _
+                "when substring(TahunBulan,5,2) = '02' then b.Peb " & _
+                "when substring(TahunBulan,5,2) = '03' then b.Mar " & _
+                "when substring(TahunBulan,5,2) = '04' then b.Apr " & _
+                "when substring(TahunBulan,5,2) = '05' then b.Mei " & _
+                "when substring(TahunBulan,5,2) = '06' then b.Jun " & _
+                "when substring(TahunBulan,5,2) = '07' then b.Jul " & _
+                "when substring(TahunBulan,5,2) = '08' then b.Agt " & _
+                "when substring(TahunBulan,5,2) = '09' then b.Sep " & _
+                "when substring(TahunBulan,5,2) = '10' then b.Okt " & _
+                "when substring(TahunBulan,5,2) = '11' then b.Nop " & _
+                "when substring(TahunBulan,5,2) = '12' then b.Des " & _
+                "end) as Budget " & _
+                "from ctepvot a " & _
+                "left join tbACBudget b on a.KodeAkun = b.KodeAkun and substring(a.TahunBulan,1,4) = b.Tahun"
 
+            End If
+
+           
             'Data1
             Using sqlcon As New Data.SqlClient.SqlConnection(tJenis.Text)
                 sqlcon.Open()
@@ -520,19 +553,6 @@ Public Class frmLapNPM
                 adp.Fill(dt2)
             End Using
 
-
-            'Data3
-            Using sqlcon As New Data.SqlClient.SqlConnection(tJenis.Text)
-                sqlcon.Open()
-                Dim sqlCmd = New Data.SqlClient.SqlCommand(query3, sqlcon)
-                sqlCmd.CommandTimeout = 0
-                Dim adp As New SqlDataAdapter(sqlCmd)
-                adp.Fill(dt3)
-            End Using
-
-            ds3.Tables.Add(dt3)
-            GridControl2.DataSource = ds3.Tables(0)
-
             ds.Tables.Add(dt1)
             ds.Tables.Add(dt2)
             ds.Relations.Add("Aliasing", dt1.Columns("Keterangan"), dt2.Columns("KeteranganAkun"))
@@ -549,6 +569,12 @@ Public Class frmLapNPM
             SetFooterSummarySUMs(GridView4, {"JumlahNPM"})
             GridView4.Columns("JumlahNPM").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GridView4.Columns("JumlahNPM").DisplayFormat.FormatString = "c2"
+            If cJenisLaporan.SelectedIndex = 1 Then
+                SetFooterSummarySUMs(GridView4, {"JumlahNPM", "Budget"})
+                GridView4.Columns("Budget").Width = 250
+                GridView4.Columns("Budget").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GridView4.Columns("Budget").DisplayFormat.FormatString = "c2"
+            End If
 
             GridControl1.DataSource = ds.Tables("table1")
             GridView1.BestFitColumns()
@@ -556,125 +582,107 @@ Public Class frmLapNPM
             GridView1.Columns("Grup").Visible = False
             GridView1.Columns("Keterangan").Width = 500
             GridView1.Columns("Realisasi" & Format(dTahun1.EditValue, "yyyy") & "").Width = 200
-            GridView1.Columns("Rata" & Format(dTahun1.EditValue, "yyyy") & "").Width = 200
-            GridView1.Columns("Persen" & Format(dTahun1.EditValue, "yyyy") & "").Width = 100
-
-            GridView1.OptionsView.ShowGroupPanel = False
-            'reFormatColumns(GridView1)
             GridView1.Columns("Realisasi" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GridView1.Columns("Realisasi" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-            GridView1.Columns("Rata" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-            GridView1.Columns("Rata" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-            GridView1.Columns("Persen" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-            GridView1.Columns("Persen" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
 
+            If cJenisLaporan.SelectedIndex = 0 Then
+                GridView1.Columns("Rata" & Format(dTahun1.EditValue, "yyyy") & "").Width = 200
+                GridView1.Columns("Persen" & Format(dTahun1.EditValue, "yyyy") & "").Width = 100
+                GridView1.Columns("Rata" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GridView1.Columns("Rata" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                GridView1.Columns("Persen" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GridView1.Columns("Persen" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
 
-            'budget
-            GridView5.BestFitColumns()
-            FormatGridView(GridView5, , , True)
-            GridView5.Columns("Grup").Visible = False
-            GridView5.OptionsView.ShowGroupPanel = False
-            GridView5.Columns("Keterangan").Width = 500
-            GridView5.Columns("Realisasi" & Format(dTahun1.EditValue, "yyyy") & "").Width = 200
-            GridView5.Columns("Budget" & Format(dTahun1.EditValue, "yyyy") & "").Width = 200
-            GridView5.Columns("%RealisasiVsBudget" & Format(dTahun1.EditValue, "yyyy") & "").Width = 200
+            ElseIf cJenisLaporan.SelectedIndex = 1 Then
+                GridView1.Columns("Budget" & Format(dTahun1.EditValue, "yyyy") & "").Width = 200
+                GridView1.Columns("%RealisasiVsBudget" & Format(dTahun1.EditValue, "yyyy") & "").Width = 200
+                GridView1.Columns("Budget" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GridView1.Columns("Budget" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                GridView1.Columns("%RealisasiVsBudget" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GridView1.Columns("%RealisasiVsBudget" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
+            End If
 
-            GridView5.Columns("Realisasi" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-            GridView5.Columns("Realisasi" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-            GridView5.Columns("Budget" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-            GridView5.Columns("Budget" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-            GridView5.Columns("%RealisasiVsBudget" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-            GridView5.Columns("%RealisasiVsBudget" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
+            GridView1.OptionsView.ShowGroupPanel = False
 
             If cTahun2.Checked = True And cTahun3.Checked = True Then
                 GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-                GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-                GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").Width = 100
-                GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-
-
                 GridView1.OptionsView.ShowGroupPanel = False
-                'reFormatColumns(GridView1)
                 GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                 GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
 
                 GridView1.Columns("Realisasi" & Format(dTahun3.EditValue, "yyyy") & "").Width = 300
-                GridView1.Columns("Rata" & Format(dTahun3.EditValue, "yyyy") & "").Width = 200
-                GridView1.Columns("Persen" & Format(dTahun3.EditValue, "yyyy") & "").Width = 100
-                GridView1.Columns("Selisih" & Format(dTahun2.EditValue, "yyyy") & "-" & Format(dTahun3.EditValue, "yyyy") & "").Width = 200
-
-                GridView1.OptionsView.ShowGroupPanel = False
-                'reFormatColumns(GridView1)
                 GridView1.Columns("Realisasi" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                 GridView1.Columns("Realisasi" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                GridView1.Columns("Rata" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("Rata" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                GridView1.Columns("Persen" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("Persen" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
-                GridView1.Columns("Selisih" & Format(dTahun2.EditValue, "yyyy") & "-" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("Selisih" & Format(dTahun2.EditValue, "yyyy") & "-" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
 
-                'budget
-                GridView5.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-                GridView5.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-                GridView5.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+                If cJenisLaporan.SelectedIndex = 0 Then
+                    GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+                    GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").Width = 100
+                    GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
 
-                GridView5.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView5.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                GridView5.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView5.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                GridView5.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView5.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
+                    GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                    GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                    GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
 
-                GridView5.Columns("Realisasi" & Format(dTahun3.EditValue, "yyyy") & "").Width = 200
-                GridView5.Columns("Budget" & Format(dTahun3.EditValue, "yyyy") & "").Width = 200
-                GridView5.Columns("%RealisasiVsBudget" & Format(dTahun3.EditValue, "yyyy") & "").Width = 200
+                    GridView1.Columns("Rata" & Format(dTahun3.EditValue, "yyyy") & "").Width = 200
+                    GridView1.Columns("Persen" & Format(dTahun3.EditValue, "yyyy") & "").Width = 100
+                    GridView1.Columns("Selisih" & Format(dTahun2.EditValue, "yyyy") & "-" & Format(dTahun3.EditValue, "yyyy") & "").Width = 200
 
-                GridView5.Columns("Realisasi" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView5.Columns("Realisasi" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                GridView5.Columns("Budget" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView5.Columns("Budget" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                GridView5.Columns("%RealisasiVsBudget" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView5.Columns("%RealisasiVsBudget" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
+                    GridView1.Columns("Rata" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Rata" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                    GridView1.Columns("Persen" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Persen" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
+                    GridView1.Columns("Selisih" & Format(dTahun2.EditValue, "yyyy") & "-" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Selisih" & Format(dTahun2.EditValue, "yyyy") & "-" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                ElseIf cJenisLaporan.SelectedIndex = 1 Then
+                    GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+                    GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
 
+                    GridView1.Columns("Budget" & Format(dTahun3.EditValue, "yyyy") & "").Width = 200
+                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun3.EditValue, "yyyy") & "").Width = 200
 
+                    GridView1.Columns("Budget" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Budget" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
+                End If
+                
             ElseIf cTahun2.Checked = True And cTahun3.Checked = False Then
                 GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").Width = 300
-                GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-                GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").Width = 100
-                GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-                GridView1.OptionsView.ShowGroupPanel = False
-                'reFormatColumns(GridView1)
                 GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
                 GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
 
-                'budget
-                GridView5.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-                GridView5.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-                GridView5.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+                If cJenisLaporan.SelectedIndex = 0 Then
+                    GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+                    GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").Width = 100
+                    GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+                    GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                    GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                    GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
 
-                GridView5.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView5.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                GridView5.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView5.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                GridView5.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView5.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
+                ElseIf cJenisLaporan.SelectedIndex = 1 Then
+                    GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+                    GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
+                End If
             Else
-                GridView1.Columns("Selisih").Width = 200
-                GridView1.Columns("Selisih").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("Selisih").DisplayFormat.FormatString = "c2"
+                If cJenisLaporan.SelectedIndex = 0 Then
+                    GridView1.Columns("Selisih").Width = 200
+                    GridView1.Columns("Selisih").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Selisih").DisplayFormat.FormatString = "c2"
+                End If
             End If
             GridControl1.LevelTree.Nodes.Clear()
             GridControl1.LevelTree.Nodes.Add("Aliasing", GridView2)
@@ -690,6 +698,14 @@ Public Class frmLapNPM
             SetFooterSummarySUMs(GridView2, {"JumlahNPM"})
             GridView2.Columns("JumlahNPM").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
             GridView2.Columns("JumlahNPM").DisplayFormat.FormatString = "c2"
+
+            If cJenisLaporan.SelectedIndex = 1 Then
+                SetFooterSummarySUMs(GridView2, {"JumlahNPM", "Budget"})
+                GridView2.Columns("Budget").Width = 250
+                GridView2.Columns("Budget").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GridView2.Columns("Budget").DisplayFormat.FormatString = "c2"
+            End If
+
         End If
     End Sub
 
@@ -711,7 +727,6 @@ Public Class frmLapNPM
     End Sub
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
-
         Dim saveFileDialog1 As New SaveFileDialog
         saveFileDialog1.Filter = "Excel File|*.xlsx"
         saveFileDialog1.Title = "Save an Excel File"
@@ -867,9 +882,9 @@ Public Class frmLapNPM
         End If
     End Sub
 
-    Private Sub GridView5_CustomDrawCell(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs) Handles GridView5.CustomDrawCell
-        If Not Strings.Right(GridView5.GetRowCellValue(e.RowHandle, "Grup"), 1) = "0" Then
-            e.Appearance.Font = New Font(e.Appearance.Font, FontStyle.Bold)
-        End If
+    Private Sub GridView5_CustomDrawCell(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs)
+        'If Not Strings.Right(GridView5.GetRowCellValue(e.RowHandle, "Grup"), 1) = "0" Then
+        '    e.Appearance.Font = New Font(e.Appearance.Font, FontStyle.Bold)
+        'End If
     End Sub
 End Class

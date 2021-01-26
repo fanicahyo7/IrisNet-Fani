@@ -21,6 +21,12 @@ Partial Class frmPBYList
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.btnCetak = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnPBYBaru = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnPerforma = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnExport = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnLaporan = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnValidasi = New DevExpress.XtraEditors.SimpleButton()
         Me.sTotalSisa = New DevExpress.XtraEditors.SpinEdit()
         Me.sTotalLunas = New DevExpress.XtraEditors.SpinEdit()
         Me.sTotalValid = New DevExpress.XtraEditors.SpinEdit()
@@ -38,18 +44,12 @@ Partial Class frmPBYList
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.btnValidasi = New DevExpress.XtraEditors.SimpleButton()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.btnLaporan = New DevExpress.XtraEditors.SimpleButton()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.btnExport = New DevExpress.XtraEditors.SimpleButton()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem5 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.btnPerforma = New DevExpress.XtraEditors.SimpleButton()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.btnPBYBaru = New DevExpress.XtraEditors.SimpleButton()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.btnCetak = New DevExpress.XtraEditors.SimpleButton()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -98,6 +98,60 @@ Partial Class frmPBYList
         Me.LayoutControl1.Size = New System.Drawing.Size(805, 413)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'btnCetak
+        '
+        Me.btnCetak.Location = New System.Drawing.Point(436, 379)
+        Me.btnCetak.Name = "btnCetak"
+        Me.btnCetak.Size = New System.Drawing.Size(115, 22)
+        Me.btnCetak.StyleController = Me.LayoutControl1
+        Me.btnCetak.TabIndex = 27
+        Me.btnCetak.Text = "Cetak"
+        '
+        'btnPBYBaru
+        '
+        Me.btnPBYBaru.Location = New System.Drawing.Point(555, 379)
+        Me.btnPBYBaru.Name = "btnPBYBaru"
+        Me.btnPBYBaru.Size = New System.Drawing.Size(156, 22)
+        Me.btnPBYBaru.StyleController = Me.LayoutControl1
+        Me.btnPBYBaru.TabIndex = 26
+        Me.btnPBYBaru.Text = "Buat Pengajuan Baru"
+        '
+        'btnPerforma
+        '
+        Me.btnPerforma.Location = New System.Drawing.Point(715, 379)
+        Me.btnPerforma.Name = "btnPerforma"
+        Me.btnPerforma.Size = New System.Drawing.Size(78, 22)
+        Me.btnPerforma.StyleController = Me.LayoutControl1
+        Me.btnPerforma.TabIndex = 25
+        Me.btnPerforma.Text = "Buat Performa"
+        '
+        'btnExport
+        '
+        Me.btnExport.Location = New System.Drawing.Point(317, 379)
+        Me.btnExport.Name = "btnExport"
+        Me.btnExport.Size = New System.Drawing.Size(115, 22)
+        Me.btnExport.StyleController = Me.LayoutControl1
+        Me.btnExport.TabIndex = 24
+        Me.btnExport.Text = "Export"
+        '
+        'btnLaporan
+        '
+        Me.btnLaporan.Location = New System.Drawing.Point(147, 379)
+        Me.btnLaporan.Name = "btnLaporan"
+        Me.btnLaporan.Size = New System.Drawing.Size(118, 22)
+        Me.btnLaporan.StyleController = Me.LayoutControl1
+        Me.btnLaporan.TabIndex = 23
+        Me.btnLaporan.Text = "Laporan"
+        '
+        'btnValidasi
+        '
+        Me.btnValidasi.Location = New System.Drawing.Point(12, 379)
+        Me.btnValidasi.Name = "btnValidasi"
+        Me.btnValidasi.Size = New System.Drawing.Size(131, 22)
+        Me.btnValidasi.StyleController = Me.LayoutControl1
+        Me.btnValidasi.TabIndex = 22
+        Me.btnValidasi.Text = "Validasi Pengajuan"
         '
         'sTotalSisa
         '
@@ -287,15 +341,6 @@ Partial Class frmPBYList
         Me.EmptySpaceItem4.Size = New System.Drawing.Size(428, 24)
         Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
         '
-        'btnValidasi
-        '
-        Me.btnValidasi.Location = New System.Drawing.Point(12, 379)
-        Me.btnValidasi.Name = "btnValidasi"
-        Me.btnValidasi.Size = New System.Drawing.Size(131, 22)
-        Me.btnValidasi.StyleController = Me.LayoutControl1
-        Me.btnValidasi.TabIndex = 22
-        Me.btnValidasi.Text = "Validasi Pengajuan"
-        '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.btnValidasi
@@ -305,15 +350,6 @@ Partial Class frmPBYList
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextVisible = False
         '
-        'btnLaporan
-        '
-        Me.btnLaporan.Location = New System.Drawing.Point(147, 379)
-        Me.btnLaporan.Name = "btnLaporan"
-        Me.btnLaporan.Size = New System.Drawing.Size(118, 22)
-        Me.btnLaporan.StyleController = Me.LayoutControl1
-        Me.btnLaporan.TabIndex = 23
-        Me.btnLaporan.Text = "Laporan"
-        '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.btnLaporan
@@ -322,15 +358,6 @@ Partial Class frmPBYList
         Me.LayoutControlItem4.Size = New System.Drawing.Size(122, 26)
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem4.TextVisible = False
-        '
-        'btnExport
-        '
-        Me.btnExport.Location = New System.Drawing.Point(317, 379)
-        Me.btnExport.Name = "btnExport"
-        Me.btnExport.Size = New System.Drawing.Size(115, 22)
-        Me.btnExport.StyleController = Me.LayoutControl1
-        Me.btnExport.TabIndex = 24
-        Me.btnExport.Text = "Export"
         '
         'LayoutControlItem5
         '
@@ -349,15 +376,6 @@ Partial Class frmPBYList
         Me.EmptySpaceItem5.Size = New System.Drawing.Size(48, 26)
         Me.EmptySpaceItem5.TextSize = New System.Drawing.Size(0, 0)
         '
-        'btnPerforma
-        '
-        Me.btnPerforma.Location = New System.Drawing.Point(715, 379)
-        Me.btnPerforma.Name = "btnPerforma"
-        Me.btnPerforma.Size = New System.Drawing.Size(78, 22)
-        Me.btnPerforma.StyleController = Me.LayoutControl1
-        Me.btnPerforma.TabIndex = 25
-        Me.btnPerforma.Text = "Buat Performa"
-        '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.btnPerforma
@@ -367,15 +385,6 @@ Partial Class frmPBYList
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
         '
-        'btnPBYBaru
-        '
-        Me.btnPBYBaru.Location = New System.Drawing.Point(555, 379)
-        Me.btnPBYBaru.Name = "btnPBYBaru"
-        Me.btnPBYBaru.Size = New System.Drawing.Size(156, 22)
-        Me.btnPBYBaru.StyleController = Me.LayoutControl1
-        Me.btnPBYBaru.TabIndex = 26
-        Me.btnPBYBaru.Text = "Buat Pengajuan Baru"
-        '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.btnPBYBaru
@@ -384,15 +393,6 @@ Partial Class frmPBYList
         Me.LayoutControlItem7.Size = New System.Drawing.Size(160, 26)
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem7.TextVisible = False
-        '
-        'btnCetak
-        '
-        Me.btnCetak.Location = New System.Drawing.Point(436, 379)
-        Me.btnCetak.Name = "btnCetak"
-        Me.btnCetak.Size = New System.Drawing.Size(115, 22)
-        Me.btnCetak.StyleController = Me.LayoutControl1
-        Me.btnCetak.TabIndex = 27
-        Me.btnCetak.Text = "Cetak"
         '
         'LayoutControlItem8
         '

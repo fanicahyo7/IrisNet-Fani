@@ -571,6 +571,12 @@
     <Compile Include="frmPBYList.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmPBYRekapPelunasan.Designer.vb">
+      <DependentUpon>frmPBYRekapPelunasan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPBYRekapPelunasan.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmPelunasanHutang.Designer.vb">
       <DependentUpon>frmPelunasanHutang.vb</DependentUpon>
     </Compile>
@@ -994,6 +1000,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPBYList.resx">
       <DependentUpon>frmPBYList.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPBYRekapPelunasan.resx">
+      <DependentUpon>frmPBYRekapPelunasan.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPelunasanHutang.resx">
       <DependentUpon>frmPelunasanHutang.vb</DependentUpon>
