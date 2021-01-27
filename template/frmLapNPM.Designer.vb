@@ -26,6 +26,7 @@ Partial Class frmLapNPM
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.cJenisLaporan = New System.Windows.Forms.ComboBox()
         Me.cbKodeCompany = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.cCheckAllBulan = New DevExpress.XtraEditors.CheckEdit()
         Me.cTahun3 = New DevExpress.XtraEditors.CheckEdit()
@@ -59,13 +60,14 @@ Partial Class frmLapNPM
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem5 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
-        Me.cJenisLaporan = New System.Windows.Forms.ComboBox()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
+        Me.cTampilan = New System.Windows.Forms.ComboBox()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -103,11 +105,12 @@ Partial Class frmLapNPM
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridView2
@@ -139,6 +142,7 @@ Partial Class frmLapNPM
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.cTampilan)
         Me.LayoutControl1.Controls.Add(Me.cJenisLaporan)
         Me.LayoutControl1.Controls.Add(Me.GridControl1)
         Me.LayoutControl1.Controls.Add(Me.cbKodeCompany)
@@ -164,6 +168,16 @@ Partial Class frmLapNPM
         Me.LayoutControl1.Size = New System.Drawing.Size(796, 664)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'cJenisLaporan
+        '
+        Me.cJenisLaporan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cJenisLaporan.FormattingEnabled = True
+        Me.cJenisLaporan.Items.AddRange(New Object() {"NPM", "REALISASI VS BUDGET"})
+        Me.cJenisLaporan.Location = New System.Drawing.Point(87, 37)
+        Me.cJenisLaporan.Name = "cJenisLaporan"
+        Me.cJenisLaporan.Size = New System.Drawing.Size(146, 21)
+        Me.cJenisLaporan.TabIndex = 31
         '
         'cbKodeCompany
         '
@@ -328,7 +342,7 @@ Partial Class frmLapNPM
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem6, Me.EmptySpaceItem3, Me.LayoutControlItem9, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem8, Me.LayoutControlItem12, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.LayoutControlItem16, Me.LayoutControlItem17, Me.LayoutControlItem18, Me.EmptySpaceItem1, Me.LayoutControlItem19, Me.EmptySpaceItem2, Me.LayoutControlItem5, Me.EmptySpaceItem5, Me.LayoutControlItem11, Me.LayoutControlItem20, Me.LayoutControlItem1})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem6, Me.EmptySpaceItem3, Me.LayoutControlItem9, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem8, Me.LayoutControlItem12, Me.LayoutControlItem14, Me.LayoutControlItem15, Me.LayoutControlItem16, Me.LayoutControlItem17, Me.LayoutControlItem18, Me.EmptySpaceItem1, Me.LayoutControlItem19, Me.EmptySpaceItem2, Me.LayoutControlItem5, Me.EmptySpaceItem5, Me.LayoutControlItem11, Me.LayoutControlItem20, Me.LayoutControlItem1, Me.LayoutControlItem2})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(796, 664)
@@ -487,18 +501,6 @@ Partial Class frmLapNPM
         Me.EmptySpaceItem2.Size = New System.Drawing.Size(190, 40)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
-        'LayoutControlItem20
-        '
-        Me.LayoutControlItem20.Control = Me.cbKodeCompany
-        Me.LayoutControlItem20.Location = New System.Drawing.Point(197, 0)
-        Me.LayoutControlItem20.MaxSize = New System.Drawing.Size(389, 25)
-        Me.LayoutControlItem20.MinSize = New System.Drawing.Size(389, 25)
-        Me.LayoutControlItem20.Name = "LayoutControlItem20"
-        Me.LayoutControlItem20.Size = New System.Drawing.Size(389, 25)
-        Me.LayoutControlItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.LayoutControlItem20.Text = "Kode Company"
-        Me.LayoutControlItem20.TextSize = New System.Drawing.Size(72, 13)
-        '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.btnAmbilData
@@ -514,20 +516,10 @@ Partial Class frmLapNPM
         'EmptySpaceItem5
         '
         Me.EmptySpaceItem5.AllowHotTrack = False
-        Me.EmptySpaceItem5.Location = New System.Drawing.Point(225, 25)
+        Me.EmptySpaceItem5.Location = New System.Drawing.Point(415, 25)
         Me.EmptySpaceItem5.Name = "EmptySpaceItem5"
-        Me.EmptySpaceItem5.Size = New System.Drawing.Size(551, 25)
+        Me.EmptySpaceItem5.Size = New System.Drawing.Size(361, 25)
         Me.EmptySpaceItem5.TextSize = New System.Drawing.Size(0, 0)
-        '
-        'cJenisLaporan
-        '
-        Me.cJenisLaporan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cJenisLaporan.FormattingEnabled = True
-        Me.cJenisLaporan.Items.AddRange(New Object() {"NPM", "REALISASI VS BUDGET"})
-        Me.cJenisLaporan.Location = New System.Drawing.Point(87, 37)
-        Me.cJenisLaporan.Name = "cJenisLaporan"
-        Me.cJenisLaporan.Size = New System.Drawing.Size(146, 21)
-        Me.cJenisLaporan.TabIndex = 31
         '
         'LayoutControlItem11
         '
@@ -541,6 +533,18 @@ Partial Class frmLapNPM
         Me.LayoutControlItem11.Text = "Jenis Laporan"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(72, 13)
         '
+        'LayoutControlItem20
+        '
+        Me.LayoutControlItem20.Control = Me.cbKodeCompany
+        Me.LayoutControlItem20.Location = New System.Drawing.Point(197, 0)
+        Me.LayoutControlItem20.MaxSize = New System.Drawing.Size(389, 25)
+        Me.LayoutControlItem20.MinSize = New System.Drawing.Size(389, 25)
+        Me.LayoutControlItem20.Name = "LayoutControlItem20"
+        Me.LayoutControlItem20.Size = New System.Drawing.Size(389, 25)
+        Me.LayoutControlItem20.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem20.Text = "Kode Company"
+        Me.LayoutControlItem20.TextSize = New System.Drawing.Size(72, 13)
+        '
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.GridControl1
@@ -549,6 +553,28 @@ Partial Class frmLapNPM
         Me.LayoutControlItem1.Size = New System.Drawing.Size(776, 439)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
+        '
+        'cTampilan
+        '
+        Me.cTampilan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cTampilan.FormattingEnabled = True
+        Me.cTampilan.Items.AddRange(New Object() {"Tampilan 1", "Tampilan 2"})
+        Me.cTampilan.Location = New System.Drawing.Point(312, 37)
+        Me.cTampilan.Name = "cTampilan"
+        Me.cTampilan.Size = New System.Drawing.Size(111, 21)
+        Me.cTampilan.TabIndex = 32
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me.cTampilan
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(225, 25)
+        Me.LayoutControlItem2.MaxSize = New System.Drawing.Size(190, 25)
+        Me.LayoutControlItem2.MinSize = New System.Drawing.Size(190, 25)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(190, 25)
+        Me.LayoutControlItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem2.Text = "        Tampilan"
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(72, 13)
         '
         'frmLapNPM
         '
@@ -595,11 +621,12 @@ Partial Class frmLapNPM
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -648,4 +675,6 @@ Partial Class frmLapNPM
     Friend WithEvents cJenisLaporan As System.Windows.Forms.ComboBox
     Friend WithEvents LayoutControlItem11 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents cTampilan As System.Windows.Forms.ComboBox
+    Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
 End Class

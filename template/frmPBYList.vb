@@ -55,7 +55,7 @@ Public Class frmPBYList
     End Sub
 
     Private Sub dgListDetail_Grid_DoubleClick(sender As Object, e As EventArgs) Handles dgListDetail.Grid_DoubleClick
-        Using xx As New frmPBYRekapPelunasan(dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "NoPengajuan"))
+        Using xx As New frmPBYRekapPelunasan(dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "NoPengajuan"), dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "Status"))
             xx.ShowDialog(Me)
         End Using
     End Sub

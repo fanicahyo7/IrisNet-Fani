@@ -21,49 +21,49 @@ Partial Class frmPBYRekapPelunasan
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.CtrlMeDataGrid1 = New meCore.ctrlMeDataGrid()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.tNoPengajuan = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.tTanggal = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.tStatus = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.sPengajuan = New DevExpress.XtraEditors.SpinEdit()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.sValid = New DevExpress.XtraEditors.SpinEdit()
-        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.sLunas = New DevExpress.XtraEditors.SpinEdit()
-        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.sSisa = New DevExpress.XtraEditors.SpinEdit()
-        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
-        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.sSisa = New DevExpress.XtraEditors.SpinEdit()
+        Me.sLunas = New DevExpress.XtraEditors.SpinEdit()
+        Me.sValid = New DevExpress.XtraEditors.SpinEdit()
+        Me.sPengajuan = New DevExpress.XtraEditors.SpinEdit()
+        Me.tStatus = New DevExpress.XtraEditors.TextEdit()
+        Me.tTanggal = New DevExpress.XtraEditors.TextEdit()
+        Me.tNoPengajuan = New DevExpress.XtraEditors.TextEdit()
+        Me.dgList = New meCore.ctrlMeDataGrid()
+        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.sSisa.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.sLunas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.sValid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.sPengajuan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tTanggal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tNoPengajuan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tNoPengajuan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tTanggal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tStatus.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.sPengajuan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.sValid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.sLunas.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.sSisa.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,7 +85,7 @@ Partial Class frmPBYRekapPelunasan
         Me.LayoutControl1.Controls.Add(Me.tStatus)
         Me.LayoutControl1.Controls.Add(Me.tTanggal)
         Me.LayoutControl1.Controls.Add(Me.tNoPengajuan)
-        Me.LayoutControl1.Controls.Add(Me.CtrlMeDataGrid1)
+        Me.LayoutControl1.Controls.Add(Me.dgList)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl1.Name = "LayoutControl1"
@@ -93,6 +93,117 @@ Partial Class frmPBYRekapPelunasan
         Me.LayoutControl1.Size = New System.Drawing.Size(823, 417)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'SimpleButton3
+        '
+        Me.SimpleButton3.Location = New System.Drawing.Point(614, 383)
+        Me.SimpleButton3.Name = "SimpleButton3"
+        Me.SimpleButton3.Size = New System.Drawing.Size(197, 22)
+        Me.SimpleButton3.StyleController = Me.LayoutControl1
+        Me.SimpleButton3.TabIndex = 14
+        Me.SimpleButton3.Text = "Cetak BTT"
+        '
+        'SimpleButton2
+        '
+        Me.SimpleButton2.Location = New System.Drawing.Point(301, 383)
+        Me.SimpleButton2.Name = "SimpleButton2"
+        Me.SimpleButton2.Size = New System.Drawing.Size(309, 22)
+        Me.SimpleButton2.StyleController = Me.LayoutControl1
+        Me.SimpleButton2.TabIndex = 13
+        Me.SimpleButton2.Text = "Tambah Performa"
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Location = New System.Drawing.Point(12, 383)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(285, 22)
+        Me.SimpleButton1.StyleController = Me.LayoutControl1
+        Me.SimpleButton1.TabIndex = 12
+        Me.SimpleButton1.Text = "Tambah Supplier"
+        '
+        'sSisa
+        '
+        Me.sSisa.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.sSisa.Location = New System.Drawing.Point(674, 60)
+        Me.sSisa.Name = "sSisa"
+        Me.sSisa.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.sSisa.Size = New System.Drawing.Size(137, 20)
+        Me.sSisa.StyleController = Me.LayoutControl1
+        Me.sSisa.TabIndex = 11
+        '
+        'sLunas
+        '
+        Me.sLunas.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.sLunas.Location = New System.Drawing.Point(674, 36)
+        Me.sLunas.Name = "sLunas"
+        Me.sLunas.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.sLunas.Size = New System.Drawing.Size(137, 20)
+        Me.sLunas.StyleController = Me.LayoutControl1
+        Me.sLunas.TabIndex = 10
+        '
+        'sValid
+        '
+        Me.sValid.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.sValid.Location = New System.Drawing.Point(674, 12)
+        Me.sValid.Name = "sValid"
+        Me.sValid.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.sValid.Size = New System.Drawing.Size(137, 20)
+        Me.sValid.StyleController = Me.LayoutControl1
+        Me.sValid.TabIndex = 9
+        '
+        'sPengajuan
+        '
+        Me.sPengajuan.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.sPengajuan.Location = New System.Drawing.Point(447, 12)
+        Me.sPengajuan.Name = "sPengajuan"
+        Me.sPengajuan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.sPengajuan.Size = New System.Drawing.Size(128, 20)
+        Me.sPengajuan.StyleController = Me.LayoutControl1
+        Me.sPengajuan.TabIndex = 8
+        '
+        'tStatus
+        '
+        Me.tStatus.Location = New System.Drawing.Point(107, 60)
+        Me.tStatus.Name = "tStatus"
+        Me.tStatus.Size = New System.Drawing.Size(232, 20)
+        Me.tStatus.StyleController = Me.LayoutControl1
+        Me.tStatus.TabIndex = 7
+        '
+        'tTanggal
+        '
+        Me.tTanggal.Location = New System.Drawing.Point(107, 36)
+        Me.tTanggal.Name = "tTanggal"
+        Me.tTanggal.Size = New System.Drawing.Size(139, 20)
+        Me.tTanggal.StyleController = Me.LayoutControl1
+        Me.tTanggal.TabIndex = 6
+        '
+        'tNoPengajuan
+        '
+        Me.tNoPengajuan.Location = New System.Drawing.Point(107, 12)
+        Me.tNoPengajuan.Name = "tNoPengajuan"
+        Me.tNoPengajuan.Size = New System.Drawing.Size(139, 20)
+        Me.tNoPengajuan.StyleController = Me.LayoutControl1
+        Me.tNoPengajuan.TabIndex = 5
+        '
+        'dgList
+        '
+        Me.dgList.colSum = Nothing
+        Me.dgList.ConnString = Nothing
+        Me.dgList.dSourceUsePK = True
+        Me.dgList.FilterPopUpMode = DevExpress.XtraGrid.Columns.FilterPopupMode.[Default]
+        Me.dgList.Location = New System.Drawing.Point(12, 84)
+        Me.dgList.Name = "dgList"
+        Me.dgList.PopDeleteShow = False
+        Me.dgList.PopExportShow = True
+        Me.dgList.PopNewShow = False
+        Me.dgList.PopOpenShow = False
+        Me.dgList.PopPrintShow = False
+        Me.dgList.PopRefreshShow = False
+        Me.dgList.Query = Nothing
+        Me.dgList.QueryTime = Nothing
+        Me.dgList.ShowFooter = True
+        Me.dgList.Size = New System.Drawing.Size(799, 295)
+        Me.dgList.TabIndex = 4
         '
         'LayoutControlGroup1
         '
@@ -104,42 +215,14 @@ Partial Class frmPBYRekapPelunasan
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(823, 417)
         Me.LayoutControlGroup1.TextVisible = False
         '
-        'CtrlMeDataGrid1
-        '
-        Me.CtrlMeDataGrid1.colSum = Nothing
-        Me.CtrlMeDataGrid1.ConnString = Nothing
-        Me.CtrlMeDataGrid1.dSourceUsePK = True
-        Me.CtrlMeDataGrid1.FilterPopUpMode = DevExpress.XtraGrid.Columns.FilterPopupMode.[Default]
-        Me.CtrlMeDataGrid1.Location = New System.Drawing.Point(12, 84)
-        Me.CtrlMeDataGrid1.Name = "CtrlMeDataGrid1"
-        Me.CtrlMeDataGrid1.PopDeleteShow = False
-        Me.CtrlMeDataGrid1.PopExportShow = True
-        Me.CtrlMeDataGrid1.PopNewShow = False
-        Me.CtrlMeDataGrid1.PopOpenShow = False
-        Me.CtrlMeDataGrid1.PopPrintShow = False
-        Me.CtrlMeDataGrid1.PopRefreshShow = False
-        Me.CtrlMeDataGrid1.Query = Nothing
-        Me.CtrlMeDataGrid1.QueryTime = Nothing
-        Me.CtrlMeDataGrid1.ShowFooter = True
-        Me.CtrlMeDataGrid1.Size = New System.Drawing.Size(799, 295)
-        Me.CtrlMeDataGrid1.TabIndex = 4
-        '
         'LayoutControlItem1
         '
-        Me.LayoutControlItem1.Control = Me.CtrlMeDataGrid1
+        Me.LayoutControlItem1.Control = Me.dgList
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
         Me.LayoutControlItem1.Size = New System.Drawing.Size(803, 299)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
-        '
-        'tNoPengajuan
-        '
-        Me.tNoPengajuan.Location = New System.Drawing.Point(108, 12)
-        Me.tNoPengajuan.Name = "tNoPengajuan"
-        Me.tNoPengajuan.Size = New System.Drawing.Size(138, 20)
-        Me.tNoPengajuan.StyleController = Me.LayoutControl1
-        Me.tNoPengajuan.TabIndex = 5
         '
         'LayoutControlItem2
         '
@@ -150,14 +233,6 @@ Partial Class frmPBYRekapPelunasan
         Me.LayoutControlItem2.Text = "No Bukti"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(92, 13)
         '
-        'tTanggal
-        '
-        Me.tTanggal.Location = New System.Drawing.Point(108, 36)
-        Me.tTanggal.Name = "tTanggal"
-        Me.tTanggal.Size = New System.Drawing.Size(138, 20)
-        Me.tTanggal.StyleController = Me.LayoutControl1
-        Me.tTanggal.TabIndex = 6
-        '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.tTanggal
@@ -166,14 +241,6 @@ Partial Class frmPBYRekapPelunasan
         Me.LayoutControlItem3.Size = New System.Drawing.Size(238, 24)
         Me.LayoutControlItem3.Text = "Tanggal Pengajuan"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(92, 13)
-        '
-        'tStatus
-        '
-        Me.tStatus.Location = New System.Drawing.Point(108, 60)
-        Me.tStatus.Name = "tStatus"
-        Me.tStatus.Size = New System.Drawing.Size(231, 20)
-        Me.tStatus.StyleController = Me.LayoutControl1
-        Me.tStatus.TabIndex = 7
         '
         'LayoutControlItem4
         '
@@ -184,16 +251,6 @@ Partial Class frmPBYRekapPelunasan
         Me.LayoutControlItem4.Text = "Status"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(92, 13)
         '
-        'sPengajuan
-        '
-        Me.sPengajuan.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sPengajuan.Location = New System.Drawing.Point(448, 12)
-        Me.sPengajuan.Name = "sPengajuan"
-        Me.sPengajuan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.sPengajuan.Size = New System.Drawing.Size(127, 20)
-        Me.sPengajuan.StyleController = Me.LayoutControl1
-        Me.sPengajuan.TabIndex = 8
-        '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.sPengajuan
@@ -202,16 +259,6 @@ Partial Class frmPBYRekapPelunasan
         Me.LayoutControlItem5.Size = New System.Drawing.Size(227, 24)
         Me.LayoutControlItem5.Text = "Pengajuan"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(92, 13)
-        '
-        'sValid
-        '
-        Me.sValid.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sValid.Location = New System.Drawing.Point(675, 12)
-        Me.sValid.Name = "sValid"
-        Me.sValid.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.sValid.Size = New System.Drawing.Size(136, 20)
-        Me.sValid.StyleController = Me.LayoutControl1
-        Me.sValid.TabIndex = 9
         '
         'LayoutControlItem6
         '
@@ -222,16 +269,6 @@ Partial Class frmPBYRekapPelunasan
         Me.LayoutControlItem6.Text = "Total Valid"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(92, 13)
         '
-        'sLunas
-        '
-        Me.sLunas.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sLunas.Location = New System.Drawing.Point(675, 36)
-        Me.sLunas.Name = "sLunas"
-        Me.sLunas.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.sLunas.Size = New System.Drawing.Size(136, 20)
-        Me.sLunas.StyleController = Me.LayoutControl1
-        Me.sLunas.TabIndex = 10
-        '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.sLunas
@@ -240,16 +277,6 @@ Partial Class frmPBYRekapPelunasan
         Me.LayoutControlItem7.Size = New System.Drawing.Size(236, 24)
         Me.LayoutControlItem7.Text = "Total Lunas"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(92, 13)
-        '
-        'sSisa
-        '
-        Me.sSisa.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sSisa.Location = New System.Drawing.Point(675, 60)
-        Me.sSisa.Name = "sSisa"
-        Me.sSisa.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.sSisa.Size = New System.Drawing.Size(136, 20)
-        Me.sSisa.StyleController = Me.LayoutControl1
-        Me.sSisa.TabIndex = 11
         '
         'LayoutControlItem8
         '
@@ -260,15 +287,6 @@ Partial Class frmPBYRekapPelunasan
         Me.LayoutControlItem8.Text = "Total Sisa"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(92, 13)
         '
-        'SimpleButton1
-        '
-        Me.SimpleButton1.Location = New System.Drawing.Point(12, 383)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(285, 22)
-        Me.SimpleButton1.StyleController = Me.LayoutControl1
-        Me.SimpleButton1.TabIndex = 12
-        Me.SimpleButton1.Text = "Tambah Supplier"
-        '
         'LayoutControlItem9
         '
         Me.LayoutControlItem9.Control = Me.SimpleButton1
@@ -278,15 +296,6 @@ Partial Class frmPBYRekapPelunasan
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem9.TextVisible = False
         '
-        'SimpleButton2
-        '
-        Me.SimpleButton2.Location = New System.Drawing.Point(301, 383)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(309, 22)
-        Me.SimpleButton2.StyleController = Me.LayoutControl1
-        Me.SimpleButton2.TabIndex = 13
-        Me.SimpleButton2.Text = "Tambah Performa"
-        '
         'LayoutControlItem10
         '
         Me.LayoutControlItem10.Control = Me.SimpleButton2
@@ -295,15 +304,6 @@ Partial Class frmPBYRekapPelunasan
         Me.LayoutControlItem10.Size = New System.Drawing.Size(313, 26)
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextVisible = False
-        '
-        'SimpleButton3
-        '
-        Me.SimpleButton3.Location = New System.Drawing.Point(614, 383)
-        Me.SimpleButton3.Name = "SimpleButton3"
-        Me.SimpleButton3.Size = New System.Drawing.Size(197, 22)
-        Me.SimpleButton3.StyleController = Me.LayoutControl1
-        Me.SimpleButton3.TabIndex = 14
-        Me.SimpleButton3.Text = "Cetak BTT"
         '
         'LayoutControlItem11
         '
@@ -348,21 +348,21 @@ Partial Class frmPBYRekapPelunasan
         Me.Text = "frmPBYRekapPelunasan"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.sSisa.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.sLunas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.sValid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.sPengajuan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tTanggal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tNoPengajuan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tNoPengajuan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tTanggal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tStatus.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.sPengajuan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.sValid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.sLunas.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.sSisa.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
@@ -382,7 +382,7 @@ Partial Class frmPBYRekapPelunasan
     Friend WithEvents tStatus As DevExpress.XtraEditors.TextEdit
     Friend WithEvents tTanggal As DevExpress.XtraEditors.TextEdit
     Friend WithEvents tNoPengajuan As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents CtrlMeDataGrid1 As meCore.ctrlMeDataGrid
+    Friend WithEvents dgList As meCore.ctrlMeDataGrid
     Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem

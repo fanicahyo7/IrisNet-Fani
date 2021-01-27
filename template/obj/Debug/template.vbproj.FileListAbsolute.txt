@@ -497,8 +497,8 @@ D:\14 Jan 2020\TrPengunjung\template\template\obj\Debug\template.pdb
 D:\14 Jan 2020\TrPengunjung\template\template\obj\Debug\template.vbprojResolveAssemblyReference.cache
 D:\14 Jan 2020\TrPengunjung\template\template\obj\Debug\template.frmMstBuku.resources
 D:\14 Jan 2020\TrPengunjung\template\template\obj\Debug\template.frmMstATK.resources
-D:\IrisNet-Fani\template\bin\Debug\template.exe.config
 D:\IrisNet-Fani\template\bin\Debug\template.exe
+D:\IrisNet-Fani\template\bin\Debug\template.exe.config
 D:\IrisNet-Fani\template\bin\Debug\template.pdb
 D:\IrisNet-Fani\template\bin\Debug\template.xml
 D:\IrisNet-Fani\template\bin\Debug\Accessibility.dll
@@ -572,6 +572,7 @@ D:\IrisNet-Fani\template\obj\Debug\template.frmMstTeamOrder.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmMstVoucher.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmMutasi.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmPBYList.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmPBYRekapPelunasan.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmPelunasanHutang.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmPelunasanPiutang.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmPenerbit.resources
@@ -622,5 +623,3 @@ D:\IrisNet-Fani\template\obj\Debug\template.exe.licenses
 D:\IrisNet-Fani\template\obj\Debug\template.exe
 D:\IrisNet-Fani\template\obj\Debug\template.xml
 D:\IrisNet-Fani\template\obj\Debug\template.pdb
-D:\IrisNet-Fani\template\obj\Debug\template.vbprojResolveAssemblyReference.cache
-D:\IrisNet-Fani\template\obj\Debug\template.frmPBYRekapPelunasan.resources
