@@ -6,15 +6,8 @@ Imports DevExpress.Printing.ExportHelpers
 Imports DevExpress.Export
 Imports DevExpress.Export.Xl
 
-Public Class frmLapNPM
+Public Class frmLapNPMFix
     Dim datatabel As New DataTable
-    Dim ds As New DataSet
-    Dim dt1 As New DataTable
-    Dim dt2 As New DataTable
-    Dim dt3 As New DataTable
-
-    Dim query As String
-    Dim query2 As String
 
     Private Sub frmLapNPM_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         LayoutControlItem6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
@@ -67,36 +60,8 @@ Public Class frmLapNPM
 
     End Sub
 
-    Sub proses(ByVal queryy As String, ByVal queryy2 As String)
-        dt1 = New DataTable
-        'Data1
-        Using sqlcon As New Data.SqlClient.SqlConnection(tJenis.Text)
-            sqlcon.Open()
-            Dim sqlCmd = New Data.SqlClient.SqlCommand( _
-                            queryy, _
-                            sqlcon)
-            sqlCmd.CommandTimeout = 0
-            Dim adp As New SqlDataAdapter(sqlCmd)
-            adp.Fill(dt1)
-        End Using
-
-        dt2 = New DataTable
-        'Data2
-        Using sqlcon As New Data.SqlClient.SqlConnection(tJenis.Text)
-            sqlcon.Open()
-            Dim sqlCmd = New Data.SqlClient.SqlCommand(queryy2, sqlcon)
-            sqlCmd.CommandTimeout = 0
-            Dim adp As New SqlDataAdapter(sqlCmd)
-            adp.Fill(dt2)
-        End Using
-
-        ds = New DataSet
-        ds.Tables.Add(dt1)
-        ds.Tables.Add(dt2)
-
-    End Sub
-
     Private Sub btnAmbilData_Click(sender As Object, e As EventArgs) Handles btnAmbilData.Click
+        GridView1.ShowLoadingPanel()
         Dim aa As Integer = cbKodeCompany.Properties.GetItems.GetCheckedValues.Count
         If cJenis.Text = "" Then
             MsgBox("Pilih Jenis Terlebih Dahulu!", vbCritical + vbOKOnly, "Peringatan")
@@ -107,12 +72,14 @@ Public Class frmLapNPM
         ElseIf cTampilan.Text = "" Then
             MsgBox("Pilih Tampilan Terlebih Dahulu!", vbCritical + vbOKOnly, "Peringatan")
         Else
-            GridView1.ShowLoadingPanel()
             GridView1.Columns.Clear()
             GridView2.Columns.Clear()
             GridView4.Columns.Clear()
-            GridControl1.DataSource = Nothing
-            gcDetail.DataSource = Nothing
+            Dim ds As New DataSet
+            'Dim ds3 As New DataSet
+            Dim dt1 As New DataTable
+            Dim dt2 As New DataTable
+            Dim dt3 As New DataTable
 
             Dim kdcompany As String = ""
             For i = 0 To cbKodeCompany.Properties.GetItems.GetCheckedValues.Count - 1
@@ -194,8 +161,8 @@ Public Class frmLapNPM
                 Next
             Next
 
-            query = ""
-            query2 = ""
+            Dim query As String = ""
+            Dim query2 As String = ""
 
             If cTampilan.SelectedIndex = 0 Then
                 If cJenisLaporan.SelectedIndex = 0 Then
@@ -936,8 +903,218 @@ Public Class frmLapNPM
                 End If
             End If
 
-            BackgroundWorker1.RunWorkerAsync()
+            'Data1
+            Using sqlcon As New Data.SqlClient.SqlConnection(tJenis.Text)
+                sqlcon.Open()
+                Dim sqlCmd = New Data.SqlClient.SqlCommand( _
+                                query, _
+                                sqlcon)
+                sqlCmd.CommandTimeout = 0
+                Dim adp As New SqlDataAdapter(sqlCmd)
+                adp.Fill(dt1)
+            End Using
+            'add key1
+
+            If cTampilan.SelectedIndex = 0 Then
+                Dim primaryKey1(0) As DataColumn
+                primaryKey1(0) = dt1.Columns("Keterangan")
+                dt1.PrimaryKey = primaryKey1
+            ElseIf cTampilan.SelectedIndex = 1 Then
+                Dim primaryKey1(3) As DataColumn
+                primaryKey1(0) = dt1.Columns("KodeCompany")
+                primaryKey1(1) = dt1.Columns("TahunBulan")
+                primaryKey1(2) = dt1.Columns("Keterangan")
+            End If
+
+            'Data2
+            Using sqlcon As New Data.SqlClient.SqlConnection(tJenis.Text)
+                sqlcon.Open()
+                Dim sqlCmd = New Data.SqlClient.SqlCommand(query2, sqlcon)
+                sqlCmd.CommandTimeout = 0
+                Dim adp As New SqlDataAdapter(sqlCmd)
+                adp.Fill(dt2)
+            End Using
+
+            ds.Tables.Add(dt1)
+            ds.Tables.Add(dt2)
+
+            If cTampilan.SelectedIndex = 0 Then
+                ds.Relations.Add("Aliasing", dt1.Columns("Keterangan"), dt2.Columns("KeteranganAkun"))
+            ElseIf cTampilan.SelectedIndex = 1 Then
+                Dim dRelations As DataRelation = New DataRelation("Aliasing", _
+                        {dt1.Columns("Keterangan"), dt1.Columns("KodeCompany"), dt1.Columns("TahunBulan")}, _
+                        {dt2.Columns("KeteranganAkun"), dt2.Columns("KodeCompany"), dt2.Columns("TahunBulan")})
+                ds.Relations.Add(dRelations)
+            End If
+
+            gcDetail.DataSource = ds.Tables(1)
+            GridView4.BestFitColumns()
+            FormatGridView(GridView4, , , True)
+            GridView4.Columns("grup").Visible = False
+            GridView4.Columns("KeteranganAkun").Width = 200
+            GridView4.Columns("Keterangan").Width = 200
+            GridView4.Columns("JumlahNPM").Width = 250
+            GridView4.OptionsView.ShowGroupPanel = False
+            'reFormatColumns(GridView4)
+            SetFooterSummarySUMs(GridView4, {"JumlahNPM"})
+            GridView4.Columns("JumlahNPM").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GridView4.Columns("JumlahNPM").DisplayFormat.FormatString = "c2"
+            If cJenisLaporan.SelectedIndex = 1 Then
+                SetFooterSummarySUMs(GridView4, {"JumlahNPM", "Budget"})
+                GridView4.Columns("Budget").Width = 250
+                GridView4.Columns("Budget").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GridView4.Columns("Budget").DisplayFormat.FormatString = "c2"
+            End If
+
+            GridControl1.DataSource = ds.Tables("table1")
+            GridView1.BestFitColumns()
+            FormatGridView(GridView1, , , True)
+            GridView1.Columns("Grup").Visible = False
+            GridView1.Columns("Keterangan").Width = 500
+
+            If cTampilan.SelectedIndex = 0 Then
+                GridView1.Columns("Realisasi" & Format(dTahun1.EditValue, "yyyy") & "").Width = 200
+                GridView1.Columns("Realisasi" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GridView1.Columns("Realisasi" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+
+                If cJenisLaporan.SelectedIndex = 0 Then
+                    GridView1.Columns("Rata" & Format(dTahun1.EditValue, "yyyy") & "").Width = 200
+                    GridView1.Columns("Persen" & Format(dTahun1.EditValue, "yyyy") & "").Width = 100
+                    GridView1.Columns("Rata" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Rata" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                    GridView1.Columns("Persen" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Persen" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
+
+                ElseIf cJenisLaporan.SelectedIndex = 1 Then
+                    GridView1.Columns("Budget" & Format(dTahun1.EditValue, "yyyy") & "").Width = 200
+                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun1.EditValue, "yyyy") & "").Width = 200
+                    GridView1.Columns("Budget" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Budget" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
+                End If
+
+                If cTahun2.Checked = True And cTahun3.Checked = True Then
+                    GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+                    GridView1.OptionsView.ShowGroupPanel = False
+                    GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+
+                    GridView1.Columns("Realisasi" & Format(dTahun3.EditValue, "yyyy") & "").Width = 300
+                    GridView1.Columns("Realisasi" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Realisasi" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+
+                    If cJenisLaporan.SelectedIndex = 0 Then
+                        GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+                        GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").Width = 100
+                        GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+
+                        GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                        GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                        GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
+
+                        GridView1.Columns("Rata" & Format(dTahun3.EditValue, "yyyy") & "").Width = 200
+                        GridView1.Columns("Persen" & Format(dTahun3.EditValue, "yyyy") & "").Width = 100
+                        GridView1.Columns("Selisih" & Format(dTahun2.EditValue, "yyyy") & "-" & Format(dTahun3.EditValue, "yyyy") & "").Width = 200
+
+                        GridView1.Columns("Rata" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        GridView1.Columns("Rata" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                        GridView1.Columns("Persen" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        GridView1.Columns("Persen" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
+                        GridView1.Columns("Selisih" & Format(dTahun2.EditValue, "yyyy") & "-" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        GridView1.Columns("Selisih" & Format(dTahun2.EditValue, "yyyy") & "-" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                    ElseIf cJenisLaporan.SelectedIndex = 1 Then
+                        GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+                        GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+                        GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                        GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
+
+                        GridView1.Columns("Budget" & Format(dTahun3.EditValue, "yyyy") & "").Width = 200
+                        GridView1.Columns("%RealisasiVsBudget" & Format(dTahun3.EditValue, "yyyy") & "").Width = 200
+
+                        GridView1.Columns("Budget" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        GridView1.Columns("Budget" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                        GridView1.Columns("%RealisasiVsBudget" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        GridView1.Columns("%RealisasiVsBudget" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
+                    End If
+
+                ElseIf cTahun2.Checked = True And cTahun3.Checked = False Then
+                    GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").Width = 300
+                    GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+
+                    If cJenisLaporan.SelectedIndex = 0 Then
+                        GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+                        GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").Width = 100
+                        GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+                        GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                        GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                        GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
+
+                    ElseIf cJenisLaporan.SelectedIndex = 1 Then
+                        GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+                        GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
+                        GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
+                        GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
+                    End If
+                Else
+                    If cJenisLaporan.SelectedIndex = 0 Then
+                        GridView1.Columns("Selisih").Width = 200
+                        GridView1.Columns("Selisih").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                        GridView1.Columns("Selisih").DisplayFormat.FormatString = "c2"
+                    End If
+                End If
+
+            Else
+                GridView1.Columns("NamaCompany").Width = 200
+                GridView1.Columns("JumlahNPM").Width = 200
+                GridView1.Columns("JumlahNPM").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GridView1.Columns("JumlahNPM").DisplayFormat.FormatString = "c2"
+                If cJenisLaporan.SelectedIndex = 1 Then
+                    GridView1.Columns("Budget").Width = 200
+                    GridView1.Columns("Budget").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                    GridView1.Columns("Budget").DisplayFormat.FormatString = "c2"
+                End If
+            End If
+            GridView1.OptionsView.ShowGroupPanel = False
+
+            GridControl1.LevelTree.Nodes.Clear()
+            GridControl1.LevelTree.Nodes.Add("Aliasing", GridView2)
+            GridView2.PopulateColumns(ds.Tables("table2"))
+            GridView2.BestFitColumns()
+            FormatGridView(GridView2, , , True)
+            GridView2.Columns("grup").Visible = False
+            GridView2.Columns("KeteranganAkun").Width = 200
+            GridView2.Columns("KeteranganAkun").Width = 200
+            GridView2.Columns("JumlahNPM").Width = 250
+            GridView2.OptionsView.ShowGroupPanel = False
+            'reFormatColumns(GridView2)
+            SetFooterSummarySUMs(GridView2, {"JumlahNPM"})
+            GridView2.Columns("JumlahNPM").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+            GridView2.Columns("JumlahNPM").DisplayFormat.FormatString = "c2"
+
+            If cJenisLaporan.SelectedIndex = 1 Then
+                SetFooterSummarySUMs(GridView2, {"JumlahNPM", "Budget"})
+                GridView2.Columns("Budget").Width = 250
+                GridView2.Columns("Budget").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+                GridView2.Columns("Budget").DisplayFormat.FormatString = "c2"
+            End If
         End If
+        GridView1.HideLoadingPanel()
+    End Sub
+
+    Private Sub GridControl1_Click(sender As Object, e As EventArgs) Handles GridControl1.Click
+
     End Sub
 
     Private Sub GridView1_CustomDrawCell(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs) Handles GridView1.CustomDrawCell
@@ -1004,6 +1181,31 @@ Public Class frmLapNPM
             GridView4.ExportToXlsx(saveFileDialog1.FileName, options)
         End If
     End Sub
+
+    Private Sub cCheckAll_CheckedChanged(sender As Object, e As EventArgs)
+        'Dim datacompany As DataTable = TryCast(cCompany.DataSource, DataTable)
+        'Dim centang As Boolean = False
+        'If cCheckAll.Checked = False Then
+        '    centang = False
+        'Else
+        '    centang = True
+        'End If
+
+        'For i = 0 To datatabel.Rows.Count - 1
+        '    cCompany.SetItemChecked(i, centang)
+        '    Dim drow() As DataRow = datatabel.Select("KodeCompany = '" & Strings.Right(datatabel.Rows(i).Item("KodeCompany"), 2) & "'")
+        '    drow(0)!cek = centang
+        'Next
+    End Sub
+
+    'Private Sub SimpleButton4_Click(sender As Object, e As EventArgs) Handles SimpleButton4.Click
+    '    Dim a As Integer = cBulan.CheckedItemsCount
+    '    a = a
+    '    Dim anu As String = ""
+    '    For j = 0 To a - 1
+    '        anu += cBulan.CheckedItems.Item(j).ToString
+    '    Next
+    'End Sub
 
     Private Sub cCheckAllBulan_CheckedChanged(sender As Object, e As EventArgs) Handles cCheckAllBulan.CheckedChanged
         Dim centang As Boolean = False
@@ -1091,194 +1293,6 @@ Public Class frmLapNPM
     End Sub
 
     Private Sub BackgroundWorker1_DoWork(sender As Object, e As System.ComponentModel.DoWorkEventArgs) Handles BackgroundWorker1.DoWork
-        proses(query, query2)
-    End Sub
 
-    Private Sub BackgroundWorker1_RunWorkerCompleted(sender As Object, e As System.ComponentModel.RunWorkerCompletedEventArgs) Handles BackgroundWorker1.RunWorkerCompleted
-        'add key1
-
-        If cTampilan.SelectedIndex = 0 Then
-            Dim primaryKey1(0) As DataColumn
-            primaryKey1(0) = dt1.Columns("Keterangan")
-            dt1.PrimaryKey = primaryKey1
-        ElseIf cTampilan.SelectedIndex = 1 Then
-            Dim primaryKey1(3) As DataColumn
-            primaryKey1(0) = dt1.Columns("KodeCompany")
-            primaryKey1(1) = dt1.Columns("TahunBulan")
-            primaryKey1(2) = dt1.Columns("Keterangan")
-        End If
-
-        If cTampilan.SelectedIndex = 0 Then
-            ds.Relations.Add("Aliasing", dt1.Columns("Keterangan"), dt2.Columns("KeteranganAkun"))
-        ElseIf cTampilan.SelectedIndex = 1 Then
-            Dim dRelations As DataRelation = New DataRelation("Aliasing", _
-                    {dt1.Columns("Keterangan"), dt1.Columns("KodeCompany"), dt1.Columns("TahunBulan")}, _
-                    {dt2.Columns("KeteranganAkun"), dt2.Columns("KodeCompany"), dt2.Columns("TahunBulan")})
-            ds.Relations.Add(dRelations)
-        End If
-
-        gcDetail.DataSource = ds.Tables(1)
-        GridView4.BestFitColumns()
-        FormatGridView(GridView4, , , True)
-        GridView4.Columns("grup").Visible = False
-        GridView4.Columns("KeteranganAkun").Width = 200
-        GridView4.Columns("Keterangan").Width = 200
-        GridView4.Columns("JumlahNPM").Width = 250
-        GridView4.OptionsView.ShowGroupPanel = False
-        'reFormatColumns(GridView4)
-        SetFooterSummarySUMs(GridView4, {"JumlahNPM"})
-        GridView4.Columns("JumlahNPM").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        GridView4.Columns("JumlahNPM").DisplayFormat.FormatString = "c2"
-        If cJenisLaporan.SelectedIndex = 1 Then
-            SetFooterSummarySUMs(GridView4, {"JumlahNPM", "Budget"})
-            GridView4.Columns("Budget").Width = 250
-            GridView4.Columns("Budget").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-            GridView4.Columns("Budget").DisplayFormat.FormatString = "c2"
-        End If
-
-        GridControl1.DataSource = ds.Tables("table1")
-        GridView1.BestFitColumns()
-        FormatGridView(GridView1, , , True)
-        GridView1.Columns("Grup").Visible = False
-        GridView1.Columns("Keterangan").Width = 500
-
-        If cTampilan.SelectedIndex = 0 Then
-            GridView1.Columns("Realisasi" & Format(dTahun1.EditValue, "yyyy") & "").Width = 200
-            GridView1.Columns("Realisasi" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-            GridView1.Columns("Realisasi" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-
-            If cJenisLaporan.SelectedIndex = 0 Then
-                GridView1.Columns("Rata" & Format(dTahun1.EditValue, "yyyy") & "").Width = 200
-                GridView1.Columns("Persen" & Format(dTahun1.EditValue, "yyyy") & "").Width = 100
-                GridView1.Columns("Rata" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("Rata" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                GridView1.Columns("Persen" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("Persen" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
-
-            ElseIf cJenisLaporan.SelectedIndex = 1 Then
-                GridView1.Columns("Budget" & Format(dTahun1.EditValue, "yyyy") & "").Width = 200
-                GridView1.Columns("%RealisasiVsBudget" & Format(dTahun1.EditValue, "yyyy") & "").Width = 200
-                GridView1.Columns("Budget" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("Budget" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                GridView1.Columns("%RealisasiVsBudget" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("%RealisasiVsBudget" & Format(dTahun1.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
-            End If
-
-            If cTahun2.Checked = True And cTahun3.Checked = True Then
-                GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-                GridView1.OptionsView.ShowGroupPanel = False
-                GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-
-                GridView1.Columns("Realisasi" & Format(dTahun3.EditValue, "yyyy") & "").Width = 300
-                GridView1.Columns("Realisasi" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("Realisasi" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-
-                If cJenisLaporan.SelectedIndex = 0 Then
-                    GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-                    GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").Width = 100
-                    GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-
-                    GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                    GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                    GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
-
-                    GridView1.Columns("Rata" & Format(dTahun3.EditValue, "yyyy") & "").Width = 200
-                    GridView1.Columns("Persen" & Format(dTahun3.EditValue, "yyyy") & "").Width = 100
-                    GridView1.Columns("Selisih" & Format(dTahun2.EditValue, "yyyy") & "-" & Format(dTahun3.EditValue, "yyyy") & "").Width = 200
-
-                    GridView1.Columns("Rata" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    GridView1.Columns("Rata" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                    GridView1.Columns("Persen" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    GridView1.Columns("Persen" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
-                    GridView1.Columns("Selisih" & Format(dTahun2.EditValue, "yyyy") & "-" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    GridView1.Columns("Selisih" & Format(dTahun2.EditValue, "yyyy") & "-" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                ElseIf cJenisLaporan.SelectedIndex = 1 Then
-                    GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-                    GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
-
-                    GridView1.Columns("Budget" & Format(dTahun3.EditValue, "yyyy") & "").Width = 200
-                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun3.EditValue, "yyyy") & "").Width = 200
-
-                    GridView1.Columns("Budget" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    GridView1.Columns("Budget" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun3.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
-                End If
-
-            ElseIf cTahun2.Checked = True And cTahun3.Checked = False Then
-                GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").Width = 300
-                GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("Realisasi" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-
-                If cJenisLaporan.SelectedIndex = 0 Then
-                    GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-                    GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").Width = 100
-                    GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-                    GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    GridView1.Columns("Rata" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                    GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    GridView1.Columns("Selisih" & Format(dTahun1.EditValue, "yyyy") & "-" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                    GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    GridView1.Columns("Persen" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
-
-                ElseIf cJenisLaporan.SelectedIndex = 1 Then
-                    GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").Width = 200
-                    GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    GridView1.Columns("Budget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "c2"
-                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    GridView1.Columns("%RealisasiVsBudget" & Format(dTahun2.EditValue, "yyyy") & "").DisplayFormat.FormatString = "n2"
-                End If
-            Else
-                If cJenisLaporan.SelectedIndex = 0 Then
-                    GridView1.Columns("Selisih").Width = 200
-                    GridView1.Columns("Selisih").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                    GridView1.Columns("Selisih").DisplayFormat.FormatString = "c2"
-                End If
-            End If
-
-        Else
-            GridView1.Columns("NamaCompany").Width = 200
-            GridView1.Columns("JumlahNPM").Width = 200
-            GridView1.Columns("JumlahNPM").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-            GridView1.Columns("JumlahNPM").DisplayFormat.FormatString = "c2"
-            If cJenisLaporan.SelectedIndex = 1 Then
-                GridView1.Columns("Budget").Width = 200
-                GridView1.Columns("Budget").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-                GridView1.Columns("Budget").DisplayFormat.FormatString = "c2"
-            End If
-        End If
-        GridView1.OptionsView.ShowGroupPanel = False
-
-        GridControl1.LevelTree.Nodes.Clear()
-        GridControl1.LevelTree.Nodes.Add("Aliasing", GridView2)
-        GridView2.PopulateColumns(ds.Tables("table2"))
-        GridView2.BestFitColumns()
-        FormatGridView(GridView2, , , True)
-        GridView2.Columns("grup").Visible = False
-        GridView2.Columns("KeteranganAkun").Width = 200
-        GridView2.Columns("KeteranganAkun").Width = 200
-        GridView2.Columns("JumlahNPM").Width = 250
-        GridView2.OptionsView.ShowGroupPanel = False
-        'reFormatColumns(GridView2)
-        SetFooterSummarySUMs(GridView2, {"JumlahNPM"})
-        GridView2.Columns("JumlahNPM").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        GridView2.Columns("JumlahNPM").DisplayFormat.FormatString = "c2"
-
-        If cJenisLaporan.SelectedIndex = 1 Then
-            SetFooterSummarySUMs(GridView2, {"JumlahNPM", "Budget"})
-            GridView2.Columns("Budget").Width = 250
-            GridView2.Columns("Budget").DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-            GridView2.Columns("Budget").DisplayFormat.FormatString = "c2"
-        End If
-        GridView1.HideLoadingPanel()
     End Sub
 End Class

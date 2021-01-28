@@ -331,6 +331,12 @@
     <Compile Include="Form6.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Form7.Designer.vb">
+      <DependentUpon>Form7.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Form7.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmAmbilFaktur.designer.vb">
       <DependentUpon>frmAmbilFaktur.vb</DependentUpon>
     </Compile>
@@ -407,6 +413,12 @@
       <DependentUpon>frmLapKartuPiutangCustomer.vb</DependentUpon>
     </Compile>
     <Compile Include="frmLapKartuPiutangCustomer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLapNPMFix.Designer.vb">
+      <DependentUpon>frmLapNPMFix.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmLapNPMFix.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmLapNPMawal.Designer.vb">
@@ -881,6 +893,9 @@
     <EmbeddedResource Include="Form6.resx">
       <DependentUpon>Form6.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form7.resx">
+      <DependentUpon>Form7.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmAmbilFaktur.resx">
       <DependentUpon>frmAmbilFaktur.vb</DependentUpon>
     </EmbeddedResource>
@@ -919,6 +934,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLapKartuPiutangCustomer.resx">
       <DependentUpon>frmLapKartuPiutangCustomer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLapNPMFix.resx">
+      <DependentUpon>frmLapNPMFix.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLapNPMawal.resx">
       <DependentUpon>frmLapNPMawal.vb</DependentUpon>

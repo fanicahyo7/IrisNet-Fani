@@ -533,4 +533,10 @@ Public Class menuValid
             xx.ShowDialog(Me)
         End Using
     End Sub
+
+    Private Sub ProgressBackgroundToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProgressBackgroundToolStripMenuItem.Click
+        Using xx As New Form7
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
 End Class

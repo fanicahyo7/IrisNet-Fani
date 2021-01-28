@@ -74,6 +74,7 @@ Partial Class menuValid
         Me.UangMukaSupplierToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SaldoHutangPerTanggalToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PelunasanHutangToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PengajuanBayarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReturToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.PembelianToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.KonsinyasiToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -96,7 +97,7 @@ Partial Class menuValid
         Me.WithdrawalMarketplaceToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TreeView1 = New System.Windows.Forms.TreeView()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
-        Me.PengajuanBayarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ProgressBackgroundToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -432,6 +433,12 @@ Partial Class menuValid
         Me.PelunasanHutangToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
         Me.PelunasanHutangToolStripMenuItem.Text = "Pelunasan Hutang"
         '
+        'PengajuanBayarToolStripMenuItem
+        '
+        Me.PengajuanBayarToolStripMenuItem.Name = "PengajuanBayarToolStripMenuItem"
+        Me.PengajuanBayarToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
+        Me.PengajuanBayarToolStripMenuItem.Text = "Pengajuan Bayar"
+        '
         'ReturToolStripMenuItem1
         '
         Me.ReturToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PembelianToolStripMenuItem1, Me.KonsinyasiToolStripMenuItem, Me.PenjualanToolStripMenuItem2})
@@ -514,7 +521,7 @@ Partial Class menuValid
         '
         'FormCobaToolStripMenuItem
         '
-        Me.FormCobaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem3, Me.ReturKreditToolStripMenuItem, Me.DownloadToolStripMenuItem, Me.ToolStripMenuItem4, Me.WithdrawalMarketplaceToolStripMenuItem})
+        Me.FormCobaToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem2, Me.ToolStripMenuItem3, Me.ReturKreditToolStripMenuItem, Me.DownloadToolStripMenuItem, Me.ToolStripMenuItem4, Me.WithdrawalMarketplaceToolStripMenuItem, Me.ProgressBackgroundToolStripMenuItem})
         Me.FormCobaToolStripMenuItem.Name = "FormCobaToolStripMenuItem"
         Me.FormCobaToolStripMenuItem.Size = New System.Drawing.Size(78, 20)
         Me.FormCobaToolStripMenuItem.Text = "Form Coba"
@@ -569,11 +576,11 @@ Partial Class menuValid
         Me.ImageList1.ImageSize = New System.Drawing.Size(16, 16)
         Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
         '
-        'PengajuanBayarToolStripMenuItem
+        'ProgressBackgroundToolStripMenuItem
         '
-        Me.PengajuanBayarToolStripMenuItem.Name = "PengajuanBayarToolStripMenuItem"
-        Me.PengajuanBayarToolStripMenuItem.Size = New System.Drawing.Size(210, 22)
-        Me.PengajuanBayarToolStripMenuItem.Text = "Pengajuan Bayar"
+        Me.ProgressBackgroundToolStripMenuItem.Name = "ProgressBackgroundToolStripMenuItem"
+        Me.ProgressBackgroundToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
+        Me.ProgressBackgroundToolStripMenuItem.Text = "Progress Background"
         '
         'menuValid
         '
@@ -668,4 +675,5 @@ Partial Class menuValid
     Friend WithEvents NPMToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents WithdrawalMarketplaceToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents PengajuanBayarToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ProgressBackgroundToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

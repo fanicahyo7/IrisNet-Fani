@@ -751,3 +751,5 @@ D:\Project\VB Project\IrisNet-Fani\template\obj\Debug\template.XtraForm1.resourc
 D:\Project\VB Project\IrisNet-Fani\template\obj\Debug\template.vbproj.GenerateResource.Cache
 D:\Project\VB Project\IrisNet-Fani\template\obj\Debug\template.exe.licenses
 D:\IrisNet-Fani\template\obj\Debug\template.vbprojResolveAssemblyReference.cache
+D:\IrisNet-Fani\template\obj\Debug\template.Form7.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmLapNPMFix.resources
