@@ -750,3 +750,4 @@ D:\Project\VB Project\IrisNet-Fani\template\obj\Debug\template.SplashScreen1.res
 D:\Project\VB Project\IrisNet-Fani\template\obj\Debug\template.XtraForm1.resources
 D:\Project\VB Project\IrisNet-Fani\template\obj\Debug\template.vbproj.GenerateResource.Cache
 D:\Project\VB Project\IrisNet-Fani\template\obj\Debug\template.exe.licenses
+D:\IrisNet-Fani\template\obj\Debug\template.vbprojResolveAssemblyReference.cache
