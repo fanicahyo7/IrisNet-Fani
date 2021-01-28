@@ -1,0 +1,18 @@
+1. nama tampilan1 diganti Rekap, nama tampilan2 diganti Detail
+2. eksport hanya 1 button. saat buka tampilan 1 (header) maka yg terekport ya headernya, saat yg dibuka tampilan 2 (detail) yg tereksport ya detailnya
+3. ditampilan 2 saat di eksport, total nya belum muncul (total yg warna hitam)
+5. terus nama kolom, di header nama kolom keterangan, tp di detail nama kolomnya keterangan akun. tolong samakan, yg diubah di detail kolom keterangannya jadi nama akun aja
+
+??4. ditampilan 2 saat saat aku pilih 2 bulan atau lebih gitu, tampilannya ga berkelompok per bulan kayak saat aku milih 1 bulan, munculnya misal keterangan akun penjualan kasir bln 11, bawahnya pejualan kasir bln 12. harusnya berkelmpok dr akun pertama penjualan kasir smape laba dulu, baru ganti ke bln 12
+
+
+1. yg nama akun oke
+3. kolom Do K nya ga usah dimunculin deh
+---------------------------------------------------------------------------------
+
+
+2. fan request lagi. Company nya diganti Unit aja fan. Kode Unit dan Nama Unit
+4. Rp nya taruh di judul kolom aja fan, misal Jumlah NPM (Rp), jadi diangka nya ga usah muncul RP
+5. ini kok akun ku dikit ya? mungkin yg kmrn minta semua akun muncul meskipun nilai nol itu belum ya?
+6. pengelompokan dr penjualan-laba per unit per bulan sudah oke
+7. total nya belum muncul fan? klo gi header itu warna item tebel itu, seperti penjualan bersih, total hpp 

@@ -205,8 +205,7 @@ Public Class frmLapNPM
                "(" & _
                    "SELECT " & _
                    "CONVERT(VARCHAR(6),a.TanggalBukti,112) as TahunBulan,a.KodeCompany," & _
-                   "a.KodeAkun,b.Keterangan,SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah," & _
-                   "b.DebetOrKredit AS DoK " & _
+                   "a.KodeAkun,b.Keterangan,SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah " & _
                    "FROM dbo.tbACJurnal a " & _
                    "LEFT JOIN dbo.tbACKodeAkun b ON b.KodeAkun=a.KodeAkun " & _
                    "WHERE " & _
@@ -220,7 +219,7 @@ Public Class frmLapNPM
                "), " & _
                "ctepvot as(" & _
                    "SELECT " & _
-                       "aa.TahunBulan, aa.KODECOMPANY,dd.Aliasing, aa.KODEAKUN, aa.KETERANGAN,  aa.DOK, " & _
+                       "aa.TahunBulan, aa.KODECOMPANY,dd.Aliasing, aa.KODEAKUN, aa.KETERANGAN, " & _
                        "aa.Jumlah AS JumlahNPM, dd.grup " & _
                        "FROM cteLR AS aa " & _
                        "LEFT JOIN dbo.tbACKodeAkun cc ON aa.KodeAkun=cc.KodeAkun " & _
@@ -331,8 +330,7 @@ Public Class frmLapNPM
                 "(" & _
                     "SELECT " & _
                     "CONVERT(VARCHAR(6),a.TanggalBukti,112) as TahunBulan,a.KodeCompany," & _
-                    "a.KodeAkun,b.Keterangan,SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah," & _
-                    "b.DebetOrKredit AS DoK " & _
+                    "a.KodeAkun,b.Keterangan,SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah " & _
                     "FROM dbo.tbACJurnal a " & _
                     "LEFT JOIN dbo.tbACKodeAkun b ON b.KodeAkun=a.KodeAkun " & _
                     "WHERE " & _
@@ -345,7 +343,7 @@ Public Class frmLapNPM
                     "a.KodeAkun, b.Keterangan, b.DebetOrKredit" & _
                 ") " & _
                 "SELECT " & _
-                        "aa.TahunBulan, aa.KodeCompany,dd.Aliasing as KeteranganAkun, aa.KodeAkun, aa.Keterangan,  aa.Dok, " & _
+                        "aa.TahunBulan, aa.KodeCompany,dd.Aliasing as Keterangan, aa.KodeAkun, aa.Keterangan as NamaAkun, " & _
                         "aa.Jumlah AS JumlahNPM, dd.grup " & _
                         "FROM cteLR AS aa " & _
                         "LEFT JOIN dbo.tbACKodeAkun cc ON aa.KodeAkun=cc.KodeAkun " & _
@@ -368,7 +366,7 @@ Public Class frmLapNPM
                 "SET @BulanArr = '" & Strings.Left(bulan, bulan.Length - 1) & "'; " & _
                 "WITH cteLR AS (" & _
                 "SELECT CONVERT(VARCHAR(6),a.TanggalBukti,112) as TahunBulan,a.KodeCompany,a.KodeAkun,b.Keterangan," & _
-                "SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah,b.DebetOrKredit AS DoK " & _
+                "SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah " & _
                 "FROM dbo.tbACJurnal a " & _
                 "LEFT JOIN dbo.tbACKodeAkun b ON b.KodeAkun=a.KodeAkun " & _
                 "WHERE CONVERT(VARCHAR(6),a.TanggalBukti,112) in (" & Strings.Left(tahunbulan, tahunbulan.Length - 1) & "" & _
@@ -376,7 +374,7 @@ Public Class frmLapNPM
                 "IN (SELECT IdKategori FROM dbo.tbACKategori WHERE StatusLaporan='LR') " & _
                 "GROUP BY CONVERT(VARCHAR(6),a.TanggalBukti,112),a.KodeCompany,a.KodeAkun, b.Keterangan, b.DebetOrKredit), " & _
                 "ctepvot as(" & _
-                "SELECT aa.TahunBulan, aa.KODECOMPANY,dd.Aliasing, aa.KODEAKUN, aa.KETERANGAN,  aa.DOK, aa.Jumlah AS JumlahNPM, dd.grup " & _
+                "SELECT aa.TahunBulan, aa.KODECOMPANY,dd.Aliasing, aa.KODEAKUN, aa.KETERANGAN, aa.Jumlah AS JumlahNPM, dd.grup " & _
                 "FROM cteLR AS aa " & _
                 "LEFT JOIN dbo.tbACKodeAkun cc ON aa.KodeAkun=cc.KodeAkun " & _
                 "LEFT JOIN dbo.tbACKategoriNPM dd ON cc.KodeAkun=dd.KodeAkun " & _
@@ -539,7 +537,7 @@ Public Class frmLapNPM
                     "SET @BulanArr = '" & Strings.Left(bulan, bulan.Length - 1) & "'; " & _
                     "WITH cteLR AS (" & _
                     "SELECT CONVERT(VARCHAR(6),a.TanggalBukti,112) as TahunBulan,a.KodeCompany,a.KodeAkun,b.Keterangan," & _
-                    "SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah,b.DebetOrKredit AS DoK " & _
+                    "SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah " & _
                     "FROM dbo.tbACJurnal a " & _
                     "LEFT JOIN dbo.tbACKodeAkun b ON b.KodeAkun=a.KodeAkun " & _
                     "WHERE CONVERT(VARCHAR(6),a.TanggalBukti,112) in (" & Strings.Left(tahunbulan, tahunbulan.Length - 1) & "" & _
@@ -547,7 +545,7 @@ Public Class frmLapNPM
                     "IN (SELECT IdKategori FROM dbo.tbACKategori WHERE StatusLaporan='LR') " & _
                     "GROUP BY CONVERT(VARCHAR(6),a.TanggalBukti,112),a.KodeCompany,a.KodeAkun, b.Keterangan, b.DebetOrKredit), " & _
                     "ctepvot as(" & _
-                    "SELECT aa.TahunBulan, aa.KodeCompany,dd.Aliasing as KeteranganAkun, aa.KodeAkun, aa.Keterangan,  aa.Dok, aa.Jumlah AS JumlahNPM, dd.grup " & _
+                    "SELECT aa.TahunBulan, aa.KodeCompany,dd.Aliasing as Keterangan, aa.KodeAkun, aa.Keterangan as NamaAkun, aa.Jumlah AS JumlahNPM, dd.grup " & _
                     "FROM cteLR AS aa " & _
                     "LEFT JOIN dbo.tbACKodeAkun cc ON aa.KodeAkun=cc.KodeAkun " & _
                     "LEFT JOIN dbo.tbACKategoriNPM dd ON cc.KodeAkun=dd.KodeAkun " & _
@@ -579,8 +577,7 @@ Public Class frmLapNPM
               "(" & _
                   "SELECT " & _
                   "CONVERT(VARCHAR(6),a.TanggalBukti,112) as TahunBulan,a.KodeCompany," & _
-                  "a.KodeAkun,b.Keterangan,SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah," & _
-                  "b.DebetOrKredit AS DoK " & _
+                  "a.KodeAkun,b.Keterangan,SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah " & _
                   "FROM dbo.tbACJurnal a " & _
                   "LEFT JOIN dbo.tbACKodeAkun b ON b.KodeAkun=a.KodeAkun " & _
                   "WHERE " & _
@@ -594,7 +591,7 @@ Public Class frmLapNPM
               "), " & _
               "ctepvot as(" & _
                   "SELECT " & _
-                      "aa.TahunBulan, aa.KODECOMPANY,dd.Aliasing, aa.KODEAKUN, aa.KETERANGAN,  aa.DOK, " & _
+                      "aa.TahunBulan, aa.KODECOMPANY,dd.Aliasing, aa.KODEAKUN, aa.KETERANGAN, " & _
                       "aa.Jumlah AS JumlahNPM, dd.grup " & _
                       "FROM cteLR AS aa " & _
                       "LEFT JOIN dbo.tbACKodeAkun cc ON aa.KodeAkun=cc.KodeAkun " & _
@@ -677,15 +674,14 @@ Public Class frmLapNPM
                     "(select NamaAlias from tbGNCompany x where x.KodeCompany = a.KodeCompany) as NamaCompany " & _
                     ",a.TahunBulan,a.Aliasing as Keterangan,a.JumlahNPM,a.Grup " & _
                     "from ctegabung a " & _
-                    "order by a.KodeCompany,a.Grup,a.Aliasing,a.TahunBulan"
+                    "order by a.TahunBulan,a.KodeCompany,a.Grup,a.Aliasing"
 
                     query2 = _
                         "WITH cteLR AS " & _
                         "(" & _
                         "SELECT " & _
                         "CONVERT(VARCHAR(6),a.TanggalBukti,112) as TahunBulan,a.KodeCompany," & _
-                        "a.KodeAkun,b.Keterangan,SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah," & _
-                        "b.DebetOrKredit AS DoK " & _
+                        "a.KodeAkun,b.Keterangan,SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah " & _
                         "FROM dbo.tbACJurnal a " & _
                         "LEFT JOIN dbo.tbACKodeAkun b ON b.KodeAkun=a.KodeAkun " & _
                         "WHERE " & _
@@ -700,7 +696,7 @@ Public Class frmLapNPM
                         "SELECT " & _
                             "aa.KodeCompany,aa.TahunBulan," & _
                             "(select NamaAlias from tbGNCompany x where x.KodeCompany = aa.KodeCompany) as NamaCompany," & _
-                            "aa.KodeCompany,dd.Aliasing as KeteranganAkun, aa.KodeAkun, aa.Keterangan,  aa.Dok, " & _
+                            "dd.Aliasing as Keterangan, aa.KodeAkun, aa.Keterangan as NamaAkun, " & _
                             "aa.Jumlah AS JumlahNPM, dd.grup " & _
                             "FROM cteLR AS aa " & _
                             "LEFT JOIN dbo.tbACKodeAkun cc ON aa.KodeAkun=cc.KodeAkun " & _
@@ -715,7 +711,8 @@ Public Class frmLapNPM
                                 "aa.kodecompany+'.90.10.620'," & _
                                 "aa.KodeCompany+'.60.01.100'," & _
                                 "aa.kodecompany+'.90.10.630'" & _
-                                ") order by aa.KodeCompany,dd.Grup,dd.Aliasing,aa.TahunBulan"
+                                ") order by aa.TahunBulan,aa.KodeCompany,dd.Grup,dd.Aliasing"
+
                 ElseIf cJenisLaporan.SelectedIndex = 1 Then
                     query = _
                     "IF OBJECT_ID('tempdb..#tmptmp') IS NOT NULL DROP TABLE #tmptmp; " & _
@@ -725,8 +722,7 @@ Public Class frmLapNPM
                     "(" & _
                     "SELECT " & _
                     "CONVERT(VARCHAR(6),a.TanggalBukti,112) as TahunBulan,a.KodeCompany," & _
-                    "a.KodeAkun,b.Keterangan,SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah," & _
-                    "b.DebetOrKredit AS DoK " & _
+                    "a.KodeAkun,b.Keterangan,SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah " & _
                     "FROM dbo.tbACJurnal a " & _
                     "LEFT JOIN dbo.tbACKodeAkun b ON b.KodeAkun=a.KodeAkun " & _
                     "WHERE " & _
@@ -740,7 +736,7 @@ Public Class frmLapNPM
                     "), " & _
                     "ctepvot as(" & _
                     "SELECT " & _
-                      "aa.TahunBulan, aa.KODECOMPANY,dd.Aliasing, aa.KODEAKUN, aa.KETERANGAN,  aa.DOK, " & _
+                      "aa.TahunBulan, aa.KODECOMPANY,dd.Aliasing, aa.KODEAKUN, aa.KETERANGAN, " & _
                       "aa.Jumlah AS JumlahNPM, dd.grup " & _
                       "FROM cteLR AS aa " & _
                       "LEFT JOIN dbo.tbACKodeAkun cc ON aa.KodeAkun=cc.KodeAkun " & _
@@ -865,7 +861,7 @@ Public Class frmLapNPM
                     "select a.KodeCompany," & _
                     "(select NamaAlias from tbGNCompany x where x.KodeCompany = a.KodeCompany) as NamaCompany," & _
                     "a.TahunBulan,a.Aliasing as Keterangan,a.JumlahNPM,a.Budget,a.Grup " & _
-                    "from #tmptmp a order by a.KodeCompany,a.Grup,a.Aliasing,a.TahunBulan"
+                    "from #tmptmp a order by a.TahunBulan,a.KodeCompany,a.Grup,a.Aliasing"
 
                     query2 = _
                         "IF OBJECT_ID('tempdb..#tmpall2') IS NOT NULL DROP TABLE #tmpall2; " & _
@@ -874,8 +870,7 @@ Public Class frmLapNPM
                         "(" & _
                         "SELECT " & _
                         "CONVERT(VARCHAR(6),a.TanggalBukti,112) as TahunBulan,a.KodeCompany," & _
-                        "a.KodeAkun,b.Keterangan,SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah," & _
-                        "b.DebetOrKredit AS DoK " & _
+                        "a.KodeAkun,b.Keterangan,SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah " & _
                         "FROM dbo.tbACJurnal a " & _
                         "LEFT JOIN dbo.tbACKodeAkun b ON b.KodeAkun=a.KodeAkun " & _
                         "WHERE " & _
@@ -888,7 +883,7 @@ Public Class frmLapNPM
                         "a.KodeAkun, b.Keterangan, b.DebetOrKredit" & _
                         "), " & _
                         "ctepvot as(SELECT " & _
-                            "aa.TahunBulan, aa.KodeCompany, dd.Aliasing, aa.KodeAkun, aa.Keterangan,  aa.Dok, " & _
+                            "aa.TahunBulan, aa.KodeCompany, dd.Aliasing, aa.KodeAkun, aa.Keterangan, " & _
                             "aa.Jumlah AS JumlahNPM, dd.grup " & _
                             "FROM cteLR AS aa " & _
                             "LEFT JOIN dbo.tbACKodeAkun cc ON aa.KodeAkun=cc.KodeAkun " & _
@@ -931,8 +926,9 @@ Public Class frmLapNPM
                     "select * into #tmpall2 from cteambilbudget; " & _
                     "select a.KodeCompany," & _
                     "(select NamaAlias from tbGNCompany x where x.KodeCompany = a.KodeCompany) as NamaCompany," & _
-                    "a.TahunBulan,a.Aliasing as KeteranganAkun,a.KodeAkun,a.Keterangan,a.DoK,a.JumlahNPM,a.Budget,a.grup " & _
-                    "from #tmpall2 a order by a.KodeCompany,a.Grup,a.Aliasing,a.TahunBulan"
+                    "a.TahunBulan,a.Aliasing as Keterangan,a.KodeAkun,a.Keterangan as NamaAkun,a.JumlahNPM,a.Budget,a.grup " & _
+                    "from #tmpall2 a order by a.TahunBulan,a.KodeCompany,a.Grup,a.Aliasing"
+                    'a.KodeCompany,a.TahunBulan,a.Grup,a.Aliasing"
                 End If
             End If
 
@@ -946,33 +942,6 @@ Public Class frmLapNPM
         End If
     End Sub
 
-    Private Sub cCompany_ItemCheck(sender As Object, e As DevExpress.XtraEditors.Controls.ItemCheckEventArgs)
-        'Dim nmtable As String = Strings.Right(cCompany.SelectedItem.ToString, 2)
-
-        'Dim drow() As DataRow = datatabel.Select("KodeCompany = '" & nmtable & "'")
-        'drow(0)!cek = e.State
-    End Sub
-
-    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
-        Dim saveFileDialog1 As New SaveFileDialog
-        saveFileDialog1.Filter = "Excel File|*.xlsx"
-        saveFileDialog1.Title = "Save an Excel File"
-        saveFileDialog1.ShowDialog()
-
-        If saveFileDialog1.FileName <> "" Then
-            GridView1.OptionsPrint.PrintDetails = True
-            GridView1.OptionsPrint.ExpandAllDetails = True
-
-            GridView2.OptionsPrint.PrintDetails = True
-            GridView2.OptionsPrint.ExpandAllDetails = True
-
-            Dim options As New XlsxExportOptionsEx
-            options.ExportType = ExportType.WYSIWYG
-
-            GridView1.ExportToXlsx(saveFileDialog1.FileName, options)
-        End If
-    End Sub
-
     Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
         Dim saveFileDialog1 As New SaveFileDialog
         saveFileDialog1.Filter = "Excel File|*.xlsx"
@@ -980,28 +949,34 @@ Public Class frmLapNPM
         saveFileDialog1.ShowDialog()
 
         If saveFileDialog1.FileName <> "" Then
-            GridView1.OptionsPrint.PrintDetails = False
 
-            Dim options As New XlsxExportOptionsEx
-            options.ExportType = ExportType.WYSIWYG
+            If cTampilan.SelectedIndex = 0 Then
+                GridView1.OptionsPrint.PrintDetails = False
 
-            GridView1.ExportToXlsx(saveFileDialog1.FileName, options)
+                Dim options As New XlsxExportOptionsEx
+                options.ExportType = ExportType.WYSIWYG
+
+                GridView1.ExportToXlsx(saveFileDialog1.FileName, options)
+            ElseIf cTampilan.SelectedIndex = 1 Then
+                GridView4.OptionsPrint.PrintDetails = True
+
+                Dim options As New XlsxExportOptionsEx
+                options.ExportType = ExportType.WYSIWYG
+
+                GridView4.ExportToXlsx(saveFileDialog1.FileName, options)
+            End If
+
         End If
     End Sub
 
-    Private Sub SimpleButton3_Click(sender As Object, e As EventArgs) Handles SimpleButton3.Click
+    Private Sub SimpleButton3_Click(sender As Object, e As EventArgs)
         Dim saveFileDialog1 As New SaveFileDialog
         saveFileDialog1.Filter = "Excel File|*.xlsx"
         saveFileDialog1.Title = "Save an Excel File"
         saveFileDialog1.ShowDialog()
 
         If saveFileDialog1.FileName <> "" Then
-            GridView4.OptionsPrint.PrintDetails = True
 
-            Dim options As New XlsxExportOptionsEx
-            options.ExportType = ExportType.WYSIWYG
-
-            GridView4.ExportToXlsx(saveFileDialog1.FileName, options)
         End If
     End Sub
 
@@ -1109,11 +1084,11 @@ Public Class frmLapNPM
         End If
 
         If cTampilan.SelectedIndex = 0 Then
-            ds.Relations.Add("Aliasing", dt1.Columns("Keterangan"), dt2.Columns("KeteranganAkun"))
+            ds.Relations.Add("Aliasing", dt1.Columns("Keterangan"), dt2.Columns("Keterangan"))
         ElseIf cTampilan.SelectedIndex = 1 Then
             Dim dRelations As DataRelation = New DataRelation("Aliasing", _
                     {dt1.Columns("Keterangan"), dt1.Columns("KodeCompany"), dt1.Columns("TahunBulan")}, _
-                    {dt2.Columns("KeteranganAkun"), dt2.Columns("KodeCompany"), dt2.Columns("TahunBulan")})
+                    {dt2.Columns("Keterangan"), dt2.Columns("KodeCompany"), dt2.Columns("TahunBulan")})
             ds.Relations.Add(dRelations)
         End If
 
@@ -1121,8 +1096,8 @@ Public Class frmLapNPM
         GridView4.BestFitColumns()
         FormatGridView(GridView4, , , True)
         GridView4.Columns("grup").Visible = False
-        GridView4.Columns("KeteranganAkun").Width = 200
         GridView4.Columns("Keterangan").Width = 200
+        GridView4.Columns("NamaAkun").Width = 200
         GridView4.Columns("JumlahNPM").Width = 250
         GridView4.OptionsView.ShowGroupPanel = False
         'reFormatColumns(GridView4)
@@ -1264,8 +1239,8 @@ Public Class frmLapNPM
         GridView2.BestFitColumns()
         FormatGridView(GridView2, , , True)
         GridView2.Columns("grup").Visible = False
-        GridView2.Columns("KeteranganAkun").Width = 200
-        GridView2.Columns("KeteranganAkun").Width = 200
+        GridView2.Columns("Keterangan").Width = 200
+        GridView2.Columns("NamaAkun").Width = 200
         GridView2.Columns("JumlahNPM").Width = 250
         GridView2.OptionsView.ShowGroupPanel = False
         'reFormatColumns(GridView2)
