@@ -9,7 +9,7 @@ GROUP BY CONVERT(VARCHAR(6),a.TanggalBukti,112),a.KodeCompany,a.KodeAkun, b.Kete
 ctenpmtahunbulan as(
 select '202012' as TahunBulan,substring(KodeAkun,1,2) as KodeCompany,KodeAkun,Aliasing,Grup from tbACKategoriNPM 
 group by KodeAkun,Aliasing,Grup
-having substring(KodeAkun,1,3) in ('21.')
+having substring(KodeAkun,1,2) in ('21')
 ),
 ctepvot as(
 select a.TahunBulan,a.KodeAkun,a.KodeCompany,a.Aliasing,a.Grup,b.Keterangan,c.Jumlah as JumlahNPM from ctenpmtahunbulan a
