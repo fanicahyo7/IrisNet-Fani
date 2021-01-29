@@ -8,11 +8,12 @@
 
 1. yg nama akun oke
 3. kolom Do K nya ga usah dimunculin deh
+2. fan request lagi. Company nya diganti Unit aja fan. Kode Unit dan Nama Unit
+6. pengelompokan dr penjualan-laba per unit per bulan sudah oke
+4. Rp nya taruh di judul kolom aja fan, misal Jumlah NPM (Rp), jadi diangka nya ga usah muncul RP
+
 ---------------------------------------------------------------------------------
 
 
-2. fan request lagi. Company nya diganti Unit aja fan. Kode Unit dan Nama Unit
-4. Rp nya taruh di judul kolom aja fan, misal Jumlah NPM (Rp), jadi diangka nya ga usah muncul RP
 5. ini kok akun ku dikit ya? mungkin yg kmrn minta semua akun muncul meskipun nilai nol itu belum ya?
-6. pengelompokan dr penjualan-laba per unit per bulan sudah oke
 7. total nya belum muncul fan? klo gi header itu warna item tebel itu, seperti penjualan bersih, total hpp 

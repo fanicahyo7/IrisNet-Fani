@@ -1,0 +1,81 @@
+IF OBJECT_ID('tempdb..#tmptable') IS NOT NULL DROP TABLE #tmptable;
+WITH cteLR AS (SELECT CONVERT(VARCHAR(6),a.TanggalBukti,112) as TahunBulan,a.KodeCompany,a.KodeAkun,b.Keterangan,
+SUM(CASE WHEN a.DebetOrKredit<>b.DebetOrKredit THEN -a.Jumlah ELSE a.Jumlah END) AS Jumlah 
+FROM dbo.tbACJurnal a 
+LEFT JOIN dbo.tbACKodeAkun b ON b.KodeAkun=a.KodeAkun 
+WHERE CONVERT(VARCHAR(6),a.TanggalBukti,112) in ('202012') AND a.KodeCompany in ('17') AND b.IdKategori 
+IN (SELECT IdKategori FROM dbo.tbACKategori WHERE StatusLaporan='LR') 
+GROUP BY CONVERT(VARCHAR(6),a.TanggalBukti,112),a.KodeCompany,a.KodeAkun, b.Keterangan, b.DebetOrKredit),
+ctenpmtahunbulan as(
+select '202012' as TahunBulan,substring(KodeAkun,1,2) as KodeCompany,KodeAkun,Aliasing,Grup from tbACKategoriNPM 
+group by KodeAkun,Aliasing,Grup
+having substring(KodeAkun,1,3) in ('17.') and not
+KodeAkun in ('17.90.20.210','17.90.20.971','17.90.20.972','17.90.20.973',
+'17.90.20.974','17.90.10.610','17.90.10.620','17.60.01.100','17.90.10.630')
+),
+ctepvot as(
+select a.TahunBulan,a.KodeAkun,a.KodeCompany,a.Aliasing,a.Grup,b.Keterangan,c.Jumlah as JumlahNPM from ctenpmtahunbulan a
+left join cteLR c on c.KodeAkun = a.KodeAkun
+left join tbACKodeAkun b on b.KodeAkun = a.KodeAkun
+WHERE NOT c.KodeAkun IN (a.kodecompany+'.90.20.210',a.kodecompany+'.90.20.971',a.kodecompany+'.90.20.972',a.kodecompany+'.90.20.973',
+a.kodecompany+'.90.20.974',a.kodecompany+'.90.10.610',a.kodecompany+'.90.10.620',a.KodeCompany+'.60.01.100',a.kodecompany+'.90.10.630')
+)
+select * from ctepvot
+,
+ctegabung as(
+select TahunBulan,KodeCompany,Aliasing,KodeAkun,Keterangan,JumlahNPM,Grup from ctepvot
+union all
+select a.TahunBulan,a.KodeCompany,'PENDAPATAN BERSIH' as Aliasing,'' as KodeAkun,'' as Keterangan,(
+select isnull ((select sum(x.JumlahNPM) from ctepvot x 
+group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0'),0))-(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0'),0)) as Jumlah,2.1 as Grup
+from ctepvot a group by a.TahunBulan,a.KodeCompany
+union all 
+select a.TahunBulan,a.KodeCompany,'TOTAL HPP BARANG DAGANG' as Aliasing,'' as KodeAkun,'' as Keterangan,(
+select isnull((select sum(x.JumlahNPM) from ctepvot x 
+group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0'),0)) as Jumlah, 
+3.1 as Grup from ctepvot a group by a.TahunBulan,a.KodeCompany
+union all 
+select a.TahunBulan,a.KodeCompany,'LABA-RUGI KOTOR' as Aliasing,'' as KodeAkun,'' as Keterangan,((
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0'),0))-(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0'),0)))-(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0'),0)) as Jumlah, 
+3.2 as Grup from ctepvot a group by a.TahunBulan,a.KodeCompany
+union all 
+select a.TahunBulan,a.KodeCompany,'TOTAL BEBAN USAHA' as Aliasing,'' as KodeAkun,'' as Keterangan,(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='4.0'),0)) as Jumlah, 
+4.1 as Grup from ctepvot a group by a.TahunBulan,a.KodeCompany
+union all 
+select a.TahunBulan,a.KodeCompany,'LABA-RUGI OPERASI' as Aliasing,'' as KodeAkun,'' as Keterangan,(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0'),0))-(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0'),0))-(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0'),0))-(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='4.0'),0)) as Jumlah, 
+4.2 as Grup from ctepvot a 
+group by a.TahunBulan,a.KodeCompany
+union all 
+select a.TahunBulan,a.KodeCompany,'TOTAL PENDAPATAN & BIAYA DILUAR USAHA' as Aliasing,'' as KodeAkun,'' as Keterangan,(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='5.0'),0))-(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='6.0'),0)) as Jumlah, 
+6.1 as Grup from ctepvot a 
+group by a.TahunBulan,a.KodeCompany
+union all
+select a.TahunBulan,a.KodeCompany,'LABA-RUGI SEBELUM PAJAK' as Aliasing,'' as KodeAkun,'' as Keterangan,((
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0'),0))-(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0'),0))-(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0'),0))-(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='4.0'),0)))+(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='5.0'),0))-(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='6.0'),0)) as Jumlah, 
+6.2 as Grup from ctepvot a group by a.TahunBulan,a.KodeCompany
+union all 
+select a.TahunBulan,a.KodeCompany,'LABA-RUGI SETELAH PAJAK' as Aliasing,'' as KodeAkun,'' as Keterangan,((
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='1.0'),0))-(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='2.0'),0))- (
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='3.0'),0))-(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='4.0'),0)))+(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='5.0'),0))-(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='6.0'),0))-(
+select isnull((select sum(x.JumlahNPM) from ctepvot x group by x.TahunBulan,x.grup having x.TahunBulan=a.TahunBulan and x.Grup='7.0'),0)) as Jumlah, 
+7.1 as Grup from ctepvot a group by a.TahunBulan,a.KodeCompany )
+select * from ctegabung order by Grup,Aliasing
