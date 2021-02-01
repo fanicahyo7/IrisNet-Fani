@@ -577,6 +577,12 @@
     <Compile Include="frmMutasi.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmPBYAdd.Designer.vb">
+      <DependentUpon>frmPBYAdd.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmPBYAdd.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmPBYList.Designer.vb">
       <DependentUpon>frmPBYList.vb</DependentUpon>
     </Compile>
@@ -1015,6 +1021,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMutasi.resx">
       <DependentUpon>frmMutasi.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPBYAdd.resx">
+      <DependentUpon>frmPBYAdd.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPBYList.resx">
       <DependentUpon>frmPBYList.vb</DependentUpon>

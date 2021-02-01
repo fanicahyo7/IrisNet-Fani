@@ -67,4 +67,10 @@ Public Class frmPBYList
             btnValidasi.Enabled = True
         End If
     End Sub
+
+    Private Sub btnPBYBaru_Click(sender As Object, e As EventArgs) Handles btnPBYBaru.Click
+        Using xx As New frmPBYAdd
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
 End Class
