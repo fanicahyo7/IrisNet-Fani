@@ -73,4 +73,10 @@ Public Class frmPBYList
             xx.ShowDialog(Me)
         End Using
     End Sub
+
+    Private Sub btnPerforma_Click(sender As Object, e As EventArgs) Handles btnPerforma.Click
+        Using xx As New frmPBYaddPerforma
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
 End Class
