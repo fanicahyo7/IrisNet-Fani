@@ -15,6 +15,9 @@ Public Class frmPBYList
     End Sub
 
     Private Sub dgList_Grid_SelectionChanged(sender As Object, e As DevExpress.Data.SelectionChangedEventArgs) Handles dgList.Grid_SelectionChanged
+        ambildetail()
+    End Sub
+    Sub ambildetail()
         Dim query As String = _
             "SELECT  NoPengajuan, MingguKe as M, JnsPengajuan, Kategori, Status = case when FlagSave = 1 then 'KIRIM PUSAT' else 'PENGAJUAN UNIT' END," & _
             "TglPengajuan as Tanggal, ABS(SUM(Pengajuan)) AS Total, sum(valid)AS Valid, sum(tolak) AS Tolak, Sum(BiayaTrans + Pembulatan) as Biaya, sum(transfer) AS [Transfer]," & _
@@ -27,7 +30,6 @@ Public Class frmPBYList
         sTotalLunas.EditValue = dgListDetail.GetSummaryColDB("Lunas")
         sTotalSisa.EditValue = dgListDetail.GetSummaryColDB("Sisa")
     End Sub
-
     Private Sub dgListDetail_Grid_CustomDrawCell(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs) Handles dgListDetail.Grid_CustomDrawCell
         If dgListDetail.GetRowCellValue(e.RowHandle, "FlagValid2") = "1" And dgListDetail.GetRowCellValue(e.RowHandle, "FlagValid3") = "1" Then
             e.Appearance.BackColor = Color.LightGray
@@ -77,6 +79,7 @@ Public Class frmPBYList
     Private Sub btnPerforma_Click(sender As Object, e As EventArgs) Handles btnPerforma.Click
         Using xx As New frmPBYaddPerforma
             xx.ShowDialog(Me)
+            ambildetail()
         End Using
     End Sub
 End Class
