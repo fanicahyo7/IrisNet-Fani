@@ -118,12 +118,22 @@ Public Class frmPBYAdd
                 Dim querysimpanHD As String = ""
                 Dim querysimpanDT As String = ""
                 If tNoPengajuan.Text = "" Then
-                    Dim angka As String = kodepby("'" & pubKodeUnit & "PBY-" & Format(Now, "yyMM") & "'")
-                    Dim pby As String = "" & pubKodeUnit & "PBY-" & Format(Now, "yyMM") & "" & angka
+                    Dim pby As String = "" & pubKodeUnit & "PBY-" & Format(Now, "yyMM") & kodepby("'" & pubKodeUnit & "PBY-" & Format(Now, "yyMM") & "'")
                     Dim ctra As String = "" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & kodectr("'" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & "'")
 
 
                     If cTransaksi.SelectedIndex = 0 Then
+                        Dim cekhd As String = "select Count(*) as Total from trPengajuanBayarHD where NoPengajuan = '" & pby & "' and NoCTR = '" & ctra & "'"
+                        cmd = New SqlCommand(cekhd, kon)
+                        rd = cmd.ExecuteReader
+                        rd.Read()
+                        Dim totalhd As Integer = rd!Total
+                        rd.Close()
+                        If totalhd > 0 Then
+                            pby = "" & pubKodeUnit & "PBY-" & Format(Now, "yyMM") & kodepby("'" & pubKodeUnit & "PBY-" & Format(Now, "yyMM") & "'")
+                            ctra = "" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & kodectr("'" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & "'")
+                        End If
+
                         querysimpanHD = _
                         "Insert Into trPengajuanBayarHD (" & _
                         "NoPengajuan,JnsPengajuan,KdUnit,TglPengajuan,TransferKe," & _
@@ -132,154 +142,91 @@ Public Class frmPBYAdd
                         "'" & pby & "','FAKTUR','" & pubKodeUnit & "','" & DTOC(Now, "-", True) & "','" & cTransferKe.Text.ToUpper & "'," & _
                         "'" & lNamaSupplier.Text & "','" & nama & "','" & cKategori.Text.ToUpper & "','" & ctra & "','" & namabank & "'," & _
                         "'" & bank & "','" & atasnama & "','" & noakun & "','" & minggu & "')"
+
+
+                        Dim cekdt As String = "select Count(*) as Total from trPengajuanBayarDt where Noctr = '" & ctra & "' and Faktur = '" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Faktur") & "'"
+                        cmd = New SqlCommand(cekdt, kon)
+                        rd = cmd.ExecuteReader
+                        rd.Read()
+                        Dim totaldt As String = rd!Total
+                        rd.Close()
+                        If totaldt > 0 Then
+                            ctra = "" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & kodectr("'" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & "'")
+                        End If
+
+                        querysimpanDT = _
+                            "Insert Into trPengajuanBayarDt (" & _
+                            "NoCTR,Faktur,FakturAsli,TglFaktur,JthTmp," & _
+                            "KdSupplier,NamaSupplier,Total,ReturFisik,ReturAdmin," & _
+                            "Terjual,JenisFaktur,FakturReinv)  Values(" & _
+                            "'" & ctra & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Faktur") & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "FakturAsli") & "','" & DTOC(Now, "-") & "','" & DTOC(Now, "-") & "'," & _
+                            "'" & lNamaSupplier.Text & "','" & nama & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','0','0'," & _
+                            "'" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','" & cTransaksi.Text.ToUpper & "','')"
+
+
                     ElseIf cTransaksi.SelectedIndex = 1 Then
 
                     End If
                 Else
                     Dim querycarictr As String = "Select top 1 NoCtr as hasil from trPengajuanBayarHd where NoPengajuan = '" & tNoPengajuan.Text & "' and KdSupplier  = '" & lNamaSupplier.Text & "'"
+                    cmd = New SqlCommand(querycarictr, kon)
+                    rd = cmd.ExecuteReader
+                    Dim hasilctr As String = ""
+                    rd.Read()
+                    hasilctr = rd!hasil
+                    rd.Close()
 
+                    Dim noctr As String = ""
+                    If hasilctr = "" Then
+                        noctr = "" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & kodectr("'" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & "'")
+                    Else
+                        noctr = hasilctr
+                    End If
 
                     If cTransaksi.SelectedIndex = 0 Then
+                        If hasilctr = "" Then
+                            querysimpanHD = _
+                            "Insert Into trPengajuanBayarHD (" & _
+                            "NoPengajuan,JnsPengajuan,KdUnit,TglPengajuan,TransferKe," & _
+                            "KdSupplier,NamaSupplier,Kategori,NoCtr,Bank," & _
+                            "kdBank,AtasNama,NoRek,MIngguKe) Values(" & _
+                            "'" & tNoPengajuan.Text & "','FAKTUR','" & pubKodeUnit & "','" & DTOC(Now, "-", True) & "','" & cTransferKe.Text.ToUpper & "'," & _
+                            "'" & lNamaSupplier.Text & "','" & nama & "','" & cKategori.Text.ToUpper & "','" & noctr & "','" & namabank & "'," & _
+                            "'" & bank & "','" & atasnama & "','" & noakun & "','" & minggu & "')"
 
+                            querysimpanDT = _
+                            "Insert Into trPengajuanBayarDt (" & _
+                            "NoCTR,Faktur,FakturAsli,TglFaktur,JthTmp," & _
+                            "KdSupplier,NamaSupplier,Total,ReturFisik,ReturAdmin," & _
+                            "Terjual,JenisFaktur,FakturReinv)  Values(" & _
+                            "'" & noctr & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Faktur") & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "FakturAsli") & "','" & DTOC(Now, "-") & "','" & DTOC(Now, "-") & "'," & _
+                            "'" & lNamaSupplier.Text & "','" & nama & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','0','0'," & _
+                            "'" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','" & cTransaksi.Text.ToUpper & "','')"
+
+                        Else
+                            'update
+                            querysimpanHD = _
+                                "Update trPengajuanBayarHD Set NoPengajuan = '" & tNoPengajuan.Text & "', JnsPengajuan = 'FAKTUR'," & _
+                                "KdUnit = '" & pubKodeUnit & "', TglPengajuan = '" & DTOC(Now, "-", True) & "', TransferKe = '" & cTransferKe.Text.ToUpper & "'," & _
+                                "KdSupplier = '" & lNamaSupplier.Text & "', NamaSupplier = '" & nama & "'," & _
+                                "Kategori = 'REGULER', NoCtr = '" & noctr & "', Bank = '" & namabank & "'," & _
+                                "kdBank = '" & bank & "', AtasNama = '" & atasnama & "', NoRek = '" & noakun & "', MIngguKe = '" & minggu & "' " & _
+                                "Where NoPengajuan = '" & tNoPengajuan.Text & "' and NoCTR = '" & noctr & "'"
+
+                            'tambah ctr yg sama
+                            querysimpanDT = _
+                           "Insert Into trPengajuanBayarDt (" & _
+                           "NoCTR,Faktur,FakturAsli,TglFaktur,JthTmp," & _
+                           "KdSupplier,NamaSupplier,Total,ReturFisik,ReturAdmin," & _
+                           "Terjual,JenisFaktur,FakturReinv)  Values(" & _
+                           "'" & noctr & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Faktur") & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "FakturAsli") & "','" & DTOC(Now, "-") & "','" & DTOC(Now, "-") & "'," & _
+                           "'" & lNamaSupplier.Text & "','" & nama & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','0','0'," & _
+                           "'" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','" & cTransaksi.Text.ToUpper & "','')"
+                        End If
                     ElseIf cTransaksi.SelectedIndex = 1 Then
 
                     End If
                 End If
-
-                'simpan
-                Dim query As String = "Select top 1 NoCtr as hasil from trPengajuanBayarHd where NoPengajuan = '" & tNoPengajuan.Text & "' and KdSupplier  = '" & lNamaSupplier.Text & "'"
-                cmd = New SqlCommand(query, kon)
-                rd = cmd.ExecuteReader
-                rd.Read()
-                Dim ctr As String = ""
-                Dim carictrbaru As Boolean = False
-                If rd.HasRows Then
-                    If rd!hasil = "" Then
-                        carictrbaru = True
-                    Else
-                        carictrbaru = False
-                    End If
-                End If
-                rd.Close()
-
-
-                ''cari kode
-                Dim baru As Boolean = False
-                'Dim query2 As String = "select pengajuan from trPengajuanBayarHD where nopengajuan='" & tNoPengajuan.Text & "' and noCtr='" & ctr & "'"
-                'cmd = New SqlCommand(query2, kon)
-                'rd = cmd.ExecuteReader
-                'rd.Read()
-                'If rd.HasRows Then
-                '    baru = False
-                'Else
-                '    baru = True
-                'End If
-                'rd.Close()
-
-                Dim kodepengajuan As String = ""
-                If baru = True Then
-                    Dim query3 As String = _
-                        "select max(SUBSTRING( NoPengajuan,12,2)) as max from trPengajuanBayarHd where left(nopengajuan,11) = '" & pubKodeUnit & "PBY-" & Format(Now, "yyMM") & "'"
-                    cmd = New SqlCommand(query3, kon)
-                    rd = cmd.ExecuteReader
-                    rd.Read()
-                    If rd.HasRows Then
-                        If Len(rd!max) = 1 Then
-                            If rd!max = "09" Then
-                                kodepengajuan = rd!max + 1
-                            Else
-                                kodepengajuan = "0" & rd!max + 1
-                            End If
-                        ElseIf Len(rd!max) = 2 Then
-                            kodepengajuan = rd!max + 1
-                        End If
-                    Else
-                        kodepengajuan = "01"
-                    End If
-                    rd.Close()
-
-                    'Select top 1 sum(Pengajuan) as hasil from trPengajuanBayarHD where NoPengajuan = '601PBY-210204' 
-
-                    Dim queryctr As String = _
-                        "Select top 1 NoCtr as hasil from trPengajuanBayarHd where NoPengajuan = '" & kodepengajuan & "' and KdSupplier  = '" & lNamaSupplier.Text & "'"
-                    cmd = New SqlCommand(queryctr, kon)
-                    rd = cmd.ExecuteReader
-                    rd.Read()
-                    If rd.HasRows Then
-                        ctr = rd!hasil
-                    End If
-                    rd.Close()
-
-                    If ctr = "" Then
-                        Dim cari As String = _
-                            "select max(SUBSTRING(NoCTR,12,3)) as max from trPengajuanBayarHd where left(noctr,11) = '" & pubKodeUnit & "PBY-" & Format(Now, "yyMM") & "'"
-                        cmd = New SqlCommand(cari, kon)
-                        rd = cmd.ExecuteReader
-                        rd.Read()
-                        If rd.HasRows Then
-                            If Len(rd!max) = 1 Then
-                                If rd!max = "09" Then
-                                    ctr = "0" & rd!max + 1
-                                Else
-                                    ctr = "00" & rd!max + 1
-                                End If
-                            ElseIf Len(rd!max) = 2 Then
-                                If rd!max = "099" Then
-                                    ctr = rd!max + 1
-                                Else
-                                    ctr = "0" & rd!max + 1
-                                End If
-                            Else
-                                ctr = rd!max + 1
-                            End If
-                        Else
-                            ctr = "001"
-                        End If
-                        rd.Close()
-                    End If
-                    ctr = pubKodeUnit & "PBY-" & Format(Now, "yyMM") & ctr
-
-                ElseIf baru = False Then
-                    kodepengajuan = tNoPengajuan.Text
-
-                    'Select top 1 TglPengajuan as hasil from trPengajuanBayarHD where NoPengajuan = '601PBY-210204' 
-
-                    'Select top 1 NoCtr as hasil from trPengajuanBayarHd where NoPengajuan = '601PBY-210204' and KdSupplier  = '0DPH_'
-
-                End If
-
-
-                'select Count(*) as Total from trPengajuanBayarHD where NoPengajuan = '601PBY-210204' and NoCTR = '601CTR-2102005'
-
-                Dim querHd As String = ""
-                If baru = True Then
-                    querHd = _
-                        "Insert Into trPengajuanBayarHD (" & _
-                        "NoPengajuan,JnsPengajuan,KdUnit,TglPengajuan,TransferKe," & _
-                        "KdSupplier,NamaSupplier,Kategori,NoCtr,Bank," & _
-                        "kdBank,AtasNama,NoRek,MIngguKe) Values(" & _
-                        "'" & kodepengajuan & "','FAKTUR','" & pubKodeUnit & "','2021-02-03 08:54:28','SUPPLIER'," & _
-                        "'" & lNamaSupplier.Text & "','" & nama & "','REGULER','601CTR-2102005','BCA KAWI MALANG'," & _
-                        "'" & bank & "','" & atasnama & "','" & noakun & "','1')"
-                ElseIf baru = False Then
-                    querHd = "Update trPengajuanBayarHD Set " & _
-                        "NoPengajuan = '" & kodepengajuan & "', JnsPengajuan = 'FAKTUR', KdUnit = '" & pubKodeUnit & "', " & _
-                        "TglPengajuan = '2021-02-03 08:54:28', TransferKe = 'SUPPLIER', KdSupplier = '" & kodepengajuan & "', " & _
-                        "NamaSupplier = '" & nama & "', Kategori = 'REGULER', NoCtr = '601CTR-2102005'," & _
-                        "Bank = 'BCA KAWI MALANG', kdBank = '" & bank & "', AtasNama = '" & atasnama & "', " & _
-                        "NoRek = '" & noakun & "', MIngguKe = '1' " & _
-                        "Where NoPengajuan = '601PBY-210204' and NoCTR = '601CTR-2102005'"
-                End If
-
-                'select Count(*) as Total from trPengajuanBayarDt where Noctr = '601CTR-2102005' and Faktur = '601NIT-FB19080800241'
-
-                'Insert Into trPengajuanBayarDt (NoCTR,Faktur,FakturAsli,TglFaktur,JthTmp,KdSupplier,NamaSupplier,Total,ReturFisik,ReturAdmin,Terjual,JenisFaktur,FakturReinv)  Values('601CTR-2102005','601NIT-FB19080800241','007TON-FJ19080600009 RO/DTP','2019-08-08 00:00:00','2019-09-05 00:00:00','0DPH_','DHARMASAVA PUTERA HARAPAN, PT (BARU)','2431140','0','0','2431140','PEMBELIAN','')
-
-                'Select top 1 sum(Pengajuan) as hasil from trPengajuanBayarHD where NoPengajuan = '601PBY-210204' 
-
-                'Select top 1 Kategori as hasil from trPengajuanBayarHD where NoPengajuan = '601PBY-210204' 
-
-                'Select top 1 JENISFAKTUR as hasil from trPengajuanBayarDT where NoCTR = '601CTR-2102005'
             Else
                 e.NewValue = e.OldValue
             End If
