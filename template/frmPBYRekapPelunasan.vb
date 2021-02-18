@@ -3,16 +3,24 @@ Imports meCore
 Public Class frmPBYRekapPelunasan
     Dim nopengajuan As String = ""
     Dim status As String = ""
+    Dim valid As Boolean = False
+    Dim kategori As String = ""
     Public Sub New()
         InitializeComponent()
     End Sub
 
-    Public Sub New(nopengajuan As String, status As String)
+    Public Sub New(nopengajuan As String, status As String, valid As Boolean, kategori As String)
         InitializeComponent()
         Me.nopengajuan = nopengajuan
         Me.status = status
+        Me.valid = valid
+        Me.kategori = kategori
     End Sub
     Private Sub frmPBYRekapPelunasan_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        refreshdata()
+    End Sub
+
+    Sub refreshdata()
         koneksi()
         SetTextReadOnly({tNoPengajuan, tTanggal, tStatus, sSisa, sValid, sLunas, sPengajuan})
 
@@ -63,6 +71,20 @@ Public Class frmPBYRekapPelunasan
         End If
         rd.Close()
 
+
+        If kategori.ToUpper = "REGULER" Then
+            btnAddPerforma.Enabled = False
+            btnSupplierAdd.Enabled = True
+        Else
+            btnAddPerforma.Enabled = True
+            btnSupplierAdd.Enabled = False
+        End If
+
+
+        If valid = True Then
+            btnSupplierAdd.Enabled = False
+            btnAddPerforma.Enabled = False
+        End If
     End Sub
 
     Private Sub dgList_Grid_CustomDrawCell(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs) Handles dgList.Grid_CustomDrawCell
@@ -71,6 +93,19 @@ Public Class frmPBYRekapPelunasan
         'ElseIf dgList.GetRowCellValue(e.RowHandle, "FlagLunas") = False Then
         '    e.Appearance.ForeColor = Color.Green
         'End If
+    End Sub
+
+    Private Sub btnSupplierAdd_Click(sender As Object, e As EventArgs) Handles btnSupplierAdd.Click
+        Using xx As New frmPBYAdd(tNoPengajuan.Text, sPengajuan.EditValue, kategori)
+            xx.ShowDialog(Me)
+            refreshdata()
+        End Using
+    End Sub
+
+    Private Sub dgList_Grid_DoubleClick(sender As Object, e As EventArgs) Handles dgList.Grid_DoubleClick
+        Using xx As New frmPBYDetail
+            xx.ShowDialog(Me)
+        End Using
     End Sub
 End Class
 

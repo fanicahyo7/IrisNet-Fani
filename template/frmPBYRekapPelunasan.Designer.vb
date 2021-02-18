@@ -21,9 +21,9 @@ Partial Class frmPBYRekapPelunasan
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.SimpleButton3 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnCetakBtt = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnAddPerforma = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnSupplierAdd = New DevExpress.XtraEditors.SimpleButton()
         Me.sSisa = New DevExpress.XtraEditors.SpinEdit()
         Me.sLunas = New DevExpress.XtraEditors.SpinEdit()
         Me.sValid = New DevExpress.XtraEditors.SpinEdit()
@@ -75,9 +75,9 @@ Partial Class frmPBYRekapPelunasan
         '
         'LayoutControl1
         '
-        Me.LayoutControl1.Controls.Add(Me.SimpleButton3)
-        Me.LayoutControl1.Controls.Add(Me.SimpleButton2)
-        Me.LayoutControl1.Controls.Add(Me.SimpleButton1)
+        Me.LayoutControl1.Controls.Add(Me.btnCetakBtt)
+        Me.LayoutControl1.Controls.Add(Me.btnAddPerforma)
+        Me.LayoutControl1.Controls.Add(Me.btnSupplierAdd)
         Me.LayoutControl1.Controls.Add(Me.sSisa)
         Me.LayoutControl1.Controls.Add(Me.sLunas)
         Me.LayoutControl1.Controls.Add(Me.sValid)
@@ -94,32 +94,32 @@ Partial Class frmPBYRekapPelunasan
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
-        'SimpleButton3
+        'btnCetakBtt
         '
-        Me.SimpleButton3.Location = New System.Drawing.Point(614, 383)
-        Me.SimpleButton3.Name = "SimpleButton3"
-        Me.SimpleButton3.Size = New System.Drawing.Size(197, 22)
-        Me.SimpleButton3.StyleController = Me.LayoutControl1
-        Me.SimpleButton3.TabIndex = 14
-        Me.SimpleButton3.Text = "Cetak BTT"
+        Me.btnCetakBtt.Location = New System.Drawing.Point(614, 383)
+        Me.btnCetakBtt.Name = "btnCetakBtt"
+        Me.btnCetakBtt.Size = New System.Drawing.Size(197, 22)
+        Me.btnCetakBtt.StyleController = Me.LayoutControl1
+        Me.btnCetakBtt.TabIndex = 14
+        Me.btnCetakBtt.Text = "Cetak BTT"
         '
-        'SimpleButton2
+        'btnAddPerforma
         '
-        Me.SimpleButton2.Location = New System.Drawing.Point(301, 383)
-        Me.SimpleButton2.Name = "SimpleButton2"
-        Me.SimpleButton2.Size = New System.Drawing.Size(309, 22)
-        Me.SimpleButton2.StyleController = Me.LayoutControl1
-        Me.SimpleButton2.TabIndex = 13
-        Me.SimpleButton2.Text = "Tambah Performa"
+        Me.btnAddPerforma.Location = New System.Drawing.Point(301, 383)
+        Me.btnAddPerforma.Name = "btnAddPerforma"
+        Me.btnAddPerforma.Size = New System.Drawing.Size(309, 22)
+        Me.btnAddPerforma.StyleController = Me.LayoutControl1
+        Me.btnAddPerforma.TabIndex = 13
+        Me.btnAddPerforma.Text = "Tambah Performa"
         '
-        'SimpleButton1
+        'btnSupplierAdd
         '
-        Me.SimpleButton1.Location = New System.Drawing.Point(12, 383)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(285, 22)
-        Me.SimpleButton1.StyleController = Me.LayoutControl1
-        Me.SimpleButton1.TabIndex = 12
-        Me.SimpleButton1.Text = "Tambah Supplier"
+        Me.btnSupplierAdd.Location = New System.Drawing.Point(12, 383)
+        Me.btnSupplierAdd.Name = "btnSupplierAdd"
+        Me.btnSupplierAdd.Size = New System.Drawing.Size(285, 22)
+        Me.btnSupplierAdd.StyleController = Me.LayoutControl1
+        Me.btnSupplierAdd.TabIndex = 12
+        Me.btnSupplierAdd.Text = "Tambah Supplier"
         '
         'sSisa
         '
@@ -289,7 +289,7 @@ Partial Class frmPBYRekapPelunasan
         '
         'LayoutControlItem9
         '
-        Me.LayoutControlItem9.Control = Me.SimpleButton1
+        Me.LayoutControlItem9.Control = Me.btnSupplierAdd
         Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 371)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
         Me.LayoutControlItem9.Size = New System.Drawing.Size(289, 26)
@@ -298,7 +298,7 @@ Partial Class frmPBYRekapPelunasan
         '
         'LayoutControlItem10
         '
-        Me.LayoutControlItem10.Control = Me.SimpleButton2
+        Me.LayoutControlItem10.Control = Me.btnAddPerforma
         Me.LayoutControlItem10.Location = New System.Drawing.Point(289, 371)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
         Me.LayoutControlItem10.Size = New System.Drawing.Size(313, 26)
@@ -307,7 +307,7 @@ Partial Class frmPBYRekapPelunasan
         '
         'LayoutControlItem11
         '
-        Me.LayoutControlItem11.Control = Me.SimpleButton3
+        Me.LayoutControlItem11.Control = Me.btnCetakBtt
         Me.LayoutControlItem11.Location = New System.Drawing.Point(602, 371)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
         Me.LayoutControlItem11.Size = New System.Drawing.Size(201, 26)
@@ -391,9 +391,9 @@ Partial Class frmPBYRekapPelunasan
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents SimpleButton3 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton2 As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btnCetakBtt As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btnAddPerforma As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents btnSupplierAdd As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem11 As DevExpress.XtraLayout.LayoutControlItem

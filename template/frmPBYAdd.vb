@@ -4,6 +4,20 @@ Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraEditors.Repository.BaseRepositoryItemCheckEdit
 Public Class frmPBYAdd
     Dim WithEvents _riEditor As New RepositoryItemCheckEdit
+    Dim nonopengajuan As String = ""
+    Dim topengajuan As Double = 0
+    Dim kategori As String = ""
+
+    Public Sub New()
+        InitializeComponent()
+    End Sub
+
+    Public Sub New(nopengajuan As String, pengajuan As Double, kategori As String)
+        InitializeComponent()
+        Me.nonopengajuan = nopengajuan
+        Me.topengajuan = pengajuan
+        Me.kategori = kategori
+    End Sub
 
     Private Sub cTransaksi_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cTransaksi.SelectedIndexChanged
         Dim query As String = ""
@@ -17,6 +31,7 @@ Public Class frmPBYAdd
         dgList.RefreshData(False)
 
         cKategori.SelectedIndex = 0
+        dgTrans.Grid_ClearData()
     End Sub
 
     Private Sub frmPBYAdd_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -24,7 +39,46 @@ Public Class frmPBYAdd
         cTransaksi.SelectedIndex = 0
         cKategori.SelectedIndex = 0
 
+        SetTextReadOnly({tNoPengajuan, tNoBtt, sPengajuan})
+
         koneksi()
+
+        If Not nonopengajuan = "" Then
+            tNoPengajuan.Text = nonopengajuan
+            sPengajuan.EditValue = topengajuan
+            cTransaksi.Enabled = False
+            cKategori.Enabled = False
+
+            If kategori.ToUpper = "REGULER" Then
+                cKategori.SelectedIndex = 0
+            ElseIf kategori.ToUpper = "ISIDENTIL" Then
+                cKategori.SelectedIndex = 1
+            End If
+
+            Dim query As String = "SELECT  DISTINCT CASE WHEN SUBSTRING(FakturLunas, 8, 2) = 'PH' THEN 'OPERASIONAL' Else 'SUPPLIER' END AS fakturlunas, case when c.Konsinyasi=0 Then 'PEMBELIAN' else 'PERHITUNGAN' end as JenisFaktur FROM    dbo.trPengajuanBayarDt a LEFT JOIN dbo.trPengajuanBayarHd b ON a.NoCTR = b.NoCTR inner join mstsupplier c on b.kdsupplier=c.kode WHERE   b.NoPengajuan = '" & nonopengajuan & "'"
+            cmd = New SqlCommand(query, kon)
+            rd = cmd.ExecuteReader
+            rd.Read()
+            If rd.HasRows Then
+                If rd!fakturlunas.ToString.ToUpper = "SUPPLIER" Then
+                    cTransferKe.SelectedIndex = 0
+                Else
+                    cTransferKe.SelectedIndex = 1
+                End If
+
+
+                If rd!JenisFaktur.ToString.ToUpper = "PEMBELIAN" Then
+                    cTransaksi.SelectedIndex = 0
+                Else
+                    cTransaksi.SelectedIndex = 1
+                End If
+            End If
+            rd.Close()
+        End If
+
+        Dim querysp As String = "exec spGenPengajuanStatus"
+        cmd = New SqlCommand(querysp, kon)
+        cmd.ExecuteNonQuery()
     End Sub
 
     Sub refreshdgtrans()
@@ -87,8 +141,8 @@ Public Class frmPBYAdd
     End Sub
 
     Private Sub _riEditor_EditValueChanging(sender As Object, e As DevExpress.XtraEditors.Controls.ChangingEventArgs) Handles _riEditor.EditValueChanging
-        If dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") < 0 Then
-            e.NewValue = e.OldValue
+        If (sPengajuan.EditValue + dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual")) < 0 Then
+            e.Cancel = True
             MsgBox("Nilai Pengajuan Bayar Hutang Supplier Tidak Boleh Minus.", vbCritical + vbOKOnly, "Peringatan")
         Else
             Dim ques = MsgBox("Yakin akan menambah?", vbQuestion + vbYesNo, "Konfirmasi")
@@ -107,7 +161,11 @@ Public Class frmPBYAdd
                     noakun = rd!NoAccount
                     atasnama = rd!AtasNama
                     bank = rd!Bank
-                    bankcabang = rd!BankCabang
+                    If IsDBNull(rd!BankCabang) Then
+                        bankcabang = ""
+                    Else
+                        bankcabang = rd!BankCabang
+                    End If
                     nama = rd!Nama
                 End If
                 rd.Close()
@@ -167,7 +225,9 @@ Public Class frmPBYAdd
                     rd = cmd.ExecuteReader
                     Dim hasilctr As String = ""
                     rd.Read()
-                    hasilctr = rd!hasil
+                    If rd.HasRows Then
+                        hasilctr = rd!hasil
+                    End If
                     rd.Close()
 
                     Dim noctr As String = ""
@@ -177,13 +237,23 @@ Public Class frmPBYAdd
                         noctr = hasilctr
                     End If
 
+                    Dim caritanggal As String = "select TglPengajuan as Tanggal from trPengajuanBayarHd where NoPengajuan='" & tNoPengajuan.Text & "'"
+                    Dim tanggal As Date
+                    cmd = New SqlCommand(caritanggal, kon)
+                    rd = cmd.ExecuteReader
+                    rd.Read()
+                    If rd.HasRows Then
+                        tanggal = rd!Tanggal
+                    End If
+                    rd.Close()
+
                     If hasilctr = "" Then
                         querysimpan += _
                         "Insert Into trPengajuanBayarHD (" & _
                         "NoPengajuan,JnsPengajuan,KdUnit,TglPengajuan,TransferKe," & _
                         "KdSupplier,NamaSupplier,Kategori,NoCtr,Bank," & _
                         "kdBank,AtasNama,NoRek,MIngguKe) Values(" & _
-                        "'" & tNoPengajuan.Text & "','FAKTUR','" & pubKodeUnit & "','" & DTOC(Now, "-", True) & "','" & cTransferKe.Text.ToUpper & "'," & _
+                        "'" & tNoPengajuan.Text & "','FAKTUR','" & pubKodeUnit & "','" & DTOC(tanggal, "-", True) & "','" & cTransferKe.Text.ToUpper & "'," & _
                         "'" & lNamaSupplier.Text & "','" & nama & "','" & cKategori.Text.ToUpper & "','" & noctr & "','" & namabank & "'," & _
                         "'" & bank & "','" & atasnama & "','" & noakun & "','" & minggu & "'); "
 
@@ -192,15 +262,16 @@ Public Class frmPBYAdd
                         "NoCTR,Faktur,FakturAsli,TglFaktur,JthTmp," & _
                         "KdSupplier,NamaSupplier,Total,ReturFisik,ReturAdmin," & _
                         "Terjual,JenisFaktur,FakturReinv)  Values(" & _
-                        "'" & noctr & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Faktur") & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "FakturAsli") & "','" & DTOC(Now, "-") & "','" & DTOC(Now, "-") & "'," & _
+                        "'" & noctr & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Faktur") & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "FakturAsli") & "','" & DTOC(tanggal, "-") & "','" & DTOC(tanggal, "-") & "'," & _
                         "'" & lNamaSupplier.Text & "','" & nama & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','0','0'," & _
                         "'" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','" & cTransaksi.Text.ToUpper & "',''); "
 
                     Else
+                        
                         'update
                         querysimpan += _
                             "Update trPengajuanBayarHD Set NoPengajuan = '" & tNoPengajuan.Text & "', JnsPengajuan = 'FAKTUR'," & _
-                            "KdUnit = '" & pubKodeUnit & "', TglPengajuan = '" & DTOC(Now, "-", True) & "', TransferKe = '" & cTransferKe.Text.ToUpper & "'," & _
+                            "KdUnit = '" & pubKodeUnit & "', TglPengajuan = '" & DTOC(tanggal, "-", True) & "', TransferKe = '" & cTransferKe.Text.ToUpper & "'," & _
                             "KdSupplier = '" & lNamaSupplier.Text & "', NamaSupplier = '" & nama & "'," & _
                             "Kategori = 'REGULER', NoCtr = '" & noctr & "', Bank = '" & namabank & "'," & _
                             "kdBank = '" & bank & "', AtasNama = '" & atasnama & "', NoRek = '" & noakun & "', MIngguKe = '" & minggu & "' " & _
@@ -212,7 +283,7 @@ Public Class frmPBYAdd
                        "NoCTR,Faktur,FakturAsli,TglFaktur,JthTmp," & _
                        "KdSupplier,NamaSupplier,Total,ReturFisik,ReturAdmin," & _
                        "Terjual,JenisFaktur,FakturReinv)  Values(" & _
-                       "'" & noctr & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Faktur") & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "FakturAsli") & "','" & DTOC(Now, "-") & "','" & DTOC(Now, "-") & "'," & _
+                       "'" & noctr & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Faktur") & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "FakturAsli") & "','" & DTOC(tanggal, "-") & "','" & DTOC(tanggal, "-") & "'," & _
                        "'" & lNamaSupplier.Text & "','" & nama & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','0','0'," & _
                        "'" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','" & cTransaksi.Text.ToUpper & "',''); "
                     End If
@@ -229,10 +300,19 @@ Public Class frmPBYAdd
                         MsgBox("Penyimpanan Gagal" & vbCrLf & db.Rows(0)!statusx, vbCritical + vbOKOnly, "Peringatan")
                         e.NewValue = e.OldValue
                     Else
+                        Dim carjumlah As String = "Select top 1 sum(Pengajuan) as hasil from trPengajuanBayarHD where NoPengajuan = '" & tNoPengajuan.Text & "'"
+                        cmd = New SqlCommand(carjumlah, kon)
+                        rd = cmd.ExecuteReader
+                        rd.Read()
+                        If rd.HasRows Then
+                            sPengajuan.EditValue = rd!hasil
+                        End If
+                        rd.Close()
                         MsgBox("Penyimpanan Berhasil", vbInformation + vbOKOnly, "Informasi")
-                        Dim querysp As String = "exec spGenPengajuanStatus"
-                        cmd = New SqlCommand(querysp, kon)
-                        refreshdgtrans()
+                        dgTrans.SetRowCellValue(dgTrans.FocusedRowHandle, "Status", "PENGAJUAN UNIT")
+                        dgTrans.SetRowCellValue(dgTrans.FocusedRowHandle, "Kategori", cKategori.Text.ToUpper)
+                        cTransaksi.Enabled = False
+                        cKategori.Enabled = False
                     End If
                 End If
             Else
@@ -254,7 +334,7 @@ Public Class frmPBYAdd
                 minggu += 1
             End If
             hari += 1
-        Loop While hari <= totalhari
+        Loop While hari < totalhari
         Return minggu
     End Function
 
@@ -313,4 +393,12 @@ Public Class frmPBYAdd
         rd.Close()
         Return angkactr
     End Function
+
+    Private Sub cTransferKe_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cTransferKe.SelectedIndexChanged
+        dgTrans.Grid_ClearData()
+    End Sub
+
+    Private Sub dgTrans_Load(sender As Object, e As EventArgs) Handles dgTrans.Load
+
+    End Sub
 End Class

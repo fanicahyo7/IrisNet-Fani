@@ -198,7 +198,7 @@ Public Class frmPBYaddPerforma
                 minggu += 1
             End If
             hari += 1
-        Loop While hari <= totalhari
+        Loop While hari < totalhari
         Return minggu
     End Function
 End Class
