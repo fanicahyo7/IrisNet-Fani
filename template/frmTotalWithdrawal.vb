@@ -105,7 +105,7 @@ Public Class frmTotalWithdrawal
 
 
                     Dim qcaritotalFJlunas As String = _
-                        "select case when sum(a.Total-b.Jumlah) = 0 then 'Terdapat FJ Lunas' else 'Belum Lunas' end as Lunas from trSLHeader a " & _
+                        "select case when sum(a.Total-b.Jumlah) >= 0 then 'Terdapat FJ Lunas' else 'Belum Lunas' end as Lunas from trSLHeader a " & _
                         "left join trLPtgDetail b on a.Faktur = b.FakturAsli " & _
                         "where a.Keterangan='" & dgList.GetRowCellValue(a, "Invoice") & "'"
                     cmd = New SqlCommand(qcaritotalFJlunas, kon)

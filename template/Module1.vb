@@ -1,7 +1,10 @@
-﻿Imports System.Data.Sql
+﻿
+Imports System.Data.Sql
 Imports System.Data.SqlClient
 Imports meCore
+
 Module Module1
+
     Public cmd As SqlCommand
     Public kon As SqlConnection
     Public rd As SqlDataReader
@@ -25,4 +28,5 @@ Module Module1
     '        kon.Open()
     '    End If
     'End Sub
+
 End Module

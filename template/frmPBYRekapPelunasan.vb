@@ -44,10 +44,10 @@ Public Class frmPBYRekapPelunasan
         Dim query As String = _
             "SELECT NoCtr, NoBTT, KdSupplier, NamaSupplier,  Kategori, TransferKe, Terjual, Transaksi, Valid, Tolak," & _
             "Promo, BiayaTrans, Pembulatan, Transfer, Bank, Norek, AtasNama , Retur, CashBack, LebihKurang," & _
-            "Ongkir, FlagLunas, FlagSave, JnsPengajuan, Pengajuan FROM trPengajuanBayarHD where NoPengajuan = '" & tNoPengajuan.Text & "' order by kdsupplier"
+            "Ongkir, FlagLunas, FlagSave, JnsPengajuan, Pengajuan, ROW_NUMBER() over(order by kdsupplier) as urut FROM trPengajuanBayarHD where NoPengajuan = '" & tNoPengajuan.Text & "' order by kdsupplier"
         dgList.FirstInit(query, {1, 1, 0.8, 1.3, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, _
                                 0.8, 0.8, 0.8, 0.8, 1, 0.8, 1, 0.8, 0.8, 0.8, _
-                                0.8}, {}, , {"FlagLunas", "FlagSave", "JnsPengajuan", "Pengajuan"}, , , False)
+                                0.8}, {}, , {"FlagLunas", "FlagSave", "JnsPengajuan", "Pengajuan", "urut"}, , , False)
         dgList.RefreshData(False)
 
         sPengajuan.EditValue = dgList.GetSummaryColDB("Pengajuan")
@@ -88,11 +88,12 @@ Public Class frmPBYRekapPelunasan
     End Sub
 
     Private Sub dgList_Grid_CustomDrawCell(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs) Handles dgList.Grid_CustomDrawCell
-        'If dgList.GetRowCellValue(e.RowHandle, "FlagLunas") = True Then
-        '    e.Appearance.ForeColor = Color.Red
-        'ElseIf dgList.GetRowCellValue(e.RowHandle, "FlagLunas") = False Then
-        '    e.Appearance.ForeColor = Color.Green
-        'End If
+        'e.Appearance.Font = New Font(e.Appearance.Font, FontStyle.Bold)
+        If dgList.GetRowCellValue(e.RowHandle, "FlagLunas") = True And tStatus.Text.ToUpper = "KIRIM PENGAJUAN KE PUSAT" Then
+            e.Appearance.ForeColor = Color.Green
+        ElseIf dgList.GetRowCellValue(e.RowHandle, "FlagLunas") = False And tStatus.Text.ToUpper = "KIRIM PENGAJUAN KE PUSAT" Then
+            e.Appearance.ForeColor = Color.Red
+        End If
     End Sub
 
     Private Sub btnSupplierAdd_Click(sender As Object, e As EventArgs) Handles btnSupplierAdd.Click
@@ -103,8 +104,18 @@ Public Class frmPBYRekapPelunasan
     End Sub
 
     Private Sub dgList_Grid_DoubleClick(sender As Object, e As EventArgs) Handles dgList.Grid_DoubleClick
-        Using xx As New frmPBYDetail
+        Dim ctr As String = ""
+        Dim index As Integer = 0
+
+        For a = 0 To dgList.gvMain.RowCount - 1
+            ctr += dgList.GetRowCellValue(a, "NoCtr") & ","
+        Next
+
+        index = CInt(dgList.GetRowCellValue(dgList.FocusedRowHandle, "urut"))
+
+        Using xx As New frmPBYDetail(ctr, index, tStatus.Text.ToUpper)
             xx.ShowDialog(Me)
+            refreshdata()
         End Using
     End Sub
 End Class

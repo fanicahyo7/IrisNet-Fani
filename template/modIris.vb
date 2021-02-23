@@ -156,4 +156,17 @@ Module modIris
         Return pRet
     End Function
 
+    Public Function getSQLConIni(ByVal parPathNFileName As String) As String
+        Dim FILE_NAME As String = parPathNFileName
+        Dim TextLine As String = "File Does Not Exist"
+        If System.IO.File.Exists(FILE_NAME) = True Then
+            Using objReader As New System.IO.StreamReader(FILE_NAME)
+                Do While objReader.Peek() <> -1
+                    TextLine = objReader.ReadLine()
+                Loop
+            End Using
+        End If
+        Return DecryptWithClipper(TextLine, "dante")
+    End Function
+
 End Module

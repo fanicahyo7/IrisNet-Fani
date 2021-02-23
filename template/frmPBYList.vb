@@ -1,25 +1,29 @@
 ﻿Imports meCore
 Imports System.Data.SqlClient
 
-
 Public Class frmPBYList
-
-    'Const EM_SETPASSWORDCHAR = &HCC
-    'Const NV_INPUTBOX As Long = &H5000&
-    'Private Declare Function SetTimer& Lib "user32" (ByVal Hwnd&, ByVal nIDEvent&, ByVal uElapse&, ByVal lpTimerFunc&)
+    Dim index As Integer = 0
     Private Sub frmPBYList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        SetTextReadOnly({sPengajuan, sTotalValid, sTotalLunas, sTotalSisa})
+        refreshlist()
+        ambildetail()
+    End Sub
 
+    Sub refreshlist()
         Dim query As String = "SELECT CONVERT(VARCHAR(6),TglPengajuan,112) as Bulan, ABS(SUM(Pengajuan)) as Total FROM dbo.trPengajuanBayarHd GROUP BY CONVERT(VARCHAR(6),TglPengajuan,112) order by 1 desc"
         dgList.FirstInit(query, {0.7, 1})
         dgList.RefreshData(False)
+        dgList.gvMain.MoveBy(index)
     End Sub
 
-    Private Sub dgList_Grid_CustomDrawCell(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs) Handles dgList.Grid_CustomDrawCell
-       
+    Private Sub dgList_Grid_DoubleClick(sender As Object, e As EventArgs) Handles dgList.Grid_DoubleClick
+        index = dgList.FocusedRowHandle
+        ambildetail()
     End Sub
 
     Private Sub dgList_Grid_FocusedRowChanged(sender As Object, e As DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs) Handles dgList.Grid_FocusedRowChanged
-        ambildetail()
+        'index = dgList.FocusedRowHandle
+        'ambildetail()
     End Sub
 
     Private Sub dgList_Grid_SelectionChanged(sender As Object, e As DevExpress.Data.SelectionChangedEventArgs) Handles dgList.Grid_SelectionChanged
@@ -40,7 +44,8 @@ Public Class frmPBYList
     End Sub
 
     Private Sub dgListDetail_Grid_CustomDrawCell(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs) Handles dgListDetail.Grid_CustomDrawCell
-        If dgListDetail.GetRowCellValue(e.RowHandle, "FlagValid2") = "1" And dgListDetail.GetRowCellValue(e.RowHandle, "FlagValid3") = "1" Then
+        'If dgListDetail.GetRowCellValue(e.RowHandle, "FlagValid2") = "1" And dgListDetail.GetRowCellValue(e.RowHandle, "FlagValid3") = "1" Then
+        If dgListDetail.GetRowCellValue(e.RowHandle, "Status") = "KIRIM PUSAT" Then
             e.Appearance.BackColor = Color.LightGray
         End If
 
@@ -51,18 +56,30 @@ Public Class frmPBYList
             End If
         End If
 
-        Dim ttl As Double
-        ttl = CDbl(dgListDetail.GetRowCellValue(e.RowHandle, "Lunas")) + CDbl(dgListDetail.GetRowCellValue(e.RowHandle, "Tolak")) + CDbl(Math.Abs(dgListDetail.GetRowCellValue(e.RowHandle, "Biaya"))) + CDbl(Math.Abs(dgListDetail.GetRowCellValue(e.RowHandle, "Sisa")))
+        'Dim ttl As Double
+        'ttl = CDbl(dgListDetail.GetRowCellValue(e.RowHandle, "Lunas")) + CDbl(dgListDetail.GetRowCellValue(e.RowHandle, "Tolak")) + CDbl(Math.Abs(dgListDetail.GetRowCellValue(e.RowHandle, "Biaya"))) + CDbl(Math.Abs(dgListDetail.GetRowCellValue(e.RowHandle, "Sisa")))
 
-        If CDbl(dgListDetail.GetRowCellValue(e.RowHandle, "Total")) = ttl Then
-            If e.Column.FieldName.ToUpper = "TOTAL" Or e.Column.FieldName.ToUpper = "VALID" Then
-                e.Appearance.BackColor = Color.LightGreen
-            End If
-        Else
+        'If CDbl(dgListDetail.GetRowCellValue(e.RowHandle, "Total")) = ttl Then
+        '    If e.Column.FieldName.ToUpper = "TOTAL" Or e.Column.FieldName.ToUpper = "VALID" Then
+        '        e.Appearance.BackColor = Color.LightGreen
+        '    End If
+        'Else
+        '    If e.Column.FieldName.ToUpper = "TOTAL" Or e.Column.FieldName.ToUpper = "VALID" Then
+        '        e.Appearance.BackColor = Color.LightPink
+        '    End If
+        'End If
+
+        If CDbl(dgListDetail.GetRowCellValue(e.RowHandle, "Total")) <> CDbl(dgListDetail.GetRowCellValue(e.RowHandle, "Valid")) + CDbl(dgListDetail.GetRowCellValue(e.RowHandle, "Tolak")) Then
             If e.Column.FieldName.ToUpper = "TOTAL" Or e.Column.FieldName.ToUpper = "VALID" Then
                 e.Appearance.BackColor = Color.LightPink
             End If
+        Else
+            If e.Column.FieldName.ToUpper = "TOTAL" Or e.Column.FieldName.ToUpper = "VALID" Then
+                e.Appearance.BackColor = Color.LightGreen
+            End If
         End If
+
+
     End Sub
 
     Private Sub dgListDetail_Grid_DoubleClick(sender As Object, e As EventArgs) Handles dgListDetail.Grid_DoubleClick
@@ -71,16 +88,18 @@ Public Class frmPBYList
         '    valid = True
         'End If
 
-        Dim valid As Boolean = dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "FlagValid2") = "1" And dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "FlagValid3") = "1"
+        'Dim valid As Boolean = dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "FlagValid2") = "1" And dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "FlagValid3") = "1"
+        Dim valid As Boolean = dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "Status") = "KIRIM PUSAT"
 
         Using xx As New frmPBYRekapPelunasan(dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "NoPengajuan"), dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "Status"), valid, dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "Kategori"))
             xx.ShowDialog(Me)
-            ambildetail()
+            refreshlist()
         End Using
     End Sub
 
     Private Sub dgListDetail_Grid_SelectionChanged(sender As Object, e As DevExpress.Data.SelectionChangedEventArgs) Handles dgListDetail.Grid_SelectionChanged
-        If dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "FlagValid2") = "1" And dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "FlagValid3") = "1" Then
+        'If dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "FlagValid2") = "1" And dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "FlagValid3") = "1" Then
+        If dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "Status") = "KIRIM PUSAT" Then
             btnValidasi.Enabled = False
         Else
             btnValidasi.Enabled = True
@@ -90,47 +109,41 @@ Public Class frmPBYList
     Private Sub btnPBYBaru_Click(sender As Object, e As EventArgs) Handles btnPBYBaru.Click
         Using xx As New frmPBYAdd
             xx.ShowDialog(Me)
-            ambildetail()
+            refreshlist()
         End Using
     End Sub
 
     Private Sub btnPerforma_Click(sender As Object, e As EventArgs) Handles btnPerforma.Click
         Using xx As New frmPBYaddPerforma
             xx.ShowDialog(Me)
-            ambildetail()
+            refreshlist()
         End Using
     End Sub
 
     Private Sub btnValidasi_Click(sender As Object, e As EventArgs) Handles btnValidasi.Click
-        'Dim password = InputBox("Enter Password", "Konfirmasi", "*")
-        'Dim n As Long
-        'Dim strPws As String
-        'strPws = InputBox("Enter Password")
+        Dim query As String = "select * from UserLogin where UserName='" & pubUserName & "' and Initial='" & pubUserInit & "'"
+        cmd = New SqlCommand(query, kon)
+        rd = cmd.ExecuteReader
+        rd.Read()
+        Dim level As String = ""
+        If rd.HasRows Then
+            level = rd!UserLevel
+        End If
+        rd.Close()
 
-        'If PubUserLevel = 0 Then
-        'n = SetTimer(1, NV_INPUTBOX, 10, 1)
-        'strPws = InputBox("Enter Password")
+        If level = "00" Or pubUserEntry = "QC" Then
+            Using xx As New frmPBYValid(dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "NoPengajuan"), DTOC(CDate(dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "Tanggal")), "-", False))
+                xx.ShowDialog(Me)
+            End Using
+            ambildetail()
+        Else
+            MsgBox("VALIDASI PENGAJUAN HANYA UNTUK LEVEL KEPALA TOKO", vbCritical + vbOKOnly, "PERINGATAN")
+        End If
+    End Sub
 
-        '    If CekLogin(pubUserID, strPws) Then
-
-        '        'cek rekening
-        '        dbTmp = objData.SQL(GetDsn, "Select count(*) as no from trPengajuanBayarHD where noPengajuan ='" & ValidNull(dlPengajuanDt.Columns("NoPengajuan").Value) & "' and (isnull(Norek,'')='' or isnull(Bank,'')='' or isnull(AtasNAma,'')='')")
-        '        If dbTmp.RecordCount > 0 Then
-        '            If ValidNull(dbTmp!no) > 0 Then
-        '                MsgBox("BANK,NOMOR REKENING DAN NAMA PEMILIK REKENING ADA YANG KOSONG, MOHON DIPERIKSA KEMBALI. VALIDASI GAGAL", vbInformation, "INFORMASI")
-        '                Exit Sub
-        '            End If
-        '        End If
-
-        '        If Tanya(Array("KIRIM PENGAJUAN KE PUSAT ?", "PENGAJUAN TIDAK BISA DI UBAH LAGI")) Then
-        '        objData.Edit GetDsn, "trPengajuanBayarHD", "NoPengajuan = '" & ValidNull(dlPengajuanDt.Columns("NoPengajuan").Value) & "'", Array("FlagSave", "TglPengajuan"), Array(1, DTOC(Date, "-"))
-        '            objData.SQL(GetDsn, "exec spGenBTT")
-        '            dlPengajuan_RowChange()
-        '        End If
-        '    End If
-
-        'Else
-        '    MsgBox("VALIDASI PENGAJUAN HANYA UNTUK LEVEL KEPALA TOKO", vbInformation, "INFORMASI")
-        'End If
+    Private Sub btnLaporan_Click(sender As Object, e As EventArgs) Handles btnLaporan.Click
+        Using xx As New frmLapPBY
+            xx.ShowDialog(Me)
+        End Using
     End Sub
 End Class

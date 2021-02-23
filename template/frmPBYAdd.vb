@@ -46,6 +46,7 @@ Public Class frmPBYAdd
         If Not nonopengajuan = "" Then
             tNoPengajuan.Text = nonopengajuan
             sPengajuan.EditValue = topengajuan
+            cTransferKe.Enabled = False
             cTransaksi.Enabled = False
             cKategori.Enabled = False
 
@@ -313,6 +314,7 @@ Public Class frmPBYAdd
                         dgTrans.SetRowCellValue(dgTrans.FocusedRowHandle, "Kategori", cKategori.Text.ToUpper)
                         cTransaksi.Enabled = False
                         cKategori.Enabled = False
+                        cTransferKe.Enabled = False
                     End If
                 End If
             Else

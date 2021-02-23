@@ -42,7 +42,14 @@ Public NotInheritable Class SplashScreen1
         pubUserEntry = "QC"
         pubUserInit = "QCX"
         pubUserName = "QC"
-        pubKodeUnit = "601"
+        pubKodeUnit = "620"
+        'pubUserEntry = "ANDY"
+        'pubUserInit = "ASA"
+        'pubUserName = "ANDY"
+        'pubUserEntry = "PUS"
+        'pubUserInit = "PUS"
+        'pubUserName = "PUS"
+
     End Sub
 
     Private Sub ApplicationTitle_Click(sender As Object, e As EventArgs) Handles ApplicationTitle.Click
