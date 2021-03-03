@@ -20,6 +20,7 @@ Partial Class frmPBYRekapPelunasan
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPBYRekapPelunasan))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.btnCetakBtt = New DevExpress.XtraEditors.SimpleButton()
         Me.btnAddPerforma = New DevExpress.XtraEditors.SimpleButton()
@@ -47,6 +48,7 @@ Partial Class frmPBYRekapPelunasan
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.sSisa.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,6 +73,7 @@ Partial Class frmPBYRekapPelunasan
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -96,27 +99,30 @@ Partial Class frmPBYRekapPelunasan
         '
         'btnCetakBtt
         '
-        Me.btnCetakBtt.Location = New System.Drawing.Point(614, 383)
+        Me.btnCetakBtt.Image = CType(resources.GetObject("btnCetakBtt.Image"), System.Drawing.Image)
+        Me.btnCetakBtt.Location = New System.Drawing.Point(698, 367)
         Me.btnCetakBtt.Name = "btnCetakBtt"
-        Me.btnCetakBtt.Size = New System.Drawing.Size(197, 22)
+        Me.btnCetakBtt.Size = New System.Drawing.Size(113, 38)
         Me.btnCetakBtt.StyleController = Me.LayoutControl1
         Me.btnCetakBtt.TabIndex = 14
         Me.btnCetakBtt.Text = "Cetak BTT"
         '
         'btnAddPerforma
         '
-        Me.btnAddPerforma.Location = New System.Drawing.Point(301, 383)
+        Me.btnAddPerforma.Image = CType(resources.GetObject("btnAddPerforma.Image"), System.Drawing.Image)
+        Me.btnAddPerforma.Location = New System.Drawing.Point(142, 367)
         Me.btnAddPerforma.Name = "btnAddPerforma"
-        Me.btnAddPerforma.Size = New System.Drawing.Size(309, 22)
+        Me.btnAddPerforma.Size = New System.Drawing.Size(129, 38)
         Me.btnAddPerforma.StyleController = Me.LayoutControl1
         Me.btnAddPerforma.TabIndex = 13
         Me.btnAddPerforma.Text = "Tambah Performa"
         '
         'btnSupplierAdd
         '
-        Me.btnSupplierAdd.Location = New System.Drawing.Point(12, 383)
+        Me.btnSupplierAdd.Image = CType(resources.GetObject("btnSupplierAdd.Image"), System.Drawing.Image)
+        Me.btnSupplierAdd.Location = New System.Drawing.Point(12, 367)
         Me.btnSupplierAdd.Name = "btnSupplierAdd"
-        Me.btnSupplierAdd.Size = New System.Drawing.Size(285, 22)
+        Me.btnSupplierAdd.Size = New System.Drawing.Size(126, 38)
         Me.btnSupplierAdd.StyleController = Me.LayoutControl1
         Me.btnSupplierAdd.TabIndex = 12
         Me.btnSupplierAdd.Text = "Tambah Supplier"
@@ -202,14 +208,14 @@ Partial Class frmPBYRekapPelunasan
         Me.dgList.Query = Nothing
         Me.dgList.QueryTime = Nothing
         Me.dgList.ShowFooter = True
-        Me.dgList.Size = New System.Drawing.Size(799, 295)
+        Me.dgList.Size = New System.Drawing.Size(799, 279)
         Me.dgList.TabIndex = 4
         '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup1.GroupBordersVisible = False
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.EmptySpaceItem1, Me.EmptySpaceItem2, Me.EmptySpaceItem3})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.EmptySpaceItem1, Me.EmptySpaceItem2, Me.EmptySpaceItem3, Me.EmptySpaceItem4})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(823, 417)
@@ -220,7 +226,7 @@ Partial Class frmPBYRekapPelunasan
         Me.LayoutControlItem1.Control = Me.dgList
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(803, 299)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(803, 283)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
@@ -290,27 +296,36 @@ Partial Class frmPBYRekapPelunasan
         'LayoutControlItem9
         '
         Me.LayoutControlItem9.Control = Me.btnSupplierAdd
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 371)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 355)
+        Me.LayoutControlItem9.MaxSize = New System.Drawing.Size(130, 42)
+        Me.LayoutControlItem9.MinSize = New System.Drawing.Size(130, 42)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(289, 26)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(130, 42)
+        Me.LayoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem9.TextVisible = False
         '
         'LayoutControlItem10
         '
         Me.LayoutControlItem10.Control = Me.btnAddPerforma
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(289, 371)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(130, 355)
+        Me.LayoutControlItem10.MaxSize = New System.Drawing.Size(133, 42)
+        Me.LayoutControlItem10.MinSize = New System.Drawing.Size(133, 42)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(313, 26)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(133, 42)
+        Me.LayoutControlItem10.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextVisible = False
         '
         'LayoutControlItem11
         '
         Me.LayoutControlItem11.Control = Me.btnCetakBtt
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(602, 371)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(686, 355)
+        Me.LayoutControlItem11.MaxSize = New System.Drawing.Size(117, 42)
+        Me.LayoutControlItem11.MinSize = New System.Drawing.Size(117, 42)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(201, 26)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(117, 42)
+        Me.LayoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem11.TextVisible = False
         '
@@ -338,6 +353,14 @@ Partial Class frmPBYRekapPelunasan
         Me.EmptySpaceItem3.Size = New System.Drawing.Size(236, 24)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
         '
+        'EmptySpaceItem4
+        '
+        Me.EmptySpaceItem4.AllowHotTrack = False
+        Me.EmptySpaceItem4.Location = New System.Drawing.Point(263, 355)
+        Me.EmptySpaceItem4.Name = "EmptySpaceItem4"
+        Me.EmptySpaceItem4.Size = New System.Drawing.Size(423, 42)
+        Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
+        '
         'frmPBYRekapPelunasan
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -345,6 +368,7 @@ Partial Class frmPBYRekapPelunasan
         Me.ClientSize = New System.Drawing.Size(823, 417)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Name = "frmPBYRekapPelunasan"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmPBYRekapPelunasan"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
@@ -370,6 +394,7 @@ Partial Class frmPBYRekapPelunasan
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -400,4 +425,5 @@ Partial Class frmPBYRekapPelunasan
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents EmptySpaceItem3 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents EmptySpaceItem4 As DevExpress.XtraLayout.EmptySpaceItem
 End Class

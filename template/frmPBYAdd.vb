@@ -27,7 +27,7 @@ Public Class frmPBYAdd
             query = "SELECT * FROM tblPengajuanBayarSupplier('1') ORDER BY 2, 1"
         End If
 
-        dgList.FirstInit(query, {0.8, 0.8, 1.2, 1, 1, 1, 1})
+        dgList.FirstInit(query, {0.8, 0.8, 1.2, 1, 1, 1, 1}, , , , , , , , True)
         dgList.RefreshData(False)
 
         cKategori.SelectedIndex = 0
@@ -38,6 +38,7 @@ Public Class frmPBYAdd
         cTransferKe.SelectedIndex = 0
         cTransaksi.SelectedIndex = 0
         cKategori.SelectedIndex = 0
+        sPengajuan.Properties.Mask.UseMaskAsDisplayFormat = True
 
         SetTextReadOnly({tNoPengajuan, tNoBtt, sPengajuan})
 
@@ -146,180 +147,184 @@ Public Class frmPBYAdd
             e.Cancel = True
             MsgBox("Nilai Pengajuan Bayar Hutang Supplier Tidak Boleh Minus.", vbCritical + vbOKOnly, "Peringatan")
         Else
-            Dim ques = MsgBox("Yakin akan menambah?", vbQuestion + vbYesNo, "Konfirmasi")
-            If ques = vbYes Then
+            'Dim ques = MsgBox("Yakin akan menambah?", vbQuestion + vbYesNo, "Konfirmasi")
+            ''If Tanya({"asfsdfsdf", ""}, ) Then
 
-                Dim noakun As String = ""
-                Dim atasnama As String = ""
-                Dim bank As String = ""
-                Dim bankcabang As String = ""
-                Dim nama As String = ""
-                Dim caribank As String = "select NoAccount,AtasNama,Bank,BankCabang,Nama from mstSupplier where Kode='" & lNamaSupplier.Text & "'"
-                cmd = New SqlCommand(caribank, kon)
+            ''End If
+
+            'If ques = vbYes Then
+
+            Dim noakun As String = ""
+            Dim atasnama As String = ""
+            Dim bank As String = ""
+            Dim bankcabang As String = ""
+            Dim nama As String = ""
+            Dim caribank As String = "select NoAccount,AtasNama,Bank,BankCabang,Nama from mstSupplier where Kode='" & lNamaSupplier.Text & "'"
+            cmd = New SqlCommand(caribank, kon)
+            rd = cmd.ExecuteReader
+            rd.Read()
+            If rd.HasRows Then
+                noakun = rd!NoAccount
+                atasnama = rd!AtasNama
+                bank = rd!Bank
+                If IsDBNull(rd!BankCabang) Then
+                    bankcabang = ""
+                Else
+                    bankcabang = rd!BankCabang
+                End If
+                nama = rd!Nama
+            End If
+            rd.Close()
+            Dim namabank As String = bank & " " & bankcabang
+
+            Dim minggu As String = cariminggu(Now)
+
+            Dim querysimpan As String = "begin try begin transaction "
+            If tNoPengajuan.Text = "" Then
+                Dim pby As String = "" & pubKodeUnit & "PBY-" & Format(Now, "yyMM") & kodepby("'" & pubKodeUnit & "PBY-" & Format(Now, "yyMM") & "'")
+                Dim ctra As String = "" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & kodectr("'" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & "'")
+
+                Dim cekhd As String = "select Count(*) as Total from trPengajuanBayarHD where NoPengajuan = '" & pby & "' and NoCTR = '" & ctra & "'"
+                cmd = New SqlCommand(cekhd, kon)
+                rd = cmd.ExecuteReader
+                rd.Read()
+                Dim totalhd As Integer = rd!Total
+                rd.Close()
+                If totalhd > 0 Then
+                    pby = "" & pubKodeUnit & "PBY-" & Format(Now, "yyMM") & kodepby("'" & pubKodeUnit & "PBY-" & Format(Now, "yyMM") & "'")
+                    ctra = "" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & kodectr("'" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & "'")
+                End If
+                tNoPengajuan.Text = pby
+
+                querysimpan += _
+                "Insert Into trPengajuanBayarHD (" & _
+                "NoPengajuan,JnsPengajuan,KdUnit,TglPengajuan,TransferKe," & _
+                "KdSupplier,NamaSupplier,Kategori,NoCtr,Bank," & _
+                "kdBank,AtasNama,NoRek,MIngguKe) Values(" & _
+                "'" & pby & "','FAKTUR','" & pubKodeUnit & "','" & DTOC(Now, "-", True) & "','" & cTransferKe.Text.ToUpper & "'," & _
+                "'" & lNamaSupplier.Text & "','" & nama & "','" & cKategori.Text.ToUpper & "','" & ctra & "','" & namabank & "'," & _
+                "'" & bank & "','" & atasnama & "','" & noakun & "','" & minggu & "'); "
+
+
+                Dim cekdt As String = "select Count(*) as Total from trPengajuanBayarDt where Noctr = '" & ctra & "' and Faktur = '" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Faktur") & "'"
+                cmd = New SqlCommand(cekdt, kon)
+                rd = cmd.ExecuteReader
+                rd.Read()
+                Dim totaldt As String = rd!Total
+                rd.Close()
+                If totaldt > 0 Then
+                    ctra = "" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & kodectr("'" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & "'")
+                End If
+
+                querysimpan += _
+                    "Insert Into trPengajuanBayarDt (" & _
+                    "NoCTR,Faktur,FakturAsli,TglFaktur,JthTmp," & _
+                    "KdSupplier,NamaSupplier,Total,ReturFisik,ReturAdmin," & _
+                    "Terjual,JenisFaktur,FakturReinv)  Values(" & _
+                    "'" & ctra & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Faktur") & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "FakturAsli") & "','" & DTOC(Now, "-") & "','" & DTOC(Now, "-") & "'," & _
+                    "'" & lNamaSupplier.Text & "','" & nama & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','0','0'," & _
+                    "'" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','" & cTransaksi.Text.ToUpper & "',''); "
+
+            Else
+                Dim querycarictr As String = "Select top 1 NoCtr as hasil from trPengajuanBayarHd where NoPengajuan = '" & tNoPengajuan.Text & "' and KdSupplier  = '" & lNamaSupplier.Text & "'"
+                cmd = New SqlCommand(querycarictr, kon)
+                rd = cmd.ExecuteReader
+                Dim hasilctr As String = ""
+                rd.Read()
+                If rd.HasRows Then
+                    hasilctr = rd!hasil
+                End If
+                rd.Close()
+
+                Dim noctr As String = ""
+                If hasilctr = "" Then
+                    noctr = "" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & kodectr("'" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & "'")
+                Else
+                    noctr = hasilctr
+                End If
+
+                Dim caritanggal As String = "select TglPengajuan as Tanggal from trPengajuanBayarHd where NoPengajuan='" & tNoPengajuan.Text & "'"
+                Dim tanggal As Date
+                cmd = New SqlCommand(caritanggal, kon)
                 rd = cmd.ExecuteReader
                 rd.Read()
                 If rd.HasRows Then
-                    noakun = rd!NoAccount
-                    atasnama = rd!AtasNama
-                    bank = rd!Bank
-                    If IsDBNull(rd!BankCabang) Then
-                        bankcabang = ""
-                    Else
-                        bankcabang = rd!BankCabang
-                    End If
-                    nama = rd!Nama
+                    tanggal = rd!Tanggal
                 End If
                 rd.Close()
-                Dim namabank As String = bank & " " & bankcabang
 
-                Dim minggu As String = cariminggu(Now)
-
-                Dim querysimpan As String = "begin try begin transaction "
-                If tNoPengajuan.Text = "" Then
-                    Dim pby As String = "" & pubKodeUnit & "PBY-" & Format(Now, "yyMM") & kodepby("'" & pubKodeUnit & "PBY-" & Format(Now, "yyMM") & "'")
-                    Dim ctra As String = "" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & kodectr("'" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & "'")
-
-                    Dim cekhd As String = "select Count(*) as Total from trPengajuanBayarHD where NoPengajuan = '" & pby & "' and NoCTR = '" & ctra & "'"
-                    cmd = New SqlCommand(cekhd, kon)
-                    rd = cmd.ExecuteReader
-                    rd.Read()
-                    Dim totalhd As Integer = rd!Total
-                    rd.Close()
-                    If totalhd > 0 Then
-                        pby = "" & pubKodeUnit & "PBY-" & Format(Now, "yyMM") & kodepby("'" & pubKodeUnit & "PBY-" & Format(Now, "yyMM") & "'")
-                        ctra = "" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & kodectr("'" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & "'")
-                    End If
-                    tNoPengajuan.Text = pby
-
+                If hasilctr = "" Then
                     querysimpan += _
                     "Insert Into trPengajuanBayarHD (" & _
                     "NoPengajuan,JnsPengajuan,KdUnit,TglPengajuan,TransferKe," & _
                     "KdSupplier,NamaSupplier,Kategori,NoCtr,Bank," & _
                     "kdBank,AtasNama,NoRek,MIngguKe) Values(" & _
-                    "'" & pby & "','FAKTUR','" & pubKodeUnit & "','" & DTOC(Now, "-", True) & "','" & cTransferKe.Text.ToUpper & "'," & _
-                    "'" & lNamaSupplier.Text & "','" & nama & "','" & cKategori.Text.ToUpper & "','" & ctra & "','" & namabank & "'," & _
+                    "'" & tNoPengajuan.Text & "','FAKTUR','" & pubKodeUnit & "','" & DTOC(tanggal, "-", True) & "','" & cTransferKe.Text.ToUpper & "'," & _
+                    "'" & lNamaSupplier.Text & "','" & nama & "','" & cKategori.Text.ToUpper & "','" & noctr & "','" & namabank & "'," & _
                     "'" & bank & "','" & atasnama & "','" & noakun & "','" & minggu & "'); "
 
-
-                    Dim cekdt As String = "select Count(*) as Total from trPengajuanBayarDt where Noctr = '" & ctra & "' and Faktur = '" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Faktur") & "'"
-                    cmd = New SqlCommand(cekdt, kon)
-                    rd = cmd.ExecuteReader
-                    rd.Read()
-                    Dim totaldt As String = rd!Total
-                    rd.Close()
-                    If totaldt > 0 Then
-                        ctra = "" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & kodectr("'" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & "'")
-                    End If
-
                     querysimpan += _
-                        "Insert Into trPengajuanBayarDt (" & _
-                        "NoCTR,Faktur,FakturAsli,TglFaktur,JthTmp," & _
-                        "KdSupplier,NamaSupplier,Total,ReturFisik,ReturAdmin," & _
-                        "Terjual,JenisFaktur,FakturReinv)  Values(" & _
-                        "'" & ctra & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Faktur") & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "FakturAsli") & "','" & DTOC(Now, "-") & "','" & DTOC(Now, "-") & "'," & _
-                        "'" & lNamaSupplier.Text & "','" & nama & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','0','0'," & _
-                        "'" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','" & cTransaksi.Text.ToUpper & "',''); "
+                    "Insert Into trPengajuanBayarDt (" & _
+                    "NoCTR,Faktur,FakturAsli,TglFaktur,JthTmp," & _
+                    "KdSupplier,NamaSupplier,Total,ReturFisik,ReturAdmin," & _
+                    "Terjual,JenisFaktur,FakturReinv)  Values(" & _
+                    "'" & noctr & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Faktur") & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "FakturAsli") & "','" & DTOC(tanggal, "-") & "','" & DTOC(tanggal, "-") & "'," & _
+                    "'" & lNamaSupplier.Text & "','" & nama & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','0','0'," & _
+                    "'" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','" & cTransaksi.Text.ToUpper & "',''); "
 
                 Else
-                    Dim querycarictr As String = "Select top 1 NoCtr as hasil from trPengajuanBayarHd where NoPengajuan = '" & tNoPengajuan.Text & "' and KdSupplier  = '" & lNamaSupplier.Text & "'"
-                    cmd = New SqlCommand(querycarictr, kon)
-                    rd = cmd.ExecuteReader
-                    Dim hasilctr As String = ""
-                    rd.Read()
-                    If rd.HasRows Then
-                        hasilctr = rd!hasil
-                    End If
-                    rd.Close()
 
-                    Dim noctr As String = ""
-                    If hasilctr = "" Then
-                        noctr = "" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & kodectr("'" & pubKodeUnit & "CTR-" & Format(Now, "yyMM") & "'")
-                    Else
-                        noctr = hasilctr
-                    End If
+                    'update
+                    querysimpan += _
+                        "Update trPengajuanBayarHD Set NoPengajuan = '" & tNoPengajuan.Text & "', JnsPengajuan = 'FAKTUR'," & _
+                        "KdUnit = '" & pubKodeUnit & "', TglPengajuan = '" & DTOC(tanggal, "-", True) & "', TransferKe = '" & cTransferKe.Text.ToUpper & "'," & _
+                        "KdSupplier = '" & lNamaSupplier.Text & "', NamaSupplier = '" & nama & "'," & _
+                        "Kategori = 'REGULER', NoCtr = '" & noctr & "', Bank = '" & namabank & "'," & _
+                        "kdBank = '" & bank & "', AtasNama = '" & atasnama & "', NoRek = '" & noakun & "', MIngguKe = '" & minggu & "' " & _
+                        "Where NoPengajuan = '" & tNoPengajuan.Text & "' and NoCTR = '" & noctr & "'; "
 
-                    Dim caritanggal As String = "select TglPengajuan as Tanggal from trPengajuanBayarHd where NoPengajuan='" & tNoPengajuan.Text & "'"
-                    Dim tanggal As Date
-                    cmd = New SqlCommand(caritanggal, kon)
-                    rd = cmd.ExecuteReader
-                    rd.Read()
-                    If rd.HasRows Then
-                        tanggal = rd!Tanggal
-                    End If
-                    rd.Close()
-
-                    If hasilctr = "" Then
-                        querysimpan += _
-                        "Insert Into trPengajuanBayarHD (" & _
-                        "NoPengajuan,JnsPengajuan,KdUnit,TglPengajuan,TransferKe," & _
-                        "KdSupplier,NamaSupplier,Kategori,NoCtr,Bank," & _
-                        "kdBank,AtasNama,NoRek,MIngguKe) Values(" & _
-                        "'" & tNoPengajuan.Text & "','FAKTUR','" & pubKodeUnit & "','" & DTOC(tanggal, "-", True) & "','" & cTransferKe.Text.ToUpper & "'," & _
-                        "'" & lNamaSupplier.Text & "','" & nama & "','" & cKategori.Text.ToUpper & "','" & noctr & "','" & namabank & "'," & _
-                        "'" & bank & "','" & atasnama & "','" & noakun & "','" & minggu & "'); "
-
-                        querysimpan += _
-                        "Insert Into trPengajuanBayarDt (" & _
-                        "NoCTR,Faktur,FakturAsli,TglFaktur,JthTmp," & _
-                        "KdSupplier,NamaSupplier,Total,ReturFisik,ReturAdmin," & _
-                        "Terjual,JenisFaktur,FakturReinv)  Values(" & _
-                        "'" & noctr & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Faktur") & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "FakturAsli") & "','" & DTOC(tanggal, "-") & "','" & DTOC(tanggal, "-") & "'," & _
-                        "'" & lNamaSupplier.Text & "','" & nama & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','0','0'," & _
-                        "'" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','" & cTransaksi.Text.ToUpper & "',''); "
-
-                    Else
-                        
-                        'update
-                        querysimpan += _
-                            "Update trPengajuanBayarHD Set NoPengajuan = '" & tNoPengajuan.Text & "', JnsPengajuan = 'FAKTUR'," & _
-                            "KdUnit = '" & pubKodeUnit & "', TglPengajuan = '" & DTOC(tanggal, "-", True) & "', TransferKe = '" & cTransferKe.Text.ToUpper & "'," & _
-                            "KdSupplier = '" & lNamaSupplier.Text & "', NamaSupplier = '" & nama & "'," & _
-                            "Kategori = 'REGULER', NoCtr = '" & noctr & "', Bank = '" & namabank & "'," & _
-                            "kdBank = '" & bank & "', AtasNama = '" & atasnama & "', NoRek = '" & noakun & "', MIngguKe = '" & minggu & "' " & _
-                            "Where NoPengajuan = '" & tNoPengajuan.Text & "' and NoCTR = '" & noctr & "'; "
-
-                        'tambah ctr yg sama
-                        querysimpan += _
-                       "Insert Into trPengajuanBayarDt (" & _
-                       "NoCTR,Faktur,FakturAsli,TglFaktur,JthTmp," & _
-                       "KdSupplier,NamaSupplier,Total,ReturFisik,ReturAdmin," & _
-                       "Terjual,JenisFaktur,FakturReinv)  Values(" & _
-                       "'" & noctr & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Faktur") & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "FakturAsli") & "','" & DTOC(tanggal, "-") & "','" & DTOC(tanggal, "-") & "'," & _
-                       "'" & lNamaSupplier.Text & "','" & nama & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','0','0'," & _
-                       "'" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','" & cTransaksi.Text.ToUpper & "',''); "
-                    End If
+                    'tambah ctr yg sama
+                    querysimpan += _
+                   "Insert Into trPengajuanBayarDt (" & _
+                   "NoCTR,Faktur,FakturAsli,TglFaktur,JthTmp," & _
+                   "KdSupplier,NamaSupplier,Total,ReturFisik,ReturAdmin," & _
+                   "Terjual,JenisFaktur,FakturReinv)  Values(" & _
+                   "'" & noctr & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Faktur") & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "FakturAsli") & "','" & DTOC(tanggal, "-") & "','" & DTOC(tanggal, "-") & "'," & _
+                   "'" & lNamaSupplier.Text & "','" & nama & "','" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','0','0'," & _
+                   "'" & dgTrans.GetRowCellValue(dgTrans.FocusedRowHandle, "Terjual") & "','" & cTransaksi.Text.ToUpper & "',''); "
                 End If
-
-                querysimpan += "commit select 'sukses' as statusx end try begin catch rollback select 'gagal : ' + ERROR_MESSAGE() as statusx end catch"
-
-                Dim db As New DataTable
-                da = New SqlDataAdapter(querysimpan, kon)
-                da.Fill(db)
-
-                If db.Rows.Count > 0 Then
-                    If (db.Rows(0)!statusx).ToString.Contains("gagal") Then
-                        MsgBox("Penyimpanan Gagal" & vbCrLf & db.Rows(0)!statusx, vbCritical + vbOKOnly, "Peringatan")
-                        e.NewValue = e.OldValue
-                    Else
-                        Dim carjumlah As String = "Select top 1 sum(Pengajuan) as hasil from trPengajuanBayarHD where NoPengajuan = '" & tNoPengajuan.Text & "'"
-                        cmd = New SqlCommand(carjumlah, kon)
-                        rd = cmd.ExecuteReader
-                        rd.Read()
-                        If rd.HasRows Then
-                            sPengajuan.EditValue = rd!hasil
-                        End If
-                        rd.Close()
-                        MsgBox("Penyimpanan Berhasil", vbInformation + vbOKOnly, "Informasi")
-                        dgTrans.SetRowCellValue(dgTrans.FocusedRowHandle, "Status", "PENGAJUAN UNIT")
-                        dgTrans.SetRowCellValue(dgTrans.FocusedRowHandle, "Kategori", cKategori.Text.ToUpper)
-                        cTransaksi.Enabled = False
-                        cKategori.Enabled = False
-                        cTransferKe.Enabled = False
-                    End If
-                End If
-            Else
-                e.NewValue = e.OldValue
             End If
+
+            querysimpan += "commit select 'sukses' as statusx end try begin catch rollback select 'gagal : ' + ERROR_MESSAGE() as statusx end catch"
+
+            Dim db As New DataTable
+            da = New SqlDataAdapter(querysimpan, kon)
+            da.Fill(db)
+
+            If db.Rows.Count > 0 Then
+                If (db.Rows(0)!statusx).ToString.Contains("gagal") Then
+                    MsgBox("Penyimpanan Gagal" & vbCrLf & db.Rows(0)!statusx, vbCritical + vbOKOnly, "Peringatan")
+                    e.NewValue = e.OldValue
+                Else
+                    Dim carjumlah As String = "Select top 1 sum(Pengajuan) as hasil from trPengajuanBayarHD where NoPengajuan = '" & tNoPengajuan.Text & "'"
+                    cmd = New SqlCommand(carjumlah, kon)
+                    rd = cmd.ExecuteReader
+                    rd.Read()
+                    If rd.HasRows Then
+                        sPengajuan.EditValue = rd!hasil
+                    End If
+                    rd.Close()
+                    MsgBox("Penyimpanan Berhasil", vbInformation + vbOKOnly, "Informasi")
+                    dgTrans.SetRowCellValue(dgTrans.FocusedRowHandle, "Status", "PENGAJUAN UNIT")
+                    dgTrans.SetRowCellValue(dgTrans.FocusedRowHandle, "Kategori", cKategori.Text.ToUpper)
+                    cTransaksi.Enabled = False
+                    cKategori.Enabled = False
+                    cTransferKe.Enabled = False
+                End If
+            End If
+            'Else
+            '    e.NewValue = e.OldValue
+            'End If
         End If
     End Sub
 

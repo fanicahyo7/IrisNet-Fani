@@ -51,7 +51,10 @@ Public Class frmTotalWithdrawal
 
                     'Dim qcaritotalFJ As String = _
                     '    "with cteSL as(" & _
-                    '        "select Faktur,sum(isnull(Total,0)) as Total from trSLHeader where Keterangan='" & dgList.GetRowCellValue(a, "Invoice") & "' " & _
+                    '        "select Faktur,sum(isnull(Total,0)) as Total," & _
+                    '        "sum(MarketPlaceByKerugian) as MarketPlaceByKerugian,sum(MarketPlaceByKomisi) as MarketPlaceByKomisi," & _
+                    '        "sum(MarketPlaceByPromosi) as MarketPlaceByPromosi,sum(MarketPlacePiutangOngkir) as MarketPlacePiutangOngkir " & _
+                    '        "from trSLHeader where Keterangan='" & dgList.GetRowCellValue(a, "Invoice") & "' " & _
                     '        "group by Faktur " & _
                     '        ")," & _
                     '        "cteSLR as (" & _
@@ -59,27 +62,32 @@ Public Class frmTotalWithdrawal
                     '        "left join trSLRHeader b on a.Faktur = b.FakturJual " & _
                     '        "group by a.Faktur " & _
                     '        ") " & _
-                    '        "select a.Total-b.TotalR as Total from cteSL a " & _
+                    '        "select a.Total-b.TotalR as Total, (a.Total-b.TotalR-a.MarketPlaceByKerugian-a.MarketPlaceByKomisi-a.MarketPlaceByPromosi-a.MarketPlacePiutangOngkir) as TotalBanding," & _
+                    '        "a.MarketPlaceByKerugian,a.MarketPlaceByKomisi,a.MarketPlaceByPromosi,a.MarketPlacePiutangOngkir from cteSL a " & _
                     '        "left join cteSLR b " & _
                     '        "on a.Faktur = b.Faktur"
 
                     Dim qcaritotalFJ As String = _
                         "with cteSL as(" & _
-                            "select Faktur,sum(isnull(Total,0)) as Total," & _
-                            "sum(MarketPlaceByKerugian) as MarketPlaceByKerugian,sum(MarketPlaceByKomisi) as MarketPlaceByKomisi," & _
-                            "sum(MarketPlaceByPromosi) as MarketPlaceByPromosi,sum(MarketPlacePiutangOngkir) as MarketPlacePiutangOngkir " & _
-                            "from trSLHeader where Keterangan='" & dgList.GetRowCellValue(a, "Invoice") & "' " & _
-                            "group by Faktur " & _
-                            ")," & _
+                            "select a.Keterangan,a.Faktur,sum(isnull(Total,0)) as Total," & _
+                            "sum(MarketPlaceByKerugian) as MarketPlaceByKerugian,sum(MarketPlaceByKomisi) as MarketPlaceByKomisi,sum(MarketPlaceByPromosi) as MarketPlaceByPromosi," & _
+                            "sum(MarketPlacePiutangOngkir) as MarketPlacePiutangOngkir " & _
+                            "from trSLHeader a " & _
+                            "left join trLPtgDetail b on a.Faktur = b.FakturAsli " & _
+                            "where Keterangan='" & dgList.GetRowCellValue(a, "Invoice") & "' and b.Faktur is null group by Keterangan,a.Faktur )," & _
                             "cteSLR as (" & _
                             "select a.Faktur, sum(isnull(b.Total,0)) as TotalR from cteSL a " & _
-                            "left join trSLRHeader b on a.Faktur = b.FakturJual " & _
-                            "group by a.Faktur " & _
-                            ") " & _
-                            "select a.Total-b.TotalR as Total, (a.Total-b.TotalR-a.MarketPlaceByKerugian-a.MarketPlaceByKomisi-a.MarketPlaceByPromosi-a.MarketPlacePiutangOngkir) as TotalBanding," & _
-                            "a.MarketPlaceByKerugian,a.MarketPlaceByKomisi,a.MarketPlaceByPromosi,a.MarketPlacePiutangOngkir from cteSL a " & _
-                            "left join cteSLR b " & _
-                            "on a.Faktur = b.Faktur"
+                            "left join trSLRHeader b on a.Faktur = b.FakturJual group by a.Faktur )," & _
+                            "cteanu as (" & _
+                            "select a.Keterangan, a.Faktur, a.Total-b.TotalR as Total, " & _
+                            "(a.Total-b.TotalR-a.MarketPlaceByKerugian-a.MarketPlaceByKomisi-a.MarketPlaceByPromosi-a.MarketPlacePiutangOngkir) as TotalBanding,a.MarketPlaceByKerugian," & _
+                            "a.MarketPlaceByKomisi,a.MarketPlaceByPromosi,a.MarketPlacePiutangOngkir from cteSL a " & _
+                            "left join cteSLR b on a.Faktur = b.Faktur) " & _
+                            "select Keterangan, sum(Total) as Total, sum(Totalbanding) as TotalBanding," & _
+                            "sum(MarketPlaceByKerugian) as MarketPlaceByKerugian,sum(MarketPlaceByKomisi) as MarketPlaceByKomisi," & _
+                            "sum(MarketPlaceByPromosi) as MarketPlaceByPromosi,sum(MarketPlacePiutangOngkir) as MarketPlacePiutangOngkir " & _
+                            "from cteanu " & _
+                            "group by Keterangan"
 
                     cmd = New SqlCommand(qcaritotalFJ, kon)
                     rd = cmd.ExecuteReader
@@ -103,11 +111,12 @@ Public Class frmTotalWithdrawal
                     End If
                     rd.Close()
 
-
                     Dim qcaritotalFJlunas As String = _
-                        "select case when sum(a.Total-b.Jumlah) >= 0 then 'Terdapat FJ Lunas' else 'Belum Lunas' end as Lunas from trSLHeader a " & _
+                        "with cteawal as(" & _
+                        "select a.faktur,sum(b.jumlah) as Jumlah, case when a.Total-sum(b.Jumlah) = 0 then 'Terdapat FJ Lunas' else 'Belum Lunas' end as Lunas from trslheader a " & _
                         "left join trLPtgDetail b on a.Faktur = b.FakturAsli " & _
-                        "where a.Keterangan='" & dgList.GetRowCellValue(a, "Invoice") & "'"
+                        "where a.Keterangan='" & dgList.GetRowCellValue(a, "Invoice") & "' group by a.Faktur,a.Total) " & _
+                        "select case when count(Lunas) > 0 then 'Terdapat FJ Lunas' else 'Belum Lunas' end as Lunas from cteawal where Lunas='Terdapat FJ Lunas'"
                     cmd = New SqlCommand(qcaritotalFJlunas, kon)
                     rd = cmd.ExecuteReader
                     rd.Read()
@@ -270,7 +279,7 @@ Public Class frmTotalWithdrawal
                     GetNewFakturTogamasSQLServ(PubConnStr, "trLPtgWithdrawal", FakturReset.Tahunan, "Faktur", pubKodeUnit & pubUserInit & "-WD", DTOC(Now), 5, "")
 
                 Dim carifj As String = _
-                    "select * from trSLHeader where Keterangan in (" & invoice & ")"
+                    "select * from trSLHeader a left join trLPtgDetail b on a.Faktur = b.FakturAsli left join trSLRHeader c on a.Faktur = c.FakturJual where a.Keterangan in (" & invoice & ") and b.Faktur is null and c.Faktur is null"
                 Dim dtfj As New cMeDB
                 dtfj.FillMe(carifj)
 
@@ -379,3 +388,6 @@ Public Class frmTotalWithdrawal
         End Using
     End Sub
 End Class
+
+'delete from trLPtgDetail where faktur='621IKA-PP21022700239'
+'delete from trLPtgheader where faktur='621IKA-PP21022700239'

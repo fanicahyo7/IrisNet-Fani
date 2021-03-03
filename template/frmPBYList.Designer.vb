@@ -20,6 +20,7 @@ Partial Class frmPBYList
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPBYList))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.btnCetak = New DevExpress.XtraEditors.SimpleButton()
         Me.btnPBYBaru = New DevExpress.XtraEditors.SimpleButton()
@@ -101,54 +102,60 @@ Partial Class frmPBYList
         '
         'btnCetak
         '
-        Me.btnCetak.Location = New System.Drawing.Point(436, 379)
+        Me.btnCetak.Image = CType(resources.GetObject("btnCetak.Image"), System.Drawing.Image)
+        Me.btnCetak.Location = New System.Drawing.Point(426, 363)
         Me.btnCetak.Name = "btnCetak"
-        Me.btnCetak.Size = New System.Drawing.Size(115, 22)
+        Me.btnCetak.Size = New System.Drawing.Size(101, 38)
         Me.btnCetak.StyleController = Me.LayoutControl1
         Me.btnCetak.TabIndex = 27
         Me.btnCetak.Text = "Cetak"
         '
         'btnPBYBaru
         '
-        Me.btnPBYBaru.Location = New System.Drawing.Point(555, 379)
+        Me.btnPBYBaru.Image = CType(resources.GetObject("btnPBYBaru.Image"), System.Drawing.Image)
+        Me.btnPBYBaru.Location = New System.Drawing.Point(531, 363)
         Me.btnPBYBaru.Name = "btnPBYBaru"
-        Me.btnPBYBaru.Size = New System.Drawing.Size(156, 22)
+        Me.btnPBYBaru.Size = New System.Drawing.Size(145, 38)
         Me.btnPBYBaru.StyleController = Me.LayoutControl1
         Me.btnPBYBaru.TabIndex = 26
         Me.btnPBYBaru.Text = "Buat Pengajuan Baru"
         '
         'btnPerforma
         '
-        Me.btnPerforma.Location = New System.Drawing.Point(715, 379)
+        Me.btnPerforma.Image = CType(resources.GetObject("btnPerforma.Image"), System.Drawing.Image)
+        Me.btnPerforma.Location = New System.Drawing.Point(680, 363)
         Me.btnPerforma.Name = "btnPerforma"
-        Me.btnPerforma.Size = New System.Drawing.Size(78, 22)
+        Me.btnPerforma.Size = New System.Drawing.Size(113, 38)
         Me.btnPerforma.StyleController = Me.LayoutControl1
         Me.btnPerforma.TabIndex = 25
         Me.btnPerforma.Text = "Buat Performa"
         '
         'btnExport
         '
-        Me.btnExport.Location = New System.Drawing.Point(317, 379)
+        Me.btnExport.Image = CType(resources.GetObject("btnExport.Image"), System.Drawing.Image)
+        Me.btnExport.Location = New System.Drawing.Point(319, 363)
         Me.btnExport.Name = "btnExport"
-        Me.btnExport.Size = New System.Drawing.Size(115, 22)
+        Me.btnExport.Size = New System.Drawing.Size(103, 38)
         Me.btnExport.StyleController = Me.LayoutControl1
         Me.btnExport.TabIndex = 24
         Me.btnExport.Text = "Export"
         '
         'btnLaporan
         '
-        Me.btnLaporan.Location = New System.Drawing.Point(147, 379)
+        Me.btnLaporan.Image = CType(resources.GetObject("btnLaporan.Image"), System.Drawing.Image)
+        Me.btnLaporan.Location = New System.Drawing.Point(149, 363)
         Me.btnLaporan.Name = "btnLaporan"
-        Me.btnLaporan.Size = New System.Drawing.Size(118, 22)
+        Me.btnLaporan.Size = New System.Drawing.Size(118, 38)
         Me.btnLaporan.StyleController = Me.LayoutControl1
         Me.btnLaporan.TabIndex = 23
         Me.btnLaporan.Text = "Laporan"
         '
         'btnValidasi
         '
-        Me.btnValidasi.Location = New System.Drawing.Point(12, 379)
+        Me.btnValidasi.Image = CType(resources.GetObject("btnValidasi.Image"), System.Drawing.Image)
+        Me.btnValidasi.Location = New System.Drawing.Point(12, 363)
         Me.btnValidasi.Name = "btnValidasi"
-        Me.btnValidasi.Size = New System.Drawing.Size(131, 22)
+        Me.btnValidasi.Size = New System.Drawing.Size(133, 38)
         Me.btnValidasi.StyleController = Me.LayoutControl1
         Me.btnValidasi.TabIndex = 22
         Me.btnValidasi.Text = "Validasi Pengajuan"
@@ -156,7 +163,7 @@ Partial Class frmPBYList
         'sTotalSisa
         '
         Me.sTotalSisa.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sTotalSisa.Location = New System.Drawing.Point(249, 355)
+        Me.sTotalSisa.Location = New System.Drawing.Point(249, 339)
         Me.sTotalSisa.Name = "sTotalSisa"
         Me.sTotalSisa.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.sTotalSisa.Size = New System.Drawing.Size(116, 20)
@@ -166,7 +173,7 @@ Partial Class frmPBYList
         'sTotalLunas
         '
         Me.sTotalLunas.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sTotalLunas.Location = New System.Drawing.Point(249, 331)
+        Me.sTotalLunas.Location = New System.Drawing.Point(249, 315)
         Me.sTotalLunas.Name = "sTotalLunas"
         Me.sTotalLunas.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.sTotalLunas.Size = New System.Drawing.Size(116, 20)
@@ -176,7 +183,7 @@ Partial Class frmPBYList
         'sTotalValid
         '
         Me.sTotalValid.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sTotalValid.Location = New System.Drawing.Point(249, 307)
+        Me.sTotalValid.Location = New System.Drawing.Point(249, 291)
         Me.sTotalValid.Name = "sTotalValid"
         Me.sTotalValid.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.sTotalValid.Size = New System.Drawing.Size(116, 20)
@@ -186,7 +193,7 @@ Partial Class frmPBYList
         'sPengajuan
         '
         Me.sPengajuan.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sPengajuan.Location = New System.Drawing.Point(249, 283)
+        Me.sPengajuan.Location = New System.Drawing.Point(249, 267)
         Me.sPengajuan.Name = "sPengajuan"
         Me.sPengajuan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.sPengajuan.Size = New System.Drawing.Size(116, 20)
@@ -210,7 +217,7 @@ Partial Class frmPBYList
         Me.dgListDetail.Query = Nothing
         Me.dgListDetail.QueryTime = Nothing
         Me.dgListDetail.ShowFooter = True
-        Me.dgListDetail.Size = New System.Drawing.Size(602, 267)
+        Me.dgListDetail.Size = New System.Drawing.Size(602, 251)
         Me.dgListDetail.TabIndex = 5
         '
         'dgList
@@ -230,7 +237,7 @@ Partial Class frmPBYList
         Me.dgList.Query = Nothing
         Me.dgList.QueryTime = Nothing
         Me.dgList.ShowFooter = True
-        Me.dgList.Size = New System.Drawing.Size(175, 363)
+        Me.dgList.Size = New System.Drawing.Size(175, 347)
         Me.dgList.TabIndex = 4
         '
         'LayoutControlGroup1
@@ -248,7 +255,7 @@ Partial Class frmPBYList
         Me.LayoutControlItem1.Control = Me.dgList
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(179, 367)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(179, 351)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
@@ -257,14 +264,14 @@ Partial Class frmPBYList
         Me.LayoutControlItem2.Control = Me.dgListDetail
         Me.LayoutControlItem2.Location = New System.Drawing.Point(179, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(606, 271)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(606, 255)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
         '
         'LayoutControlItem14
         '
         Me.LayoutControlItem14.Control = Me.sPengajuan
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(179, 271)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(179, 255)
         Me.LayoutControlItem14.MaxSize = New System.Drawing.Size(178, 24)
         Me.LayoutControlItem14.MinSize = New System.Drawing.Size(178, 24)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
@@ -276,7 +283,7 @@ Partial Class frmPBYList
         'LayoutControlItem15
         '
         Me.LayoutControlItem15.Control = Me.sTotalValid
-        Me.LayoutControlItem15.Location = New System.Drawing.Point(179, 295)
+        Me.LayoutControlItem15.Location = New System.Drawing.Point(179, 279)
         Me.LayoutControlItem15.MaxSize = New System.Drawing.Size(178, 24)
         Me.LayoutControlItem15.MinSize = New System.Drawing.Size(178, 24)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
@@ -288,7 +295,7 @@ Partial Class frmPBYList
         'LayoutControlItem16
         '
         Me.LayoutControlItem16.Control = Me.sTotalLunas
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(179, 319)
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(179, 303)
         Me.LayoutControlItem16.MaxSize = New System.Drawing.Size(178, 24)
         Me.LayoutControlItem16.MinSize = New System.Drawing.Size(178, 24)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
@@ -300,7 +307,7 @@ Partial Class frmPBYList
         'LayoutControlItem17
         '
         Me.LayoutControlItem17.Control = Me.sTotalSisa
-        Me.LayoutControlItem17.Location = New System.Drawing.Point(179, 343)
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(179, 327)
         Me.LayoutControlItem17.MaxSize = New System.Drawing.Size(178, 24)
         Me.LayoutControlItem17.MinSize = New System.Drawing.Size(178, 24)
         Me.LayoutControlItem17.Name = "LayoutControlItem17"
@@ -312,7 +319,7 @@ Partial Class frmPBYList
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(357, 295)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(357, 279)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
         Me.EmptySpaceItem1.Size = New System.Drawing.Size(428, 24)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
@@ -320,7 +327,7 @@ Partial Class frmPBYList
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(357, 271)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(357, 255)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
         Me.EmptySpaceItem2.Size = New System.Drawing.Size(428, 24)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
@@ -328,7 +335,7 @@ Partial Class frmPBYList
         'EmptySpaceItem3
         '
         Me.EmptySpaceItem3.AllowHotTrack = False
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(357, 319)
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(357, 303)
         Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
         Me.EmptySpaceItem3.Size = New System.Drawing.Size(428, 24)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
@@ -336,7 +343,7 @@ Partial Class frmPBYList
         'EmptySpaceItem4
         '
         Me.EmptySpaceItem4.AllowHotTrack = False
-        Me.EmptySpaceItem4.Location = New System.Drawing.Point(357, 343)
+        Me.EmptySpaceItem4.Location = New System.Drawing.Point(357, 327)
         Me.EmptySpaceItem4.Name = "EmptySpaceItem4"
         Me.EmptySpaceItem4.Size = New System.Drawing.Size(428, 24)
         Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
@@ -344,62 +351,80 @@ Partial Class frmPBYList
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.btnValidasi
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 367)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 351)
+        Me.LayoutControlItem3.MaxSize = New System.Drawing.Size(137, 42)
+        Me.LayoutControlItem3.MinSize = New System.Drawing.Size(137, 42)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(135, 26)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(137, 42)
+        Me.LayoutControlItem3.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextVisible = False
         '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.btnLaporan
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(135, 367)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(137, 351)
+        Me.LayoutControlItem4.MaxSize = New System.Drawing.Size(122, 42)
+        Me.LayoutControlItem4.MinSize = New System.Drawing.Size(122, 42)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(122, 26)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(122, 42)
+        Me.LayoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem4.TextVisible = False
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.btnExport
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(305, 367)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(307, 351)
+        Me.LayoutControlItem5.MaxSize = New System.Drawing.Size(107, 42)
+        Me.LayoutControlItem5.MinSize = New System.Drawing.Size(107, 42)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(119, 26)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(107, 42)
+        Me.LayoutControlItem5.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem5.TextVisible = False
         '
         'EmptySpaceItem5
         '
         Me.EmptySpaceItem5.AllowHotTrack = False
-        Me.EmptySpaceItem5.Location = New System.Drawing.Point(257, 367)
+        Me.EmptySpaceItem5.Location = New System.Drawing.Point(259, 351)
         Me.EmptySpaceItem5.Name = "EmptySpaceItem5"
-        Me.EmptySpaceItem5.Size = New System.Drawing.Size(48, 26)
+        Me.EmptySpaceItem5.Size = New System.Drawing.Size(48, 42)
         Me.EmptySpaceItem5.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.btnPerforma
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(703, 367)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(668, 351)
+        Me.LayoutControlItem6.MaxSize = New System.Drawing.Size(117, 42)
+        Me.LayoutControlItem6.MinSize = New System.Drawing.Size(117, 42)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(82, 26)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(117, 42)
+        Me.LayoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
         '
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.btnPBYBaru
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(543, 367)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(519, 351)
+        Me.LayoutControlItem7.MaxSize = New System.Drawing.Size(149, 42)
+        Me.LayoutControlItem7.MinSize = New System.Drawing.Size(149, 42)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(160, 26)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(149, 42)
+        Me.LayoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem7.TextVisible = False
         '
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.btnCetak
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(424, 367)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(414, 351)
+        Me.LayoutControlItem8.MaxSize = New System.Drawing.Size(105, 42)
+        Me.LayoutControlItem8.MinSize = New System.Drawing.Size(105, 42)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(119, 26)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(105, 42)
+        Me.LayoutControlItem8.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem8.TextVisible = False
         '

@@ -143,13 +143,13 @@ xx:
 
                     Dim faktur As String = GetNewFakturSQLServ(PubConnStr, "trPCHeader", "Faktur", pubKodeUnit & pubUserInit & "-FB", Date.Now.ToString("yyMMdd"), 5, "")
                     Dim query As String
-                    query = "select d.FlagPajak,b.SubTotal,c.KdBuku,* from trPCRAdminGen a " & _
+                    query = "select d.pkp as FlagPajak,b.SubTotal,c.KdBuku,* from trPCRAdminGen a " & _
                             "inner join trPCRHeader b " & _
                             "on a.Faktur = b.Faktur " & _
                             "inner join mstStkSup c " & _
                             "on a.Kode = c.Kode " & _
-                            "inner join trPCRDetail d " & _
-                            "on a.Kode = d.Kode " & _
+                            "inner join mstSupplier d " & _
+                            "on a.KdSupplier = d.Kode " & _
                             "where a.Faktur='" & tFaktur.Text & "'"
                     da = New SqlDataAdapter(query, kon)
                     ds = New DataSet

@@ -18,6 +18,7 @@ Public Class frmPBYRekapPelunasan
     End Sub
     Private Sub frmPBYRekapPelunasan_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         refreshdata()
+        sPengajuan.Properties.Mask.UseMaskAsDisplayFormat = True
     End Sub
 
     Sub refreshdata()
@@ -118,7 +119,13 @@ Public Class frmPBYRekapPelunasan
             refreshdata()
         End Using
     End Sub
+
+    Private Sub btnAddPerforma_Click(sender As Object, e As EventArgs) Handles btnAddPerforma.Click
+        Using xx As New frmPBYaddPerforma
+            xx.ShowDialog(Me)
+            refreshdata()
+        End Using
+    End Sub
 End Class
 
-'Select top 1 FlagSave as hasil from trPengajuanBayarHD where NoPengajuan = '601PBY-200910' 
 

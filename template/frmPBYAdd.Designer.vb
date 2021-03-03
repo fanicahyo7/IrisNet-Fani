@@ -78,7 +78,7 @@ Partial Class frmPBYAdd
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.LayoutControlGroup1
-        Me.LayoutControl1.Size = New System.Drawing.Size(945, 603)
+        Me.LayoutControl1.Size = New System.Drawing.Size(945, 479)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -126,7 +126,7 @@ Partial Class frmPBYAdd
         Me.dgTrans.Query = Nothing
         Me.dgTrans.QueryTime = Nothing
         Me.dgTrans.ShowFooter = True
-        Me.dgTrans.Size = New System.Drawing.Size(921, 408)
+        Me.dgTrans.Size = New System.Drawing.Size(921, 284)
         Me.dgTrans.TabIndex = 11
         '
         'tNoBtt
@@ -202,7 +202,7 @@ Partial Class frmPBYAdd
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem8, Me.EmptySpaceItem1, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem7})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(945, 603)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(945, 479)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem1
@@ -264,7 +264,7 @@ Partial Class frmPBYAdd
         Me.LayoutControlItem8.Control = Me.dgTrans
         Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 171)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(925, 412)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(925, 288)
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem8.TextVisible = False
         '
@@ -310,7 +310,7 @@ Partial Class frmPBYAdd
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(945, 603)
+        Me.ClientSize = New System.Drawing.Size(945, 479)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Name = "frmPBYAdd"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

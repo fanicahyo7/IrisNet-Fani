@@ -42,7 +42,7 @@ Public NotInheritable Class SplashScreen1
         pubUserEntry = "QC"
         pubUserInit = "QCX"
         pubUserName = "QC"
-        pubKodeUnit = "620"
+        pubKodeUnit = "621"
         'pubUserEntry = "ANDY"
         'pubUserInit = "ASA"
         'pubUserName = "ANDY"

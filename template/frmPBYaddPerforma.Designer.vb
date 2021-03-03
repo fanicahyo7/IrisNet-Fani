@@ -21,63 +21,62 @@ Partial Class frmPBYaddPerforma
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPBYaddPerforma))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.cKodeSupplier = New meCore.cMeButtonBrowser()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.CMeButtonBrowser1View = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.tNama = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.tNoPengajuan = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.tPerforma = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.tCtr = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.tKategori = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.cTrans = New System.Windows.Forms.ComboBox()
-        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.tNamaBank = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.tNoRekening = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.sTotPengajuan = New DevExpress.XtraEditors.SpinEdit()
-        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.tAtasNama = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.btnSimpan = New DevExpress.XtraEditors.SimpleButton()
-        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.btnKeluar = New DevExpress.XtraEditors.SimpleButton()
+        Me.btnSimpan = New DevExpress.XtraEditors.SimpleButton()
+        Me.tAtasNama = New DevExpress.XtraEditors.TextEdit()
+        Me.sTotPengajuan = New DevExpress.XtraEditors.SpinEdit()
+        Me.tNoRekening = New DevExpress.XtraEditors.TextEdit()
+        Me.tNamaBank = New DevExpress.XtraEditors.TextEdit()
+        Me.cTrans = New System.Windows.Forms.ComboBox()
+        Me.tKategori = New DevExpress.XtraEditors.TextEdit()
+        Me.tCtr = New DevExpress.XtraEditors.TextEdit()
+        Me.tPerforma = New DevExpress.XtraEditors.TextEdit()
+        Me.tNoPengajuan = New DevExpress.XtraEditors.TextEdit()
+        Me.tNama = New DevExpress.XtraEditors.TextEdit()
+        Me.cKodeSupplier = New meCore.cMeButtonBrowser()
+        Me.CMeButtonBrowser1View = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem5 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cKodeSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CMeButtonBrowser1View, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tNoPengajuan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tPerforma.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tCtr.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tKategori.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tNamaBank.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.tNoRekening.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.sTotPengajuan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.tAtasNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.sTotPengajuan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tNoRekening.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tNamaBank.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tKategori.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tCtr.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tPerforma.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tNoPengajuan.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tNama.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cKodeSupplier.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CMeButtonBrowser1View, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -85,6 +84,7 @@ Partial Class frmPBYaddPerforma
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -111,6 +111,128 @@ Partial Class frmPBYaddPerforma
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        'btnKeluar
+        '
+        Me.btnKeluar.Image = CType(resources.GetObject("btnKeluar.Image"), System.Drawing.Image)
+        Me.btnKeluar.Location = New System.Drawing.Point(450, 204)
+        Me.btnKeluar.Name = "btnKeluar"
+        Me.btnKeluar.Size = New System.Drawing.Size(96, 40)
+        Me.btnKeluar.StyleController = Me.LayoutControl1
+        Me.btnKeluar.TabIndex = 16
+        Me.btnKeluar.Text = "Keluar"
+        '
+        'btnSimpan
+        '
+        Me.btnSimpan.Image = CType(resources.GetObject("btnSimpan.Image"), System.Drawing.Image)
+        Me.btnSimpan.Location = New System.Drawing.Point(351, 204)
+        Me.btnSimpan.Name = "btnSimpan"
+        Me.btnSimpan.Size = New System.Drawing.Size(95, 40)
+        Me.btnSimpan.StyleController = Me.LayoutControl1
+        Me.btnSimpan.TabIndex = 15
+        Me.btnSimpan.Text = "Simpan"
+        '
+        'tAtasNama
+        '
+        Me.tAtasNama.Location = New System.Drawing.Point(87, 156)
+        Me.tAtasNama.Name = "tAtasNama"
+        Me.tAtasNama.Size = New System.Drawing.Size(459, 20)
+        Me.tAtasNama.StyleController = Me.LayoutControl1
+        Me.tAtasNama.TabIndex = 14
+        '
+        'sTotPengajuan
+        '
+        Me.sTotPengajuan.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
+        Me.sTotPengajuan.Location = New System.Drawing.Point(87, 180)
+        Me.sTotPengajuan.Name = "sTotPengajuan"
+        Me.sTotPengajuan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.sTotPengajuan.Size = New System.Drawing.Size(129, 20)
+        Me.sTotPengajuan.StyleController = Me.LayoutControl1
+        Me.sTotPengajuan.TabIndex = 13
+        '
+        'tNoRekening
+        '
+        Me.tNoRekening.Location = New System.Drawing.Point(87, 132)
+        Me.tNoRekening.Name = "tNoRekening"
+        Me.tNoRekening.Size = New System.Drawing.Size(459, 20)
+        Me.tNoRekening.StyleController = Me.LayoutControl1
+        Me.tNoRekening.TabIndex = 12
+        '
+        'tNamaBank
+        '
+        Me.tNamaBank.Location = New System.Drawing.Point(87, 108)
+        Me.tNamaBank.Name = "tNamaBank"
+        Me.tNamaBank.Size = New System.Drawing.Size(459, 20)
+        Me.tNamaBank.StyleController = Me.LayoutControl1
+        Me.tNamaBank.TabIndex = 11
+        '
+        'cTrans
+        '
+        Me.cTrans.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.cTrans.FormattingEnabled = True
+        Me.cTrans.Items.AddRange(New Object() {"Supplier", "Operasional"})
+        Me.cTrans.Location = New System.Drawing.Point(295, 83)
+        Me.cTrans.Name = "cTrans"
+        Me.cTrans.Size = New System.Drawing.Size(136, 21)
+        Me.cTrans.TabIndex = 10
+        '
+        'tKategori
+        '
+        Me.tKategori.Location = New System.Drawing.Point(87, 84)
+        Me.tKategori.Name = "tKategori"
+        Me.tKategori.Size = New System.Drawing.Size(129, 20)
+        Me.tKategori.StyleController = Me.LayoutControl1
+        Me.tKategori.TabIndex = 9
+        '
+        'tCtr
+        '
+        Me.tCtr.Location = New System.Drawing.Point(87, 60)
+        Me.tCtr.Name = "tCtr"
+        Me.tCtr.Size = New System.Drawing.Size(129, 20)
+        Me.tCtr.StyleController = Me.LayoutControl1
+        Me.tCtr.TabIndex = 8
+        '
+        'tPerforma
+        '
+        Me.tPerforma.Location = New System.Drawing.Point(295, 36)
+        Me.tPerforma.Name = "tPerforma"
+        Me.tPerforma.Size = New System.Drawing.Size(136, 20)
+        Me.tPerforma.StyleController = Me.LayoutControl1
+        Me.tPerforma.TabIndex = 7
+        '
+        'tNoPengajuan
+        '
+        Me.tNoPengajuan.Location = New System.Drawing.Point(87, 36)
+        Me.tNoPengajuan.Name = "tNoPengajuan"
+        Me.tNoPengajuan.Size = New System.Drawing.Size(129, 20)
+        Me.tNoPengajuan.StyleController = Me.LayoutControl1
+        Me.tNoPengajuan.TabIndex = 6
+        '
+        'tNama
+        '
+        Me.tNama.Location = New System.Drawing.Point(176, 12)
+        Me.tNama.Name = "tNama"
+        Me.tNama.Size = New System.Drawing.Size(370, 20)
+        Me.tNama.StyleController = Me.LayoutControl1
+        Me.tNama.TabIndex = 5
+        '
+        'cKodeSupplier
+        '
+        Me.cKodeSupplier.Location = New System.Drawing.Point(87, 12)
+        Me.cKodeSupplier.Name = "cKodeSupplier"
+        Me.cKodeSupplier.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cKodeSupplier.Properties.NullText = ""
+        Me.cKodeSupplier.Properties.View = Me.CMeButtonBrowser1View
+        Me.cKodeSupplier.Size = New System.Drawing.Size(85, 20)
+        Me.cKodeSupplier.StyleController = Me.LayoutControl1
+        Me.cKodeSupplier.TabIndex = 4
+        '
+        'CMeButtonBrowser1View
+        '
+        Me.CMeButtonBrowser1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
+        Me.CMeButtonBrowser1View.Name = "CMeButtonBrowser1View"
+        Me.CMeButtonBrowser1View.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.CMeButtonBrowser1View.OptionsView.ShowGroupPanel = False
+        '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
@@ -120,17 +242,6 @@ Partial Class frmPBYaddPerforma
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(558, 256)
         Me.LayoutControlGroup1.TextVisible = False
-        '
-        'cKodeSupplier
-        '
-        Me.cKodeSupplier.Location = New System.Drawing.Point(88, 12)
-        Me.cKodeSupplier.Name = "cKodeSupplier"
-        Me.cKodeSupplier.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cKodeSupplier.Properties.NullText = ""
-        Me.cKodeSupplier.Properties.View = Me.CMeButtonBrowser1View
-        Me.cKodeSupplier.Size = New System.Drawing.Size(84, 20)
-        Me.cKodeSupplier.StyleController = Me.LayoutControl1
-        Me.cKodeSupplier.TabIndex = 4
         '
         'LayoutControlItem1
         '
@@ -144,21 +255,6 @@ Partial Class frmPBYaddPerforma
         Me.LayoutControlItem1.Text = "Kode Supplier"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(72, 13)
         '
-        'CMeButtonBrowser1View
-        '
-        Me.CMeButtonBrowser1View.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus
-        Me.CMeButtonBrowser1View.Name = "CMeButtonBrowser1View"
-        Me.CMeButtonBrowser1View.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.CMeButtonBrowser1View.OptionsView.ShowGroupPanel = False
-        '
-        'tNama
-        '
-        Me.tNama.Location = New System.Drawing.Point(176, 12)
-        Me.tNama.Name = "tNama"
-        Me.tNama.Size = New System.Drawing.Size(370, 20)
-        Me.tNama.StyleController = Me.LayoutControl1
-        Me.tNama.TabIndex = 5
-        '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.tNama
@@ -167,14 +263,6 @@ Partial Class frmPBYaddPerforma
         Me.LayoutControlItem2.Size = New System.Drawing.Size(374, 24)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
-        '
-        'tNoPengajuan
-        '
-        Me.tNoPengajuan.Location = New System.Drawing.Point(88, 36)
-        Me.tNoPengajuan.Name = "tNoPengajuan"
-        Me.tNoPengajuan.Size = New System.Drawing.Size(128, 20)
-        Me.tNoPengajuan.StyleController = Me.LayoutControl1
-        Me.tNoPengajuan.TabIndex = 6
         '
         'LayoutControlItem3
         '
@@ -188,14 +276,6 @@ Partial Class frmPBYaddPerforma
         Me.LayoutControlItem3.Text = "No Pengajuan"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(72, 13)
         '
-        'tPerforma
-        '
-        Me.tPerforma.Location = New System.Drawing.Point(296, 36)
-        Me.tPerforma.Name = "tPerforma"
-        Me.tPerforma.Size = New System.Drawing.Size(135, 20)
-        Me.tPerforma.StyleController = Me.LayoutControl1
-        Me.tPerforma.TabIndex = 7
-        '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.tPerforma
@@ -207,14 +287,6 @@ Partial Class frmPBYaddPerforma
         Me.LayoutControlItem4.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem4.Text = "    No Performa"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(72, 13)
-        '
-        'tCtr
-        '
-        Me.tCtr.Location = New System.Drawing.Point(88, 60)
-        Me.tCtr.Name = "tCtr"
-        Me.tCtr.Size = New System.Drawing.Size(128, 20)
-        Me.tCtr.StyleController = Me.LayoutControl1
-        Me.tCtr.TabIndex = 8
         '
         'LayoutControlItem5
         '
@@ -228,14 +300,6 @@ Partial Class frmPBYaddPerforma
         Me.LayoutControlItem5.Text = "No CTR"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(72, 13)
         '
-        'tKategori
-        '
-        Me.tKategori.Location = New System.Drawing.Point(88, 84)
-        Me.tKategori.Name = "tKategori"
-        Me.tKategori.Size = New System.Drawing.Size(128, 20)
-        Me.tKategori.StyleController = Me.LayoutControl1
-        Me.tKategori.TabIndex = 9
-        '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.tKategori
@@ -247,36 +311,6 @@ Partial Class frmPBYaddPerforma
         Me.LayoutControlItem6.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem6.Text = "Kategori"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(72, 13)
-        '
-        'cTrans
-        '
-        Me.cTrans.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cTrans.FormattingEnabled = True
-        Me.cTrans.Items.AddRange(New Object() {"Supplier", "Operasional"})
-        Me.cTrans.Location = New System.Drawing.Point(296, 83)
-        Me.cTrans.Name = "cTrans"
-        Me.cTrans.Size = New System.Drawing.Size(135, 21)
-        Me.cTrans.TabIndex = 10
-        '
-        'LayoutControlItem7
-        '
-        Me.LayoutControlItem7.Control = Me.cTrans
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(208, 71)
-        Me.LayoutControlItem7.MaxSize = New System.Drawing.Size(215, 25)
-        Me.LayoutControlItem7.MinSize = New System.Drawing.Size(215, 25)
-        Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(215, 25)
-        Me.LayoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.LayoutControlItem7.Text = "    Trans Ke"
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(72, 13)
-        '
-        'tNamaBank
-        '
-        Me.tNamaBank.Location = New System.Drawing.Point(88, 108)
-        Me.tNamaBank.Name = "tNamaBank"
-        Me.tNamaBank.Size = New System.Drawing.Size(458, 20)
-        Me.tNamaBank.StyleController = Me.LayoutControl1
-        Me.tNamaBank.TabIndex = 11
         '
         'LayoutControlItem8
         '
@@ -290,14 +324,6 @@ Partial Class frmPBYaddPerforma
         Me.LayoutControlItem8.Text = "Nama Bank"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(72, 13)
         '
-        'tNoRekening
-        '
-        Me.tNoRekening.Location = New System.Drawing.Point(88, 132)
-        Me.tNoRekening.Name = "tNoRekening"
-        Me.tNoRekening.Size = New System.Drawing.Size(458, 20)
-        Me.tNoRekening.StyleController = Me.LayoutControl1
-        Me.tNoRekening.TabIndex = 12
-        '
         'LayoutControlItem9
         '
         Me.LayoutControlItem9.Control = Me.tNoRekening
@@ -309,16 +335,6 @@ Partial Class frmPBYaddPerforma
         Me.LayoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem9.Text = "No Rekening"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(72, 13)
-        '
-        'sTotPengajuan
-        '
-        Me.sTotPengajuan.EditValue = New Decimal(New Integer() {0, 0, 0, 0})
-        Me.sTotPengajuan.Location = New System.Drawing.Point(88, 180)
-        Me.sTotPengajuan.Name = "sTotPengajuan"
-        Me.sTotPengajuan.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.sTotPengajuan.Size = New System.Drawing.Size(128, 20)
-        Me.sTotPengajuan.StyleController = Me.LayoutControl1
-        Me.sTotPengajuan.TabIndex = 13
         '
         'LayoutControlItem10
         '
@@ -332,14 +348,6 @@ Partial Class frmPBYaddPerforma
         Me.LayoutControlItem10.Text = "Tot Pengajuan"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(72, 13)
         '
-        'tAtasNama
-        '
-        Me.tAtasNama.Location = New System.Drawing.Point(88, 156)
-        Me.tAtasNama.Name = "tAtasNama"
-        Me.tAtasNama.Size = New System.Drawing.Size(458, 20)
-        Me.tAtasNama.StyleController = Me.LayoutControl1
-        Me.tAtasNama.TabIndex = 14
-        '
         'LayoutControlItem11
         '
         Me.LayoutControlItem11.Control = Me.tAtasNama
@@ -352,16 +360,6 @@ Partial Class frmPBYaddPerforma
         Me.LayoutControlItem11.Text = "Atas Nama"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(72, 13)
         '
-        'btnSimpan
-        '
-        Me.btnSimpan.Image = CType(resources.GetObject("btnSimpan.Image"), System.Drawing.Image)
-        Me.btnSimpan.Location = New System.Drawing.Point(351, 204)
-        Me.btnSimpan.Name = "btnSimpan"
-        Me.btnSimpan.Size = New System.Drawing.Size(95, 40)
-        Me.btnSimpan.StyleController = Me.LayoutControl1
-        Me.btnSimpan.TabIndex = 15
-        Me.btnSimpan.Text = "Simpan"
-        '
         'LayoutControlItem12
         '
         Me.LayoutControlItem12.Control = Me.btnSimpan
@@ -373,16 +371,6 @@ Partial Class frmPBYaddPerforma
         Me.LayoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem12.TextVisible = False
-        '
-        'btnKeluar
-        '
-        Me.btnKeluar.Image = CType(resources.GetObject("btnKeluar.Image"), System.Drawing.Image)
-        Me.btnKeluar.Location = New System.Drawing.Point(450, 204)
-        Me.btnKeluar.Name = "btnKeluar"
-        Me.btnKeluar.Size = New System.Drawing.Size(96, 40)
-        Me.btnKeluar.StyleController = Me.LayoutControl1
-        Me.btnKeluar.TabIndex = 16
-        Me.btnKeluar.Text = "Keluar"
         '
         'LayoutControlItem13
         '
@@ -428,6 +416,18 @@ Partial Class frmPBYaddPerforma
         Me.EmptySpaceItem4.Size = New System.Drawing.Size(115, 25)
         Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
         '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.cTrans
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(208, 71)
+        Me.LayoutControlItem7.MaxSize = New System.Drawing.Size(215, 25)
+        Me.LayoutControlItem7.MinSize = New System.Drawing.Size(215, 25)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(215, 25)
+        Me.LayoutControlItem7.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem7.Text = "    Trans Ke"
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(72, 13)
+        '
         'EmptySpaceItem5
         '
         Me.EmptySpaceItem5.AllowHotTrack = False
@@ -443,31 +443,31 @@ Partial Class frmPBYaddPerforma
         Me.ClientSize = New System.Drawing.Size(558, 256)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Name = "frmPBYaddPerforma"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmPBYaddPerforma"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
-        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cKodeSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CMeButtonBrowser1View, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tNoPengajuan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tPerforma.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tCtr.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tKategori.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tNamaBank.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.tNoRekening.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.sTotPengajuan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.tAtasNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.sTotPengajuan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tNoRekening.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tNamaBank.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tKategori.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tCtr.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tPerforma.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tNoPengajuan.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tNama.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cKodeSupplier.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CMeButtonBrowser1View, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
@@ -475,6 +475,7 @@ Partial Class frmPBYaddPerforma
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

@@ -21,6 +21,7 @@ Partial Class Form5
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.CtrlMeDataGrid1 = New meCore.ctrlMeDataGrid()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.SimpleButton2 = New DevExpress.XtraEditors.SimpleButton()
         Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
@@ -29,7 +30,6 @@ Partial Class Form5
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.CtrlMeDataGrid1 = New meCore.ctrlMeDataGrid()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -54,6 +54,26 @@ Partial Class Form5
         Me.LayoutControl1.Size = New System.Drawing.Size(284, 261)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'CtrlMeDataGrid1
+        '
+        Me.CtrlMeDataGrid1.colSum = Nothing
+        Me.CtrlMeDataGrid1.ConnString = Nothing
+        Me.CtrlMeDataGrid1.dSourceUsePK = True
+        Me.CtrlMeDataGrid1.FilterPopUpMode = DevExpress.XtraGrid.Columns.FilterPopupMode.[Default]
+        Me.CtrlMeDataGrid1.Location = New System.Drawing.Point(12, 114)
+        Me.CtrlMeDataGrid1.Name = "CtrlMeDataGrid1"
+        Me.CtrlMeDataGrid1.PopDeleteShow = False
+        Me.CtrlMeDataGrid1.PopExportShow = True
+        Me.CtrlMeDataGrid1.PopNewShow = False
+        Me.CtrlMeDataGrid1.PopOpenShow = False
+        Me.CtrlMeDataGrid1.PopPrintShow = False
+        Me.CtrlMeDataGrid1.PopRefreshShow = False
+        Me.CtrlMeDataGrid1.Query = Nothing
+        Me.CtrlMeDataGrid1.QueryTime = Nothing
+        Me.CtrlMeDataGrid1.ShowFooter = True
+        Me.CtrlMeDataGrid1.Size = New System.Drawing.Size(260, 109)
+        Me.CtrlMeDataGrid1.TabIndex = 7
         '
         'TextBox1
         '
@@ -125,26 +145,6 @@ Partial Class Form5
         Me.LayoutControlItem3.Size = New System.Drawing.Size(264, 60)
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextVisible = False
-        '
-        'CtrlMeDataGrid1
-        '
-        Me.CtrlMeDataGrid1.colSum = Nothing
-        Me.CtrlMeDataGrid1.ConnString = Nothing
-        Me.CtrlMeDataGrid1.dSourceUsePK = True
-        Me.CtrlMeDataGrid1.FilterPopUpMode = DevExpress.XtraGrid.Columns.FilterPopupMode.[Default]
-        Me.CtrlMeDataGrid1.Location = New System.Drawing.Point(12, 114)
-        Me.CtrlMeDataGrid1.Name = "CtrlMeDataGrid1"
-        Me.CtrlMeDataGrid1.PopDeleteShow = False
-        Me.CtrlMeDataGrid1.PopExportShow = True
-        Me.CtrlMeDataGrid1.PopNewShow = False
-        Me.CtrlMeDataGrid1.PopOpenShow = False
-        Me.CtrlMeDataGrid1.PopPrintShow = False
-        Me.CtrlMeDataGrid1.PopRefreshShow = False
-        Me.CtrlMeDataGrid1.Query = Nothing
-        Me.CtrlMeDataGrid1.QueryTime = Nothing
-        Me.CtrlMeDataGrid1.ShowFooter = True
-        Me.CtrlMeDataGrid1.Size = New System.Drawing.Size(260, 109)
-        Me.CtrlMeDataGrid1.TabIndex = 7
         '
         'LayoutControlItem4
         '

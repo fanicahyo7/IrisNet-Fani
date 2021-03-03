@@ -8,6 +8,7 @@ Public Class frmPBYaddPerforma
         Dim qkdsup As String = "select Kode, Nama, Bank, NoAccount, AtasNama from mstSupplier Order by Nama"
         cKodeSupplier.FirstInit(PubConnStr, qkdsup, {tNama, tNamaBank, tNoRekening, tAtasNama}, , , , , , {0.9, 2})
         SetTextReadOnly({tKategori, tCtr, tPerforma, tNoPengajuan})
+        sTotPengajuan.Properties.Mask.UseMaskAsDisplayFormat = True
     End Sub
 
     Private Sub btnSimpan_Click(sender As Object, e As EventArgs) Handles btnSimpan.Click
@@ -201,4 +202,8 @@ Public Class frmPBYaddPerforma
         Loop While hari < totalhari
         Return minggu
     End Function
+
+    Private Sub btnKeluar_Click(sender As Object, e As EventArgs) Handles btnKeluar.Click
+        Me.Close()
+    End Sub
 End Class

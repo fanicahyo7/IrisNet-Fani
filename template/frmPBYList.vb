@@ -5,6 +5,10 @@ Public Class frmPBYList
     Dim index As Integer = 0
     Private Sub frmPBYList_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         SetTextReadOnly({sPengajuan, sTotalValid, sTotalLunas, sTotalSisa})
+        sPengajuan.Properties.Mask.UseMaskAsDisplayFormat = True
+        sTotalValid.Properties.Mask.UseMaskAsDisplayFormat = True
+        sTotalLunas.Properties.Mask.UseMaskAsDisplayFormat = True
+        sTotalSisa.Properties.Mask.UseMaskAsDisplayFormat = True
         refreshlist()
         ambildetail()
     End Sub
@@ -44,7 +48,6 @@ Public Class frmPBYList
     End Sub
 
     Private Sub dgListDetail_Grid_CustomDrawCell(sender As Object, e As DevExpress.XtraGrid.Views.Base.RowCellCustomDrawEventArgs) Handles dgListDetail.Grid_CustomDrawCell
-        'If dgListDetail.GetRowCellValue(e.RowHandle, "FlagValid2") = "1" And dgListDetail.GetRowCellValue(e.RowHandle, "FlagValid3") = "1" Then
         If dgListDetail.GetRowCellValue(e.RowHandle, "Status") = "KIRIM PUSAT" Then
             e.Appearance.BackColor = Color.LightGray
         End If
@@ -56,19 +59,6 @@ Public Class frmPBYList
             End If
         End If
 
-        'Dim ttl As Double
-        'ttl = CDbl(dgListDetail.GetRowCellValue(e.RowHandle, "Lunas")) + CDbl(dgListDetail.GetRowCellValue(e.RowHandle, "Tolak")) + CDbl(Math.Abs(dgListDetail.GetRowCellValue(e.RowHandle, "Biaya"))) + CDbl(Math.Abs(dgListDetail.GetRowCellValue(e.RowHandle, "Sisa")))
-
-        'If CDbl(dgListDetail.GetRowCellValue(e.RowHandle, "Total")) = ttl Then
-        '    If e.Column.FieldName.ToUpper = "TOTAL" Or e.Column.FieldName.ToUpper = "VALID" Then
-        '        e.Appearance.BackColor = Color.LightGreen
-        '    End If
-        'Else
-        '    If e.Column.FieldName.ToUpper = "TOTAL" Or e.Column.FieldName.ToUpper = "VALID" Then
-        '        e.Appearance.BackColor = Color.LightPink
-        '    End If
-        'End If
-
         If CDbl(dgListDetail.GetRowCellValue(e.RowHandle, "Total")) <> CDbl(dgListDetail.GetRowCellValue(e.RowHandle, "Valid")) + CDbl(dgListDetail.GetRowCellValue(e.RowHandle, "Tolak")) Then
             If e.Column.FieldName.ToUpper = "TOTAL" Or e.Column.FieldName.ToUpper = "VALID" Then
                 e.Appearance.BackColor = Color.LightPink
@@ -78,17 +68,9 @@ Public Class frmPBYList
                 e.Appearance.BackColor = Color.LightGreen
             End If
         End If
-
-
     End Sub
 
     Private Sub dgListDetail_Grid_DoubleClick(sender As Object, e As EventArgs) Handles dgListDetail.Grid_DoubleClick
-        'Dim valid As Boolean = False
-        'If dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "FlagValid2") = "1" And dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "FlagValid3") = "1" Then
-        '    valid = True
-        'End If
-
-        'Dim valid As Boolean = dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "FlagValid2") = "1" And dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "FlagValid3") = "1"
         Dim valid As Boolean = dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "Status") = "KIRIM PUSAT"
 
         Using xx As New frmPBYRekapPelunasan(dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "NoPengajuan"), dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "Status"), valid, dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "Kategori"))
@@ -98,7 +80,6 @@ Public Class frmPBYList
     End Sub
 
     Private Sub dgListDetail_Grid_SelectionChanged(sender As Object, e As DevExpress.Data.SelectionChangedEventArgs) Handles dgListDetail.Grid_SelectionChanged
-        'If dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "FlagValid2") = "1" And dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "FlagValid3") = "1" Then
         If dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "Status") = "KIRIM PUSAT" Then
             btnValidasi.Enabled = False
         Else
@@ -110,6 +91,7 @@ Public Class frmPBYList
         Using xx As New frmPBYAdd
             xx.ShowDialog(Me)
             refreshlist()
+            ambildetail()
         End Using
     End Sub
 
@@ -117,6 +99,7 @@ Public Class frmPBYList
         Using xx As New frmPBYaddPerforma
             xx.ShowDialog(Me)
             refreshlist()
+            ambildetail()
         End Using
     End Sub
 
@@ -135,15 +118,39 @@ Public Class frmPBYList
             Using xx As New frmPBYValid(dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "NoPengajuan"), DTOC(CDate(dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "Tanggal")), "-", False))
                 xx.ShowDialog(Me)
             End Using
+            refreshlist()
             ambildetail()
         Else
             MsgBox("VALIDASI PENGAJUAN HANYA UNTUK LEVEL KEPALA TOKO", vbCritical + vbOKOnly, "PERINGATAN")
+            refreshlist()
+            ambildetail()
         End If
     End Sub
 
     Private Sub btnLaporan_Click(sender As Object, e As EventArgs) Handles btnLaporan.Click
         Using xx As New frmLapPBY
             xx.ShowDialog(Me)
+            refreshlist()
+            ambildetail()
         End Using
+    End Sub
+
+    Private Sub btnExport_Click(sender As Object, e As EventArgs) Handles btnExport.Click
+        Using xx As New frmPBYexportExcel(dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "NoPengajuan"))
+            xx.ShowDialog(Me)
+            refreshlist()
+            ambildetail()
+        End Using
+    End Sub
+
+    Private Sub btnCetak_Click(sender As Object, e As EventArgs) Handles btnCetak.Click
+        Dim pQueryRpt As String = _
+                                "SELECT *," & _
+                                    "convert(varchar, TglPengajuan, 103) as TglPengajuanConvert," & _
+                                    "convert(varchar, TglFaktur, 103) as TglFakturConvert " & _
+                                    "FROM vwpengajuanBayarDtCetak " & _
+                                    "WHERE NoPengajuan = '" & dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "NoPengajuan") & "' " & _
+                                    "order by nopengajuan,nobtt,TglFaktur,faktur"
+        ShowReport(pQueryRpt, "rptExportPBY")
     End Sub
 End Class

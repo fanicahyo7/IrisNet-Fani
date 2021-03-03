@@ -19,6 +19,17 @@ Public Class frmPBYDetail
         cTransferKe.Enabled = False
         SetTextReadOnly({tNoCtr, tNoPengajuan, tKdSupplier, tNamaSupplier, tTglPengajuan, tBank, tNoRek, tAtasNama, sTerjual, sCashBack, sOngkir, sLainLain, sLebihKurang, sPengajuan, sPembulatan, sBiayaTrans, sTransfer})
 
+        sPengajuan.Properties.Mask.UseMaskAsDisplayFormat = True
+        sTerjual.Properties.Mask.UseMaskAsDisplayFormat = True
+        sCashBack.Properties.Mask.UseMaskAsDisplayFormat = True
+        sOngkir.Properties.Mask.UseMaskAsDisplayFormat = True
+        sLainLain.Properties.Mask.UseMaskAsDisplayFormat = True
+        sLebihKurang.Properties.Mask.UseMaskAsDisplayFormat = True
+        sPromo.Properties.Mask.UseMaskAsDisplayFormat = True
+        sBiayaTrans.Properties.Mask.UseMaskAsDisplayFormat = True
+        sPembulatan.Properties.Mask.UseMaskAsDisplayFormat = True
+        sTransfer.Properties.Mask.UseMaskAsDisplayFormat = True
+
         tNoCtr.Text = Strings.Split(kumpulanctr, ",")(index)
         refreshpage()
 
