@@ -757,6 +757,7 @@ Partial Class frmPBYDetail
         Me.ClientSize = New System.Drawing.Size(826, 448)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Name = "frmPBYDetail"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmPBYDetail"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)

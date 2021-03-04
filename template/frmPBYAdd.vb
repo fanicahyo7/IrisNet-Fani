@@ -304,7 +304,7 @@ Public Class frmPBYAdd
             If db.Rows.Count > 0 Then
                 If (db.Rows(0)!statusx).ToString.Contains("gagal") Then
                     MsgBox("Penyimpanan Gagal" & vbCrLf & db.Rows(0)!statusx, vbCritical + vbOKOnly, "Peringatan")
-                    e.NewValue = e.OldValue
+                    e.NewValue = e.Cancel
                 Else
                     Dim carjumlah As String = "Select top 1 sum(Pengajuan) as hasil from trPengajuanBayarHD where NoPengajuan = '" & tNoPengajuan.Text & "'"
                     cmd = New SqlCommand(carjumlah, kon)
@@ -314,7 +314,7 @@ Public Class frmPBYAdd
                         sPengajuan.EditValue = rd!hasil
                     End If
                     rd.Close()
-                    MsgBox("Penyimpanan Berhasil", vbInformation + vbOKOnly, "Informasi")
+                    'MsgBox("Penyimpanan Berhasil", vbInformation + vbOKOnly, "Informasi")
                     dgTrans.SetRowCellValue(dgTrans.FocusedRowHandle, "Status", "PENGAJUAN UNIT")
                     dgTrans.SetRowCellValue(dgTrans.FocusedRowHandle, "Kategori", cKategori.Text.ToUpper)
                     cTransaksi.Enabled = False

@@ -116,6 +116,14 @@ Public Class frmPBYDetail
         cmd = New SqlCommand(query, kon)
         cmd.ExecuteNonQuery()
     End Sub
+
+    Private Sub btnHapus_Click(sender As Object, e As EventArgs) Handles btnHapus.Click
+        '        select sum(terjual) as Pengajuan from trPengajuanBayarDT where faktur<>'621PRF-MELTR.210301' and noctr='621CTR-2103010'
+
+        'Delete from trPengajuanBayarDt where Faktur = '621PRF-MELTR.210301' and NoCtr = '621CTR-2103010'
+
+
+    End Sub
 End Class
 
 

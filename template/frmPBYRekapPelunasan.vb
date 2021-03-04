@@ -16,6 +16,26 @@ Public Class frmPBYRekapPelunasan
         Me.valid = valid
         Me.kategori = kategori
     End Sub
+
+    Private Sub frmPBYRekapPelunasan_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
+        Dim carihd As String = "select * from trPengajuanBayarHd where NoCtr='" & dgList.GetRowCellValue(dgList.FocusedRowHandle, "NoCtr") & "'"
+        cmd = New SqlCommand(carihd, kon)
+        rd = cmd.ExecuteReader
+        rd.Read()
+
+        If rd.HasRows Then
+            Dim bank As String = rd!Bank
+            Dim atasnama As String = rd!AtasNama
+            Dim norek As String = rd!NoRek
+
+            Dim queryupdate As String = _
+           "Update trPengajuanBayarHD Set TransferKe = '" & dgList.GetRowCellValue(dgList.FocusedRowHandle, "TransferKe").ToString.ToUpper & "', Promo = '" & dgList.GetRowCellValue(dgList.FocusedRowHandle, "Promo") & "', Bank = '" & bank & "', AtasNama = '" & atasnama & "', NoRek = '" & norek & "' Where NoBTT = '" & dgList.GetRowCellValue(dgList.FocusedRowHandle, "NoBTT") & "'"
+            rd.Close()
+            cmd = New SqlCommand(queryupdate, kon)
+            cmd.ExecuteNonQuery()
+        End If
+        rd.Close()
+    End Sub
     Private Sub frmPBYRekapPelunasan_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         refreshdata()
         sPengajuan.Properties.Mask.UseMaskAsDisplayFormat = True
@@ -121,10 +141,14 @@ Public Class frmPBYRekapPelunasan
     End Sub
 
     Private Sub btnAddPerforma_Click(sender As Object, e As EventArgs) Handles btnAddPerforma.Click
-        Using xx As New frmPBYaddPerforma
+        Using xx As New frmPBYaddPerforma(tNoPengajuan.Text)
             xx.ShowDialog(Me)
             refreshdata()
         End Using
+    End Sub
+
+    Private Sub btnCetakBtt_Click(sender As Object, e As EventArgs) Handles btnCetakBtt.Click
+
     End Sub
 End Class
 

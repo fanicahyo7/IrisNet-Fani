@@ -76,6 +76,7 @@ Public Class frmPBYList
         Using xx As New frmPBYRekapPelunasan(dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "NoPengajuan"), dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "Status"), valid, dgListDetail.GetRowCellValue(dgListDetail.FocusedRowHandle, "Kategori"))
             xx.ShowDialog(Me)
             refreshlist()
+            ambildetail()
         End Using
     End Sub
 
@@ -96,7 +97,7 @@ Public Class frmPBYList
     End Sub
 
     Private Sub btnPerforma_Click(sender As Object, e As EventArgs) Handles btnPerforma.Click
-        Using xx As New frmPBYaddPerforma
+        Using xx As New frmPBYaddPerforma()
             xx.ShowDialog(Me)
             refreshlist()
             ambildetail()
