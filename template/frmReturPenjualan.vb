@@ -144,7 +144,7 @@ Public Class frmReturPenjualan
     End Sub
     Sub fakjualdg()
         Dim q As String =
-            "select Status,Faktur,Kode,Judul,Penyusun,KdSupplier,NamaPenerbit,Qty as QtyFkt,QtyRetur, 0 as Qty, Harga,Disc, 0 as Jumlah,case LockJual when '1' then 'Saldo Terkunci' when '0' then '' end as InfoSaldo,Urutan,Tanggal,Kode1,KdBuku from vwSL where Faktur='" & cFakturJual.Text & "'"
+            "select Status,Faktur,Kode,Judul,Penyusun,KdSupplier,NamaPenerbit,Qty as QtyFkt,QtyRetur, 0 as Qty, (Qty - QtyRetur) as QtyMax, Harga,Disc, 0 as Jumlah,case LockJual when '1' then 'Saldo Terkunci' when '0' then '' end as InfoSaldo,Urutan,Tanggal,Kode1,KdBuku from vwSL where Faktur='" & cFakturJual.Text & "'"
         mdgList.Grid_ClearData()
         mdgList.FirstInit(q, , , {"Qty"}, {"Urutan", "Faktur", "Status", "Tanggal", "Kode1", "KdBuku"}, , 40)
         mdgList.RefreshData(False)
@@ -169,8 +169,14 @@ Public Class frmReturPenjualan
     End Sub
 
     Private Sub mdgList_Grid_ValidateRow(sender As Object, e As DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs) Handles mdgList.Grid_ValidateRow
+        If IsDBNull(mdgList.GetRowCellValue(e.RowHandle, "Qty")) Then
+            mdgList.SetRowCellValue(e.RowHandle, "Qty", 0)
+        End If
+
         If Not mdgList.GetRowCellValue(e.RowHandle, "InfoSaldo") = "Saldo Terkunci" Then
-            If IsDBNull(mdgList.GetRowCellValue(e.RowHandle, "Jumlah")) Then
+            If mdgList.GetRowCellValue(e.RowHandle, "Qty") > mdgList.GetRowCellValue(e.RowHandle, "QtyMax") Then
+                mdgList.SetRowCellValue(mdgList.FocusedRowHandle, "Qty", 0)
+            ElseIf IsDBNull(mdgList.GetRowCellValue(e.RowHandle, "Jumlah")) Then
                 mdgList.SetRowCellValue(mdgList.FocusedRowHandle, "Jumlah", 0)
                 Dim total, diskon As Double
                 total = CDbl(mdgList.GetRowCellValue(mdgList.FocusedRowHandle, "Harga")) * CDbl(mdgList.GetRowCellValue(mdgList.FocusedRowHandle, "Qty"))
@@ -188,7 +194,7 @@ Public Class frmReturPenjualan
         Else
             mdgList.SetRowCellValue(mdgList.FocusedRowHandle, "Qty", 0)
         End If
-        tSubTotal.Text = mdgList.GetSummaryColDB("Jumlah")
+            tSubTotal.Text = mdgList.GetSummaryColDB("Jumlah")
     End Sub
 
     Private Sub tSubTotal_EditValueChanged_1(sender As Object, e As EventArgs) Handles tSubTotal.EditValueChanged
@@ -211,6 +217,8 @@ Public Class frmReturPenjualan
 
     Private Sub btnSimpan_Click(sender As Object, e As EventArgs) Handles btnSimpan.Click
         If CheckBeforeSave({cKdCustomer}) = False Then Exit Sub
+        Dim konfirmasi = MsgBox("Simpan Retur?", vbQuestion + vbYesNo, "Konfirmasi")
+        If konfirmasi = vbNo Then Exit Sub
         Dim djumlah() As DataRow = mdgList.DataSource.Select("Jumlah <> 0")
         If djumlah.Length <= 0 Then
             Pesan({"Belum ada yang diretur"})
@@ -277,6 +285,17 @@ Public Class frmReturPenjualan
             pQuez(1) = "select Status, Faktur, Tanggal, Kode, Kode1, KdBuku, Qty, Disc, Harga, Jumlah, Urutan from trSLRDetail"
 
             If trans.StartTransactionSQLServ(mdgList.DataSource.SQLConnection, dbtrans, pQuez, False) Then
+                Using dbtrig1 As New cMeDB
+                    Dim q1 As String = "Update trSLHeader Set Subtotal = Subtotal, Fire = '1' where Faktur = '" & cFakturJual.Text & "'"
+                    dbtrig1.ExecScalar(q1)
+                End Using
+
+                Using dbtrig2 As New cMeDB
+                    Dim q2 As String = "Update trSLRDetail Set Kode = Kode, Qty = Qty , Fire = '1' where Faktur = '" & tFaktur.Text & "'"
+                    dbtrig2.ExecScalar(q2)
+                End Using
+                'Insert Into stDump (Faktur,Tanggal,Kode,Transaksi,Status)  Values('621PUS-RJ21030800003','2021-03-08 14:00:34','TSS100357912','trSLRDetail','0')
+                
                 ''----------------------------------insert stDump
                 Using dbdump As New cMeDB
                     Dim pQ As String = _

@@ -118,7 +118,7 @@ Public Class frmPBYRekapPelunasan
     End Sub
 
     Private Sub btnSupplierAdd_Click(sender As Object, e As EventArgs) Handles btnSupplierAdd.Click
-        Using xx As New frmPBYAdd(tNoPengajuan.Text, sPengajuan.EditValue, kategori)
+        Using xx As New frmPBYAdd(tNoPengajuan.Text, sPengajuan.EditValue, kategori, 99, "")
             xx.ShowDialog(Me)
             refreshdata()
         End Using
@@ -149,7 +149,42 @@ Public Class frmPBYRekapPelunasan
 
     Private Sub btnCetakBtt_Click(sender As Object, e As EventArgs) Handles btnCetakBtt.Click
 
+        Dim pQueRpt As String = "Select *, '' as Terbilang, convert(varchar, TglTrans, 103) as TglTrans2 from vwPengajuanBTTBayar where NoPengajuan = '621PBY-200406' order by NoCtr"
+        Dim anu As New cMeDB
+        anu.FillMe(pQueRpt)
+        For a = 0 To anu.Rows.Count - 1
+            anu.Rows(a)!Terbilang = Terbilang(anu.Rows(a)!Transfer)
+        Next
+        ShowReport(anu, "rptBTT")
     End Sub
+
+    Public Function Terbilang(ByVal nilai As Long) As String
+        Dim bilangan As String() = {"", "Satu", "Dua", "Tiga", "Empat", "Lima", _
+        "Enam", "Tujuh", "Delapan", "Sembilan", "Sepuluh", "Sebelas"}
+        If nilai < 12 Then
+            Return " " & bilangan(nilai)
+        ElseIf nilai < 20 Then
+            Return Terbilang(nilai - 10) & " Belas"
+        ElseIf nilai < 100 Then
+            Return (Terbilang(CInt((nilai \ 10))) & " Puluh") + Terbilang(nilai Mod 10)
+        ElseIf nilai < 200 Then
+            Return " Seratus" & Terbilang(nilai - 100)
+        ElseIf nilai < 1000 Then
+            Return (Terbilang(CInt((nilai \ 100))) & " Ratus") + Terbilang(nilai Mod 100)
+        ElseIf nilai < 2000 Then
+            Return " Seribu" & Terbilang(nilai - 1000)
+        ElseIf nilai < 1000000 Then
+            Return (Terbilang(CInt((nilai \ 1000))) & " Ribu") + Terbilang(nilai Mod 1000)
+        ElseIf nilai < 1000000000 Then
+            Return (Terbilang(CInt((nilai \ 1000000))) & " Juta") + Terbilang(nilai Mod 1000000)
+        ElseIf nilai < 1000000000000 Then
+            Return (Terbilang(CInt((nilai \ 1000000000))) & " Milyar") + Terbilang(nilai Mod 1000000000)
+        ElseIf nilai < 1000000000000000 Then
+            Return (Terbilang(CInt((nilai \ 1000000000000))) & " Trilyun") + Terbilang(nilai Mod 1000000000000)
+        Else
+            Return ""
+        End If
+    End Function
 End Class
 
 

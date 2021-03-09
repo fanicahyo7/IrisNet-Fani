@@ -16,6 +16,7 @@ Public Class frmPBYDetail
         Me.status = status
     End Sub
     Private Sub frmPBYDetail_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        koneksi()
         cTransferKe.Enabled = False
         SetTextReadOnly({tNoCtr, tNoPengajuan, tKdSupplier, tNamaSupplier, tTglPengajuan, tBank, tNoRek, tAtasNama, sTerjual, sCashBack, sOngkir, sLainLain, sLebihKurang, sPengajuan, sPembulatan, sBiayaTrans, sTransfer})
 
@@ -118,11 +119,97 @@ Public Class frmPBYDetail
     End Sub
 
     Private Sub btnHapus_Click(sender As Object, e As EventArgs) Handles btnHapus.Click
-        '        select sum(terjual) as Pengajuan from trPengajuanBayarDT where faktur<>'621PRF-MELTR.210301' and noctr='621CTR-2103010'
+        Dim faktur As String = dgList.GetRowCellValue(dgList.FocusedRowHandle, "Faktur")
+        If Not faktur = "" Then
+            Dim query As String = "select sum(terjual) as Pengajuan from trPengajuanBayarDT where faktur <> '" & faktur & "' and noctr='" & tNoCtr.Text & "'"
+            cmd = New SqlCommand(query, kon)
+            rd = cmd.ExecuteReader
+            rd.Read()
+            If rd.HasRows Then
+                If Not IsDBNull(rd!Pengajuan) Then
+                    If rd!Pengajuan < 0 Then
+                        rd.Close()
+                        MsgBox("Nilai Pengajuan Bayar Hutang Supplier Tidak Boleh Minus.", vbCritical + vbOKOnly, "Informasi")
+                        Exit Sub
+                    End If
+                End If
+            Else
+                rd.Close()
+                Exit Sub
+            End If
+            rd.Close()
 
-        'Delete from trPengajuanBayarDt where Faktur = '621PRF-MELTR.210301' and NoCtr = '621CTR-2103010'
+            If Len(faktur) <> 0 Then
+                Dim konfirmasi = MsgBox("HAPUS FAKTUR " & faktur & " ?", vbYesNo + vbQuestion, "Konfirmasi")
+                If konfirmasi = vbYes Then
+                    Dim where As String = "Faktur"
+                    If (Len(faktur) = 8) And dgList.GetRowCellValue(dgList.FocusedRowHandle, "FakturAsli").ToString.ToUpper = "PERHITUNGAN" Then
+                        where = "Faktur"
+                    ElseIf Strings.Mid(faktur, 8, 2).ToUpper = "PH" Then
+                        where = "FakturAsli"
+                    End If
+                    Dim qhps As String = _
+                        "Delete from trPengajuanBayarDt where " & where & " = '" & faktur & "' and NoCtr = '" & tNoCtr.Text & "'"
+                    cmd = New SqlCommand(qhps, kon)
+                    cmd.ExecuteNonQuery()
+                End If
+            End If
+        End If
+        refreshpage()
+    End Sub
 
+    Private Sub btnFaktur_Click(sender As Object, e As EventArgs) Handles btnFaktur.Click
+        Dim query As String = _
+            "Select top 1 sum(Pengajuan) as hasil from trPengajuanBayarHD where NoPengajuan ='" & tNoPengajuan.Text & "'"
+        cmd = New SqlCommand(query, kon)
+        rd = cmd.ExecuteReader
+        rd.Read()
+        Dim jml As Double = 0
+        If rd.HasRows Then
+            jml = rd!hasil
+        End If
+        rd.Close()
+        Dim query2 As String = "select top 1 * from trPengajuanBayarHd where NoPengajuan ='" & tNoPengajuan.Text & "'"
+        cmd = New SqlCommand(query2, kon)
+        rd = cmd.ExecuteReader
+        rd.Read()
+        Dim transfer As String = ""
+        Dim kategori As String = ""
+        If rd.HasRows Then
+            transfer = rd!TransferKe
+            kategori = rd!Kategori
+        End If
+        rd.Close()
+        Using xx As New frmPBYAdd(tNoPengajuan.Text, jml, "", "Retur Beli", transfer)
+            xx.ShowDialog(Me)
+        End Using
+    End Sub
 
+    Private Sub btnDeposit_Click(sender As Object, e As EventArgs) Handles btnDeposit.Click
+        Dim query As String = _
+           "Select top 1 sum(Pengajuan) as hasil from trPengajuanBayarHD where NoPengajuan ='" & tNoPengajuan.Text & "'"
+        cmd = New SqlCommand(query, kon)
+        rd = cmd.ExecuteReader
+        rd.Read()
+        Dim jml As Double = 0
+        If rd.HasRows Then
+            jml = rd!hasil
+        End If
+        rd.Close()
+        Dim query2 As String = "select top 1 * from trPengajuanBayarHd where NoPengajuan ='" & tNoPengajuan.Text & "'"
+        cmd = New SqlCommand(query2, kon)
+        rd = cmd.ExecuteReader
+        rd.Read()
+        Dim transfer As String = ""
+        Dim kategori As String = ""
+        If rd.HasRows Then
+            transfer = rd!TransferKe
+            kategori = rd!Kategori
+        End If
+        rd.Close()
+        Using xx As New frmPBYAdd(tNoPengajuan.Text, jml, kategori.ToUpper, "Deposit", transfer)
+            xx.ShowDialog(Me)
+        End Using
     End Sub
 End Class
 

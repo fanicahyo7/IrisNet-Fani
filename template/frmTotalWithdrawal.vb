@@ -278,8 +278,18 @@ Public Class frmTotalWithdrawal
                 Dim fakturptgwithdrawal As String = _
                     GetNewFakturTogamasSQLServ(PubConnStr, "trLPtgWithdrawal", FakturReset.Tahunan, "Faktur", pubKodeUnit & pubUserInit & "-WD", DTOC(Now), 5, "")
 
+                'Dim carifj As String = _
+                '    "select * from trSLHeader a left join trLPtgDetail b on a.Faktur = b.FakturAsli left join trSLRHeader c on a.Faktur = c.FakturJual where a.Keterangan in (" & invoice & ") and b.Faktur is null and c.Faktur is null"
                 Dim carifj As String = _
-                    "select * from trSLHeader a left join trLPtgDetail b on a.Faktur = b.FakturAsli left join trSLRHeader c on a.Faktur = c.FakturJual where a.Keterangan in (" & invoice & ") and b.Faktur is null and c.Faktur is null"
+                    "with cteSL as(" & _
+                    "select a.Faktur,a.KdCustomer,a.Tanggal,a.Total from trSLHeader a " & _
+                    "left join trLPtgDetail b on a.Faktur = b.FakturAsli " & _
+                    "where a.Keterangan in (" & invoice & ") and b.Faktur is null) " & _
+                    "select * from cteSL " & _
+                    "union all " & _
+                    "select a.Faktur,a.KdCustomer,a.Tanggal,a.Total from trSLRheader a " & _
+                    "left join trLPtgDetail b on a.Faktur=b.fakturasli " & _
+                    "where FakturJual in (select Faktur from cteSL)"
                 Dim dtfj As New cMeDB
                 dtfj.FillMe(carifj)
 

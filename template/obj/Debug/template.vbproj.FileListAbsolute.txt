@@ -1,8 +1,5 @@
-D:\IrisNet-Fani\template\bin\Debug\template.exe.config
-D:\IrisNet-Fani\template\obj\Debug\template.exe
-D:\IrisNet-Fani\template\obj\Debug\template.xml
-D:\IrisNet-Fani\template\obj\Debug\template.pdb
 D:\IrisNet-Fani\template\bin\Debug\template.exe
+D:\IrisNet-Fani\template\bin\Debug\template.exe.config
 D:\IrisNet-Fani\template\bin\Debug\template.pdb
 D:\IrisNet-Fani\template\bin\Debug\template.xml
 D:\IrisNet-Fani\template\bin\Debug\Accessibility.dll
@@ -29,7 +26,6 @@ D:\IrisNet-Fani\template\bin\Debug\de\DevExpress.DataAccess.v16.2.resources.dll
 D:\IrisNet-Fani\template\bin\Debug\es\DevExpress.DataAccess.v16.2.resources.dll
 D:\IrisNet-Fani\template\bin\Debug\ja\DevExpress.DataAccess.v16.2.resources.dll
 D:\IrisNet-Fani\template\bin\Debug\ru\DevExpress.DataAccess.v16.2.resources.dll
-D:\IrisNet-Fani\template\obj\Debug\template.vbprojResolveAssemblyReference.cache
 D:\IrisNet-Fani\template\obj\Debug\template.ctrlFilterStock.resources
 D:\IrisNet-Fani\template\obj\Debug\template.Form1.resources
 D:\IrisNet-Fani\template\obj\Debug\template.Form2.resources
@@ -81,6 +77,7 @@ D:\IrisNet-Fani\template\obj\Debug\template.frmMutasi.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmPBYAdd.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmPBYaddPerforma.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmPBYDetail.resources
+D:\IrisNet-Fani\template\obj\Debug\template.frmPBYexportExcel.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmPBYList.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmPBYRekapPelunasan.resources
 D:\IrisNet-Fani\template\obj\Debug\template.frmPBYValid.resources
@@ -131,4 +128,7 @@ D:\IrisNet-Fani\template\obj\Debug\template.SplashScreen1.resources
 D:\IrisNet-Fani\template\obj\Debug\template.XtraForm1.resources
 D:\IrisNet-Fani\template\obj\Debug\template.vbproj.GenerateResource.Cache
 D:\IrisNet-Fani\template\obj\Debug\template.exe.licenses
-D:\IrisNet-Fani\template\obj\Debug\template.frmPBYexportExcel.resources
+D:\IrisNet-Fani\template\obj\Debug\template.exe
+D:\IrisNet-Fani\template\obj\Debug\template.xml
+D:\IrisNet-Fani\template\obj\Debug\template.pdb
+D:\IrisNet-Fani\template\obj\Debug\template.vbprojResolveAssemblyReference.cache

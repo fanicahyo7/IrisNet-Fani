@@ -7,21 +7,25 @@ Public Class frmPBYAdd
     Dim nonopengajuan As String = ""
     Dim topengajuan As Double = 0
     Dim kategori As String = ""
+    Dim transaksi As String = ""
+    Dim transferke As String = ""
 
     Public Sub New()
         InitializeComponent()
     End Sub
 
-    Public Sub New(nopengajuan As String, pengajuan As Double, kategori As String)
+    Public Sub New(nopengajuan As String, pengajuan As Double, kategori As String, transaksi As String, transferke As String)
         InitializeComponent()
         Me.nonopengajuan = nopengajuan
         Me.topengajuan = pengajuan
         Me.kategori = kategori
+        Me.transaksi = transaksi
+        Me.transferke = transferke
     End Sub
 
     Private Sub cTransaksi_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cTransaksi.SelectedIndexChanged
         Dim query As String = ""
-        If cTransaksi.SelectedIndex = 0 Then
+        If cTransaksi.SelectedIndex = 0 Or cTransaksi.Text.ToUpper = "RETUR BELI" Or cTransaksi.Text.ToUpper = "DEPOSIT" Then
             query = "SELECT * FROM tblPengajuanBayarSupplier('0') ORDER BY 2, 1"
         ElseIf cTransaksi.SelectedIndex = 1 Then
             query = "SELECT * FROM tblPengajuanBayarSupplier('1') ORDER BY 2, 1"
@@ -35,9 +39,10 @@ Public Class frmPBYAdd
     End Sub
 
     Private Sub frmPBYAdd_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        cTransferKe.SelectedIndex = 0
-        cTransaksi.SelectedIndex = 0
-        cKategori.SelectedIndex = 0
+        '    cTransferKe.SelectedIndex = 0
+        '    cTransaksi.SelectedIndex = 0
+        '    cKategori.SelectedIndex = 0
+
         sPengajuan.Properties.Mask.UseMaskAsDisplayFormat = True
 
         SetTextReadOnly({tNoPengajuan, tNoBtt, sPengajuan})
@@ -62,20 +67,36 @@ Public Class frmPBYAdd
             rd = cmd.ExecuteReader
             rd.Read()
             If rd.HasRows Then
-                If rd!fakturlunas.ToString.ToUpper = "SUPPLIER" Then
-                    cTransferKe.SelectedIndex = 0
+                If Not transferke = "" Then
+                    If transferke.ToUpper = "SUPPLIER" Then
+                        cTransferKe.SelectedIndex = 0
+                    Else
+                        cTransferKe.SelectedIndex = 1
+                    End If
                 Else
-                    cTransferKe.SelectedIndex = 1
+                    If rd!fakturlunas.ToString.ToUpper = "SUPPLIER" Then
+                        cTransferKe.SelectedIndex = 0
+                    Else
+                        cTransferKe.SelectedIndex = 1
+                    End If
                 End If
 
-
-                If rd!JenisFaktur.ToString.ToUpper = "PEMBELIAN" Then
-                    cTransaksi.SelectedIndex = 0
+                If Not transaksi = "" Then
+                    cTransaksi.Items.Add(transaksi)
+                    cTransaksi.SelectedIndex = 2
                 Else
-                    cTransaksi.SelectedIndex = 1
+                    If rd!JenisFaktur.ToString.ToUpper = "PEMBELIAN" Then
+                        cTransaksi.SelectedIndex = 0
+                    Else
+                        cTransaksi.SelectedIndex = 1
+                    End If
                 End If
             End If
             rd.Close()
+        Else
+            cTransferKe.SelectedIndex = 0
+            cTransaksi.SelectedIndex = 0
+            cKategori.SelectedIndex = 0
         End If
 
         Dim querysp As String = "exec spGenPengajuanStatus"
@@ -98,7 +119,7 @@ Public Class frmPBYAdd
                 transaksi = "PERHITUNGAN"
             End If
             query = "select cast(Chk as bit) as Chk, Kategori, KdSupplier, Faktur, FakturAsli, Tanggal, JthTmp, Terjual, Status, Total," & _
-                "ReturFisik, ReturAdmin, JenisFaktur, FakturReinv, NamaSupplier, FlagLock from tblPengajuanPCKons('" & DTOC(tgl1, , False) & "','" & DTOC(tgl2, , False) & "','') " & _
+                "ReturFisik, ReturAdmin, JenisFaktur, FakturReinv, NamaSupplier, FlagLock from tblPengajuanPCKons('" & DTOC(tgl1, , False) & "','" & DTOC(tgl2, , False) & "','" & tNoPengajuan.Text & "') " & _
                 "where kdSupplier='" & lNamaSupplier.Text.ToUpper & "' and Terjual <> 0 and JenisFaktur in ('" & transaksi.ToUpper & "','RETUR BELI','DEPOSIT')  order by KdSupplier, Tanggal "
         ElseIf cTransferKe.SelectedIndex = 1 Then
             Dim konsi As String = ""
@@ -406,6 +427,10 @@ Public Class frmPBYAdd
     End Sub
 
     Private Sub dgTrans_Load(sender As Object, e As EventArgs) Handles dgTrans.Load
+
+    End Sub
+
+    Private Sub dgList_Load(sender As Object, e As EventArgs) Handles dgList.Load
 
     End Sub
 End Class
