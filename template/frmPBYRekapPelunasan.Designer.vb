@@ -125,7 +125,7 @@ Partial Class frmPBYRekapPelunasan
         Me.btnSupplierAdd.Size = New System.Drawing.Size(126, 38)
         Me.btnSupplierAdd.StyleController = Me.LayoutControl1
         Me.btnSupplierAdd.TabIndex = 12
-        Me.btnSupplierAdd.Text = "Tambah Supplier"
+        Me.btnSupplierAdd.Text = "Koreksi Supplier"
         '
         'sSisa
         '

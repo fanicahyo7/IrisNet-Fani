@@ -29,7 +29,7 @@ Public Class frmPBYRekapPelunasan
             Dim norek As String = rd!NoRek
 
             Dim queryupdate As String = _
-           "Update trPengajuanBayarHD Set TransferKe = '" & dgList.GetRowCellValue(dgList.FocusedRowHandle, "TransferKe").ToString.ToUpper & "', Promo = '" & dgList.GetRowCellValue(dgList.FocusedRowHandle, "Promo") & "', Bank = '" & bank & "', AtasNama = '" & atasnama & "', NoRek = '" & norek & "' Where NoBTT = '" & dgList.GetRowCellValue(dgList.FocusedRowHandle, "NoBTT") & "'"
+                "Update trPengajuanBayarHD Set TransferKe = '" & dgList.GetRowCellValue(dgList.FocusedRowHandle, "TransferKe").ToString.ToUpper & "', Promo = '" & dgList.GetRowCellValue(dgList.FocusedRowHandle, "Promo") & "', Bank = '" & bank & "', AtasNama = '" & atasnama & "', NoRek = '" & norek & "' Where NoBTT = '" & dgList.GetRowCellValue(dgList.FocusedRowHandle, "NoBTT") & "'"
             rd.Close()
             cmd = New SqlCommand(queryupdate, kon)
             cmd.ExecuteNonQuery()
@@ -148,8 +148,11 @@ Public Class frmPBYRekapPelunasan
     End Sub
 
     Private Sub btnCetakBtt_Click(sender As Object, e As EventArgs) Handles btnCetakBtt.Click
+        Dim qu As String = "UPDATE a SET a.kdunit = '" & Mid(pubDatabase, 3, 20) & "' FROM dbo.trPengajuanBayarHd a where a.NoPengajuan = '" & tNoPengajuan.Text & "'"
+        cmd = New SqlCommand(qu, kon)
+        cmd.ExecuteNonQuery()
 
-        Dim pQueRpt As String = "Select *, '' as Terbilang, convert(varchar, TglTrans, 103) as TglTrans2 from vwPengajuanBTTBayar where NoPengajuan = '621PBY-200406' order by NoCtr"
+        Dim pQueRpt As String = "Select *, '' as Terbilang, convert(varchar, TglTrans, 103) as TglTrans2 from vwPengajuanBTTBayar where NoPengajuan = '" & tNoPengajuan.Text & "' order by NoCtr"
         Dim anu As New cMeDB
         anu.FillMe(pQueRpt)
         For a = 0 To anu.Rows.Count - 1
@@ -185,6 +188,10 @@ Public Class frmPBYRekapPelunasan
             Return ""
         End If
     End Function
+
+    Private Sub dgList_Load(sender As Object, e As EventArgs) Handles dgList.Load
+
+    End Sub
 End Class
 
 

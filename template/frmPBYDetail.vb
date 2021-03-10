@@ -38,6 +38,9 @@ Public Class frmPBYDetail
         btnPrevious.Enabled = False
 
         tombolnextprev()
+
+        btnDeposit.Enabled = False
+        btnFaktur.Enabled = False
     End Sub
 
     Sub refreshhalaman()
@@ -60,7 +63,12 @@ Public Class frmPBYDetail
             btnFaktur.Enabled = False
             btnDeposit.Enabled = False
         Else
-            dgList.FirstInit(querygrid, {0.8, 1, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8}, , {"CashBack", "Ongkir", "LainLain", "LebihKurang"})
+            If cTransferKe.Text.ToUpper = "OPERASIONAL" Then
+                dgList.FirstInit(querygrid, {0.8, 1, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8}, , {"LainLain"})
+                SetTextReadOnly({sPromo})
+            Else
+                dgList.FirstInit(querygrid, {0.8, 1, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8, 0.8}, , {"CashBack", "Ongkir", "LainLain", "LebihKurang"})
+            End If
             btnHapus.Enabled = True
             btnFaktur.Enabled = True
             btnDeposit.Enabled = True
@@ -103,6 +111,19 @@ Public Class frmPBYDetail
     End Sub
 
     Private Sub dgList_Grid_ValidateRow(sender As Object, e As DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs) Handles dgList.Grid_ValidateRow
+        If IsDBNull(dgList.GetRowCellValue(e.RowHandle, "CashBack")) Then
+            dgList.SetRowCellValue(e.RowHandle, "CashBack", 0)
+        End If
+        If IsDBNull(dgList.GetRowCellValue(e.RowHandle, "Ongkir")) Then
+            dgList.SetRowCellValue(e.RowHandle, "Ongkir", 0)
+        End If
+        If IsDBNull(dgList.GetRowCellValue(e.RowHandle, "LebihKurang")) Then
+            dgList.SetRowCellValue(e.RowHandle, "LebihKurang", 0)
+        End If
+        If IsDBNull(dgList.GetRowCellValue(e.RowHandle, "LainLain")) Then
+            dgList.SetRowCellValue(e.RowHandle, "LainLain", 0)
+        End If
+
         dgList.SetRowCellValue(e.RowHandle, "CashBack", (dgList.GetRowCellValue(e.RowHandle, "CashBack") * -1))
         Dim query As String = _
             "Update trPengajuanBayarDT Set CashBack = '" & dgList.GetRowCellValue(e.RowHandle, "CashBack") & "', Ongkir = '" & dgList.GetRowCellValue(e.RowHandle, "Ongkir") & "', LebihKurang = '" & dgList.GetRowCellValue(e.RowHandle, "LebihKurang") & "', LainLain = '" & dgList.GetRowCellValue(e.RowHandle, "LainLain") & "' Where NoCtr = '" & tNoCtr.Text & "' and Faktur = '" & dgList.GetRowCellValue(e.RowHandle, "Faktur") & "'"
